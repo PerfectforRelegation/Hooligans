@@ -22,6 +22,7 @@ class MainWorker: MainWorkerLogic {
                 print(users)
                 response(MainModels.Users.Response(users: users, isError: false, message: nil))
             case .failure(let error):
+                print(error.localizedDescription)
                 response(MainModels.Users.Response(isError: true, message: error.localizedDescription))
             }
         }
