@@ -10,12 +10,11 @@ import SnapKit
 
 protocol MainDisplayLogic: AnyObject {
     func displaySomething(viewModel: MainModels.Users.ViewModel)
-    func plus(num: Int)
 }
 
 class MainViewController: UIViewController {
     var interactor: (MainBusinessLogic & MainDataStore)?
-//    var router: MainRoutingLogic?
+    var router: MainRoutingLogic?
     
     var users: [User]?
     var count: Int = 0
@@ -75,10 +74,10 @@ class MainViewController: UIViewController {
         let presenter = MainPresenter()
         let router = MainRouter()
         viewController.interactor = interactor
-//        viewController.router = router
+        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-//        router.viewController = viewController
+        router.viewController = viewController
     }
     
     func registerCells() {
