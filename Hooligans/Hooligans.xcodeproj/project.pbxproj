@@ -26,12 +26,26 @@
 		C14038872AB3077B00933273 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038862AB3077B00933273 /* NetworkService.swift */; };
 		C140388B2AB4415200933273 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140388A2AB4415200933273 /* User.swift */; };
 		C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140388D2AB4473A00933273 /* TestTableViewCell.swift */; };
+		C14038902AB8394600933273 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140388F2AB8394600933273 /* Endpoint.swift */; };
+		C14038992AB83FD300933273 /* HooligansTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038982AB83FD300933273 /* HooligansTests.swift */; };
+		C14038A02ABB300500933273 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = C140389F2ABB300500933273 /* League.swift */; };
+		C14038A22ABB300C00933273 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038A12ABB300C00933273 /* Team.swift */; };
 		C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100EF2A092B3400D6F24F /* AppDelegate.swift */; };
 		C1C100F22A092B3400D6F24F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100F12A092B3400D6F24F /* SceneDelegate.swift */; };
 		C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100F32A092B3400D6F24F /* ViewController.swift */; };
 		C1C100F92A092B3500D6F24F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C100F82A092B3500D6F24F /* Assets.xcassets */; };
 		C1C100FC2A092B3500D6F24F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C100FA2A092B3500D6F24F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C140389A2AB83FD300933273 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1C100E42A092B3400D6F24F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1C100EB2A092B3400D6F24F;
+			remoteInfo = Hooligans;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0724CC5A870F2A9AFEA20FF1 /* Pods-Hooligans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hooligans.debug.xcconfig"; path = "Target Support Files/Pods-Hooligans/Pods-Hooligans.debug.xcconfig"; sourceTree = "<group>"; };
@@ -54,6 +68,12 @@
 		C14038862AB3077B00933273 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C140388A2AB4415200933273 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C140388D2AB4473A00933273 /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
+		C140388F2AB8394600933273 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		C14038912AB83CA000933273 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C14038962AB83FD300933273 /* HooligansTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HooligansTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C14038982AB83FD300933273 /* HooligansTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HooligansTests.swift; sourceTree = "<group>"; };
+		C140389F2ABB300500933273 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
+		C14038A12ABB300C00933273 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		C1C100EC2A092B3400D6F24F /* Hooligans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hooligans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C100EF2A092B3400D6F24F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C100F12A092B3400D6F24F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +85,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C14038932AB83FD300933273 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1C100E92A092B3400D6F24F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,6 +168,7 @@
 		C14038702AA8869500933273 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C14038A32ABB300F00933273 /* League */,
 				C14038732AA886C300933273 /* User */,
 			);
 			path = Model;
@@ -181,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				C14038862AB3077B00933273 /* NetworkService.swift */,
+				C140388F2AB8394600933273 /* Endpoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -193,10 +222,29 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		C14038972AB83FD300933273 /* HooligansTests */ = {
+			isa = PBXGroup;
+			children = (
+				C14038982AB83FD300933273 /* HooligansTests.swift */,
+			);
+			path = HooligansTests;
+			sourceTree = "<group>";
+		};
+		C14038A32ABB300F00933273 /* League */ = {
+			isa = PBXGroup;
+			children = (
+				C14038A12ABB300C00933273 /* Team.swift */,
+				C140389F2ABB300500933273 /* League.swift */,
+			);
+			path = League;
+			sourceTree = "<group>";
+		};
 		C1C100E32A092B3400D6F24F = {
 			isa = PBXGroup;
 			children = (
+				C14038912AB83CA000933273 /* .swiftlint.yml */,
 				C1C100EE2A092B3400D6F24F /* Hooligans */,
+				C14038972AB83FD300933273 /* HooligansTests */,
 				C1C100ED2A092B3400D6F24F /* Products */,
 				539CA6D784681401548AA31C /* Pods */,
 				BA9BCE7988FAE1EE48D102EC /* Frameworks */,
@@ -207,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C100EC2A092B3400D6F24F /* Hooligans.app */,
+				C14038962AB83FD300933273 /* HooligansTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,6 +282,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C14038952AB83FD300933273 /* HooligansTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C140389C2AB83FD300933273 /* Build configuration list for PBXNativeTarget "HooligansTests" */;
+			buildPhases = (
+				C14038922AB83FD300933273 /* Sources */,
+				C14038932AB83FD300933273 /* Frameworks */,
+				C14038942AB83FD300933273 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C140389B2AB83FD300933273 /* PBXTargetDependency */,
+			);
+			name = HooligansTests;
+			productName = HooligansTests;
+			productReference = C14038962AB83FD300933273 /* HooligansTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C1C100EB2A092B3400D6F24F /* Hooligans */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1C101002A092B3500D6F24F /* Build configuration list for PBXNativeTarget "Hooligans" */;
@@ -262,6 +329,10 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					C14038952AB83FD300933273 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = C1C100EB2A092B3400D6F24F;
+					};
 					C1C100EB2A092B3400D6F24F = {
 						CreatedOnToolsVersion = 14.0;
 					};
@@ -281,11 +352,19 @@
 			projectRoot = "";
 			targets = (
 				C1C100EB2A092B3400D6F24F /* Hooligans */,
+				C14038952AB83FD300933273 /* HooligansTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C14038942AB83FD300933273 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1C100EA2A092B3400D6F24F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -340,12 +419,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C14038922AB83FD300933273 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C14038992AB83FD300933273 /* HooligansTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1C100E82A092B3400D6F24F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7C4692B92AB990460016ADC7 /* SigninPresenter.swift in Sources */,
 				7C4692B52AB98F120016ADC7 /* SigninViewController.swift in Sources */,
+				C14038902AB8394600933273 /* Endpoint.swift in Sources */,
 				C14038872AB3077B00933273 /* NetworkService.swift in Sources */,
 				C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */,
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
@@ -364,11 +452,22 @@
 				7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */,
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
 				7C4692BB2AB990AA0016ADC7 /* SigninWorker.swift in Sources */,
+				C14038A22ABB300C00933273 /* Team.swift in Sources */,
+				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
+				C14038A02ABB300500933273 /* League.swift in Sources */,
 				C14038752AB303E800933273 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C140389B2AB83FD300933273 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1C100EB2A092B3400D6F24F /* Hooligans */;
+			targetProxy = C140389A2AB83FD300933273 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C1C100FA2A092B3500D6F24F /* LaunchScreen.storyboard */ = {
@@ -382,6 +481,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C140389D2AB83FD300933273 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PerfectforRelegation.HooligansTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hooligans.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Hooligans";
+			};
+			name = Debug;
+		};
+		C140389E2AB83FD300933273 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PerfectforRelegation.HooligansTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hooligans.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Hooligans";
+			};
+			name = Release;
+		};
 		C1C100FE2A092B3500D6F24F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -561,6 +702,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C140389C2AB83FD300933273 /* Build configuration list for PBXNativeTarget "HooligansTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C140389D2AB83FD300933273 /* Debug */,
+				C140389E2AB83FD300933273 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C1C100E72A092B3400D6F24F /* Build configuration list for PBXProject "Hooligans" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

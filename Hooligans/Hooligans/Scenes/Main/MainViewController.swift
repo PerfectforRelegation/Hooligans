@@ -10,6 +10,7 @@ import SnapKit
 
 protocol MainDisplayLogic: AnyObject {
     func displaySomething(viewModel: MainModels.Users.ViewModel)
+    func plus(num: Int)
 }
 
 class MainViewController: UIViewController {
@@ -17,7 +18,8 @@ class MainViewController: UIViewController {
 //    var router: MainRoutingLogic?
 
     var users: [User]?
-
+    var count: Int = 0
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -26,6 +28,24 @@ class MainViewController: UIViewController {
         return table
     }()
 
+    private let countLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.frame = CGRect(origin: .zero, size: .zero)
+        label.text = "0"
+        label.textColor = .black
+        return label
+    }()
+    
+    private let upButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.frame = CGRect(origin: .zero, size: .zero)
+        button.setTitle("UP!", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         setup()
@@ -74,6 +94,30 @@ extension MainViewController {
         tableView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
+        
+//        self.view.addSubview(countLabel)
+//
+//        countLabel.snp.makeConstraints { make in
+//            make.top.equalToSuperview().offset(100)
+//            make.centerX.equalToSuperview()
+//        }
+//
+//        self.view.addSubview(upButton)
+//
+//        upButton.snp.makeConstraints { make in
+//            make.top.equalTo(countLabel.snp.bottom).offset(50)
+//            make.centerX.equalToSuperview()
+//            make.width.equalTo(80)
+//            make.height.equalTo(50)
+//        }
+//
+//        upButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc func tapButton() {
+        self.count += 1
+        self.countLabel.text = String(count)
+        print("tap!")
     }
 }
 
@@ -99,7 +143,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TestTableViewCell.identifier, for: indexPath) as? TestTableViewCell else { return UITableViewCell() }
         cell.label.text = self.users?[indexPath.row].name
-        cell.date.text = self.users?[indexPath.row].date
         return cell
     }
 
