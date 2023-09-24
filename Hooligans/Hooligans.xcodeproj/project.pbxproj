@@ -15,7 +15,7 @@
 		7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692BC2AB990B20016ADC7 /* SigninRouter.swift */; };
 		7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692BE2AB990D40016ADC7 /* SigninModels.swift */; };
 		7C4692C12AB99B160016ADC7 /* UIViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692C02AB99B160016ADC7 /* UIViewExtention.swift */; };
-		7C4692C42ABC51B60016ADC7 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692C32ABC51B60016ADC7 /* SigninView.swift */; };
+		7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692C32ABC51B60016ADC7 /* SigninView.swift */; };
 		C14038752AB303E800933273 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038742AB303E800933273 /* MainViewController.swift */; };
 		C14038772AB303FD00933273 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038762AB303FD00933273 /* MainInteractor.swift */; };
 		C14038792AB3040D00933273 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038782AB3040D00933273 /* MainPresenter.swift */; };
@@ -349,7 +349,7 @@
 				C14038872AB3077B00933273 /* NetworkService.swift in Sources */,
 				C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */,
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
-				7C4692C42ABC51B60016ADC7 /* SigninView.swift in Sources */,
+				7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */,
 				C140387F2AB3043100933273 /* MainModels.swift in Sources */,
 				C14038792AB3040D00933273 /* MainPresenter.swift in Sources */,
 				7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */,

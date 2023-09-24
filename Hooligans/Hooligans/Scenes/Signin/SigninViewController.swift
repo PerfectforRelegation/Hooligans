@@ -14,13 +14,24 @@ protocol SigninDisplayLogic: AnyObject {
 
 class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDelegate, UITableViewDataSource {
 
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//    }
-//
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return section
+    }
+
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
+//         return
 //    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // 여기에 셀을 생성하고 설정하는 코드를 작성하세요.
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+
+        // 셀에 텍스트를 설정하거나 다른 내용을 추가할 수 있습니다.
+        cell.textLabel?.text = "행 \(indexPath.row)"
+
+        return cell
+    }
+
 
     func displaySomething(viewModel: SigninModels.Users.ViewModel) {
         
@@ -28,7 +39,7 @@ class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDel
 
     private let header: SigninView = {
         let header = SigninView()
-//        header.translatesAutoresizingMaskIntoConstraints = false
+        //header.translatesAutoresizingMaskIntoConstraints = false
         return header
     }()
 
@@ -40,7 +51,7 @@ class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDel
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.frame = CGRect(origin: .zero, size: .zero)
-        table.backgroundColor = .blue
+        table.backgroundColor = .white
         return table
     }()
 
