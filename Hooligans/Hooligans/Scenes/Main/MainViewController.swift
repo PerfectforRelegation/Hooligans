@@ -14,8 +14,8 @@ protocol MainDisplayLogic: AnyObject {
 
 class MainViewController: UIViewController {
     var interactor: (MainBusinessLogic & MainDataStore)?
-//    var router: MainRoutingLogic?
-
+    var router: MainRoutingLogic?
+    
     var users: [User]?
 
     private let tableView: UITableView = {
@@ -55,10 +55,10 @@ class MainViewController: UIViewController {
         let presenter = MainPresenter()
         let router = MainRouter()
         viewController.interactor = interactor
-//        viewController.router = router
+        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-//        router.viewController = viewController
+        router.viewController = viewController
     }
 
     func registerCells() {
@@ -74,7 +74,26 @@ extension MainViewController {
         tableView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
+        
+//        self.view.addSubview(countLabel)
+//
+//        countLabel.snp.makeConstraints { make in
+//            make.top.equalToSuperview().offset(100)
+//            make.centerX.equalToSuperview()
+//        }
+//
+//        self.view.addSubview(upButton)
+//
+//        upButton.snp.makeConstraints { make in
+//            make.top.equalTo(countLabel.snp.bottom).offset(50)
+//            make.centerX.equalToSuperview()
+//            make.width.equalTo(80)
+//            make.height.equalTo(50)
+//        }
+//
+//        upButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
+    
 }
 
 extension MainViewController: MainDisplayLogic {
@@ -99,7 +118,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TestTableViewCell.identifier, for: indexPath) as? TestTableViewCell else { return UITableViewCell() }
         cell.label.text = self.users?[indexPath.row].name
-        cell.date.text = self.users?[indexPath.row].date
         return cell
     }
 
