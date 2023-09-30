@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol MainWorkerLogic {
     func fetchUser(_ response: @escaping (MainModels.Users.Response) -> Void)
@@ -14,6 +15,8 @@ protocol MainWorkerLogic {
 class MainWorker: MainWorkerLogic {
     
     let apiManager = APIService()
+    
+    var cancellables = Set<AnyCancellable>()
     
     func fetchUser(_ response: @escaping (MainModels.Users.Response) -> Void) {
         apiManager.fetchUsers { result in
@@ -27,4 +30,6 @@ class MainWorker: MainWorkerLogic {
             }
         }
     }
+    
+    
 }

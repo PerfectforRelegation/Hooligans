@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainPresentationLogic: AnyObject {
     func presentationUser(response: MainModels.Users.Response)
+
 }
 
 final class MainPresenter {
@@ -25,4 +26,6 @@ extension MainPresenter: MainPresentationLogic {
         
         viewController?.displaySomething(viewModel: viewModel)
     }
+    
+    
 }

@@ -18,10 +18,6 @@ class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDel
          return section
     }
 
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         return
-//    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 여기에 셀을 생성하고 설정하는 코드를 작성하세요.
         let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
@@ -101,7 +97,7 @@ class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDel
     }
 
     func registerCells() {
-        tableView.register(TestTableViewCell.self, forCellReuseIdentifier: TestTableViewCell.identifier)
+        tableView.register(LeagueTableViewCell.self, forCellReuseIdentifier: LeagueTableViewCell.identifier)
     }
 
 }

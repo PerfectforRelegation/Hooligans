@@ -10,7 +10,7 @@ import Foundation
 enum Endpoint {
     case main
     case userList
-    
+    case leagueTable
 }
 
 extension Endpoint {
@@ -20,6 +20,8 @@ extension Endpoint {
             return .endpoint("/main")
         case .userList:
             return .endpoint("/user/userList")
+        case .leagueTable:
+            return .endpoint("/team/table")
         }
     }
 }
@@ -27,7 +29,7 @@ extension Endpoint {
 private extension URL {
     static let baseURL = "http://13.124.61.192:8080"
 //    static let baseURL = "https://livescore6.p.rapidapi.com/leagues/v2"
-    
+
     static func endpoint(_ endpoint: String) -> URL {
         guard let url = URL(string: baseURL + endpoint) else { return URL(string: "")! }
         

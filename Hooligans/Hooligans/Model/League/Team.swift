@@ -2,59 +2,29 @@
 import Foundation
 
 struct Team: Codable {
-    let rnk: Int
-    let Tid: String
-    let win: Int
-    let winn: String
-    let wreg: Int
-    let wap: Int
-    let pf: Int
-    let pa: Int
-    let wot: Int
-    let Tnm: String
-    let lst: Int
-    let lstn: String
-    let lreg: Int
-    let lot: Int
-    let lap: Int
-    let drw: Int
-    let drwn: String
-    let gf: Int
-    let ga: Int
-    let gd: Int
-    let ptsn: String
-    let phr: [Int]
-    let Ipr: Int
-    let Img: String
-    let pts: Int
-    let pld: Int
+    let teamID: String = "0"
+    let teamName: String = "0"
+    let teamLogo: String? = nil
+    let played: String = "0"
+    let won: String = "0"
+    let lost: String = "0"
+    let drawn: String = "0"
+    let points: String = "0"
+    let goalsAgainst: String = "0"
+    let goalsFor: String = "0"
+    let goalDifference: String = "0"
 
     enum CodingKeys: String, CodingKey {
-        case rnk
-        case Tid
-        case win
-        case winn
-        case wreg
-        case wap
-        case pf
-        case pa
-        case wot
-        case Tnm
-        case lst
-        case lstn
-        case lreg
-        case lot
-        case lap
-        case drw
-        case drwn
-        case gf
-        case ga
-        case gd
-        case ptsn
-        case phr
-        case Ipr
-        case Img
-        case pts
-        case pld
+        case teamID = "teamid"
+        case teamName = "teamname"
+        case teamLogo = "team_logo"
+        case played
+        case won
+        case drawn
+        case lost
+        case points
+        case goalsAgainst = "ga"
+        case goalsFor = "gf"
+        case goalDifference = "gd"
     }
 }

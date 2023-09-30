@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 enum APIError: Error {
     case data
@@ -23,7 +24,9 @@ func get(url: URL) -> URLRequest {
 class APIService {
     let session = URLSession(configuration: .default)
     
-    let request = get(url: Endpoint.userList.url)
+    let request = get(url: Endpoint.leagueTable.url)
+    
+    var cancelBag = Set<AnyCancellable>()
     
     
     func fetchUsers(completion: @escaping (Result<[User], APIError>) -> Void) {
@@ -43,5 +46,32 @@ class APIService {
             
         }.resume()
         
+    }
+    
+    func fetchLeagueTable() -> AnyPublisher<LeagueTable, Error> {
+        
+        let url = Endpoint.leagueTable.url
+        
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .decode(type: LeagueTable.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+        
+        
+        //        session.dataTask(with: request) { data, response, error in
+        //
+        //            guard let data = data else {
+//                return completion(.failure(.data))
+//            }
+//
+//            guard let table = try? JSONDecoder().decode(LeagueTable.self, from: data) else {
+//                print(String(data: data, encoding: String.Encoding.utf8))
+//                print("decoding Error")
+//                return completion(.failure(.decodingJSON))
+//            }
+//
+//            completion(.success(table))
+//
+//        }.resume()
     }
 }

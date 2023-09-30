@@ -10,19 +10,21 @@ import SnapKit
 
 protocol MainDisplayLogic: AnyObject {
     func displaySomething(viewModel: MainModels.Users.ViewModel)
+    
 }
 
 class MainViewController: UIViewController {
     var interactor: (MainBusinessLogic & MainDataStore)?
     var router: MainRoutingLogic?
     
-    var users: [User]?
-
+    
+    
+    private let headerView: LeagueTableHeaderView = LeagueTableHeaderView()
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.frame = CGRect(origin: .zero, size: .zero)
-        table.backgroundColor = .green
         return table
     }()
 
@@ -37,12 +39,11 @@ class MainViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        interactor?.fetchUsers(request: MainModels.Users.Request(count: 0))
+//        interactor?.fetchUsers(request: MainModels.Users.Request(count: 0))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .yellow
         tableView.delegate = self
         tableView.dataSource = self
         setupView()
@@ -55,24 +56,33 @@ class MainViewController: UIViewController {
         let presenter = MainPresenter()
         let router = MainRouter()
         viewController.interactor = interactor
-        viewController.router = router
+//        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-        router.viewController = viewController
+//        router.viewController = viewController
     }
 
     func registerCells() {
-        tableView.register(TestTableViewCell.self, forCellReuseIdentifier: TestTableViewCell.identifier)
+        tableView.register(LeagueTableViewCell.self, forCellReuseIdentifier: LeagueTableViewCell.identifier)
     }
 
 }
 
 extension MainViewController {
     private func setupView() {
+        
+        self.view.addSubview(headerView)
+        
+        headerView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(150)
+        }
+        
         self.view.addSubview(tableView)
 
         tableView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(headerView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
 //        self.view.addSubview(countLabel)
@@ -99,25 +109,27 @@ extension MainViewController {
 extension MainViewController: MainDisplayLogic {
     func displaySomething(viewModel: MainModels.Users.ViewModel) {
         DispatchQueue.main.async {
-            self.users = viewModel.users
-            self.tableView.reloadData()
+//            self.users = viewModel.users
+//            self.tableView.reloadData()
         }
     }
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.users?.count ?? 0
+        return 0
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 100
 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TestTableViewCell.identifier, for: indexPath) as? TestTableViewCell else { return UITableViewCell() }
-        cell.label.text = self.users?[indexPath.row].name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LeagueTableViewCell.identifier, for: indexPath) as? LeagueTableViewCell else { return UITableViewCell() }
+        
         return cell
     }
 

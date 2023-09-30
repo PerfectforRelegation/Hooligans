@@ -13,6 +13,7 @@ protocol MainDataStore {
 
 protocol MainBusinessLogic {
     func fetchUsers(request: MainModels.Users.Request)
+    
 }
 
 class MainInteractor: MainDataStore, MainBusinessLogic {
@@ -28,4 +29,6 @@ class MainInteractor: MainDataStore, MainBusinessLogic {
             self.presenter?.presentationUser(response: MainModels.Users.Response(users: response.users, isError: false, message: "Fields may not be empty"))
         })
     }
+    
+    
 }

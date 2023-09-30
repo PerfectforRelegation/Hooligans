@@ -8,6 +8,7 @@
 import Foundation
 
 enum MainModels {
+    
     // MARK: Usecases
     enum Users {
         struct Request {
@@ -24,4 +25,5 @@ enum MainModels {
             var users: [User]
         }
     }
+    
 }
