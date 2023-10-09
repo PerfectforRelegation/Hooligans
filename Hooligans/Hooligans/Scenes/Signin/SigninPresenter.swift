@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SigninPresentationLogic: AnyObject {
-    func presentationUser(response: SigninModels.Users.Response)
+    func presentationUser(response: SigninModels.BoardContents.Response)
 }
 
 final class SigninPresenter {
@@ -17,12 +17,12 @@ final class SigninPresenter {
 
 extension SigninPresenter: SigninPresentationLogic {
 
-    func presentationUser(response: SigninModels.Users.Response) {
+    func presentationUser(response: SigninModels.BoardContents.Response) {
 
-        guard let users = response.users else { return }
+        guard let boardContents = response.boardContents else { return }
 
-        let viewModel = SigninModels.Users.ViewModel(users: users)
+        let viewModel = SigninModels.BoardContents.ViewModel(boardContents: boardContents)
 
-        viewController?.displaySomething(viewModel: viewModel)
+        viewController?.displayAnything(viewModel: viewModel)
     }
 }

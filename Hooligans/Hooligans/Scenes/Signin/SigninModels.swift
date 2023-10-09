@@ -9,19 +9,19 @@ import Foundation
 
 enum SigninModels {
     // MARK: Usecases
-    enum Users {
+    enum BoardContents {
         struct Request {
             var count: Int
         }
 
         struct Response {
-            var users: [User]?
+            var boardContents: [Board]?
             var isError: Bool
             var message: String?
         }
 
         struct ViewModel {
-            var users: [User]
+            var boardContents: [Board]
         }
     }
 }

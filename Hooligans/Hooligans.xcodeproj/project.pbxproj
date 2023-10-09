@@ -16,6 +16,10 @@
 		7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692BE2AB990D40016ADC7 /* SigninModels.swift */; };
 		7C4692C12AB99B160016ADC7 /* UIViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692C02AB99B160016ADC7 /* UIViewExtention.swift */; };
 		7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692C32ABC51B60016ADC7 /* SigninView.swift */; };
+		7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11B72AC2C78100E1BBBE /* Board.swift */; };
+		7CBC11BA2AC2E14B00E1BBBE /* SigninTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11B92AC2E14B00E1BBBE /* SigninTableViewCell.swift */; };
+		7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BD2AD3D39600E1BBBE /* LoginController.swift */; };
+		7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */; };
 		C14038752AB303E800933273 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038742AB303E800933273 /* MainViewController.swift */; };
 		C14038772AB303FD00933273 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038762AB303FD00933273 /* MainInteractor.swift */; };
 		C14038792AB3040D00933273 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038782AB3040D00933273 /* MainPresenter.swift */; };
@@ -58,6 +62,10 @@
 		7C4692BE2AB990D40016ADC7 /* SigninModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModels.swift; sourceTree = "<group>"; };
 		7C4692C02AB99B160016ADC7 /* UIViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewExtention.swift; path = Hooligans/Scenes/Signin/UIViewExtention.swift; sourceTree = SOURCE_ROOT; };
 		7C4692C32ABC51B60016ADC7 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		7CBC11B72AC2C78100E1BBBE /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		7CBC11B92AC2E14B00E1BBBE /* SigninTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTableViewCell.swift; sourceTree = "<group>"; };
+		7CBC11BD2AD3D39600E1BBBE /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		C14038742AB303E800933273 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C14038762AB303FD00933273 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		C14038782AB3040D00933273 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
@@ -122,6 +130,7 @@
 				7C4692BA2AB990AA0016ADC7 /* SigninWorker.swift */,
 				7C4692BC2AB990B20016ADC7 /* SigninRouter.swift */,
 				7C4692BE2AB990D40016ADC7 /* SigninModels.swift */,
+				7CBC11BD2AD3D39600E1BBBE /* LoginController.swift */,
 			);
 			path = Signin;
 			sourceTree = "<group>";
@@ -130,8 +139,18 @@
 			isa = PBXGroup;
 			children = (
 				7C4692C32ABC51B60016ADC7 /* SigninView.swift */,
+				7CBC11B92AC2E14B00E1BBBE /* SigninTableViewCell.swift */,
+				7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		7CBC11B62AC2C77700E1BBBE /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				7CBC11B72AC2C78100E1BBBE /* Board.swift */,
+			);
+			path = Board;
 			sourceTree = "<group>";
 		};
 		BA9BCE7988FAE1EE48D102EC /* Frameworks */ = {
@@ -168,6 +187,7 @@
 		C14038702AA8869500933273 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7CBC11B62AC2C77700E1BBBE /* Board */,
 				C14038A32ABB300F00933273 /* League */,
 				C14038732AA886C300933273 /* User */,
 			);
@@ -437,12 +457,14 @@
 				C14038872AB3077B00933273 /* NetworkService.swift in Sources */,
 				C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */,
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
+				7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */,
 				7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */,
 				C140387F2AB3043100933273 /* MainModels.swift in Sources */,
 				C14038792AB3040D00933273 /* MainPresenter.swift in Sources */,
 				7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */,
 				C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */,
 				C1C100F22A092B3400D6F24F /* SceneDelegate.swift in Sources */,
+				7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */,
 				C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */,
 				7C4692C12AB99B160016ADC7 /* UIViewExtention.swift in Sources */,
 				7C4692B72AB990110016ADC7 /* SigninInteractor.swift in Sources */,
@@ -451,11 +473,13 @@
 				C14038772AB303FD00933273 /* MainInteractor.swift in Sources */,
 				7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */,
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
+				7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */,
 				7C4692BB2AB990AA0016ADC7 /* SigninWorker.swift in Sources */,
 				C14038A22ABB300C00933273 /* Team.swift in Sources */,
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
 				C14038A02ABB300500933273 /* League.swift in Sources */,
 				C14038752AB303E800933273 /* MainViewController.swift in Sources */,
+				7CBC11BA2AC2E14B00E1BBBE /* SigninTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

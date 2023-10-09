@@ -9,10 +9,12 @@ import Foundation
 
 protocol SigninDataStore {
     var users: [User]? { get set }
+    var boardList: [Board]? { get set }
 }
 
 protocol SigninBusinessLogic {
-    func fetchUsers(request: SigninModels.Users.Request)
+    //func fetchUsers(request: SigninModels.Users.Request)
+    func boardList(request: SigninModels.BoardContents.Request)
 }
 
 class SigninInteractor: SigninDataStore, SigninBusinessLogic {
@@ -21,11 +23,21 @@ class SigninInteractor: SigninDataStore, SigninBusinessLogic {
     var worker: SigninWorker?
 
     var users: [User]?
+    var boardList: [Board]?
 
-    func fetchUsers(request: SigninModels.Users.Request) {
+    // 서버에게 데이터 요청
+//    func fetchUsers(request: SigninModels.Users.Request) {
+//        worker = SigninWorker()
+//        worker?.fetchUser({ response in
+//            self.presenter?.presentationUser(response: SigninModels.Users.Response(users: response.users, isError: false, message: "Fields may not be empty"))
+//        })
+//    }
+
+    // 서버에게 데이터 요청
+    func boardList(request: SigninModels.BoardContents.Request) {
         worker = SigninWorker()
-        worker?.fetchUser({ response in
-            self.presenter?.presentationUser(response: SigninModels.Users.Response(users: response.users, isError: false, message: "Fields may not be empty"))
+        worker?.boardList({ response in
+            self.presenter?.presentationUser(response: SigninModels.BoardContents.Response(boardContents: response.boardContents, isError: false, message: "Fields may not be empty"))
         })
     }
 }

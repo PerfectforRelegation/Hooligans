@@ -9,49 +9,31 @@ import UIKit
 import SnapKit
 
 protocol SigninDisplayLogic: AnyObject {
-    func displaySomething(viewModel: SigninModels.Users.ViewModel)
+    func displayAnything(viewModel: SigninModels.BoardContents.ViewModel)
 }
 
-class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDelegate, UITableViewDataSource {
+class SigninViewController: UIViewController {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return section
-    }
-
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         return
+//    func displayAnything(viewModel: SigninModels.BoardContents.ViewModel) {
+//
 //    }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // 여기에 셀을 생성하고 설정하는 코드를 작성하세요.
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
-
-        // 셀에 텍스트를 설정하거나 다른 내용을 추가할 수 있습니다.
-        cell.textLabel?.text = "행 \(indexPath.row)"
-
-        return cell
-    }
-
-
-    func displaySomething(viewModel: SigninModels.Users.ViewModel) {
-        
-    }
-
-    private let header: SigninView = {
-        let header = SigninView()
-        //header.translatesAutoresizingMaskIntoConstraints = false
-        return header
-    }()
+//    private let header: SigninView = {
+//        let header = SigninView()
+//        //header.translatesAutoresizingMaskIntoConstraints = false
+//        return header
+//    }()
 
     var interactor: (SigninBusinessLogic & SigninDataStore)?
 
     var users: [User]?
+    var boardContents: [Board]?
 
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.frame = CGRect(origin: .zero, size: .zero)
-        table.backgroundColor = .white
+        table.backgroundColor = .black 
         return table
     }()
 
@@ -64,7 +46,7 @@ class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDel
         let viewController = self
         let interactor = SigninInteractor()
         let presenter = SigninPresenter()
-        let router = SigninRouter()
+        _ = SigninRouter()
         viewController.interactor = interactor
 //        viewController.router = router
         interactor.presenter = presenter
@@ -116,3 +98,29 @@ extension SigninViewController {
     }
 }
 
+extension SigninViewController: SigninDisplayLogic {
+    func displayAnything(viewModel: SigninModels.BoardContents.ViewModel) {
+        DispatchQueue.main.async {
+            self.boardContents = viewModel.boardContents
+            self.tableView.reloadData()
+        }
+    }
+}
+
+extension SigninViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.boardContents?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SigninTableViewCell.identifier, for: indexPath) as? SigninTableViewCell else { return UITableViewCell() }
+                cell.label.text = self.users?[indexPath.row].name
+                return cell
+
+    }
+}
