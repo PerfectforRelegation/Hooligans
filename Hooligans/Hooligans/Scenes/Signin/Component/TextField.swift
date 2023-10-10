@@ -27,14 +27,14 @@ class TextField: UITextField {
 
         switch fieldType {
         case .username:
-            self.placeholder = "Username"
+            self.placeholder = "사용자 이름"
         case .email:
-            self.placeholder = "Email Address"
+            self.placeholder = "이메일"
             self.keyboardType = .emailAddress
             self.textContentType = .emailAddress
 
         case .password:
-            self.placeholder = "Password"
+            self.placeholder = "비밀번호"
             self.textContentType = .oneTimeCode
             self.isSecureTextEntry = true
         }

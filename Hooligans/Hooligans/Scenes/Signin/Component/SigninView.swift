@@ -1,15 +1,3 @@
-//
-//import UIKit
-////import SwiftUI
-//
-//class SigninView: UIView {
-//
-//   //static let identifier = "signinView"
-//
-//
-//
-//}
-
 
 import UIKit
 
@@ -66,8 +54,7 @@ class SigninView: UIView {
 
 
         NSLayoutConstraint.activate([
-//            self.logoImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 100),
-            self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
+            self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
             self.logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.logoImageView.widthAnchor.constraint(equalToConstant: 90),
             self.logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
