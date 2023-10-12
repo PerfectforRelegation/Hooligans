@@ -10,7 +10,7 @@ import Foundation
 enum Endpoint {
     case main
     case userList
-    
+    case boardList
 }
 
 extension Endpoint {
@@ -20,6 +20,8 @@ extension Endpoint {
             return .endpoint("/main")
         case .userList:
             return .endpoint("/user/userList")
+        case .boardList:
+            return .endpoint("/board/list")
         }
     }
 }
