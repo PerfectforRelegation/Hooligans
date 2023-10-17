@@ -18,8 +18,7 @@ class MainViewController: UIViewController {
     var router: MainRoutingLogic?
     
     var users: [User]?
-    var count: Int = 0
-    
+
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -27,39 +26,21 @@ class MainViewController: UIViewController {
         table.backgroundColor = .green
         return table
     }()
-    
-    private let countLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.frame = CGRect(origin: .zero, size: .zero)
-        label.text = "0"
-        label.textColor = .black
-        return label
-    }()
-    
-    private let upButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.frame = CGRect(origin: .zero, size: .zero)
-        button.setTitle("UP!", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
-    
+
     init() {
         super.init(nibName: nil, bundle: nil)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         interactor?.fetchUsers(request: MainModels.Users.Request(count: 0))
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .yellow
@@ -68,7 +49,7 @@ class MainViewController: UIViewController {
         setupView()
         registerCells()
     }
-    
+
     func setup() {
         let viewController = self
         let interactor = MainInteractor()
@@ -81,7 +62,7 @@ class MainViewController: UIViewController {
         router.viewController = viewController
         router.dataStore = interactor
     }
-    
+
     func registerCells() {
         tableView.register(TestTableViewCell.self, forCellReuseIdentifier: TestTableViewCell.identifier)
     }
@@ -118,6 +99,7 @@ extension MainViewController {
     func routeToUserViewController() {
         router?.routeToUserInfo()
     }
+  
 }
 
 extension MainViewController: MainDisplayLogic {
@@ -133,12 +115,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.users?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TestTableViewCell.identifier, for: indexPath) as? TestTableViewCell else { return UITableViewCell() }
         cell.label.text = self.users?[indexPath.row].name

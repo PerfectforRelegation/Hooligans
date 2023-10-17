@@ -24,10 +24,13 @@ class APIService {
     let session = URLSession(configuration: .default)
     
     let request = get(url: Endpoint.userList.url)
+
+    let requestBoardList = get(url: Endpoint.boardList.url)
     
-    
+    // 직접적으로 서버에게 api 요청, JSON 형태의 응답을 구조체(struct, 여기선 Board)로 디코딩(decode)
     func fetchUsers(completion: @escaping (Result<[User], APIError>) -> Void) {
-        
+
+            // 엔드포인트 작성 후 적용
             session.dataTask(with: Endpoint.userList.url) { data, response, error in
                 
             guard let data = data else {
@@ -38,10 +41,29 @@ class APIService {
                 print(data.description)
                 return completion(.failure(.decodingJSON))
             }
-            
             completion(.success(users))
-            
+
         }.resume()
         
+    }
+    
+    func boardList(completion: @escaping (Result<[Board], APIError>) -> Void) {
+
+            // 엔드포인트 작성 후 적용
+            session.dataTask(with: Endpoint.boardList.url) { data, response, error in
+
+            guard let data = data else {
+                return completion(.failure(.data))
+            }
+
+            guard let boardList = try? JSONDecoder().decode([Board].self, from: data) else {
+                print(data.description)
+                return completion(.failure(.decodingJSON))
+            }
+
+            completion(.success(boardList))
+
+        }.resume()
+
     }
 }
