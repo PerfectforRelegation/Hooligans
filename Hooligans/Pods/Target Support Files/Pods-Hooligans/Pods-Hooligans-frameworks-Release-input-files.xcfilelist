@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-Hooligans/Pods-Hooligans-frameworks.sh
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 =======
@@ -6,3 +7,6 @@ ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework
 ${BUILT_PRODUCTS_DIR}/StompClientLib/StompClientLib.framework
 >>>>>>> Stashed changes
+=======
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+>>>>>>> origin

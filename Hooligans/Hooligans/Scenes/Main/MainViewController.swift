@@ -10,18 +10,14 @@ import SnapKit
 
 protocol MainDisplayLogic: AnyObject {
     func displaySomething(viewModel: MainModels.Users.ViewModel)
-    func diaplayLeagueTable(viewModel: MainModels.Table.ViewModel)
 }
 
 class MainViewController: UIViewController {
     var interactor: (MainBusinessLogic & MainDataStore)?
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 //    var router: MainRoutingLogic?
     
     
     private let headerView: LeagueTableHeaderView = LeagueTableHeaderView()
-=======
     var router: MainRoutingLogic?
     
     private let headerView: UIButton = {
@@ -31,13 +27,6 @@ class MainViewController: UIViewController {
         button.setTitle("click", for: .normal)
         return button
     }()
->>>>>>> Stashed changes
-=======
-//    var router: MainRoutingLogic?
-    
-    var leagueTable: LeagueTable
-    var count: Int = 0
->>>>>>> Stashed changes
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -58,10 +47,6 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 //        interactor?.fetchUsers(request: MainModels.Users.Request(count: 0))
-<<<<<<< Updated upstream
-=======
-        interactor?.fetchLeagueTable(request: MainModels.LeagueTable.Request())
->>>>>>> Stashed changes
     }
 
     override func viewDidLoad() {
@@ -81,16 +66,11 @@ class MainViewController: UIViewController {
 //        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-<<<<<<< Updated upstream
         router.viewController = viewController
-<<<<<<< Updated upstream
         router.dataStore = interactor
 //        router.viewController = viewController
-=======
->>>>>>> Stashed changes
-=======
 //        router.viewController = viewController
->>>>>>> Stashed changes
+        router.dataStore = interactor
     }
 
     func registerCells() {
@@ -138,17 +118,14 @@ extension MainViewController {
 //        upButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
     
-<<<<<<< Updated upstream
     func routeToUserViewController() {
         router?.routeToUserInfo()
     }
   
-=======
     @objc func routeToChatRoom() {
         router?.routeToUserInfo()
     }
     
->>>>>>> Stashed changes
 }
 
 extension MainViewController: MainDisplayLogic {

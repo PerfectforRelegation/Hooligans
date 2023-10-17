@@ -20,8 +20,6 @@ final class MainRouter: MainRoutingLogic {
     var dataStore: MainDataStore?
     
     func routeToUserInfo() {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 //        let userViewController = UserViewController()
 //        
 //        viewController.navigationController?.pushViewController(userViewController, animated: true)
@@ -32,16 +30,9 @@ final class MainRouter: MainRoutingLogic {
         
         viewController?.navigationController?.pushViewController(userViewController, animated: true)
 
-=======
         let userViewController = ChatListViewController()
         
         viewController?.navigationController?.pushViewController(userViewController, animated: true)
->>>>>>> Stashed changes
-=======
-//        let userViewController = UserViewController()
-//        
-//        viewController.navigationController?.pushViewController(userViewController, animated: true)
->>>>>>> Stashed changes
     }
     
 }

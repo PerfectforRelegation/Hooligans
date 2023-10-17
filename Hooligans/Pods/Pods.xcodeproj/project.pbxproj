@@ -19,7 +19,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		0AC94FA06961AC8C7411E6F4611BE121 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		144DA93A55A598F5197F10C729FBDD69 /* UILayoutSupport+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBCA25D9C7814ABD4C9EB15BD7A50BB /* UILayoutSupport+Extensions.swift */; };
 		17BE0F4E51B0FB968125F1A520607FD8 /* ConstraintMultiplierTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318273A0CAE0FF6C08EE82A0350F0045 /* ConstraintMultiplierTarget.swift */; };
@@ -66,6 +69,7 @@
 
 /* Begin PBXContainerItemProxy section */
 		37BB4C47A1FF4EAEB9D3F3C11D731F07 /* PBXContainerItemProxy */ = {
+<<<<<<< HEAD
 =======
 		04A1FDB07346C8A0A502D07A52FB672A /* StompClientLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8265FAEE598534D8D0FE44AC5EA59A75 /* StompClientLib.swift */; };
 		0AE63FF0DD88DB7D240603CF841168D3 /* SocketRocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A406326733A42D0D2C5E41F4B802FC0E /* SocketRocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -178,17 +182,23 @@
 		};
 		753B97F260D43B7D4CCDC1AFA8732671 /* PBXContainerItemProxy */ = {
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
 			remoteInfo = SwiftLint;
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 		66A8AFEC7452C403CFEB566606BC0996 /* PBXContainerItemProxy */ = {
 =======
 		D18AC5A99ADF2DFA1D2367BEFF0DEE9D /* PBXContainerItemProxy */ = {
 >>>>>>> Stashed changes
+=======
+		66A8AFEC7452C403CFEB566606BC0996 /* PBXContainerItemProxy */ = {
+>>>>>>> origin
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -205,7 +215,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		04F3EE98167EA1678E8B20101BA56122 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		09B0D11CC286B5AC15D3611E04E2CD58 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
 		1EE3AE3F509D505B998CCF1C28751A7E /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
@@ -247,6 +260,7 @@
 		AECB49597C2D0242BBDAD5CC520F1C52 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
 		AFC9AE4369FD1AE9D7FB76C0B67CF1D4 /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Source/Typealiases.swift; sourceTree = "<group>"; };
 		B2D3CE1130509AC16FDDB01E58515A2D /* Pods-Hooligans.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Hooligans.release.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		B310366BD9E3316F6FD4A73954B256B9 /* ConstraintMakerPriortizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPriortizable.swift; path = Source/ConstraintMakerPriortizable.swift; sourceTree = "<group>"; };
 		B694921018281B44D4143E8A91B74A64 /* Skip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Skip.swift; path = RxSwift/Observables/Skip.swift; sourceTree = "<group>"; };
 		B6D021DD52E136D956A6CE2378D13469 /* ScheduledDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScheduledDisposable.swift; path = RxSwift/Disposables/ScheduledDisposable.swift; sourceTree = "<group>"; };
@@ -429,16 +443,38 @@
 		F83D28D6033E09D5A623D01EBBC220AA /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		F9C11222F0872F643C53843746F1C21A /* NSRunLoop+SRWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSRunLoop+SRWebSocket.m"; path = "SocketRocket/NSRunLoop+SRWebSocket.m"; sourceTree = "<group>"; };
 >>>>>>> Stashed changes
+=======
+		BA08EA82A329CAA16277ECA7D7494A07 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
+		BA0EC322A702B6D6F9A9376382517424 /* SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.debug.xcconfig; sourceTree = "<group>"; };
+		BB21D000CE56AFE34D458F2E99AD2A5A /* Pods-Hooligans */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Hooligans"; path = Pods_Hooligans.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3D3D41095A5DC8BC50273099D5EA237 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
+		CAE161DCD8C6473C3078AD359B90914E /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Source/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
+		D52486BF5552D808ECCEAE1C3D22E894 /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
+		DEE50C3D92234126BA8FB70C9D3255B2 /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
+		E30F94339270BB14BD7AF1C0A5B745DD /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
+		E3C9248834D5B88B19FE6BEA2843291B /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
+		E4C901F6BAF2043AFCEBBEAFD6FA74D7 /* SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.release.xcconfig; sourceTree = "<group>"; };
+		E62C5F03D74BCD7CBBEB25EAA03CF4DF /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
+		E75976ADEB540C27D81D2AF17924372A /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Source/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
+		EF654B4EF2180465C70613D235BCB60C /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Source/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
+		EFF4150ABC41822BCE0F7127AF5B3712 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
+		F09F81E2270F0874A44FCE2A253FE627 /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
+		F1367B8A6C0E31C12CFF7D40313F1A31 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
+>>>>>>> origin
 		FBD0DC54E3F7CBC149DBE43276C51C8D /* Pods-Hooligans.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Hooligans.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		033C861CDEFFBF8489D9E987C26BC7BB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0AC94FA06961AC8C7411E6F4611BE121 /* Foundation.framework in Frameworks */,
+<<<<<<< HEAD
 =======
 		14A498146B7F8DB195861E7DF392982C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -456,6 +492,8 @@
 				79FF57976BE4902AFE523BA35F9391C4 /* Foundation.framework in Frameworks */,
 				CAD4E325579A7EF19B64FBAF9BEC6E71 /* Security.framework in Frameworks */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +505,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 /* End PBXFrameworksBuildPhase section */
 
@@ -504,6 +543,21 @@
 
 /* Begin PBXGroup section */
 		03C5C200A0787E300053CFA8F53CA094 /* Frameworks */ = {
+=======
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		233BB6812119E8FABAA20897ABA07252 /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+				F5B9666B259A98B55588840288797217 /* Support Files */,
+			);
+			name = SwiftLint;
+			path = SwiftLint;
+			sourceTree = "<group>";
+		};
+		40D4DBA0C09F285095BBCA6854D4F6EC /* Products */ = {
+>>>>>>> origin
 			isa = PBXGroup;
 			children = (
 				D5B250C191F0E4C7AD947CD0C88A0F4B /* iOS */,
@@ -517,6 +571,7 @@
 <<<<<<< Updated upstream
 				BB21D000CE56AFE34D458F2E99AD2A5A /* Pods-Hooligans */,
 				979486118B3E90C08386079D57962701 /* SnapKit */,
+<<<<<<< HEAD
 				85A01882ED06DFEA2E0CE78BCDB204A7 /* SocketRocket */,
 				38C59ADED07962C73869AEE77E82DD87 /* StompClientLib */,
 >>>>>>> Stashed changes
@@ -525,6 +580,8 @@
 				809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift.framework */,
 				979486118B3E90C08386079D57962701 /* SnapKit.framework */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -536,6 +593,7 @@
 				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
 			);
 			name = iOS;
+<<<<<<< HEAD
 =======
 				4B1E93AD69CAAFF4CD9246A2C8D1C569 /* SocketRocket.modulemap */,
 				82CB36ACC3776D67F102692169A14EBB /* SocketRocket-dummy.m */,
@@ -563,6 +621,8 @@
 			name = "Support Files";
 			path = "../Target Support Files/SnapKit";
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			sourceTree = "<group>";
 		};
 		805D35D00E82F69361E9707E0DF510E9 /* Pods-Hooligans */ = {
@@ -582,12 +642,16 @@
 			path = "Target Support Files/Pods-Hooligans";
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		89B7D4E2707B611BCB868286C1E40CD5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				BFF64E8C90566FC8F166260ADC82CF94 /* SnapKit */,
 				233BB6812119E8FABAA20897ABA07252 /* SwiftLint */,
+<<<<<<< HEAD
 =======
 		A4E8BB26884DB85EFBB814B89C0EE274 /* Support Files */ = {
 			isa = PBXGroup;
@@ -620,12 +684,17 @@
 				045380C724EB6D36F6CA102D8B3D8E0B /* SwiftLint.debug.xcconfig */,
 				CB9ED76EA0465A6A9B81CD9FD4B0ADB5 /* SwiftLint.release.xcconfig */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SwiftLint";
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		BFF64E8C90566FC8F166260ADC82CF94 /* SnapKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -736,6 +805,21 @@
 			path = "../Target Support Files/SnapKit";
 			sourceTree = "<group>";
 		};
+		C1444E38336C99464CCC57E41569AC44 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D52486BF5552D808ECCEAE1C3D22E894 /* SnapKit.modulemap */,
+				70B5CB00E2171866ED3B1D9C4ECFF7C2 /* SnapKit-dummy.m */,
+				A4EB99F904269893B57A88B243A68AF6 /* SnapKit-Info.plist */,
+				1EE3AE3F509D505B998CCF1C28751A7E /* SnapKit-prefix.pch */,
+				6E5ABE9523052194FDDCB00012BB45B3 /* SnapKit-umbrella.h */,
+				BA0EC322A702B6D6F9A9376382517424 /* SnapKit.debug.xcconfig */,
+				E4C901F6BAF2043AFCEBBEAFD6FA74D7 /* SnapKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SnapKit";
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
@@ -744,11 +828,14 @@
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				89B7D4E2707B611BCB868286C1E40CD5 /* Pods */,
 				40D4DBA0C09F285095BBCA6854D4F6EC /* Products */,
+<<<<<<< HEAD
 =======
 				03C5C200A0787E300053CFA8F53CA094 /* Frameworks */,
 				CF8DDEF2C788BE9694FA22E09C1FFFE2 /* Pods */,
 				13F225112780D9C3807BFBA1D4ED50D2 /* Products */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 				D1861E133492BEC47DF65C78CA518E62 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -782,7 +869,10 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		F5B9666B259A98B55588840288797217 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +881,7 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SwiftLint";
+<<<<<<< HEAD
 =======
 		E03B05398AE2C3D8E1795746C726640F /* SnapKit */ = {
 			isa = PBXGroup;
@@ -845,17 +936,23 @@
 			name = SwiftLint;
 			path = SwiftLint;
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		35F360FF204E9713B29732CBD17AD865 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F96E21242C943C4050FABF603A614BEA /* Pods-Hooligans-umbrella.h in Headers */,
+<<<<<<< HEAD
 =======
 		34D835D8C451B79712A883D953113B87 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
@@ -863,6 +960,8 @@
 			files = (
 				923D38561390495B94E45A7C4759D35B /* StompClientLib-umbrella.h in Headers */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,6 +973,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 		48A5A36033A3B4B5F19B9CA766BED99F /* Headers */ = {
@@ -915,6 +1015,8 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -956,13 +1058,17 @@
 		};
 		4C8E962D753CFD17937171FE56BDD7E0 /* Pods-Hooligans */ = {
 			isa = PBXNativeTarget;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 			buildConfigurationList = 096398DAA2477FC2683393F2A17B0415 /* Build configuration list for PBXNativeTarget "Pods-Hooligans" */;
 			buildPhases = (
 				35F360FF204E9713B29732CBD17AD865 /* Headers */,
 				0A73799602DD001ACC0BBBED392D2189 /* Sources */,
 				033C861CDEFFBF8489D9E987C26BC7BB /* Frameworks */,
 				E06A488E8D9C0C956300348B727209F7 /* Resources */,
+<<<<<<< HEAD
 =======
 			buildConfigurationList = 5B836452E0197797345CACD05357FBC8 /* Build configuration list for PBXNativeTarget "Pods-Hooligans" */;
 			buildPhases = (
@@ -971,11 +1077,16 @@
 				14A498146B7F8DB195861E7DF392982C /* Frameworks */,
 				F8BFCF21DA740B16FCAF3E5798B9FF1A /* Resources */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			);
 			buildRules = (
 			);
 			dependencies = (
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 				691522DF8826723340A42D440081D8C4 /* PBXTargetDependency */,
 				D4E96289C78BECE9E5F70616FD9C5E07 /* PBXTargetDependency */,
 			);
@@ -993,6 +1104,7 @@
 			productReference = BB21D000CE56AFE34D458F2E99AD2A5A /* Pods_Hooligans.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+<<<<<<< HEAD
 		BD357877094CC6561657F2D15837D659 /* StompClientLib */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AA79616D2A18BB775302EB2308C7ED6 /* Build configuration list for PBXNativeTarget "StompClientLib" */;
@@ -1013,12 +1125,15 @@
 >>>>>>> Stashed changes
 			productType = "com.apple.product-type.framework";
 		};
+=======
+>>>>>>> origin
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
@@ -1026,6 +1141,10 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 >>>>>>> Stashed changes
+=======
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+>>>>>>> origin
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -1036,11 +1155,15 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 			productRefGroup = 40D4DBA0C09F285095BBCA6854D4F6EC /* Products */;
 =======
 			productRefGroup = 13F225112780D9C3807BFBA1D4ED50D2 /* Products */;
 >>>>>>> Stashed changes
+=======
+			productRefGroup = 40D4DBA0C09F285095BBCA6854D4F6EC /* Products */;
+>>>>>>> origin
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1054,6 +1177,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 		3707729877BA4B93CDC6709C4D16389F /* Resources */ = {
@@ -1071,6 +1195,8 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 		DBFBC99C6F5D9B1D57CC9D1C6E9209EB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1078,11 +1204,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 		E06A488E8D9C0C956300348B727209F7 /* Resources */ = {
 =======
 		F8BFCF21DA740B16FCAF3E5798B9FF1A /* Resources */ = {
 >>>>>>> Stashed changes
+=======
+		E06A488E8D9C0C956300348B727209F7 /* Resources */ = {
+>>>>>>> origin
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1136,12 +1266,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		0A73799602DD001ACC0BBBED392D2189 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AF18071ADEF7958B1965E119822879A3 /* Pods-Hooligans-dummy.m in Sources */,
+<<<<<<< HEAD
 =======
 		4CE05BD6C7A2B26A4F5AECF347B4A32E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1185,13 +1319,18 @@
 				673B7A38B379DA4F96459B673A6A29E6 /* SRURLUtilities.m in Sources */,
 				CA3BB6F48D6A11287DE0976E371FEBB3 /* SRWebSocket.m in Sources */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		691522DF8826723340A42D440081D8C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SnapKit;
@@ -1203,6 +1342,7 @@
 			name = SwiftLint;
 			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
 			targetProxy = 37BB4C47A1FF4EAEB9D3F3C11D731F07 /* PBXContainerItemProxy */;
+<<<<<<< HEAD
 =======
 		45261402425ECB37FB2BDB175B2B24A6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1234,14 +1374,40 @@
 			target = BD357877094CC6561657F2D15837D659 /* StompClientLib */;
 			targetProxy = EF131BD5F4F8C69E7290B66C28E89367 /* PBXContainerItemProxy */;
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 		26EA5A9600226D2B7D8D25152A304F3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F09F81E2270F0874A44FCE2A253FE627 /* SwiftLint.release.xcconfig */;
+=======
+		26EA5A9600226D2B7D8D25152A304F3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F09F81E2270F0874A44FCE2A253FE627 /* SwiftLint.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		602027927F203A89F006E439ADCD2800 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77D3C53C9872E9CA02C16F82EA5BFAF6 /* Pods-Hooligans.debug.xcconfig */;
+>>>>>>> origin
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1291,6 +1457,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 				VALIDATE_PRODUCT = YES;
@@ -1382,6 +1549,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1517,6 +1686,97 @@
 		};
 		A856A7ED75656419E3A604DF7B14B151 /* Release */ = {
 			isa = XCBuildConfiguration;
+<<<<<<< HEAD
+=======
+			baseConfigurationReference = BA0EC322A702B6D6F9A9376382517424 /* SnapKit.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SnapKit/SnapKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SnapKit/SnapKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SnapKit/SnapKit.modulemap";
+				PRODUCT_MODULE_NAME = SnapKit;
+				PRODUCT_NAME = SnapKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DFFD31690F9CC8449FD1F803388E1D46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4C901F6BAF2043AFCEBBEAFD6FA74D7 /* SnapKit.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SnapKit/SnapKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SnapKit/SnapKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SnapKit/SnapKit.modulemap";
+				PRODUCT_MODULE_NAME = SnapKit;
+				PRODUCT_NAME = SnapKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E9E1A48A750B946DE9877594C6E735E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 265867501C4AE2561FF8E00261920BCD /* SwiftLint.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F74E69F548BCD0057BE35F5E21D78E0A /* Release */ = {
+			isa = XCBuildConfiguration;
+>>>>>>> origin
 			baseConfigurationReference = B2D3CE1130509AC16FDDB01E58515A2D /* Pods-Hooligans.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
@@ -1547,6 +1807,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+<<<<<<< HEAD
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1622,6 +1883,8 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+=======
+>>>>>>> origin
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1752,12 +2015,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> origin
 		096398DAA2477FC2683393F2A17B0415 /* Build configuration list for PBXNativeTarget "Pods-Hooligans" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				602027927F203A89F006E439ADCD2800 /* Debug */,
 				F74E69F548BCD0057BE35F5E21D78E0A /* Release */,
+<<<<<<< HEAD
 =======
 		23512F3F81C9F1F949B7F8B79ABF0F1E /* Build configuration list for PBXNativeTarget "SocketRocket" */ = {
 			isa = XCConfigurationList;
@@ -1765,6 +2032,8 @@
 				3D99BB1FC4B69A56A6D30837D7658BC6 /* Debug */,
 				D491CF9382569248C8524541BC4D29FF /* Release */,
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1787,6 +2056,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 		5B836452E0197797345CACD05357FBC8 /* Build configuration list for PBXNativeTarget "Pods-Hooligans" */ = {
@@ -1808,6 +2078,8 @@
 			defaultConfigurationName = Release;
 		};
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin
 		AE7B4FB01588B9E6DF09CB79FC7CE7BD /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

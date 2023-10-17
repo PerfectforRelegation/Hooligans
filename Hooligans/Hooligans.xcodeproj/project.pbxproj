@@ -600,6 +600,7 @@
 				C15E11722AC8150C00904C79 /* LeagueTablePresenter.swift in Sources */,
 				7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */,
 				C144F44A2AD6E5D50033B712 /* Message.swift in Sources */,
+				7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */,
 				7C4692BB2AB990AA0016ADC7 /* SigninWorker.swift in Sources */,
 				C14038A22ABB300C00933273 /* Team.swift in Sources */,
 				DB2A793C2ABAC93900F07D82 /* UserModels.swift in Sources */,

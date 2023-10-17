@@ -12,7 +12,6 @@
 //    func displayAnything(viewModel: SigninModels.BoardContents.ViewModel)
 //}
 //
-<<<<<<< HEAD
 
 import UIKit
 import SnapKit
@@ -121,7 +120,6 @@ extension SigninViewController {
     }
 }
 
-=======
 //class SigninViewController: UIViewController {
 //
 ////    func displayAnything(viewModel: SigninModels.BoardContents.ViewMod Kel) {
@@ -235,4 +233,3 @@ extension SigninViewController {
 //
 //    }
 //}
->>>>>>> origin

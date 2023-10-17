@@ -22,10 +22,17 @@ func get(url: URL) -> URLRequest {
 class APIService {
     let session = URLSession(configuration: .default)
     
+<<<<<<< HEAD
     let request = get(url: Endpoint.leagueTable.url)
     
     var cancelBag = Set<AnyCancellable>()
     
+=======
+    let request = get(url: Endpoint.userList.url)
+
+    let requestBoardList = get(url: Endpoint.boardList.url)
+    
+>>>>>>> origin
     // 직접적으로 서버에게 api 요청, JSON 형태의 응답을 구조체(struct, 여기선 Board)로 디코딩(decode)
     func fetchUsers(completion: @escaping (Result<[User], APIError>) -> Void) {
 
@@ -46,8 +53,6 @@ class APIService {
         
     }
     
-<<<<<<< Updated upstream
-=======
     func fetchLeagueTable(completion: @escaping (Result<LeagueTable, APIError>) -> Void) {
         
         session.dataTask(with: request) { data, response, error in
@@ -65,5 +70,23 @@ class APIService {
             
         }.resume()
     }
->>>>>>> Stashed changes
+    func boardList(completion: @escaping (Result<[Board], APIError>) -> Void) {
+
+            // 엔드포인트 작성 후 적용
+            session.dataTask(with: Endpoint.boardList.url) { data, response, error in
+
+            guard let data = data else {
+                return completion(.failure(.data))
+            }
+
+            guard let boardList = try? JSONDecoder().decode([Board].self, from: data) else {
+                print(data.description)
+                return completion(.failure(.decodingJSON))
+            }
+
+            completion(.success(boardList))
+
+        }.resume()
+
+    }
 }
