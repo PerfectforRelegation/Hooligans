@@ -16,13 +16,17 @@ protocol MainDataPassing {
 }
 
 final class MainRouter: MainRoutingLogic {
-    weak var viewController: MainDisplayLogic?
+    weak var viewController: MainViewController?
     var dataStore: MainDataStore?
     
     func routeToUserInfo() {
-//        let userViewController = UserViewController()
-//        
-//        viewController.navigationController?.pushViewController(userViewController, animated: true)
+
+        let userViewController = UserViewController()
+        
+        userViewController.users = dataStore?.users
+        
+        viewController?.navigationController?.pushViewController(userViewController, animated: true)
+
     }
     
 }
