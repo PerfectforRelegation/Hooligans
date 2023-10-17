@@ -16,13 +16,32 @@ protocol MainDataPassing {
 }
 
 final class MainRouter: MainRoutingLogic {
-    weak var viewController: MainDisplayLogic?
+    weak var viewController: MainViewController?
     var dataStore: MainDataStore?
     
     func routeToUserInfo() {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 //        let userViewController = UserViewController()
 //        
 //        viewController.navigationController?.pushViewController(userViewController, animated: true)
+
+        let userViewController = UserViewController()
+        
+        userViewController.users = dataStore?.users
+        
+        viewController?.navigationController?.pushViewController(userViewController, animated: true)
+
+=======
+        let userViewController = ChatListViewController()
+        
+        viewController?.navigationController?.pushViewController(userViewController, animated: true)
+>>>>>>> Stashed changes
+=======
+//        let userViewController = UserViewController()
+//        
+//        viewController.navigationController?.pushViewController(userViewController, animated: true)
+>>>>>>> Stashed changes
     }
     
 }

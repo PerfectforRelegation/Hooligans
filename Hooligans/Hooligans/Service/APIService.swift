@@ -19,8 +19,6 @@ func get(url: URL) -> URLRequest {
     return request
 }
 
-
-
 class APIService {
     let session = URLSession(configuration: .default)
     
@@ -28,9 +26,10 @@ class APIService {
     
     var cancelBag = Set<AnyCancellable>()
     
-    
+    // 직접적으로 서버에게 api 요청, JSON 형태의 응답을 구조체(struct, 여기선 Board)로 디코딩(decode)
     func fetchUsers(completion: @escaping (Result<[User], APIError>) -> Void) {
-        
+
+            // 엔드포인트 작성 후 적용
             session.dataTask(with: Endpoint.userList.url) { data, response, error in
                 
             guard let data = data else {
@@ -41,37 +40,30 @@ class APIService {
                 print(data.description)
                 return completion(.failure(.decodingJSON))
             }
-            
             completion(.success(users))
-            
+
         }.resume()
         
     }
     
-    func fetchLeagueTable() -> AnyPublisher<LeagueTable, Error> {
+<<<<<<< Updated upstream
+=======
+    func fetchLeagueTable(completion: @escaping (Result<LeagueTable, APIError>) -> Void) {
         
-        let url = Endpoint.leagueTable.url
-        
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .map(\.data)
-            .decode(type: LeagueTable.self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
-        
-        
-        //        session.dataTask(with: request) { data, response, error in
-        //
-        //            guard let data = data else {
-//                return completion(.failure(.data))
-//            }
-//
-//            guard let table = try? JSONDecoder().decode(LeagueTable.self, from: data) else {
-//                print(String(data: data, encoding: String.Encoding.utf8))
-//                print("decoding Error")
-//                return completion(.failure(.decodingJSON))
-//            }
-//
-//            completion(.success(table))
-//
-//        }.resume()
+        session.dataTask(with: request) { data, response, error in
+            
+            guard let data = data else {
+                return completion(.failure(.data))
+            }
+            
+            guard let table = try? JSONDecoder().decode(LeagueTable.self, from: data) else {
+                print(data.description)
+                return completion(.failure(.decodingJSON))
+            }
+            
+            completion(.success(table))
+            
+        }.resume()
     }
+>>>>>>> Stashed changes
 }

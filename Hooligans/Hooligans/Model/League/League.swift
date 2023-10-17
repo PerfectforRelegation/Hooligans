@@ -7,6 +7,14 @@
 
 import Foundation
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+
+
+>>>>>>> Stashed changes
 struct LeagueTable: Codable {
     let leaguetable: [Team]
 }

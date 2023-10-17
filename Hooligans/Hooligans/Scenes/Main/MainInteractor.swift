@@ -13,7 +13,7 @@ protocol MainDataStore {
 
 protocol MainBusinessLogic {
     func fetchUsers(request: MainModels.Users.Request)
-    
+    func fetchLeagueTable(request: MainModels.Table.Request)
 }
 
 class MainInteractor: MainDataStore, MainBusinessLogic {
@@ -30,5 +30,13 @@ class MainInteractor: MainDataStore, MainBusinessLogic {
         })
     }
     
-    
+<<<<<<< Updated upstream
+=======
+    func fetchLeagueTable(request: MainModels.Table.Request) {
+        worker = MainWorker()
+        worker?.fetchLeagueTable({ response in
+            self.presenter?.presentationLeagueTable(response: MainModels.Table.Response(tableResponse: response.tableResponse, isError: false, message: "Field may not be empty"))
+        })
+    }
+>>>>>>> Stashed changes
 }

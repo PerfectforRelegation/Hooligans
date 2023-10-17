@@ -18,14 +18,13 @@ class LeagueTableViewCell: UITableViewCell {
         label.textColor = .black
         return label
     }()
-
+    
     var teamLogoImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.frame = CGRect(origin: .zero, size: .zero)
         return imageView
     }()
-        
     
     var teamNameLabel: UILabel = {
         var label = UILabel()
@@ -74,13 +73,13 @@ class LeagueTableViewCell: UITableViewCell {
         label.textColor = .black
         return label
     }()
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         setupView()
@@ -89,15 +88,15 @@ class LeagueTableViewCell: UITableViewCell {
     
     func configure(rank: Int, team: Team) {
         self.rankLabel.text = String(rank)
-        self.teamLogoImageView.image = UIImage(named: team.teamid)
-        self.teamNameLabel.text = team.teamid
+        self.teamLogoImageView.image = UIImage(named: team.teamId)
+        self.teamNameLabel.text = team.teamId
         self.playedLabel.text = team.played
         self.wonLabel.text = team.won
         self.drawnLabel.text = team.drawn
         self.lostLabel.text = team.lost
         self.pointsLabel.text = team.points
     }
-
+    
 }
 
 extension LeagueTableViewCell {
@@ -126,7 +125,7 @@ extension LeagueTableViewCell {
             make.leading.equalTo(teamLogoImageView.snp.trailing).offset(10)
             make.width.equalTo(50)
         }
-
+        
         addSubview(pointsLabel)
         
         pointsLabel.snp.makeConstraints { make in
@@ -136,7 +135,7 @@ extension LeagueTableViewCell {
         }
         
         addSubview(lostLabel)
-
+        
         lostLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(pointsLabel.snp.leading).offset(-10)
@@ -152,7 +151,7 @@ extension LeagueTableViewCell {
         }
         
         addSubview(wonLabel)
-
+        
         wonLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(drawnLabel.snp.leading).offset(-10)
@@ -160,12 +159,12 @@ extension LeagueTableViewCell {
         }
         
         addSubview(playedLabel)
-
+        
         playedLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(wonLabel.snp.leading).offset(-10)
             make.width.equalTo(20)
         }
-
+        
     }
 }

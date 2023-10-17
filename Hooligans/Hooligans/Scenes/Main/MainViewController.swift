@@ -10,16 +10,34 @@ import SnapKit
 
 protocol MainDisplayLogic: AnyObject {
     func displaySomething(viewModel: MainModels.Users.ViewModel)
-    
+    func diaplayLeagueTable(viewModel: MainModels.Table.ViewModel)
 }
 
 class MainViewController: UIViewController {
     var interactor: (MainBusinessLogic & MainDataStore)?
-    var router: MainRoutingLogic?
-    
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+//    var router: MainRoutingLogic?
     
     
     private let headerView: LeagueTableHeaderView = LeagueTableHeaderView()
+=======
+    var router: MainRoutingLogic?
+    
+    private let headerView: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.frame = CGRect(origin: .zero, size: .zero)
+        button.setTitle("click", for: .normal)
+        return button
+    }()
+>>>>>>> Stashed changes
+=======
+//    var router: MainRoutingLogic?
+    
+    var leagueTable: LeagueTable
+    var count: Int = 0
+>>>>>>> Stashed changes
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -40,6 +58,10 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 //        interactor?.fetchUsers(request: MainModels.Users.Request(count: 0))
+<<<<<<< Updated upstream
+=======
+        interactor?.fetchLeagueTable(request: MainModels.LeagueTable.Request())
+>>>>>>> Stashed changes
     }
 
     override func viewDidLoad() {
@@ -59,11 +81,20 @@ class MainViewController: UIViewController {
 //        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
+<<<<<<< Updated upstream
+        router.viewController = viewController
+<<<<<<< Updated upstream
+        router.dataStore = interactor
 //        router.viewController = viewController
+=======
+>>>>>>> Stashed changes
+=======
+//        router.viewController = viewController
+>>>>>>> Stashed changes
     }
 
     func registerCells() {
-        tableView.register(LeagueTableViewCell.self, forCellReuseIdentifier: LeagueTableViewCell.identifier)
+        
     }
 
 }
@@ -74,9 +105,12 @@ extension MainViewController {
         self.view.addSubview(headerView)
         
         headerView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(150)
         }
+        
+        headerView.addTarget(self, action: #selector(routeToChatRoom), for: .touchUpInside)
         
         self.view.addSubview(tableView)
 
@@ -104,6 +138,17 @@ extension MainViewController {
 //        upButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
     
+<<<<<<< Updated upstream
+    func routeToUserViewController() {
+        router?.routeToUserInfo()
+    }
+  
+=======
+    @objc func routeToChatRoom() {
+        router?.routeToUserInfo()
+    }
+    
+>>>>>>> Stashed changes
 }
 
 extension MainViewController: MainDisplayLogic {
@@ -132,5 +177,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.routeToUserViewController()
+    }
+    
 }

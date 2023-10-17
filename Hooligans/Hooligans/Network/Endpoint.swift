@@ -11,6 +11,14 @@ enum Endpoint {
     case main
     case userList
     case leagueTable
+<<<<<<< Updated upstream
+    case boardList
+=======
+}
+
+struct point {
+    var main = "123"
+>>>>>>> Stashed changes
 }
 
 extension Endpoint {
@@ -22,6 +30,11 @@ extension Endpoint {
             return .endpoint("/user/userList")
         case .leagueTable:
             return .endpoint("/team/table")
+<<<<<<< Updated upstream
+        case .boardList:
+            return .endpoint("/board/list")
+=======
+>>>>>>> Stashed changes
         }
     }
 }

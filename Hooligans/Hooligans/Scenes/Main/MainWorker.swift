@@ -31,5 +31,19 @@ class MainWorker: MainWorkerLogic {
         }
     }
     
-    
+<<<<<<< Updated upstream
+=======
+    func fetchLeagueTable(_ response: @escaping (MainModels.Table.Response) -> Void) {
+        apiManager.fetchLeagueTable { result in
+            switch result {
+            case .success(let leaguetable):
+                print(leaguetable)
+                response(MainModels.Table.Response(tableResponse: leaguetable, isError: false, message: nil))
+            case .failure(let error):
+                print(error.localizedDescription)
+                response(MainModels.Table.Response(isError: true, message: error.localizedDescription))
+            }
+        }
+    }
+>>>>>>> Stashed changes
 }

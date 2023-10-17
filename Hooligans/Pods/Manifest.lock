@@ -1,24 +1,37 @@
 PODS:
-  - RxSwift (6.0.0)
   - SnapKit (5.0.1)
-  - SwiftLint (0.52.4)
+<<<<<<< Updated upstream
+=======
+  - SocketRocket (0.7.0)
+  - StompClientLib (1.4.1):
+    - SocketRocket
+>>>>>>> Stashed changes
+  - SwiftLint (0.53.0)
 
 DEPENDENCIES:
-  - RxSwift (= 6.0.0)
   - SnapKit (~> 5.0.0)
+  - StompClientLib
   - SwiftLint
 
 SPEC REPOS:
   trunk:
-    - RxSwift
     - SnapKit
+    - SocketRocket
+    - StompClientLib
     - SwiftLint
 
 SPEC CHECKSUMS:
-  RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
+<<<<<<< Updated upstream
+  SwiftLint: 5ce4d6a8ff83f1b5fd5ad5dbf30965d35af65e44
 
-PODFILE CHECKSUM: 97a8f941431ea607d583a5a3bf7a88f1df430349
+PODFILE CHECKSUM: 88599f72daf6226d27aee5f8319c66081e835d19
+=======
+  SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
+  StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
+  SwiftLint: 5ce4d6a8ff83f1b5fd5ad5dbf30965d35af65e44
 
-COCOAPODS: 1.11.3
+PODFILE CHECKSUM: 4a17b7d9c8c436f34ac06b4958c64e9e20df3a59
+>>>>>>> Stashed changes
+
+COCOAPODS: 1.13.0

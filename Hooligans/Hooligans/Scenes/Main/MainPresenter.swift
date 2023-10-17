@@ -9,7 +9,11 @@ import Foundation
 
 protocol MainPresentationLogic: AnyObject {
     func presentationUser(response: MainModels.Users.Response)
+<<<<<<< Updated upstream
 
+=======
+    func presentationLeagueTable(response: MainModels.Table.Response)
+>>>>>>> Stashed changes
 }
 
 final class MainPresenter {
@@ -27,5 +31,15 @@ extension MainPresenter: MainPresentationLogic {
         viewController?.displaySomething(viewModel: viewModel)
     }
     
-    
+<<<<<<< Updated upstream
+=======
+    func presentationLeagueTable(response: MainModels.Table.Response) {
+        
+        guard let table = response.table else { return }
+        
+        let viewModel = MainModels.Table.ViewModel(table: table)
+        
+        viewController?.displayLeagueTable(viewModel: viewModel)
+    }
+>>>>>>> Stashed changes
 }
