@@ -10,6 +10,7 @@ import SnapKit
 
 protocol MainDisplayLogic: AnyObject {
     func displaySomething(viewModel: MainModels.Users.ViewModel)
+
 }
 
 class MainViewController: UIViewController {
@@ -59,6 +60,7 @@ class MainViewController: UIViewController {
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
+        router.dataStore = interactor
     }
 
     func registerCells() {
@@ -94,6 +96,10 @@ extension MainViewController {
 //        upButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
     
+    func routeToUserViewController() {
+        router?.routeToUserInfo()
+    }
+  
 }
 
 extension MainViewController: MainDisplayLogic {
@@ -120,5 +126,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.label.text = self.users?[indexPath.row].name
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.routeToUserViewController()
+    }
+    
 }

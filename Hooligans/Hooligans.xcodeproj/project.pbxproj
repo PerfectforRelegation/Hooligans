@@ -48,6 +48,13 @@
 		C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100F32A092B3400D6F24F /* ViewController.swift */; };
 		C1C100F92A092B3500D6F24F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C100F82A092B3500D6F24F /* Assets.xcassets */; };
 		C1C100FC2A092B3500D6F24F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C100FA2A092B3500D6F24F /* LaunchScreen.storyboard */; };
+		DB2A79322AB98FE400F07D82 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79312AB98FE400F07D82 /* UserViewController.swift */; };
+		DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */; };
+		DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */; };
+		DB2A79382ABAC91500F07D82 /* UserWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79372ABAC91400F07D82 /* UserWorker.swift */; };
+		DB2A793A2ABAC92900F07D82 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79392ABAC92900F07D82 /* UserRouter.swift */; };
+		DB2A793C2ABAC93900F07D82 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A793B2ABAC93900F07D82 /* UserModels.swift */; };
+		DB2A79402ABEB8C900F07D82 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A793F2ABEB8C900F07D82 /* UserInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +114,13 @@
 		C1C100F82A092B3500D6F24F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1C100FB2A092B3500D6F24F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1C100FD2A092B3500D6F24F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB2A79312AB98FE400F07D82 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
+		DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
+		DB2A79372ABAC91400F07D82 /* UserWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorker.swift; sourceTree = "<group>"; };
+		DB2A79392ABAC92900F07D82 /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
+		DB2A793B2ABAC93900F07D82 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
+		DB2A793F2ABEB8C900F07D82 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		E559845865054D78DDD52325 /* Pods_Hooligans.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hooligans.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -239,6 +253,7 @@
 		C14038712AA8869A00933273 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DB2A79302AB98FB700F07D82 /* User */,
 				7C41C2062AD55A8A009B05E5 /* Board */,
 				7C4692B32AB98EB00016ADC7 /* Signin */,
 				C14038722AA886BF00933273 /* Main */,
@@ -340,6 +355,28 @@
 				C1C100FD2A092B3500D6F24F /* Info.plist */,
 			);
 			path = Hooligans;
+			sourceTree = "<group>";
+		};
+		DB2A79302AB98FB700F07D82 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				DB2A793E2ABEB87900F07D82 /* Component */,
+				DB2A79312AB98FE400F07D82 /* UserViewController.swift */,
+				DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */,
+				DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */,
+				DB2A79372ABAC91400F07D82 /* UserWorker.swift */,
+				DB2A79392ABAC92900F07D82 /* UserRouter.swift */,
+				DB2A793B2ABAC93900F07D82 /* UserModels.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		DB2A793E2ABEB87900F07D82 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				DB2A793F2ABEB8C900F07D82 /* UserInfoView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,27 +532,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C41C20C2AD6F5B5009B05E5 /* BoardListPresenter.swift in Sources */,
+				DB2A79402ABEB8C900F07D82 /* UserInfoView.swift in Sources */,
 				7C4692B92AB990460016ADC7 /* SigninPresenter.swift in Sources */,
 				7C4692B52AB98F120016ADC7 /* SigninViewController.swift in Sources */,
 				C14038902AB8394600933273 /* Endpoint.swift in Sources */,
 				7C3F60122ADBCCFC0078A6F1 /* PostTableViewCell.swift in Sources */,
 				C14038872AB3077B00933273 /* NetworkService.swift in Sources */,
+				DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */,
 				C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */,
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
 				7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */,
 				7C41C2102AD6F5C8009B05E5 /* BoardListRouter.swift in Sources */,
 				7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */,
 				C140387F2AB3043100933273 /* MainModels.swift in Sources */,
+				DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */,
 				C14038792AB3040D00933273 /* MainPresenter.swift in Sources */,
 				7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */,
 				C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */,
 				C1C100F22A092B3400D6F24F /* SceneDelegate.swift in Sources */,
+				DB2A79322AB98FE400F07D82 /* UserViewController.swift in Sources */,
+				C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */,
+				DB2A79382ABAC91500F07D82 /* UserWorker.swift in Sources */,
 				7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */,
 				C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */,
 				7C4692C12AB99B160016ADC7 /* UIViewExtention.swift in Sources */,
 				7C4692B72AB990110016ADC7 /* SigninInteractor.swift in Sources */,
 				7C41C20E2AD6F5C1009B05E5 /* BoardListWorker.swift in Sources */,
 				C14038812AB3044600933273 /* APIService.swift in Sources */,
+				DB2A793A2ABAC92900F07D82 /* UserRouter.swift in Sources */,
 				C140388B2AB4415200933273 /* User.swift in Sources */,
 				7C41C20A2AD6F5A8009B05E5 /* BoardListInteractor.swift in Sources */,
 				C14038772AB303FD00933273 /* MainInteractor.swift in Sources */,
@@ -525,6 +569,7 @@
 				7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */,
 				7C4692BB2AB990AA0016ADC7 /* SigninWorker.swift in Sources */,
 				C14038A22ABB300C00933273 /* Team.swift in Sources */,
+				DB2A793C2ABAC93900F07D82 /* UserModels.swift in Sources */,
 				7C41C2052AD54416009B05E5 /* Button.swift in Sources */,
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
 				7C3F60162ADD0B540078A6F1 /* EmojiUITextfField.swift in Sources */,
