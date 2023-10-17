@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct User: Codable {
     let id: Int
@@ -20,15 +21,19 @@ struct User: Codable {
     var betPoint: Int
 }
 
-class BoardUser{
-    var image: String!
-    var name: String!
-    var message: String!
+//class BoardUser{
+//    var image: String!
+//    var name: String!
+//    var message: String!
+//
+//    init(image:String,name:String,message:String) {
+//
+//        self.image = image
+//        self.name = name
+//        self.message = message
+//    }
 
-    init(image:String,name:String,message:String) {
-
-        self.image = image
-        self.name = name
-        self.message = message
+    struct BoardUser {
+        let profile: UIImage
+        let name: String
     }
-}

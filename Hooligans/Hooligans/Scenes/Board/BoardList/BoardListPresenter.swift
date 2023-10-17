@@ -17,6 +17,6 @@ extension BoardListPresenter: BoardListPresentationLogic {
 
         let viewModel = BoardListModels.PostContents.ViewModel(postContents: postContents)
 
-        viewController?.displayA(viewModel: viewModel)
+        //viewController?.displayA(viewModel: viewModel)
     }
 }
