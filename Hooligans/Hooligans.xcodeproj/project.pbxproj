@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		796C19CFEB07029C614780E8 /* Pods_Hooligans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559845865054D78DDD52325 /* Pods_Hooligans.framework */; };
 		7C3F60122ADBCCFC0078A6F1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */; };
-		7C3F60162ADD0B540078A6F1 /* EmojiUITextfField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60152ADD0B540078A6F1 /* EmojiUITextfField.swift */; };
 		7C3F601A2ADE6F340078A6F1 /* BoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60192ADE6F340078A6F1 /* BoardDetailViewController.swift */; };
 		7C3F601C2ADE703D0078A6F1 /* BoardDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F601B2ADE703D0078A6F1 /* BoardDetailInteractor.swift */; };
 		7C3F601E2ADE70BB0078A6F1 /* BoardDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F601D2ADE70BB0078A6F1 /* BoardDetailPresenter.swift */; };
@@ -75,7 +74,6 @@
 		0724CC5A870F2A9AFEA20FF1 /* Pods-Hooligans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hooligans.debug.xcconfig"; path = "Target Support Files/Pods-Hooligans/Pods-Hooligans.debug.xcconfig"; sourceTree = "<group>"; };
 		260FF412C5E601958D3C48D8 /* Pods-Hooligans.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hooligans.release.xcconfig"; path = "Target Support Files/Pods-Hooligans/Pods-Hooligans.release.xcconfig"; sourceTree = "<group>"; };
 		7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		7C3F60152ADD0B540078A6F1 /* EmojiUITextfField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiUITextfField.swift; sourceTree = "<group>"; };
 		7C3F60192ADE6F340078A6F1 /* BoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailViewController.swift; sourceTree = "<group>"; };
 		7C3F601B2ADE703D0078A6F1 /* BoardDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailInteractor.swift; sourceTree = "<group>"; };
 		7C3F601D2ADE70BB0078A6F1 /* BoardDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailPresenter.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */,
-				7C3F60152ADD0B540078A6F1 /* EmojiUITextfField.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -260,20 +257,6 @@
 				E559845865054D78DDD52325 /* Pods_Hooligans.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C140386D2AA8866400933273 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		C140386E2AA8866C00933273 /* Utillity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utillity;
 			sourceTree = "<group>";
 		};
 		C140386F2AA8868800933273 /* Service */ = {
@@ -386,8 +369,6 @@
 			isa = PBXGroup;
 			children = (
 				C14038852AB3077500933273 /* Network */,
-				C140386D2AA8866400933273 /* Application */,
-				C140386E2AA8866C00933273 /* Utillity */,
 				C140386F2AA8868800933273 /* Service */,
 				C14038702AA8869500933273 /* Model */,
 				C14038712AA8869A00933273 /* Scenes */,
@@ -618,7 +599,6 @@
 				DB2A793C2ABAC93900F07D82 /* UserModels.swift in Sources */,
 				7C41C2052AD54416009B05E5 /* Button.swift in Sources */,
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
-				7C3F60162ADD0B540078A6F1 /* EmojiUITextfField.swift in Sources */,
 				7C41C2082AD55AA2009B05E5 /* BoardListViewController.swift in Sources */,
 				7C3F601A2ADE6F340078A6F1 /* BoardDetailViewController.swift in Sources */,
 				7C3F601C2ADE703D0078A6F1 /* BoardDetailInteractor.swift in Sources */,

@@ -87,46 +87,21 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
 
-
-    @objc func backButtonTapped() {
-        print("DEBUG :", "clickBack")
-        navigationController?.popViewController(animated: true)
-    }
-
-    @objc func searchButtonTapped() {
-        print("DEBUG :", "clickSearch")
-    }
-
-    @objc func menuButtonTapped() {
-        print("DEBUG :", "clickMenu")
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
 
         // 게시물 데이터 표시
         let post = posts[indexPath.row]
+        cell.configure(with: post)
 
-        cell.titleLabel.text = post.title
-        cell.contentLabel.text = post.content
-        cell.likesLabel.text = "좋아요: \(post.likes)"
-        cell.commentsLabel.text = "댓글: \(post.comments)"
+        // 좋아요 이미지 설정
+        cell.likesImageView.image = UIImage(named: "likeIcon")
 
-
-//        if !post.images.isEmpty {
-//            if let image = UIImage(contentsOfFile: post.images[0]) {
-//                cell.postImageView.image = image
-//            } else {
-//                cell.postImageView.image = nil
-//            }
-//        } else {
-//            cell.postImageView.image = nil
-//        }
 
         return cell
     }
@@ -144,4 +119,19 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
             // 화면 전환
             navigationController?.pushViewController(boardDetailViewController, animated: true)
         }
+
+
+
+    @objc func backButtonTapped() {
+        print("DEBUG :", "clickBack")
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc func searchButtonTapped() {
+        print("DEBUG :", "clickSearch")
+    }
+
+    @objc func menuButtonTapped() {
+        print("DEBUG :", "clickMenu")
+    }
 }
