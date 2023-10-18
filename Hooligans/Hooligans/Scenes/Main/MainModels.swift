@@ -26,22 +26,4 @@ enum MainModels {
         }
     }
     
-<<<<<<< Updated upstream
-=======
-    enum Table {
-        struct Request {
-            
-        }
-        
-        struct Response {
-            var tableResponse: LeagueTable?
-            var isError: Bool
-            var message: String?
-        }
-        
-        struct ViewModel {
-            var table: LeagueTable
-        }
-    }
->>>>>>> Stashed changes
 }

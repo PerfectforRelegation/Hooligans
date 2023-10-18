@@ -14,11 +14,6 @@ enum Endpoint {
     case boardList
 }
 
-struct point {
-    var main = "123"
-    case boardList
-}
-
 extension Endpoint {
     var url: URL {
         switch self {

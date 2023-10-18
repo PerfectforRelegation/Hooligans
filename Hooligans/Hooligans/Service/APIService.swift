@@ -22,17 +22,10 @@ func get(url: URL) -> URLRequest {
 class APIService {
     let session = URLSession(configuration: .default)
     
-<<<<<<< HEAD
     let request = get(url: Endpoint.leagueTable.url)
     
     var cancelBag = Set<AnyCancellable>()
     
-=======
-    let request = get(url: Endpoint.userList.url)
-
-    let requestBoardList = get(url: Endpoint.boardList.url)
-    
->>>>>>> origin
     // 직접적으로 서버에게 api 요청, JSON 형태의 응답을 구조체(struct, 여기선 Board)로 디코딩(decode)
     func fetchUsers(completion: @escaping (Result<[User], APIError>) -> Void) {
 
@@ -70,6 +63,7 @@ class APIService {
             
         }.resume()
     }
+    
     func boardList(completion: @escaping (Result<[Board], APIError>) -> Void) {
 
             // 엔드포인트 작성 후 적용

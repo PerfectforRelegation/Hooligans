@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol SigninDisplayLogic: AnyObject {
+protocol LoginDisplayLogic: AnyObject {
     func displayAnything(viewModel: SigninModels.BoardContents.ViewModel)
 }
 

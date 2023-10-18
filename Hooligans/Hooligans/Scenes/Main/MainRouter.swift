@@ -24,12 +24,6 @@ final class MainRouter: MainRoutingLogic {
 //        
 //        viewController.navigationController?.pushViewController(userViewController, animated: true)
 
-        let userViewController = UserViewController()
-        
-        userViewController.users = dataStore?.users
-        
-        viewController?.navigationController?.pushViewController(userViewController, animated: true)
-
         let userViewController = ChatListViewController()
         
         viewController?.navigationController?.pushViewController(userViewController, animated: true)

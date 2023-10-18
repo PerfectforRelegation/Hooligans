@@ -17,7 +17,7 @@ import UIKit
 import SnapKit
 
 protocol SigninDisplayLogic: AnyObject {
-    func displaySomething(viewModel: SigninModels.Users.ViewModel)
+//    func displaySomething(viewModel: SigninModels.Users.ViewModel)
 }
 
 class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDelegate, UITableViewDataSource {
@@ -37,12 +37,12 @@ class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDel
     }
 
 
-    func displaySomething(viewModel: SigninModels.Users.ViewModel) {
-        
-    }
+//    func displaySomething(viewModel: SigninModels.Users.ViewModel) {
+//        
+//    }
 
     private let header: SigninView = {
-        let header = SigninView()
+        let header = SigninView(title: "", subTitle: "")
         //header.translatesAutoresizingMaskIntoConstraints = false
         return header
     }()
@@ -72,7 +72,7 @@ class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDel
         viewController.interactor = interactor
 //        viewController.router = router
         interactor.presenter = presenter
-        presenter.viewController = viewController
+//        presenter.viewController = viewController
 //        router.viewController = viewController
     }
 
@@ -100,7 +100,7 @@ class SigninViewController: UIViewController, SigninDisplayLogic, UITableViewDel
         viewController.interactor = interactor
 //        viewController.router = router
         interactor.presenter = presenter
-        presenter.viewController = viewController
+//        presenter.viewController = viewController
 //        router.viewController = viewController
     }
 

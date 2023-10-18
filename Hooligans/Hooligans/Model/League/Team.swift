@@ -2,13 +2,7 @@
 import Foundation
 
 struct Team: Codable {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    let teamID: String = "0"
-=======
     let teamId: String = "0"
->>>>>>> Stashed changes
     let teamName: String = "0"
     let teamLogo: String? = nil
     let played: String = "0"
@@ -33,40 +27,4 @@ struct Team: Codable {
         case goalsFor = "gf"
         case goalDifference = "gd"
     }
-=======
-    
-    let teamID: String
-    let teamName: String
-    let played: String
-    let won: Int
-    let drawn: Int
-    let lost: Int
-    let ga: Int
-    let gd: Int
-    let gf: Int
-    let points: Int
-    let teamLogo: String
-
-//    enum CodingKeys: String, CodingKey {
-//        case lost, teamID = "teamid", won, ga, drawn, played, gd, teamLogo = "team_logo", teamName = "teamname", gf, points
-//    }
->>>>>>> Stashed changes
-=======
-    
-    let teamID: String
-    let teamName: String
-    let played: String
-    let won: Int
-    let drawn: Int
-    let lost: Int
-    let ga: Int
-    let gd: Int
-    let gf: Int
-    let points: Int
-    let teamLogo: String
-
-//    enum CodingKeys: String, CodingKey {
-//        case lost, teamID = "teamid", won, ga, drawn, played, gd, teamLogo = "team_logo", teamName = "teamname", gf, points
-//    }
->>>>>>> Stashed changes
 }

@@ -14,19 +14,11 @@ protocol MainDisplayLogic: AnyObject {
 
 class MainViewController: UIViewController {
     var interactor: (MainBusinessLogic & MainDataStore)?
-//    var router: MainRoutingLogic?
+    var router: MainRoutingLogic?
     
     
     private let headerView: LeagueTableHeaderView = LeagueTableHeaderView()
-    var router: MainRoutingLogic?
     
-    private let headerView: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.frame = CGRect(origin: .zero, size: .zero)
-        button.setTitle("click", for: .normal)
-        return button
-    }()
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -51,8 +43,6 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         setupView()
         registerCells()
     }
@@ -81,6 +71,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController {
     private func setupView() {
+        self.view.backgroundColor = .white
         
         self.view.addSubview(headerView)
         
@@ -90,7 +81,6 @@ extension MainViewController {
             make.height.equalTo(150)
         }
         
-        headerView.addTarget(self, action: #selector(routeToChatRoom), for: .touchUpInside)
         
         self.view.addSubview(tableView)
 

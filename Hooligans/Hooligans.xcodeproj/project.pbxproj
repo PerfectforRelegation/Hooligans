@@ -38,6 +38,7 @@
 		C14038A22ABB300C00933273 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038A12ABB300C00933273 /* Team.swift */; };
 		C14038C12AC7F78700933273 /* LeagueTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038C02AC7F78700933273 /* LeagueTableHeaderView.swift */; };
 		C14038C42AC802EF00933273 /* LeagueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14038C32AC802EF00933273 /* LeagueTableViewController.swift */; };
+		C1419B5B2ADE9BB6007AA5F6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1419B5A2ADE9BB6007AA5F6 /* TabBarController.swift */; };
 		C144F44A2AD6E5D50033B712 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C144F4492AD6E5D50033B712 /* Message.swift */; };
 		C15E11702AC8145800904C79 /* LeagueTableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E116F2AC8145800904C79 /* LeagueTableInteractor.swift */; };
 		C15E11722AC8150C00904C79 /* LeagueTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E11712AC8150C00904C79 /* LeagueTablePresenter.swift */; };
@@ -47,7 +48,6 @@
 		C15E117B2AC94EE800904C79 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E117A2AC94EE800904C79 /* ChatListViewController.swift */; };
 		C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100EF2A092B3400D6F24F /* AppDelegate.swift */; };
 		C1C100F22A092B3400D6F24F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100F12A092B3400D6F24F /* SceneDelegate.swift */; };
-		C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100F32A092B3400D6F24F /* ViewController.swift */; };
 		C1C100F92A092B3500D6F24F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C100F82A092B3500D6F24F /* Assets.xcassets */; };
 		C1C100FC2A092B3500D6F24F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C100FA2A092B3500D6F24F /* LaunchScreen.storyboard */; };
 		DB2A79322AB98FE400F07D82 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79312AB98FE400F07D82 /* UserViewController.swift */; };
@@ -104,6 +104,7 @@
 		C14038A12ABB300C00933273 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		C14038C02AC7F78700933273 /* LeagueTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueTableHeaderView.swift; sourceTree = "<group>"; };
 		C14038C32AC802EF00933273 /* LeagueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueTableViewController.swift; sourceTree = "<group>"; };
+		C1419B5A2ADE9BB6007AA5F6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C144F4492AD6E5D50033B712 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C15E116F2AC8145800904C79 /* LeagueTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueTableInteractor.swift; sourceTree = "<group>"; };
 		C15E11712AC8150C00904C79 /* LeagueTablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueTablePresenter.swift; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		C1C100EC2A092B3400D6F24F /* Hooligans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hooligans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C100EF2A092B3400D6F24F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C100F12A092B3400D6F24F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C1C100F32A092B3400D6F24F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C1C100F82A092B3500D6F24F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1C100FB2A092B3500D6F24F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1C100FD2A092B3500D6F24F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -378,8 +378,8 @@
 				C14038702AA8869500933273 /* Model */,
 				C14038712AA8869A00933273 /* Scenes */,
 				C1C100EF2A092B3400D6F24F /* AppDelegate.swift */,
+				C1419B5A2ADE9BB6007AA5F6 /* TabBarController.swift */,
 				C1C100F12A092B3400D6F24F /* SceneDelegate.swift */,
-				C1C100F32A092B3400D6F24F /* ViewController.swift */,
 				C1C100F82A092B3500D6F24F /* Assets.xcassets */,
 				C1C100FA2A092B3500D6F24F /* LaunchScreen.storyboard */,
 				C1C100FD2A092B3500D6F24F /* Info.plist */,
@@ -567,10 +567,10 @@
 				C14038902AB8394600933273 /* Endpoint.swift in Sources */,
 				C14038872AB3077B00933273 /* NetworkService.swift in Sources */,
 				C15E11762AC815D400904C79 /* LeagueTableRouter.swift in Sources */,
+				C1419B5B2ADE9BB6007AA5F6 /* TabBarController.swift in Sources */,
 				C15E11702AC8145800904C79 /* LeagueTableInteractor.swift in Sources */,
 				C14038C42AC802EF00933273 /* LeagueTableViewController.swift in Sources */,
 				DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */,
-				C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */,
 				C15E11742AC8157A00904C79 /* LeagueTableWorker.swift in Sources */,
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
 				7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */,
@@ -585,10 +585,10 @@
 				C140388E2AB4473A00933273 /* LeagueTableViewCell.swift in Sources */,
 				C15E11782AC8188C00904C79 /* LeagueTableModels.swift in Sources */,
 				DB2A79322AB98FE400F07D82 /* UserViewController.swift in Sources */,
-				C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */,
+				C140388E2AB4473A00933273 /* LeagueTableViewCell.swift in Sources */,
 				DB2A79382ABAC91500F07D82 /* UserWorker.swift in Sources */,
 				7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */,
-				C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */,
+				C140388E2AB4473A00933273 /* LeagueTableViewCell.swift in Sources */,
 				7C4692C12AB99B160016ADC7 /* UIViewExtention.swift in Sources */,
 				7C4692B72AB990110016ADC7 /* SigninInteractor.swift in Sources */,
 				C14038812AB3044600933273 /* APIService.swift in Sources */,
