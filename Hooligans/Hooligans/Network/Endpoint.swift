@@ -12,6 +12,7 @@ enum Endpoint {
     case userList
     case leagueTable
     case boardList
+    case postList
 }
 
 extension Endpoint {
@@ -27,6 +28,8 @@ extension Endpoint {
             return .endpoint("/board/list")
         case .boardList:
             return .endpoint("/board/list")
+        case .postList:
+            return .endpoint("/post/list")
         }
     }
 }
