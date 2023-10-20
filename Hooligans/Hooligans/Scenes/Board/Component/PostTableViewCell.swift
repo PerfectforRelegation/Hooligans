@@ -72,6 +72,15 @@ class PostTableViewCell: UITableViewCell {
         likesLabel.text = "\(post.likes)"
         commentsLabel.text = "\(post.comments)"
 
+        if !post.images.isEmpty {
+                // 이미지가 있는 경우 첫 번째 이미지 표시
+                if let imageData = Data(base64Encoded: post.images[0]),
+                    let image = UIImage(data: imageData) {
+                    postImageView.image = image
+                }
+            } else {
+                postImageView.image = nil // 이미지 없을 경우 비움
+            }
 
 //        likesImageView.isHidden = post.likes == 0
 //        commentsImageView.isHidden = post.comments == 0

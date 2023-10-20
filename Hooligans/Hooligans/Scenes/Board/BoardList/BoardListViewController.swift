@@ -102,7 +102,6 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
         // 좋아요 이미지 설정
         cell.likesImageView.image = UIImage(named: "likeIcon")
 
-
         return cell
     }
 

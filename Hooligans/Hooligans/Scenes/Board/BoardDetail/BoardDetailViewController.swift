@@ -90,6 +90,25 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+
+        // 게시물 데이터 표시
+        let post = posts[indexPath.row]
+        cell.configure(with: post)
+
+        // 좋아요 이미지 설정
+        cell.likesImageView.image = UIImage(named: "likeIcon")
+
+        return cell
+    }
+
+
 
     @objc func backButtonTapped() {
         print("DEBUG :", "clickBack")
@@ -103,20 +122,4 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
     @objc func menuButtonTapped() {
         print("DEBUG :", "clickMenu")
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-
-        // 게시물 데이터 표시
-        let post = posts[indexPath.row]
-        cell.titleLabel.text = post.title
-        cell.contentLabel.text = post.content
-
-        return cell
-    }
-    
 }
