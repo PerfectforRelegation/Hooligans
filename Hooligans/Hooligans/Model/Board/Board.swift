@@ -50,8 +50,6 @@ struct Post: Codable {
 }
 
 
-
-
 //    let id: Int
 //    //let nickname, title, content: String
 //    let heart, hate, view: Int

@@ -32,8 +32,24 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 100
+        tableView.rowHeight = 120
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
+    }()
+
+    let commentTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "댓글을 입력하세요."
+        textField.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9686, alpha: 1.0) /* #f7f7f7 */
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+
+    let sendButton: UIButton = {
+        let button = UIButton()
+        let sendImage = UIImage(named: "sendIcon")
+        button.setBackgroundImage(sendImage, for: .normal)
+        return button
     }()
 
     override func viewDidLoad() {
@@ -43,17 +59,53 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func setupUI() {
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
-        tableView.delegate = self
-        tableView.dataSource = self
+        let inputView = UIView()
+        inputView.addSubview(commentTextField)
+        inputView.addSubview(sendButton)
 
         view.addSubview(tableView)
+        view.addSubview(inputView)
+
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+
+
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
+        inputView.backgroundColor = .white
+
+        inputView.translatesAutoresizingMaskIntoConstraints = false
+        inputView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
+        inputView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        inputView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        inputView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+
+//        commentTextField.rightView = sendButton
+//        commentTextField.rightViewMode = .always
+
+        commentTextField.translatesAutoresizingMaskIntoConstraints = false
+        commentTextField.topAnchor.constraint(equalTo: inputView.topAnchor, constant: 20).isActive = true
+        commentTextField.leadingAnchor.constraint(equalTo: inputView.leadingAnchor, constant: 10).isActive = true
+        commentTextField.widthAnchor.constraint(equalToConstant: 375).isActive = true
+        commentTextField.bottomAnchor.constraint(equalTo: inputView.bottomAnchor, constant: -50).isActive = true
+        commentTextField.heightAnchor.constraint(equalToConstant: 45).isActive = true
+
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.trailingAnchor.constraint(equalTo: inputView.trailingAnchor, constant: -20).isActive = true
+        sendButton.centerYAnchor.constraint(equalTo: commentTextField.centerYAnchor).isActive = true
+        sendButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        sendButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+
+        sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+
+        tableView.reloadData()
     }
+
 
     func setupNavigationBar() {
         // 뒤로가기
@@ -85,7 +137,7 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.barTintColor = UIColor(red: 0.2, green: 0.4, blue: 0.6, alpha: 1.0)
-        // back 색상 
+        // back 색상
         navigationController?.navigationBar.tintColor = .white
     }
 
@@ -121,5 +173,9 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
     @objc func menuButtonTapped() {
         print("DEBUG :", "clickMenu")
+    }
+
+    @objc func sendButtonTapped() {
+        print("DEBUG :", "clickSend")
     }
 }
