@@ -72,7 +72,7 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 
@@ -108,9 +108,13 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
 
     func setupNavigationBar() {
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.barTintColor = .white
+
         // 뒤로가기
         let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
+        backButton.tintColor = .black
 
         // 자유게시판
         let titleView = UIView()
@@ -124,21 +128,13 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
         // 메뉴
         let menuButton = UIBarButtonItem(image: UIImage(named: "menuIcon"), style: .plain, target: self, action: #selector(menuButtonTapped))
-        menuButton.tintColor = .white
+        menuButton.tintColor = .black
 
         // 찾기
         let searchButton = UIBarButtonItem(image: UIImage(named: "searchIcon"), style: .plain, target: self, action: #selector(searchButtonTapped))
-            searchButton.tintColor = .white
+            searchButton.tintColor = .black
+        
         navigationItem.rightBarButtonItems = [menuButton, searchButton]
-
-//      // 네비게이션 바 경계선 제거
-//      navigationController?.navigationBar.shadowImage = UIImage()
-//            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.barTintColor = UIColor(red: 0.2, green: 0.4, blue: 0.6, alpha: 1.0)
-        // back 색상
-        navigationController?.navigationBar.tintColor = .white
     }
 
 

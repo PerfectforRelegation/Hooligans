@@ -15,6 +15,7 @@
 		7C3F60202ADE710A0078A6F1 /* BoardDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F601F2ADE710A0078A6F1 /* BoardDetailWorker.swift */; };
 		7C3F60222ADE71540078A6F1 /* BoardDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60212ADE71540078A6F1 /* BoardDetailRouter.swift */; };
 		7C3F60242ADE717F0078A6F1 /* BoardDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60232ADE717F0078A6F1 /* BoardDetailModels.swift */; };
+		7C3F60292AE5867B0078A6F1 /* BoardWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */; };
 		7C41C2052AD54416009B05E5 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2042AD54416009B05E5 /* Button.swift */; };
 		7C41C2082AD55AA2009B05E5 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2072AD55AA2009B05E5 /* BoardListViewController.swift */; };
 		7C41C20A2AD6F5A8009B05E5 /* BoardListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2092AD6F5A8009B05E5 /* BoardListInteractor.swift */; };
@@ -80,6 +81,7 @@
 		7C3F601F2ADE710A0078A6F1 /* BoardDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailWorker.swift; sourceTree = "<group>"; };
 		7C3F60212ADE71540078A6F1 /* BoardDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailRouter.swift; sourceTree = "<group>"; };
 		7C3F60232ADE717F0078A6F1 /* BoardDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailModels.swift; sourceTree = "<group>"; };
+		7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWriteViewController.swift; sourceTree = "<group>"; };
 		7C41C2042AD54416009B05E5 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7C41C2072AD55AA2009B05E5 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
 		7C41C2092AD6F5A8009B05E5 /* BoardListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListInteractor.swift; sourceTree = "<group>"; };
@@ -212,9 +214,18 @@
 			path = Signup;
 			sourceTree = "<group>";
 		};
+		7C3F60272AE586160078A6F1 /* BoardWrite */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */,
+			);
+			path = BoardWrite;
+			sourceTree = "<group>";
+		};
 		7C41C2062AD55A8A009B05E5 /* Board */ = {
 			isa = PBXGroup;
 			children = (
+				7C3F60272AE586160078A6F1 /* BoardWrite */,
 				7C3F60102ADBCCC70078A6F1 /* Component */,
 				7C3F60182ADE6DA90078A6F1 /* BoardDetail */,
 				7C3F60172ADE6DA10078A6F1 /* BoardList */,
@@ -569,6 +580,7 @@
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
 				7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */,
 				7C41C2102AD6F5C8009B05E5 /* BoardListRouter.swift in Sources */,
+				7C3F60292AE5867B0078A6F1 /* BoardWriteViewController.swift in Sources */,
 				7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */,
 				C140387F2AB3043100933273 /* MainModels.swift in Sources */,
 				DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */,
