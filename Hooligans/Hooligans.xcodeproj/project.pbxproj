@@ -16,6 +16,11 @@
 		7C3F60222ADE71540078A6F1 /* BoardDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60212ADE71540078A6F1 /* BoardDetailRouter.swift */; };
 		7C3F60242ADE717F0078A6F1 /* BoardDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60232ADE717F0078A6F1 /* BoardDetailModels.swift */; };
 		7C3F60292AE5867B0078A6F1 /* BoardWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */; };
+		7C3F602B2AE593640078A6F1 /* BoardWriteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F602A2AE593640078A6F1 /* BoardWriteInteractor.swift */; };
+		7C3F602D2AE593740078A6F1 /* BoardWritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F602C2AE593740078A6F1 /* BoardWritePresenter.swift */; };
+		7C3F602F2AE593830078A6F1 /* BoardWriteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F602E2AE593830078A6F1 /* BoardWriteWorker.swift */; };
+		7C3F60312AE5938E0078A6F1 /* BoardWriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60302AE5938E0078A6F1 /* BoardWriteRouter.swift */; };
+		7C3F60352AE593AD0078A6F1 /* BoardWriteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60342AE593AD0078A6F1 /* BoardWriteModels.swift */; };
 		7C41C2052AD54416009B05E5 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2042AD54416009B05E5 /* Button.swift */; };
 		7C41C2082AD55AA2009B05E5 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2072AD55AA2009B05E5 /* BoardListViewController.swift */; };
 		7C41C20A2AD6F5A8009B05E5 /* BoardListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2092AD6F5A8009B05E5 /* BoardListInteractor.swift */; };
@@ -82,6 +87,11 @@
 		7C3F60212ADE71540078A6F1 /* BoardDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailRouter.swift; sourceTree = "<group>"; };
 		7C3F60232ADE717F0078A6F1 /* BoardDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailModels.swift; sourceTree = "<group>"; };
 		7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWriteViewController.swift; sourceTree = "<group>"; };
+		7C3F602A2AE593640078A6F1 /* BoardWriteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWriteInteractor.swift; sourceTree = "<group>"; };
+		7C3F602C2AE593740078A6F1 /* BoardWritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWritePresenter.swift; sourceTree = "<group>"; };
+		7C3F602E2AE593830078A6F1 /* BoardWriteWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWriteWorker.swift; sourceTree = "<group>"; };
+		7C3F60302AE5938E0078A6F1 /* BoardWriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWriteRouter.swift; sourceTree = "<group>"; };
+		7C3F60342AE593AD0078A6F1 /* BoardWriteModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWriteModels.swift; sourceTree = "<group>"; };
 		7C41C2042AD54416009B05E5 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7C41C2072AD55AA2009B05E5 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
 		7C41C2092AD6F5A8009B05E5 /* BoardListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListInteractor.swift; sourceTree = "<group>"; };
@@ -218,6 +228,11 @@
 			isa = PBXGroup;
 			children = (
 				7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */,
+				7C3F602A2AE593640078A6F1 /* BoardWriteInteractor.swift */,
+				7C3F602C2AE593740078A6F1 /* BoardWritePresenter.swift */,
+				7C3F602E2AE593830078A6F1 /* BoardWriteWorker.swift */,
+				7C3F60302AE5938E0078A6F1 /* BoardWriteRouter.swift */,
+				7C3F60342AE593AD0078A6F1 /* BoardWriteModels.swift */,
 			);
 			path = BoardWrite;
 			sourceTree = "<group>";
@@ -584,6 +599,7 @@
 				7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */,
 				C140387F2AB3043100933273 /* MainModels.swift in Sources */,
 				DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */,
+				7C3F60312AE5938E0078A6F1 /* BoardWriteRouter.swift in Sources */,
 				C14038792AB3040D00933273 /* MainPresenter.swift in Sources */,
 				7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */,
 				7C3F60202ADE710A0078A6F1 /* BoardDetailWorker.swift in Sources */,
@@ -594,7 +610,9 @@
 				DB2A79382ABAC91500F07D82 /* UserWorker.swift in Sources */,
 				7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */,
 				C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */,
+				7C3F602D2AE593740078A6F1 /* BoardWritePresenter.swift in Sources */,
 				7C4692B72AB990110016ADC7 /* SigninInteractor.swift in Sources */,
+				7C3F602B2AE593640078A6F1 /* BoardWriteInteractor.swift in Sources */,
 				7C41C20E2AD6F5C1009B05E5 /* BoardListWorker.swift in Sources */,
 				7C3F60222ADE71540078A6F1 /* BoardDetailRouter.swift in Sources */,
 				C14038812AB3044600933273 /* APIService.swift in Sources */,
@@ -603,6 +621,7 @@
 				7C41C20A2AD6F5A8009B05E5 /* BoardListInteractor.swift in Sources */,
 				C14038772AB303FD00933273 /* MainInteractor.swift in Sources */,
 				7C41C2122AD6F5D5009B05E5 /* BoardListModels.swift in Sources */,
+				7C3F60352AE593AD0078A6F1 /* BoardWriteModels.swift in Sources */,
 				7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */,
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
 				7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */,
@@ -617,6 +636,7 @@
 				C14038A02ABB300500933273 /* League.swift in Sources */,
 				C14038752AB303E800933273 /* MainViewController.swift in Sources */,
 				7CBC11BA2AC2E14B00E1BBBE /* SigninTableViewCell.swift in Sources */,
+				7C3F602F2AE593830078A6F1 /* BoardWriteWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -133,7 +133,7 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
         // 찾기
         let searchButton = UIBarButtonItem(image: UIImage(named: "searchIcon"), style: .plain, target: self, action: #selector(searchButtonTapped))
             searchButton.tintColor = .black
-        
+
         navigationItem.rightBarButtonItems = [menuButton, searchButton]
     }
 
