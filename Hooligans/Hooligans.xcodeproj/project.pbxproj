@@ -9,7 +9,13 @@
 /* Begin PBXBuildFile section */
 		796C19CFEB07029C614780E8 /* Pods_Hooligans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559845865054D78DDD52325 /* Pods_Hooligans.framework */; };
 		7C3F60122ADBCCFC0078A6F1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */; };
-		7C3F60162ADD0B540078A6F1 /* EmojiUITextfField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60152ADD0B540078A6F1 /* EmojiUITextfField.swift */; };
+		7C3F601A2ADE6F340078A6F1 /* BoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60192ADE6F340078A6F1 /* BoardDetailViewController.swift */; };
+		7C3F601C2ADE703D0078A6F1 /* BoardDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F601B2ADE703D0078A6F1 /* BoardDetailInteractor.swift */; };
+		7C3F601E2ADE70BB0078A6F1 /* BoardDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F601D2ADE70BB0078A6F1 /* BoardDetailPresenter.swift */; };
+		7C3F60202ADE710A0078A6F1 /* BoardDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F601F2ADE710A0078A6F1 /* BoardDetailWorker.swift */; };
+		7C3F60222ADE71540078A6F1 /* BoardDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60212ADE71540078A6F1 /* BoardDetailRouter.swift */; };
+		7C3F60242ADE717F0078A6F1 /* BoardDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60232ADE717F0078A6F1 /* BoardDetailModels.swift */; };
+		7C3F60292AE5867B0078A6F1 /* BoardWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */; };
 		7C41C2052AD54416009B05E5 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2042AD54416009B05E5 /* Button.swift */; };
 		7C41C2082AD55AA2009B05E5 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2072AD55AA2009B05E5 /* BoardListViewController.swift */; };
 		7C41C20A2AD6F5A8009B05E5 /* BoardListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2092AD6F5A8009B05E5 /* BoardListInteractor.swift */; };
@@ -17,13 +23,11 @@
 		7C41C20E2AD6F5C1009B05E5 /* BoardListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C20D2AD6F5C1009B05E5 /* BoardListWorker.swift */; };
 		7C41C2102AD6F5C8009B05E5 /* BoardListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C20F2AD6F5C8009B05E5 /* BoardListRouter.swift */; };
 		7C41C2122AD6F5D5009B05E5 /* BoardListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C2112AD6F5D5009B05E5 /* BoardListModels.swift */; };
-		7C4692B52AB98F120016ADC7 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692B42AB98F120016ADC7 /* SigninViewController.swift */; };
 		7C4692B72AB990110016ADC7 /* SigninInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692B62AB990110016ADC7 /* SigninInteractor.swift */; };
 		7C4692B92AB990460016ADC7 /* SigninPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692B82AB990460016ADC7 /* SigninPresenter.swift */; };
 		7C4692BB2AB990AA0016ADC7 /* SigninWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692BA2AB990AA0016ADC7 /* SigninWorker.swift */; };
 		7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692BC2AB990B20016ADC7 /* SigninRouter.swift */; };
 		7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692BE2AB990D40016ADC7 /* SigninModels.swift */; };
-		7C4692C12AB99B160016ADC7 /* UIViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692C02AB99B160016ADC7 /* UIViewExtention.swift */; };
 		7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692C32ABC51B60016ADC7 /* SigninView.swift */; };
 		7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11B72AC2C78100E1BBBE /* Board.swift */; };
 		7CBC11BA2AC2E14B00E1BBBE /* SigninTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11B92AC2E14B00E1BBBE /* SigninTableViewCell.swift */; };
@@ -80,7 +84,13 @@
 		0724CC5A870F2A9AFEA20FF1 /* Pods-Hooligans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hooligans.debug.xcconfig"; path = "Target Support Files/Pods-Hooligans/Pods-Hooligans.debug.xcconfig"; sourceTree = "<group>"; };
 		260FF412C5E601958D3C48D8 /* Pods-Hooligans.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hooligans.release.xcconfig"; path = "Target Support Files/Pods-Hooligans/Pods-Hooligans.release.xcconfig"; sourceTree = "<group>"; };
 		7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		7C3F60152ADD0B540078A6F1 /* EmojiUITextfField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiUITextfField.swift; sourceTree = "<group>"; };
+		7C3F60192ADE6F340078A6F1 /* BoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailViewController.swift; sourceTree = "<group>"; };
+		7C3F601B2ADE703D0078A6F1 /* BoardDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailInteractor.swift; sourceTree = "<group>"; };
+		7C3F601D2ADE70BB0078A6F1 /* BoardDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailPresenter.swift; sourceTree = "<group>"; };
+		7C3F601F2ADE710A0078A6F1 /* BoardDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailWorker.swift; sourceTree = "<group>"; };
+		7C3F60212ADE71540078A6F1 /* BoardDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailRouter.swift; sourceTree = "<group>"; };
+		7C3F60232ADE717F0078A6F1 /* BoardDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailModels.swift; sourceTree = "<group>"; };
+		7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWriteViewController.swift; sourceTree = "<group>"; };
 		7C41C2042AD54416009B05E5 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7C41C2072AD55AA2009B05E5 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
 		7C41C2092AD6F5A8009B05E5 /* BoardListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListInteractor.swift; sourceTree = "<group>"; };
@@ -88,13 +98,11 @@
 		7C41C20D2AD6F5C1009B05E5 /* BoardListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListWorker.swift; sourceTree = "<group>"; };
 		7C41C20F2AD6F5C8009B05E5 /* BoardListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListRouter.swift; sourceTree = "<group>"; };
 		7C41C2112AD6F5D5009B05E5 /* BoardListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListModels.swift; sourceTree = "<group>"; };
-		7C4692B42AB98F120016ADC7 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		7C4692B62AB990110016ADC7 /* SigninInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninInteractor.swift; sourceTree = "<group>"; };
 		7C4692B82AB990460016ADC7 /* SigninPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninPresenter.swift; sourceTree = "<group>"; };
 		7C4692BA2AB990AA0016ADC7 /* SigninWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninWorker.swift; sourceTree = "<group>"; };
 		7C4692BC2AB990B20016ADC7 /* SigninRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninRouter.swift; sourceTree = "<group>"; };
 		7C4692BE2AB990D40016ADC7 /* SigninModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModels.swift; sourceTree = "<group>"; };
-		7C4692C02AB99B160016ADC7 /* UIViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewExtention.swift; path = Hooligans/Scenes/Signin/UIViewExtention.swift; sourceTree = SOURCE_ROOT; };
 		7C4692C32ABC51B60016ADC7 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		7CBC11B72AC2C78100E1BBBE /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		7CBC11B92AC2E14B00E1BBBE /* SigninTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTableViewCell.swift; sourceTree = "<group>"; };
@@ -174,15 +182,13 @@
 			isa = PBXGroup;
 			children = (
 				7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */,
-				7C3F60152ADD0B540078A6F1 /* EmojiUITextfField.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
 		};
-		7C41C2062AD55A8A009B05E5 /* Board */ = {
+		7C3F60172ADE6DA10078A6F1 /* BoardList */ = {
 			isa = PBXGroup;
 			children = (
-				7C3F60102ADBCCC70078A6F1 /* Component */,
 				7C41C2072AD55AA2009B05E5 /* BoardListViewController.swift */,
 				7C41C2092AD6F5A8009B05E5 /* BoardListInteractor.swift */,
 				7C41C20B2AD6F5B5009B05E5 /* BoardListPresenter.swift */,
@@ -190,22 +196,69 @@
 				7C41C20F2AD6F5C8009B05E5 /* BoardListRouter.swift */,
 				7C41C2112AD6F5D5009B05E5 /* BoardListModels.swift */,
 			);
+			path = BoardList;
+			sourceTree = "<group>";
+		};
+		7C3F60182ADE6DA90078A6F1 /* BoardDetail */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F60192ADE6F340078A6F1 /* BoardDetailViewController.swift */,
+				7C3F601B2ADE703D0078A6F1 /* BoardDetailInteractor.swift */,
+				7C3F601D2ADE70BB0078A6F1 /* BoardDetailPresenter.swift */,
+				7C3F601F2ADE710A0078A6F1 /* BoardDetailWorker.swift */,
+				7C3F60212ADE71540078A6F1 /* BoardDetailRouter.swift */,
+				7C3F60232ADE717F0078A6F1 /* BoardDetailModels.swift */,
+			);
+			path = BoardDetail;
+			sourceTree = "<group>";
+		};
+		7C3F60252ADE9A100078A6F1 /* Signin */ = {
+			isa = PBXGroup;
+			children = (
+				7CBC11BD2AD3D39600E1BBBE /* LoginController.swift */,
+				7C4692B62AB990110016ADC7 /* SigninInteractor.swift */,
+				7C4692BE2AB990D40016ADC7 /* SigninModels.swift */,
+				7C4692B82AB990460016ADC7 /* SigninPresenter.swift */,
+				7C4692BC2AB990B20016ADC7 /* SigninRouter.swift */,
+				7C4692BA2AB990AA0016ADC7 /* SigninWorker.swift */,
+			);
+			path = Signin;
+			sourceTree = "<group>";
+		};
+		7C3F60262ADE9A170078A6F1 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		7C3F60272AE586160078A6F1 /* BoardWrite */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F60282AE5867B0078A6F1 /* BoardWriteViewController.swift */,
+			);
+			path = BoardWrite;
+			sourceTree = "<group>";
+		};
+		7C41C2062AD55A8A009B05E5 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F60272AE586160078A6F1 /* BoardWrite */,
+				7C3F60102ADBCCC70078A6F1 /* Component */,
+				7C3F60182ADE6DA90078A6F1 /* BoardDetail */,
+				7C3F60172ADE6DA10078A6F1 /* BoardList */,
+			);
 			path = Board;
 			sourceTree = "<group>";
 		};
-		7C4692B32AB98EB00016ADC7 /* Signin */ = {
+		7C4692B32AB98EB00016ADC7 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				7C3F60262ADE9A170078A6F1 /* Signup */,
+				7C3F60252ADE9A100078A6F1 /* Signin */,
 				7C4692C22ABC517D0016ADC7 /* Component */,
-				7CBC11BD2AD3D39600E1BBBE /* LoginController.swift */,
-				7C4692B62AB990110016ADC7 /* SigninInteractor.swift */,
-				7C4692B82AB990460016ADC7 /* SigninPresenter.swift */,
-				7C4692BA2AB990AA0016ADC7 /* SigninWorker.swift */,
-				7C4692BC2AB990B20016ADC7 /* SigninRouter.swift */,
-				7C4692BE2AB990D40016ADC7 /* SigninModels.swift */,
-				7C4692B42AB98F120016ADC7 /* SigninViewController.swift */,
 			);
-			path = Signin;
+			path = Account;
 			sourceTree = "<group>";
 		};
 		7C4692C22ABC517D0016ADC7 /* Component */ = {
@@ -235,21 +288,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C140386D2AA8866400933273 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		C140386E2AA8866C00933273 /* Utillity */ = {
-			isa = PBXGroup;
-			children = (
-				7C4692C02AB99B160016ADC7 /* UIViewExtention.swift */,
-			);
-			path = Utillity;
-			sourceTree = "<group>";
-		};
 		C140386F2AA8868800933273 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,7 +314,7 @@
 				C14038C22AC802CA00933273 /* LeagueTable */,
 				DB2A79302AB98FB700F07D82 /* User */,
 				7C41C2062AD55A8A009B05E5 /* Board */,
-				7C4692B32AB98EB00016ADC7 /* Signin */,
+				7C4692B32AB98EB00016ADC7 /* Account */,
 				C14038722AA886BF00933273 /* Main */,
 			);
 			path = Scenes;
@@ -401,8 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				C14038852AB3077500933273 /* Network */,
-				C140386D2AA8866400933273 /* Application */,
-				C140386E2AA8866C00933273 /* Utillity */,
 				C140386F2AA8868800933273 /* Service */,
 				C14038702AA8869500933273 /* Model */,
 				C14038712AA8869A00933273 /* Scenes */,
@@ -593,8 +629,9 @@
 				7C41C20C2AD6F5B5009B05E5 /* BoardListPresenter.swift in Sources */,
 				DB2A79402ABEB8C900F07D82 /* UserInfoView.swift in Sources */,
 				7C4692B92AB990460016ADC7 /* SigninPresenter.swift in Sources */,
-				7C4692B52AB98F120016ADC7 /* SigninViewController.swift in Sources */,
+				7C3F601E2ADE70BB0078A6F1 /* BoardDetailPresenter.swift in Sources */,
 				C14038902AB8394600933273 /* Endpoint.swift in Sources */,
+				7C3F60242ADE717F0078A6F1 /* BoardDetailModels.swift in Sources */,
 				7C3F60122ADBCCFC0078A6F1 /* PostTableViewCell.swift in Sources */,
 				C14038872AB3077B00933273 /* NetworkService.swift in Sources */,
 				C15E11762AC815D400904C79 /* LeagueTableRouter.swift in Sources */,
@@ -606,11 +643,13 @@
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
 				7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */,
 				7C41C2102AD6F5C8009B05E5 /* BoardListRouter.swift in Sources */,
+				7C3F60292AE5867B0078A6F1 /* BoardWriteViewController.swift in Sources */,
 				7C4692C52ABD02070016ADC7 /* SigninView.swift in Sources */,
 				C140387F2AB3043100933273 /* MainModels.swift in Sources */,
 				DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */,
 				C14038792AB3040D00933273 /* MainPresenter.swift in Sources */,
 				7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */,
+				7C3F60202ADE710A0078A6F1 /* BoardDetailWorker.swift in Sources */,
 				C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */,
 				C15E117B2AC94EE800904C79 /* ChatListViewController.swift in Sources */,
 				C1C100F22A092B3400D6F24F /* SceneDelegate.swift in Sources */,
@@ -622,8 +661,10 @@
 				7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */,
 				C140388E2AB4473A00933273 /* LeagueTableViewCell.swift in Sources */,
 				7C4692C12AB99B160016ADC7 /* UIViewExtention.swift in Sources */,
+				C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */,
 				7C4692B72AB990110016ADC7 /* SigninInteractor.swift in Sources */,
 				7C41C20E2AD6F5C1009B05E5 /* BoardListWorker.swift in Sources */,
+				7C3F60222ADE71540078A6F1 /* BoardDetailRouter.swift in Sources */,
 				C14038812AB3044600933273 /* APIService.swift in Sources */,
 				DB2A793A2ABAC92900F07D82 /* UserRouter.swift in Sources */,
 				C140388B2AB4415200933273 /* User.swift in Sources */,
@@ -641,8 +682,9 @@
 				DB2A793C2ABAC93900F07D82 /* UserModels.swift in Sources */,
 				7C41C2052AD54416009B05E5 /* Button.swift in Sources */,
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
-				7C3F60162ADD0B540078A6F1 /* EmojiUITextfField.swift in Sources */,
 				7C41C2082AD55AA2009B05E5 /* BoardListViewController.swift in Sources */,
+				7C3F601A2ADE6F340078A6F1 /* BoardDetailViewController.swift in Sources */,
+				7C3F601C2ADE703D0078A6F1 /* BoardDetailInteractor.swift in Sources */,
 				C14038A02ABB300500933273 /* League.swift in Sources */,
 				C14038752AB303E800933273 /* MainViewController.swift in Sources */,
 				C14038C12AC7F78700933273 /* LeagueTableHeaderView.swift in Sources */,
