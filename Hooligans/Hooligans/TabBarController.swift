@@ -46,7 +46,14 @@ class TabBarController: UITabBarController {
         thirdViewController.tabBarItem.title = "Main"
         thirdViewController.tabBarItem.tag = 2
         
-        self.viewControllers = [firstViewController, secondViewController, thirdViewController]
+        let fourthViewController = UINavigationController(rootViewController: BoardListViewController())
+        
+        fourthViewController.tabBarItem.image = UIImage(systemName: "star.fill")
+        fourthViewController.tabBarItem.selectedImage = UIImage(systemName: "star")
+        fourthViewController.tabBarItem.title = "Main"
+        fourthViewController.tabBarItem.tag = 2
+        
+        self.viewControllers = [firstViewController, secondViewController, thirdViewController, fourthViewController]
     }
 
 }

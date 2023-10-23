@@ -2,17 +2,17 @@
 import Foundation
 
 struct Team: Codable {
-    let teamId: String = "0"
-    let teamName: String = "0"
-    let teamLogo: String? = nil
-    let played: String = "0"
-    let won: String = "0"
-    let lost: String = "0"
-    let drawn: String = "0"
-    let points: String = "0"
-    let goalsAgainst: String = "0"
-    let goalsFor: String = "0"
-    let goalDifference: String = "0"
+    let teamId: String
+    let teamName: String
+    let teamLogo: String?
+    let played: String
+    let won: String
+    let lost: String
+    let drawn: String
+    let points: String
+    let goalsAgainst: String
+    let goalsFor: String
+    let goalDifference: String
 
     enum CodingKeys: String, CodingKey {
         case teamId = "teamid"

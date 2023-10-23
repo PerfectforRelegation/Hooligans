@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import SnapKit
 
 protocol MainDisplayLogic: AnyObject {
@@ -13,18 +14,28 @@ protocol MainDisplayLogic: AnyObject {
 }
 
 class MainViewController: UIViewController {
+    
+    // MARK: - Properties
     var interactor: (MainBusinessLogic & MainDataStore)?
     var router: MainRoutingLogic?
     
+    // MARK: - View Initailize
+    private let headerView = HomeHeaderView()
+        .backgroundColor(.gray)
     
-    private let headerView: LeagueTableHeaderView = LeagueTableHeaderView()
-    
-    
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.frame = CGRect(origin: .zero, size: .zero)
-        return table
+    private var collectionView: UICollectionView = {
+        let size = NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .fractionalHeight(0.2))
+        let layout = UICollectionViewCompositionalLayout { section, _ in
+            return CollectionViewLayouts.Main.allCases[section].section()
+        }
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.backgroundColor = .orange
+        
+        collectionView.showsVerticalScrollIndicator = false
+        
+
+        return collectionView
     }()
 
     init() {
@@ -43,28 +54,27 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.dataSource = self
+        collectionView.delegate = self
         setupView()
         registerCells()
     }
 
-    func setup() {
+    private func setup() {
         let viewController = self
         let interactor = MainInteractor()
         let presenter = MainPresenter()
         let router = MainRouter()
         viewController.interactor = interactor
-//        viewController.router = router
+        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
-//        router.viewController = viewController
-//        router.viewController = viewController
-        router.dataStore = interactor
     }
 
-    func registerCells() {
-        
+    private func registerCells() {
+        collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
     }
 
 }
@@ -73,39 +83,19 @@ extension MainViewController {
     private func setupView() {
         self.view.backgroundColor = .white
         
+        self.view.addSubview(collectionView)
+        
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
         self.view.addSubview(headerView)
         
         headerView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(150)
+            make.height.equalTo(78)
         }
-        
-        
-        self.view.addSubview(tableView)
-
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-        
-//        self.view.addSubview(countLabel)
-//
-//        countLabel.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(100)
-//            make.centerX.equalToSuperview()
-//        }
-//
-//        self.view.addSubview(upButton)
-//
-//        upButton.snp.makeConstraints { make in
-//            make.top.equalTo(countLabel.snp.bottom).offset(50)
-//            make.centerX.equalToSuperview()
-//            make.width.equalTo(80)
-//            make.height.equalTo(50)
-//        }
-//
-//        upButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
     
     func routeToUserViewController() {
@@ -127,26 +117,17 @@ extension MainViewController: MainDisplayLogic {
     }
 }
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
     }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LeagueTableViewCell.identifier, for: indexPath) as? LeagueTableViewCell else { return UITableViewCell() }
-        
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
+                                                            for: indexPath) as? FixtureCell else { return UICollectionViewCell() }
+        cell.configure(home: "CHE", away: "MCI")
+        cell.clipsToBounds = true
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.routeToUserViewController()
     }
     
 }

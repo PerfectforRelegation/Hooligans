@@ -13,19 +13,19 @@ protocol UserWorkerLogic {
 
 class UserWorker: UserWorkerLogic {
     
-    let apiManager = APIService()
+    let apiManager = LeagueService()
     
     func fetchUser(_ response: @escaping (UserModels.Users.Response) -> Void) {
-        apiManager.fetchUsers { result in
-            switch result {
-            case .success(let users):
-                print(users)
-                response(UserModels.Users.Response(users: users, isError: false, message: nil))
-            case .failure(let error):
-                print(error.localizedDescription)
-                response(UserModels.Users.Response(isError: true, message: error.localizedDescription))
-         }
-       }
+//        apiManager.fetchUsers { result in
+//            switch result {
+//            case .success(let users):
+//                print(users)
+//                response(UserModels.Users.Response(users: users, isError: false, message: nil))
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//                response(UserModels.Users.Response(isError: true, message: error.localizedDescription))
+//         }
+//       }
     }
 }
 

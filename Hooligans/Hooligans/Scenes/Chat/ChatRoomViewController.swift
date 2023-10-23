@@ -10,11 +10,8 @@ import SnapKit
 import StompClientLib
 import Combine
 
-protocol ChatListDisplayLogic {
-    
-}
 
-class ChatListTableViewCell: UITableViewCell {
+class ChatRoomTableViewCell: UITableViewCell {
     static let identifier = "ChatListTableViewCell"
    
     var chatRoomLabel: UILabel = {
@@ -48,7 +45,7 @@ class ChatListTableViewCell: UITableViewCell {
     
 }
 
-class ChatListViewController: UIViewController {
+class ChatRoomViewController: UIViewController {
     
     var socketClient = StompClientLib()
     
@@ -97,11 +94,11 @@ class ChatListViewController: UIViewController {
     }
         
     private func registerCell() {
-        tableView.register(ChatListTableViewCell.self, forCellReuseIdentifier: ChatListTableViewCell.identifier)
+        tableView.register(ChatRoomTableViewCell.self, forCellReuseIdentifier: ChatRoomTableViewCell.identifier)
     }
 }
 
-extension ChatListViewController {
+extension ChatRoomViewController {
     private func setupView() {
         
         self.view.backgroundColor = .white
@@ -155,25 +152,25 @@ extension ChatListViewController {
     }
 }
 
-extension ChatListViewController: ChatListDisplayLogic {
-    
-}
+//extension ChatRoomViewController: ChatListDisplayLogic {
+//    
+//}
 
-extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.identifier, for: indexPath) as? ChatListTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatRoomTableViewCell.identifier, for: indexPath) as? ChatRoomTableViewCell else { return UITableViewCell() }
         cell.chatRoomLabel.text = self.messages[indexPath.row].message
         return cell
     }
     
 }
 
-extension ChatListViewController: StompClientLibDelegate {
+extension ChatRoomViewController: StompClientLibDelegate {
     
     
     func registerSocket() {

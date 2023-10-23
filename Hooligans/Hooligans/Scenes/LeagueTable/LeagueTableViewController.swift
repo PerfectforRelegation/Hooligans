@@ -127,7 +127,7 @@ extension LeagueTableViewController: UITableViewDataSource, UITableViewDelegate 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: LeagueTableViewCell.identifier, for: indexPath) as? LeagueTableViewCell else { return UITableViewCell() }
-        cell.configure(rank: indexPath.row+1, team: leagueTable?.leaguetable[indexPath.row] ?? Team())
+        cell.configure(rank: indexPath.row+1, team: leagueTable?.leaguetable[indexPath.row] ?? Team(teamId: "", teamName: "", teamLogo: "", played: "", won: "", lost: "", drawn: "", points: "", goalsAgainst: "", goalsFor: "", goalDifference: ""))
         
         return cell
     }

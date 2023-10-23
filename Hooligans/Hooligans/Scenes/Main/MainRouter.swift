@@ -24,7 +24,7 @@ final class MainRouter: MainRoutingLogic {
 //        
 //        viewController.navigationController?.pushViewController(userViewController, animated: true)
 
-        let userViewController = ChatListViewController()
+        let userViewController = ChatRoomViewController()
         
         viewController?.navigationController?.pushViewController(userViewController, animated: true)
     }
