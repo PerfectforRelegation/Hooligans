@@ -169,7 +169,9 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     @objc func writeButtonTapped() {
-        print("DEBUG :", "clickWrite")
-        router?.routeToBoardWrite()
+        let boardWriteViewController = BoardWriteViewController()
+
+        navigationController?.pushViewController(boardWriteViewController, animated: true)
     }
+
 }
