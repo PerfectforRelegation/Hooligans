@@ -5,6 +5,7 @@ import UIKit
 protocol BoardListRoutingLogic {
     func routeToBoardDetail()
     func routeToBoardWrite()
+    func routeToBoardSearch()
 }
 
 protocol BoardDataPassing {
@@ -26,6 +27,13 @@ final class BoardListRouter: BoardListRoutingLogic {
         if let viewController = viewController as? UIViewController {
             let boardWriteViewController = BoardWriteViewController()
             viewController.navigationController?.pushViewController(boardWriteViewController, animated: true)
+        }
+    }
+
+    func routeToBoardSearch() {
+        if let viewController = viewController as? UIViewController {
+            let boardSearchViewController = BoardSearchViewController()
+            viewController.navigationController?.pushViewController(boardSearchViewController, animated: true)
         }
     }
 }

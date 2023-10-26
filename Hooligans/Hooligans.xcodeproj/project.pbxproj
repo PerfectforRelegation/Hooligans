@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		796C19CFEB07029C614780E8 /* Pods_Hooligans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559845865054D78DDD52325 /* Pods_Hooligans.framework */; };
+		7C38AAD02AEA4E0200E0650E /* BoardSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C38AACF2AEA4E0200E0650E /* BoardSearchViewController.swift */; };
+		7C38AAD22AEA555B00E0650E /* BoardSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C38AAD12AEA555B00E0650E /* BoardSearchInteractor.swift */; };
+		7C38AAD42AEA564100E0650E /* BoardSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C38AAD32AEA564100E0650E /* BoardSearchPresenter.swift */; };
+		7C38AAD62AEA564D00E0650E /* BoardSearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C38AAD52AEA564D00E0650E /* BoardSearchWorker.swift */; };
+		7C38AAD82AEA56B300E0650E /* BoardSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C38AAD72AEA56B300E0650E /* BoardSearchRouter.swift */; };
+		7C38AADA2AEA56C000E0650E /* BoardSearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C38AAD92AEA56C000E0650E /* BoardSearchModels.swift */; };
 		7C3F60122ADBCCFC0078A6F1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */; };
 		7C3F601A2ADE6F340078A6F1 /* BoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F60192ADE6F340078A6F1 /* BoardDetailViewController.swift */; };
 		7C3F601C2ADE703D0078A6F1 /* BoardDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F601B2ADE703D0078A6F1 /* BoardDetailInteractor.swift */; };
@@ -79,6 +85,12 @@
 /* Begin PBXFileReference section */
 		0724CC5A870F2A9AFEA20FF1 /* Pods-Hooligans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hooligans.debug.xcconfig"; path = "Target Support Files/Pods-Hooligans/Pods-Hooligans.debug.xcconfig"; sourceTree = "<group>"; };
 		260FF412C5E601958D3C48D8 /* Pods-Hooligans.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hooligans.release.xcconfig"; path = "Target Support Files/Pods-Hooligans/Pods-Hooligans.release.xcconfig"; sourceTree = "<group>"; };
+		7C38AACF2AEA4E0200E0650E /* BoardSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSearchViewController.swift; sourceTree = "<group>"; };
+		7C38AAD12AEA555B00E0650E /* BoardSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSearchInteractor.swift; sourceTree = "<group>"; };
+		7C38AAD32AEA564100E0650E /* BoardSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSearchPresenter.swift; sourceTree = "<group>"; };
+		7C38AAD52AEA564D00E0650E /* BoardSearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSearchWorker.swift; sourceTree = "<group>"; };
+		7C38AAD72AEA56B300E0650E /* BoardSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSearchRouter.swift; sourceTree = "<group>"; };
+		7C38AAD92AEA56C000E0650E /* BoardSearchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSearchModels.swift; sourceTree = "<group>"; };
 		7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		7C3F60192ADE6F340078A6F1 /* BoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailViewController.swift; sourceTree = "<group>"; };
 		7C3F601B2ADE703D0078A6F1 /* BoardDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailInteractor.swift; sourceTree = "<group>"; };
@@ -170,6 +182,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7C38AACE2AEA4DCF00E0650E /* BoardSearch */ = {
+			isa = PBXGroup;
+			children = (
+				7C38AACF2AEA4E0200E0650E /* BoardSearchViewController.swift */,
+				7C38AAD12AEA555B00E0650E /* BoardSearchInteractor.swift */,
+				7C38AAD32AEA564100E0650E /* BoardSearchPresenter.swift */,
+				7C38AAD52AEA564D00E0650E /* BoardSearchWorker.swift */,
+				7C38AAD72AEA56B300E0650E /* BoardSearchRouter.swift */,
+				7C38AAD92AEA56C000E0650E /* BoardSearchModels.swift */,
+			);
+			path = BoardSearch;
+			sourceTree = "<group>";
+		};
 		7C3F60102ADBCCC70078A6F1 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +265,7 @@
 		7C41C2062AD55A8A009B05E5 /* Board */ = {
 			isa = PBXGroup;
 			children = (
+				7C38AACE2AEA4DCF00E0650E /* BoardSearch */,
 				7C3F60272AE586160078A6F1 /* BoardWrite */,
 				7C3F60102ADBCCC70078A6F1 /* Component */,
 				7C3F60182ADE6DA90078A6F1 /* BoardDetail */,
@@ -590,6 +616,7 @@
 				7C3F60242ADE717F0078A6F1 /* BoardDetailModels.swift in Sources */,
 				7C3F60122ADBCCFC0078A6F1 /* PostTableViewCell.swift in Sources */,
 				C14038872AB3077B00933273 /* NetworkService.swift in Sources */,
+				7C38AAD22AEA555B00E0650E /* BoardSearchInteractor.swift in Sources */,
 				DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */,
 				C1C100F42A092B3400D6F24F /* ViewController.swift in Sources */,
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
@@ -600,12 +627,14 @@
 				C140387F2AB3043100933273 /* MainModels.swift in Sources */,
 				DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */,
 				7C3F60312AE5938E0078A6F1 /* BoardWriteRouter.swift in Sources */,
+				7C38AADA2AEA56C000E0650E /* BoardSearchModels.swift in Sources */,
 				C14038792AB3040D00933273 /* MainPresenter.swift in Sources */,
 				7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */,
 				7C3F60202ADE710A0078A6F1 /* BoardDetailWorker.swift in Sources */,
 				C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */,
 				C1C100F22A092B3400D6F24F /* SceneDelegate.swift in Sources */,
 				DB2A79322AB98FE400F07D82 /* UserViewController.swift in Sources */,
+				7C38AAD42AEA564100E0650E /* BoardSearchPresenter.swift in Sources */,
 				C140388E2AB4473A00933273 /* TestTableViewCell.swift in Sources */,
 				DB2A79382ABAC91500F07D82 /* UserWorker.swift in Sources */,
 				7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */,
@@ -613,6 +642,7 @@
 				7C3F602D2AE593740078A6F1 /* BoardWritePresenter.swift in Sources */,
 				7C4692B72AB990110016ADC7 /* SigninInteractor.swift in Sources */,
 				7C3F602B2AE593640078A6F1 /* BoardWriteInteractor.swift in Sources */,
+				7C38AAD82AEA56B300E0650E /* BoardSearchRouter.swift in Sources */,
 				7C41C20E2AD6F5C1009B05E5 /* BoardListWorker.swift in Sources */,
 				7C3F60222ADE71540078A6F1 /* BoardDetailRouter.swift in Sources */,
 				C14038812AB3044600933273 /* APIService.swift in Sources */,
@@ -621,8 +651,10 @@
 				7C41C20A2AD6F5A8009B05E5 /* BoardListInteractor.swift in Sources */,
 				C14038772AB303FD00933273 /* MainInteractor.swift in Sources */,
 				7C41C2122AD6F5D5009B05E5 /* BoardListModels.swift in Sources */,
+				7C38AAD02AEA4E0200E0650E /* BoardSearchViewController.swift in Sources */,
 				7C3F60352AE593AD0078A6F1 /* BoardWriteModels.swift in Sources */,
 				7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */,
+				7C38AAD62AEA564D00E0650E /* BoardSearchWorker.swift in Sources */,
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
 				7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */,
 				7C4692BB2AB990AA0016ADC7 /* SigninWorker.swift in Sources */,

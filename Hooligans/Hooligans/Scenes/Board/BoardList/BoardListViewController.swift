@@ -161,7 +161,9 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     @objc func searchButtonTapped() {
-        print("DEBUG :", "clickSearch")
+        let boardSearchViewController = BoardSearchViewController()
+
+        navigationController?.pushViewController(boardSearchViewController, animated: true)
     }
 
     @objc func menuButtonTapped() {
