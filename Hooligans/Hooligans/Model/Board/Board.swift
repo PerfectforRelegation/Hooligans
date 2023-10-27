@@ -20,6 +20,7 @@ struct Post: Codable {
     let title: String
     let content: String
     var likes: Int
+    var isLiked: Bool
     var comments: Int   // 댓글 수
     var images: [String]
     var videoURLs: [URL]
@@ -28,6 +29,7 @@ struct Post: Codable {
         self.title = title
         self.content = content
         self.likes = likes
+        self.isLiked = false
         self.comments = comments
         self.images = images
         self.videoURLs = videoURLs

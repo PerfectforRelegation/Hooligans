@@ -57,7 +57,7 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
         return button
     }()
 
-
+    var router: BoardListRouter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,14 +155,15 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
 
-
     @objc func backButtonTapped() {
         print("DEBUG :", "clickBack")
         navigationController?.popViewController(animated: true)
     }
 
     @objc func searchButtonTapped() {
-        print("DEBUG :", "clickSearch")
+        let boardSearchViewController = BoardSearchViewController()
+
+        navigationController?.pushViewController(boardSearchViewController, animated: true)
     }
 
     @objc func menuButtonTapped() {
@@ -170,6 +171,9 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     @objc func writeButtonTapped() {
-        print("DEBUG :", "clickWrite")
+        let boardWriteViewController = BoardWriteViewController()
+
+        navigationController?.pushViewController(boardWriteViewController, animated: true)
     }
+
 }
