@@ -8,6 +8,10 @@
 import Foundation
 
 enum MainModels {
+    enum Section {
+        case profile
+        case fixture
+    }
     
     // MARK: Usecases
     enum Users {

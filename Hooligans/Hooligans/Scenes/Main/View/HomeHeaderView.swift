@@ -12,13 +12,14 @@ class HomeHeaderView: UIView {
     
     private let logoImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "logo")
+        imageView.image = UIImage(named: "coin")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -28,10 +29,14 @@ class HomeHeaderView: UIView {
 
 extension HomeHeaderView {
     private func setupView() {
+        self.backgroundColor = .white
+//        self.layer.opacity = 0.5
+        
         self.addSubview(logoImage)
         
         logoImage.snp.makeConstraints { make in
-            make.top.leading.equalTo(safeAreaLayoutGuide)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(20)
             make.width.height.equalTo(40)
         }
     }

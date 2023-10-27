@@ -6,50 +6,42 @@
 //
 
 import UIKit
-
-enum Section: CaseIterable {
-    case tabItem
-    case pageView
-}
-
-enum ItemType {
-    case tabItem
-    case pageView
-}
-
-struct Item: Hashable {
-    
-    let data: Any
-    let type: ItemType
-    let identifier = UUID()
-    
-    init(data: Any, type: ItemType) {
-        self.data = data
-        self.type = type
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.identifier)
-    }
-    
-    static func == (lhs: Item, rhs: Item) -> Bool {
-        lhs.identifier == rhs.identifier
-    }
-
-}
+import StompClientLib
 
 protocol ChatListDisplayLogic: AnyObject {
     func displayFixtureList(viewModel: ChatListModels.FixtureList.ViewModel)
+    func displayChatRoomList(viewModel: ChatListModels.ChatRoomList.ViewModel)
 }
 
 class ChatListViewController: UIViewController {
+    
+    struct Item: Hashable {
+        
+        let data: Any
+        let section: ChatListModels.Section
+        let identifier = UUID()
+        
+        init(data: Any, section: ChatListModels.Section) {
+            self.data = data
+            self.section = section
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(self.identifier)
+        }
+        
+        static func == (lhs: Item, rhs: Item) -> Bool {
+            lhs.identifier == rhs.identifier
+        }
+
+    }
     
     var interactor: (ChatListBusinessLogic & ChatListDataStore)?
     var router: ChatListRoutingLogic?
     
     // MARK: - View Initialize
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
+    typealias DataSource = UICollectionViewDiffableDataSource<Layouts.Chat, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Layouts.Chat, Item>
     
     private lazy var dataSource: DataSource = configureDataSource()
     private lazy var snapshot: Snapshot = Snapshot()
@@ -57,7 +49,7 @@ class ChatListViewController: UIViewController {
     private var collectionView: UICollectionView = {
         let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
         let layout = UICollectionViewCompositionalLayout { section, _ in
-            return CollectionViewLayouts.Chat.allCases[section].section()
+            return Layouts.Chat.allCases[section].section()
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -72,6 +64,9 @@ class ChatListViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         setup()
+        setupView()
+        bindView()
+        interactor?.fetchChatRoomList(request: ChatListModels.ChatRoomList.Request())
     }
     
     required init?(coder: NSCoder) {
@@ -83,13 +78,13 @@ class ChatListViewController: UIViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         registerCells()
-        setupView()
-        bindView()
+//        setupView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        interactor?.fetchFixtureList(request: ChatListModels.FixtureList.Request())
+        
     }
     
     private func setup() {
@@ -109,6 +104,7 @@ class ChatListViewController: UIViewController {
         collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
         collectionView.register(TabItemCell.self, forCellWithReuseIdentifier: TabItemCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
+        collectionView.register(TeamChatRoomCell.self, forCellWithReuseIdentifier: TeamChatRoomCell.identifier)
     }
     
     
@@ -128,7 +124,7 @@ extension ChatListViewController {
     
     private func configureDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: self.collectionView) { collectionView, indexPath, item in
-            switch item.type {
+            switch item.section {
             case .tabItem:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabItemCell.identifier,
                                                                     for: indexPath) as? TabItemCell else { return UICollectionViewCell() }
@@ -137,10 +133,11 @@ extension ChatListViewController {
                 return cell
                 
             case .pageView:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
-                                                              for: indexPath) as? FixtureCell
-                if let data = item.data as? Fixture { cell?.configureCell(fixture: data) }
-                
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamChatRoomCell.identifier,
+                                                              for: indexPath) as? TeamChatRoomCell
+                if let data = item.data as? ChatRoom { cell?.configureCell(chatRoom: data) }
+                cell?.clipsToBounds = true
+                cell?.alpha = 0
                 return cell
             }
         }
@@ -156,30 +153,13 @@ extension ChatListViewController {
                                                                        withReuseIdentifier: ChatCollectionViewHeader.identifier,
                                                                        for: indexPath) as? ChatCollectionViewHeader
             
-//            view?.title = "Chat"
-            //            view?.seeAllButton.addTarget(self, action: #selector(self.showWhatsNewViewController), for: .touchUpInside)
-            //            view?.removeStackSubviews()
-            
-            //            switch section {
-            //            case .tabItem:
-            //                guard let username = self.viewModel.username else { return view }
-            //                let colorString = NSMutableAttributedString(string: username)
-            //                let range = NSRange.init(location: 0, length: username.count)
-            //                colorString.addAttribute(.foregroundColor, value: UIColor.systemTeal, range: range)
-            //                colorString.append(NSAttributedString(string: section.title))
-            //                view?.label.attributedText = colorString
-            //            case .pageView:
-            //
-            //            default:
-            //                break
-            //            }
             return view
         }
     }
     
     private func bindView() {
         snapshot.appendSections([.tabItem, .pageView])
-        snapshot.appendItems([Item(data: TabItem(title: "Fixtures", isTabbed: true), type: .tabItem), Item(data: TabItem(title: "Team", isTabbed: false), type: .tabItem)], toSection: .tabItem)
+        snapshot.appendItems([Item(data: TabItem(title: "Fixtures", isTabbed: true), section: .tabItem), Item(data: TabItem(title: "Team", isTabbed: false), section: .tabItem)], toSection: .tabItem)
         self.dataSource.apply(self.snapshot)
     }
     
@@ -187,39 +167,42 @@ extension ChatListViewController {
 
 extension ChatListViewController: ChatListDisplayLogic {
     func displayFixtureList(viewModel: ChatListModels.FixtureList.ViewModel) {
+//        DispatchQueue.main.async {
+//            viewModel.fixtures.forEach { fixture in
+//                let fixtureItem = Item(data: fixture, section: .pageView)
+//                self.snapshot.appendItems([fixtureItem], toSection: .pageView)
+//                self.dataSource.apply(self.snapshot)
+//            }
+//        }
+    }
+    
+    func displayChatRoomList(viewModel: ChatListModels.ChatRoomList.ViewModel) {
         DispatchQueue.main.async {
-            viewModel.fixtures.forEach { fixture in
-                let fixtureItem = Item(data: fixture, type: .pageView)
-                self.snapshot.appendItems([fixtureItem], toSection: .pageView)
+            viewModel.chatRooms.forEach { chatRoom in
+                let chatRoomItem = Item(data: chatRoom, section: .pageView)
+                self.snapshot.appendItems([chatRoomItem], toSection: .pageView)
                 self.dataSource.apply(self.snapshot)
             }
         }
-        
     }
 }
 
 extension ChatListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
-            var currentSnapshot = dataSource.snapshot()
-
+        if indexPath.section == 1 {
             // 2. Retrieve the item associated with the selected cell from the data source
             let selectedItem = dataSource.itemIdentifier(for: indexPath)
+            let data = selectedItem?.data as? ChatRoom
             
-            if var item = selectedItem {
-                // 3. Modify the item's data (e.g., change a property)
-                let newItem = Item(data: TabItem(title: "title", isTabbed: false), type: .tabItem)
-                
-                
-                // 5. Apply the updated snapshot to the data source
-                dataSource.apply(currentSnapshot, animatingDifferences: true)
-            }
+            router?.routeToChatView(roomid: "test")
         }
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.5) {
+            cell.alpha = 1
+        }
     }
 }
 
-extension ChatListViewController: UICollectionViewFlowLayout {
-    
-}

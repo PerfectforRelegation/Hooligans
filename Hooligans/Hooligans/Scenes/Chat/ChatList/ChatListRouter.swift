@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import StompClientLib
 
 protocol ChatListRoutingLogic {
-    
+    func routeToChatView(roomid: String)
 }
 
 protocol ChatListDataPassing {
@@ -19,4 +20,10 @@ final class ChatListRouter: ChatListRoutingLogic {
     weak var viewController: ChatListViewController?
     var dataStore: ChatListDataStore?
     
+    func routeToChatView(roomid: String) {
+        
+        let chatRoomViewController = ChatRoomViewController()
+        
+        viewController?.navigationController?.pushViewController(chatRoomViewController, animated: true)
+    }
 }

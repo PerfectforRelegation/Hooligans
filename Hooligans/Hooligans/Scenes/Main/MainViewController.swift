@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import SwiftUI
 import SnapKit
+import StompClientLib
 
 protocol MainDisplayLogic: AnyObject {
     func displaySomething(viewModel: MainModels.Users.ViewModel)
@@ -15,18 +15,42 @@ protocol MainDisplayLogic: AnyObject {
 
 class MainViewController: UIViewController {
     
+    struct Item: Hashable, Equatable {
+        let data: Any
+        let section: MainModels.Section
+        let identifier = UUID()
+        
+        init(data: Any, section: MainModels.Section) {
+            self.data = data
+            self.section = section
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(self.identifier)
+        }
+        
+        static func == (lhs: Item, rhs: Item) -> Bool {
+            lhs.identifier == rhs.identifier
+        }
+    }
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Layouts.Main, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Layouts.Main, Item>
+    
+    private lazy var dataSource: DataSource = configureDataSource()
+    private lazy var snapshot: Snapshot = Snapshot()
+    
     // MARK: - Properties
     var interactor: (MainBusinessLogic & MainDataStore)?
     var router: MainRoutingLogic?
     
     // MARK: - View Initailize
     private let headerView = HomeHeaderView()
-        .backgroundColor(.gray)
     
     private var collectionView: UICollectionView = {
-        let size = NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .fractionalHeight(0.2))
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
         let layout = UICollectionViewCompositionalLayout { section, _ in
-            return CollectionViewLayouts.Main.allCases[section].section()
+            return Layouts.Main.allCases[section].section()
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -54,10 +78,12 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = self
+        self.navigationController?.isNavigationBarHidden = true
+        collectionView.dataSource = dataSource
         collectionView.delegate = self
         setupView()
         registerCells()
+        bindView()
     }
 
     private func setup() {
@@ -74,7 +100,15 @@ class MainViewController: UIViewController {
     }
 
     private func registerCells() {
+        collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
+        collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
+    }
+    
+    private func bindView() {
+        snapshot.appendSections([.profile, .fixture])
+        snapshot.appendItems([Item(data: Profile(), section: .profile)], toSection: .profile)
+        self.dataSource.apply(self.snapshot)
     }
 
 }
@@ -94,7 +128,7 @@ extension MainViewController {
         headerView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(78)
+            make.height.equalTo(125)
         }
     }
     
@@ -104,6 +138,40 @@ extension MainViewController {
   
     @objc func routeToChatRoom() {
         router?.routeToUserInfo()
+    }
+    
+    private func configureDataSource() -> DataSource {
+        let dataSource = DataSource(collectionView: self.collectionView) { collectionView, indexPath, item in
+            switch item.section {
+            case .profile:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier,
+                                                                    for: indexPath) as? ProfileCell else { return UICollectionViewCell() }
+                if let data = item.data as? Profile { cell.configureCell(profile: Profile()) }
+                
+                return cell
+                
+            case .fixture:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
+                                                              for: indexPath) as? FixtureCell
+                if let data = item.data as? Fixture { cell?.configureCell(fixture: data) }
+                
+                return cell
+            }
+        }
+        
+        configureHeader(of: dataSource)
+        return dataSource
+    }
+    
+    private func configureHeader(of dataSource: DataSource) {
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                       withReuseIdentifier: ChatCollectionViewHeader.identifier,
+                                                                       for: indexPath) as? ChatCollectionViewHeader
+            
+            return view
+        }
     }
     
 }
@@ -117,17 +185,7 @@ extension MainViewController: MainDisplayLogic {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
+extension MainViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
-                                                            for: indexPath) as? FixtureCell else { return UICollectionViewCell() }
-        cell.configure(home: "CHE", away: "MCI")
-        cell.clipsToBounds = true
-        return cell
-    }
     
 }

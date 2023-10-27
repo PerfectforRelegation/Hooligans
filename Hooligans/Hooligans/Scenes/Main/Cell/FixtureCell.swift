@@ -16,7 +16,6 @@ final class FixtureCell: UICollectionViewCell {
         .opacity(0.5)
         .contentMode(.scaleAspectFill)
         .clipsToBounds(true)
-        
     
     private let awayTeamImage = UIImageView()
         .opacity(0.5)
@@ -43,24 +42,22 @@ final class FixtureCell: UICollectionViewCell {
 
 extension FixtureCell {
     private func setupView() {
-        self.backgroundColor = .white
-        self.layer.cornerRadius = self.frame.height * 0.2
-        
+        let frameHeight = self.frame.height
+        self.backgroundColor = .lightGray
+        self.layer.cornerRadius = frameHeight * 0.2
         
         self.addSubview(homeTeamImage)
-        
         homeTeamImage.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
-            make.centerX.equalTo(self.snp.leading)
-            make.width.height.equalTo(self.frame.height * 0.8)
+            make.centerX.equalTo(self.snp.leading).offset(frameHeight * 0.25)
+            make.width.height.equalTo(frameHeight * 0.8)
         }
         
         self.addSubview(awayTeamImage)
-        
         awayTeamImage.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
-            make.centerX.equalTo(self.snp.trailing)
-            make.width.height.equalTo(self.frame.height * 0.8)
+            make.centerX.equalTo(self.snp.trailing).inset(frameHeight * 0.25)
+            make.width.height.equalTo(frameHeight * 0.8)
         }
         
     }

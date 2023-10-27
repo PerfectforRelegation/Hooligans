@@ -8,30 +8,51 @@
 import Foundation
 import UIKit
 
-struct CollectionViewLayouts {
+struct Layouts {
     
     // MARK: - Main CollectionView Layout
     enum Main: CaseIterable {
-        case fixtureLayout
+        case profile
+        case fixture
         
         func section() -> NSCollectionLayoutSection {
             switch self {
-            case .fixtureLayout:
+            case .profile:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.3))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+                group.contentInsets = .init(top: 100, leading: 20, bottom: 0, trailing: 20)
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(10)),
+                          elementKind: UICollectionView.elementKindSectionHeader,
+                          alignment: .topLeading)
+                ]
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+                
+                return section
+            
+                
+            case .fixture:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.35), heightDimension: .fractionalHeight(0.21))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                group.contentInsets = .init(top: 0, leading: 8, bottom: 16, trailing: 8)
+                group.contentInsets = .init(top: 0, leading: 30, bottom: 30, trailing: 8)
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.boundarySupplementaryItems = [
-                    .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(20)),
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(20)),
                           elementKind: UICollectionView.elementKindSectionHeader,
                           alignment: .topLeading)
                 ]
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+                section.contentInsets = .init(top: 0, leading: 30, bottom: 0, trailing: 30)
                 
                 return section
             }
@@ -41,12 +62,12 @@ struct CollectionViewLayouts {
     
     // MARK: - Chat CollectionView Layout
     enum Chat: CaseIterable {
-        case pageItem
-        case containerView
+        case tabItem
+        case pageView
         
         func section() -> NSCollectionLayoutSection {
             switch self {
-            case .pageItem:
+            case .tabItem:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
@@ -65,7 +86,7 @@ struct CollectionViewLayouts {
                 
                 return section
                 
-            case .containerView:
+            case .pageView:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 

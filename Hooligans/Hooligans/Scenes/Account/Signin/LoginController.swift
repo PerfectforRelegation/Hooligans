@@ -5,7 +5,7 @@ protocol LoginDisplayLogic: AnyObject {
     func displayAnything(viewModel: SigninModels.BoardContents.ViewModel)
 }
 
-class LoginController: UIViewController, SigninDisplayLogic {
+class LoginController: UIViewController {
     func displayAnything(viewModel: SigninModels.BoardContents.ViewModel) {
     }
 

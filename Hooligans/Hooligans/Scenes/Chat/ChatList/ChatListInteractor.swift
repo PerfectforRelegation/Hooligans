@@ -12,6 +12,7 @@ protocol ChatListDataStore {
 }
 
 protocol ChatListBusinessLogic {
+    func fetchChatRoomList(request: ChatListModels.ChatRoomList.Request)
     func fetchFixtureList(request: ChatListModels.FixtureList.Request)
 }
 
@@ -19,6 +20,13 @@ class ChatListInteractor: ChatListDataStore, ChatListBusinessLogic {
     
     var presenter: ChatListPresentationLogic?
     var worker: ChatListWorker?
+    
+    func fetchChatRoomList(request: ChatListModels.ChatRoomList.Request) {
+        worker = ChatListWorker()
+        worker?.fetchChatRoomList({ response in
+            self.presenter?.presentChatRoomList(response: response)
+        })
+    }
     
     func fetchFixtureList(request: ChatListModels.FixtureList.Request) {
         worker = ChatListWorker()

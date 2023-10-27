@@ -14,4 +14,5 @@ enum Endpoint: String {
     case fixtureList = "/match/table"
     case boardList = "/board/list"
     case postList = "/post/list"
+    case chatList = "/chat/room"
 }
