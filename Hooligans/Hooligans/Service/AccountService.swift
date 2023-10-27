@@ -1,15 +1,15 @@
 //
-//  ChatService.swift
+//  AccountService.swift
 //  Hooligans
 //
-//  Created by 정명곤 on 10/22/23.
+//  Created by Joseph on 10/27/23.
 //
 
 import Foundation
 import Combine
 
-final class ChatService {
-    
+final class AccountService {
+
     func fetchChatroom() -> AnyPublisher<[ChatRoom], Error> {
         return NetworkService.shared.get(to: .chatList)
             .tryMap { data, response in
@@ -23,9 +23,5 @@ final class ChatService {
             .decode(type: [ChatRoom].self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-    
-    func decodeMessage(message: Data) -> AnyPublisher<Message, Error> {
-        return Just(message).decode(type: Message.self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
-    }
+
 }

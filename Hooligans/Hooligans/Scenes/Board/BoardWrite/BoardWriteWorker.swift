@@ -9,7 +9,7 @@ protocol BoardWriteWorkerLogic {
 
 class BoardWriteWorker: BoardWriteWorkerLogic {
 
-    let apiManager = APIService()
+//    let apiManager = APIService()
 
     // api manager를 통해서 서버에게 요청후 돌아온 응답 처리 과정
 //    func fetchUser(_ response: @escaping (SigninModels.Users.Response) -> Void) {
