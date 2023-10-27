@@ -15,7 +15,7 @@ protocol SigninWorkerLogic {
 
 class SigninWorker: SigninWorkerLogic {
 
-    let apiManager = APIService()
+    let apiManager = LeagueService()
 
     // api manager를 통해서 서버에게 요청후 돌아온 응답 처리 과정
 //    func fetchUser(_ response: @escaping (SigninModels.Users.Response) -> Void) {
@@ -31,14 +31,14 @@ class SigninWorker: SigninWorkerLogic {
 //    }
 
     func boardList(_ response: @escaping (SigninModels.BoardContents.Response) -> Void) {
-        apiManager.boardList { result in
-            switch result {
-            case .success(let boardContents):
-                   print(boardContents)
-                response(SigninModels.BoardContents.Response(boardContents: boardContents, isError: false, message: nil))
-            case .failure(let error):
-                    response(SigninModels.BoardContents.Response(isError:true, message: error.localizedDescription))
-                }
-            }
+//        apiManager.boardList { result in
+//            switch result {
+//            case .success(let boardContents):
+//                   print(boardContents)
+//                response(SigninModels.BoardContents.Response(boardContents: boardContents, isError: false, message: nil))
+//            case .failure(let error):
+//                    response(SigninModels.BoardContents.Response(isError:true, message: error.localizedDescription))
+//                }
+//            }
     }
 }

@@ -25,4 +25,5 @@ extension MainPresenter: MainPresentationLogic {
         
         viewController?.displaySomething(viewModel: viewModel)
     }
+    
 }

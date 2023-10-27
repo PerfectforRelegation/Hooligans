@@ -20,13 +20,13 @@ final class MainRouter: MainRoutingLogic {
     var dataStore: MainDataStore?
     
     func routeToUserInfo() {
+//        let userViewController = UserViewController()
+//        
+//        viewController.navigationController?.pushViewController(userViewController, animated: true)
 
-        let userViewController = UserViewController()
-        
-        userViewController.users = dataStore?.users
-        
-        viewController?.navigationController?.pushViewController(userViewController, animated: true)
-
+//        let userViewController = ChatRoomViewController()
+//        
+//        viewController?.navigationController?.pushViewController(userViewController, animated: true)
     }
     
 }
