@@ -18,8 +18,8 @@ class TextField: UITextField {
         self.authFieldType = fieldType
         super.init(frame: .zero)
 
-        //self.backgroundColor = .secondarySystemBackground
         self.layer.cornerRadius = 10
+        self.layer.borderWidth = 1
 
         self.returnKeyType = .done
         self.autocorrectionType = .no
@@ -57,6 +57,16 @@ class TextField: UITextField {
 
 
         }
+        
+        // 이메일 유효성 검사
+        if fieldType == .email {
+            self.addTarget(self, action: #selector(validateEmail), for: .editingChanged)
+        }
+        
+        // 비밀번호 유효성 검사
+        if fieldType == .password {
+            self.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
+        }
 
         // placeholder 색상 변경
         if let placeholderText = self.placeholder {
@@ -64,9 +74,6 @@ class TextField: UITextField {
             let attributes = [NSAttributedString.Key.foregroundColor: placeholderColor]
             let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
             self.attributedPlaceholder = attributedPlaceholder
-
-//                // 초기 텍스트 설정
-//                self.label.text = placeholderText
 
         }
 
@@ -154,5 +161,27 @@ class TextField: UITextField {
     }
 
 
+    // 이메일 유효성 검사
+    @objc func validateEmail() {
+        if let email = self.text {
+            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{3,}"
+            if NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email) {
+                self.layer.borderColor = UIColor.blue.cgColor
+            } else {
+                self.layer.borderColor = UIColor.red.cgColor
+            }
+        }
+    }
+
+    // 비밀번호 유효성 검사
+    @objc func validatePassword() {
+        if let password = self.text {
+            if password.count >= 8 {
+                self.layer.borderColor = UIColor.blue.cgColor
+            } else {
+                self.layer.borderColor = UIColor.red.cgColor
+            }
+        }
+    }
 }
 
