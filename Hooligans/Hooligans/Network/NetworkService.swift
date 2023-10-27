@@ -6,34 +6,56 @@
 //
 
 import Foundation
+import Combine
+import UIKit
 
+//enum NetworkError: Error {
+//    case invalidRequest
+//    case unknownError(message: String)
+//}
 
+enum HTTPMethod: String {
+    case get
+    case post
+    case put
+    case patch
+    case delete
+}
 
-//struct  SearchRequest: BaseRequestProtocol {
-//    let term: String
-//    let entity: String
-//
-//    var url: String {
-//        return "https://itunes.apple.com/search"
-//    }
-//    var method: HTTPMethod {
-//        return .get
-//    }
-//
-//    var parameters: Parameters {
-//        let parameter = ["term": self.term,
-//                         "entity": self.entity] as [String: Any]
-//
-//        return parameter
-//    }
-//
-//    var headers: HTTPHeaders {
-//        return [KeyParameters.contentTypeKey: KeyParametersValues.contentTypeKey]
-//    }
-//}
-//struct KeyParameters {
-//    static var contentTypeKey = "Content-Type"
-//}
-//struct KeyParametersValues {
-//    static var contentTypeKey = "application/json"
-//}
+final class NetworkService {
+    static let shared = NetworkService()
+    
+    private let baseURL = "http://13.124.61.192:8080"
+//    private let header: Data = Data()
+//    private let body: [String: String] = [:]
+    
+    func buildEndpoint(baseURL: String, _ endpoint: String) -> URL {
+        guard let url = URL(string: baseURL + endpoint) else { return URL(string: "")! }
+        
+        return url
+    }
+}
+
+extension NetworkService {
+    
+    func get(to endpoint: Endpoint) -> URLSession.DataTaskPublisher {
+        
+        let url = buildEndpoint(baseURL: baseURL, endpoint.rawValue)
+        
+        let request = RequestBuilder()
+            .url(url: url)
+            .method(.get)
+            .create() 
+        
+        return URLSession(configuration: .default).dataTaskPublisher(for: request)
+        
+    }
+    
+    func post() {
+        
+    }
+    
+    func put() {
+        
+    }
+}

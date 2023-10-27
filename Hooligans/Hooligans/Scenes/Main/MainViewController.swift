@@ -7,24 +7,59 @@
 
 import UIKit
 import SnapKit
+import StompClientLib
 
 protocol MainDisplayLogic: AnyObject {
     func displaySomething(viewModel: MainModels.Users.ViewModel)
-
 }
 
 class MainViewController: UIViewController {
+    
+    struct Item: Hashable, Equatable {
+        let data: Any
+        let section: MainModels.Section
+        let identifier = UUID()
+        
+        init(data: Any, section: MainModels.Section) {
+            self.data = data
+            self.section = section
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(self.identifier)
+        }
+        
+        static func == (lhs: Item, rhs: Item) -> Bool {
+            lhs.identifier == rhs.identifier
+        }
+    }
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Layouts.Main, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Layouts.Main, Item>
+    
+    private lazy var dataSource: DataSource = configureDataSource()
+    private lazy var snapshot: Snapshot = Snapshot()
+    
+    // MARK: - Properties
     var interactor: (MainBusinessLogic & MainDataStore)?
     var router: MainRoutingLogic?
     
-    var users: [User]?
+    // MARK: - View Initailize
+    private let headerView = HomeHeaderView()
+    
+    private var collectionView: UICollectionView = {
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
+        let layout = UICollectionViewCompositionalLayout { section, _ in
+            return Layouts.Main.allCases[section].section()
+        }
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.backgroundColor = .orange
+        
+        collectionView.showsVerticalScrollIndicator = false
+        
 
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.frame = CGRect(origin: .zero, size: .zero)
-        table.backgroundColor = .green
-        return table
+        return collectionView
     }()
 
     init() {
@@ -38,19 +73,20 @@ class MainViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        interactor?.fetchUsers(request: MainModels.Users.Request(count: 0))
+//        interactor?.fetchUsers(request: MainModels.Users.Request(count: 0))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .yellow
-        tableView.delegate = self
-        tableView.dataSource = self
+        self.navigationController?.isNavigationBarHidden = true
+        collectionView.dataSource = dataSource
+        collectionView.delegate = self
         setupView()
         registerCells()
+        bindView()
     }
 
-    func setup() {
+    private func setup() {
         let viewController = self
         let interactor = MainInteractor()
         let presenter = MainPresenter()
@@ -63,72 +99,93 @@ class MainViewController: UIViewController {
         router.dataStore = interactor
     }
 
-    func registerCells() {
-        tableView.register(TestTableViewCell.self, forCellReuseIdentifier: TestTableViewCell.identifier)
+    private func registerCells() {
+        collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
+        collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.identifier)
+        collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
+    }
+    
+    private func bindView() {
+        snapshot.appendSections([.profile, .fixture])
+        snapshot.appendItems([Item(data: Profile(), section: .profile)], toSection: .profile)
+        self.dataSource.apply(self.snapshot)
     }
 
 }
 
 extension MainViewController {
     private func setupView() {
-        self.view.addSubview(tableView)
-
-        tableView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+        self.view.backgroundColor = .white
+        
+        self.view.addSubview(collectionView)
+        
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
-//        self.view.addSubview(countLabel)
-//
-//        countLabel.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(100)
-//            make.centerX.equalToSuperview()
-//        }
-//
-//        self.view.addSubview(upButton)
-//
-//        upButton.snp.makeConstraints { make in
-//            make.top.equalTo(countLabel.snp.bottom).offset(50)
-//            make.centerX.equalToSuperview()
-//            make.width.equalTo(80)
-//            make.height.equalTo(50)
-//        }
-//
-//        upButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        self.view.addSubview(headerView)
+        
+        headerView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(125)
+        }
     }
     
     func routeToUserViewController() {
         router?.routeToUserInfo()
     }
   
+    @objc func routeToChatRoom() {
+        router?.routeToUserInfo()
+    }
+    
+    private func configureDataSource() -> DataSource {
+        let dataSource = DataSource(collectionView: self.collectionView) { collectionView, indexPath, item in
+            switch item.section {
+            case .profile:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier,
+                                                                    for: indexPath) as? ProfileCell else { return UICollectionViewCell() }
+                if let data = item.data as? Profile { cell.configureCell(profile: Profile()) }
+                
+                return cell
+                
+            case .fixture:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
+                                                              for: indexPath) as? FixtureCell
+                if let data = item.data as? Fixture { cell?.configureCell(fixture: data) }
+                
+                return cell
+            }
+        }
+        
+        configureHeader(of: dataSource)
+        return dataSource
+    }
+    
+    private func configureHeader(of dataSource: DataSource) {
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                       withReuseIdentifier: ChatCollectionViewHeader.identifier,
+                                                                       for: indexPath) as? ChatCollectionViewHeader
+            
+            return view
+        }
+    }
+    
 }
 
 extension MainViewController: MainDisplayLogic {
     func displaySomething(viewModel: MainModels.Users.ViewModel) {
         DispatchQueue.main.async {
-            self.users = viewModel.users
-            self.tableView.reloadData()
+//            self.users = viewModel.users
+//            self.tableView.reloadData()
         }
     }
 }
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.users?.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TestTableViewCell.identifier, for: indexPath) as? TestTableViewCell else { return UITableViewCell() }
-        cell.label.text = self.users?[indexPath.row].name
-        return cell
-    }
+extension MainViewController: UICollectionViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.routeToUserViewController()
-    }
     
 }

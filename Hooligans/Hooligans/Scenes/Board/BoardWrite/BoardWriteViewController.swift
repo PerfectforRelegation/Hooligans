@@ -6,13 +6,14 @@ protocol BoardWriteDisplayLogic: AnyObject {
     func displayA(viewModel: BoardListModels.PostContents.ViewModel, navigationController: UINavigationController?)
 }
 
-class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
+class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let uploadButton = UIBarButtonItem()
     let titleTextField = UITextField()
     let contentTextField = UITextView()
     let addPhotoButton = UIButton()
     var scrollView: UIScrollView!
+    var imageScrollView: UIScrollView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +91,15 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-70)
         }
 
+        imageScrollView = UIScrollView()
+        view.addSubview(imageScrollView)
+        imageScrollView.snp.makeConstraints { make in
+            make.top.equalTo(contentTextField.snp.bottom).offset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-100)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(100)
+        }
+
         // 사진 추가
         let addPhotoButton = UIButton()
         let addPhotoImage = UIImage(named: "cameraIcon")
@@ -102,6 +112,39 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
             make.size.equalTo(CGSize(width: 25, height: 25))
         }
     }
+
+    func addImageToScrollView(_ image: UIImage) {
+        let imageView = UIImageView()
+        imageView.image = image
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
+        imageScrollView.addSubview(imageView)
+
+        let imageWidth = 50
+        let spacing = 10
+        let xPosition = (imageWidth + spacing) * imageScrollView.subviews.count
+        imageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            //make.leading.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(xPosition)
+            make.width.equalTo(imageWidth)
+            make.height.equalTo(imageWidth)
+        }
+
+        contentTextField.snp.updateConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-400)
+        }
+        let contentWidth = (imageWidth + spacing) * imageScrollView.subviews.count
+        imageScrollView.contentSize = CGSize(width: contentWidth, height: 100)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            if let selectedImage = info[.originalImage] as? UIImage {
+                addImageToScrollView(selectedImage)
+            }
+            dismiss(animated: true, completion: nil)
+        }
+
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -144,5 +187,9 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
     @objc func addPhotoButtonTapped() {
         print("DEBUG :", "clickPhoto")
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
     }
 }

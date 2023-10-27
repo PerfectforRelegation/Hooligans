@@ -7,36 +7,12 @@
 
 import Foundation
 
-enum Endpoint {
-    case main
-    case userList
-    case boardList
-    case postList
-}
-
-extension Endpoint {
-    var url: URL {
-        switch self {
-        case .main:
-            return .endpoint("/main")
-        case .userList:
-            return .endpoint("/user/userList")
-        case .boardList:
-            return .endpoint("/board/list")
-        case .postList:
-            return .endpoint("/post/list")
-        }
-    }
-}
-
-private extension URL {
-    static let baseURL = "http://13.124.61.192:8080"
-//    static let baseURL = "https://livescore6.p.rapidapi.com/leagues/v2"
-    
-    static func endpoint(_ endpoint: String) -> URL {
-        guard let url = URL(string: baseURL + endpoint) else { return URL(string: "")! }
-        
-        return url
-    }
-    
+enum Endpoint: String {
+    case main = "/main"
+    case userList = "/user/userList"
+    case leagueTable = "/team/table"
+    case fixtureList = "/match/table"
+    case boardList = "/board/list"
+    case postList = "/post/list"
+    case chatList = "/chat/room"
 }

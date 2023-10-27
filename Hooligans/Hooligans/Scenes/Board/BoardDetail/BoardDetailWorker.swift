@@ -9,7 +9,7 @@ protocol BoardDetailWorkerLogic {
 
 class BoardDetailWorker: BoardDetailWorkerLogic {
 
-    let apiManager = APIService()
+    let apiManager = LeagueService()
 
     // api manager를 통해서 서버에게 요청후 돌아온 응답 처리 과정
 //    func fetchUser(_ response: @escaping (SigninModels.Users.Response) -> Void) {
@@ -24,15 +24,17 @@ class BoardDetailWorker: BoardDetailWorkerLogic {
 //        }
 //    }
 
+
     func postList(_ response: @escaping (BoardDetailModels.PostContents.Response) -> Void) {
-        apiManager.postList { result in
-            switch result {
-            case .success(let postContents):
-                   print(postContents)
-                response(BoardDetailModels.PostContents.Response(postContents: postContents, isError: false, message: nil))
-            case .failure(let error):
-                    response(BoardDetailModels.PostContents.Response(isError:true, message: error.localizedDescription))
-                }
-            }
+//        apiManager.postList { result in
+//            switch result {
+//            case .success(let postContents):
+//                   print(postContents)
+//                response(BoardDetailModels.PostContents.Response(postContents: postContents, isError: false, message: nil))
+//            case .failure(let error):
+//                    response(BoardDetailModels.PostContents.Response(isError:true, message: error.localizedDescription))
+//                }
+//            }
+
     }
 }

@@ -12,7 +12,7 @@ protocol SigninPresentationLogic: AnyObject {
 }
 
 final class SigninPresenter {
-    weak var viewController: SigninDisplayLogic?
+    weak var viewController: LoginController?
 }
 
 extension SigninPresenter: SigninPresentationLogic {
