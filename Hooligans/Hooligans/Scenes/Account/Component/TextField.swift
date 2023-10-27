@@ -146,15 +146,15 @@ class TextField: UITextField {
 
 
 
-    // placeholder 위치 조정
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-            return CGRectMake(CGRectGetMinX(bounds) + 5.0, CGRectGetMinY(bounds) + 10.0, CGRectGetWidth(bounds) - 20.0, CGRectGetHeight(bounds))
-            }
-
-    // text 위치 조정
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-            return CGRectMake(CGRectGetMinX(bounds) + 5.0, CGRectGetMinY(bounds) + 8.0, CGRectGetWidth(bounds) - 20.0, CGRectGetHeight(bounds))
-            }
+//    // placeholder 위치 조정
+//    override func textRect(forBounds bounds: CGRect) -> CGRect {
+//        return CGRectMake(CGRectGetMinX(bounds) + 5.0, CGRectGetMinY(bounds) + 10.0, CGRectGetWidth(bounds) - 20.0, CGRectGetHeight(bounds))
+//    }
+//
+//    // text 위치 조정
+//    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+//        return CGRectMake(CGRectGetMinX(bounds) + 5.0, CGRectGetMinY(bounds) + 8.0, CGRectGetWidth(bounds) - 20.0, CGRectGetHeight(bounds))
+//    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

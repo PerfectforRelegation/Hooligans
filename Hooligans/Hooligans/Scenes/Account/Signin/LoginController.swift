@@ -154,6 +154,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
 
             print("Email: \(email)")
             print("Password: \(password)")
+
+            let signupViewController = SignupViewController()
+            let navController = UINavigationController(rootViewController: signupViewController)
+            self.present(navController, animated: true, completion: nil)
         }
     }
 
