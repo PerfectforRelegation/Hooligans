@@ -894,16 +894,13 @@
 				C14038772AB303FD00933273 /* MainInteractor.swift in Sources */,
 				C140530F2AE90C3000E69B41 /* ChatRoom.swift in Sources */,
 				7C41C2122AD6F5D5009B05E5 /* BoardListModels.swift in Sources */,
-<<<<<<< HEAD
 				7C38AAD02AEA4E0200E0650E /* BoardSearchViewController.swift in Sources */,
 				7C3F60352AE593AD0078A6F1 /* BoardWriteModels.swift in Sources */,
 				7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */,
 				7C38AAD62AEA564D00E0650E /* BoardSearchWorker.swift in Sources */,
-=======
 				C14053162AE9355200E69B41 /* ChatBubbleCell.swift in Sources */,
 				7C4692BF2AB990D40016ADC7 /* SigninModels.swift in Sources */,
 				C152DD032AE54998002C6153 /* ChatListRouter.swift in Sources */,
->>>>>>> origin
 				C140387B2AB3041D00933273 /* MainWorker.swift in Sources */,
 				C15E11722AC8150C00904C79 /* LeagueTablePresenter.swift in Sources */,
 				7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */,
