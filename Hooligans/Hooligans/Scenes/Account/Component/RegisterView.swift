@@ -1,5 +1,5 @@
 //
-//  SignupView.swift
+//  RegisterView.swift
 //  Hooligans
 //
 //  Created by Joseph on 10/27/23.

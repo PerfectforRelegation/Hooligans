@@ -59,5 +59,19 @@ class NicknameView: UIView {
             nextButton.topAnchor.constraint(equalTo: nicknameField.bottomAnchor, constant: 20),
             nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+
+    @objc private func nextButtonTapped() {
+        if let nickname = nicknameField.text, !nickname.isEmpty {
+            let selectTeamView = SelectTeamView(frame: self.frame)
+            selectTeamView.previousNickname = nickname
+
+            self.subviews.forEach { $0.removeFromSuperview() }
+            self.addSubview(selectTeamView)
+        } else {
+            print("닉네임을 입력해주세요.")
+        }
     }
 }
+

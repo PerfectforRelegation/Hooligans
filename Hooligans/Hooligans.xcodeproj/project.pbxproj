@@ -43,8 +43,9 @@
 		7C63BE2C2AEB8FEB00BE9A2E /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE2B2AEB8FEB00BE9A2E /* AccountService.swift */; };
 		7C63BE302AEBC85800BE9A2E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE2F2AEBC85800BE9A2E /* SignupViewController.swift */; };
 		7C63BE322AEBD47900BE9A2E /* NicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE312AEBD47900BE9A2E /* NicknameView.swift */; };
+		7C63BE362AEBDDAF00BE9A2E /* PhonenumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */; };
+		7C63BE3A2AEBE0C400BE9A2E /* SelectTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */; };
 		7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11B72AC2C78100E1BBBE /* Board.swift */; };
-		7CBC11BA2AC2E14B00E1BBBE /* SigninTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11B92AC2E14B00E1BBBE /* SigninTableViewCell.swift */; };
 		7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BD2AD3D39600E1BBBE /* LoginController.swift */; };
 		7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */; };
 		C11CEF6A2AE52A7600A25097 /* ChatCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11CEF692AE52A7600A25097 /* ChatCollectionViewHeader.swift */; };
@@ -161,8 +162,9 @@
 		7C63BE2B2AEB8FEB00BE9A2E /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		7C63BE2F2AEBC85800BE9A2E /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		7C63BE312AEBD47900BE9A2E /* NicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameView.swift; sourceTree = "<group>"; };
+		7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonenumberView.swift; sourceTree = "<group>"; };
+		7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamView.swift; sourceTree = "<group>"; };
 		7CBC11B72AC2C78100E1BBBE /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		7CBC11B92AC2E14B00E1BBBE /* SigninTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTableViewCell.swift; sourceTree = "<group>"; };
 		7CBC11BD2AD3D39600E1BBBE /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		C11CEF692AE52A7600A25097 /* ChatCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewHeader.swift; sourceTree = "<group>"; };
@@ -372,10 +374,11 @@
 			isa = PBXGroup;
 			children = (
 				7C4692C32ABC51B60016ADC7 /* SigninView.swift */,
-				7CBC11B92AC2E14B00E1BBBE /* SigninTableViewCell.swift */,
 				7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */,
 				7C41C2042AD54416009B05E5 /* Button.swift */,
 				7C63BE312AEBD47900BE9A2E /* NicknameView.swift */,
+				7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */,
+				7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				C11CEF6A2AE52A7600A25097 /* ChatCollectionViewHeader.swift in Sources */,
 				C140531E2AEA3D3500E69B41 /* ChatRoomModels.swift in Sources */,
 				7C63BE2C2AEB8FEB00BE9A2E /* AccountService.swift in Sources */,
+				7C63BE3A2AEBE0C400BE9A2E /* SelectTeamView.swift in Sources */,
 				DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */,
 				C15E11742AC8157A00904C79 /* LeagueTableWorker.swift in Sources */,
 				C152DD132AE68B71002C6153 /* UIViewExtension.swift in Sources */,
@@ -872,6 +876,7 @@
 				7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */,
 				C140388E2AB4473A00933273 /* LeagueTableViewCell.swift in Sources */,
 				7C3F602D2AE593740078A6F1 /* BoardWritePresenter.swift in Sources */,
+				7C63BE362AEBDDAF00BE9A2E /* PhonenumberView.swift in Sources */,
 				C140388E2AB4473A00933273 /* LeagueTableViewCell.swift in Sources */,
 				DB2A79382ABAC91500F07D82 /* UserWorker.swift in Sources */,
 				7CBC11BE2AD3D39600E1BBBE /* LoginController.swift in Sources */,
@@ -932,7 +937,6 @@
 				C123D49E2AE0F37B007A4485 /* TeamChatViewController.swift in Sources */,
 				C14038C12AC7F78700933273 /* LeagueTableHeaderView.swift in Sources */,
 				C152DCFF2AE54954002C6153 /* ChatListPresenter.swift in Sources */,
-				7CBC11BA2AC2E14B00E1BBBE /* SigninTableViewCell.swift in Sources */,
 				7C3F602F2AE593830078A6F1 /* BoardWriteWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
