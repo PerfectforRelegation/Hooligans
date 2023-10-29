@@ -3,7 +3,7 @@ import UIKit
 class PhonenumberView: UIView {
 
     var previousNickname: String?
-    var selectedTeam: String?
+    var selectedTeam: (name: String, imageName: String)?
 
     let backButton: UIButton = {
         let button = UIButton(type: .system)
@@ -89,7 +89,7 @@ class PhonenumberView: UIView {
         guard let selectTeamView = SelectTeamView(frame: self.frame) as? SelectTeamView else { return }
         selectTeamView.previousNickname = previousNickname
         selectTeamView.selectedTeam = selectedTeam
-
+        
         self.superview?.addSubview(selectTeamView)
         self.removeFromSuperview()
     }

@@ -3,7 +3,7 @@ import UIKit
 class SelectTeamView: UIView {
 
     var previousNickname: String?
-    var selectedTeam: String?
+    var selectedTeam: (name: String, imageName: String)?
 
     let backButton: UIButton = {
         let button = UIButton(type: .system)
@@ -34,7 +34,28 @@ class SelectTeamView: UIView {
         return tableView
     }()
 
-    let teams = ["팀 A", "팀 B", "팀 C"]
+    let teams: [(name: String, imageName: String)] = [
+            (name: "아스날", imageName: "ARS"),
+            //(name: "아스톤 빌라", imageName: "AVL"),
+            (name: "브라이튼", imageName: "BHA"),
+            (name: "본머스", imageName: "BOU"),
+            (name: "브렌트포드", imageName: "BRE"),
+            (name: "번리", imageName: "BUR"),
+            (name: "첼시", imageName: "CHE"),
+            (name: "크리스탈 팰리스", imageName: "CRY"),
+            (name: "에버턴", imageName: "EVE"),
+            (name: "풀럼", imageName: "FUL"),
+            (name: "리버풀", imageName: "LIV"),
+            (name: "루턴 타운", imageName: "LUT"),
+            (name: "맨시티", imageName: "MCI"),
+            (name: "맨유", imageName: "MUN"),
+            (name: "뉴캐슬", imageName: "NEW"),
+            (name: "노팅엄", imageName: "NFO"),
+            (name: "셰필드", imageName: "SHU"),
+            (name: "토트넘", imageName: "TOT"),
+            (name: "웨스트햄", imageName: "WHU"),
+            (name: "울버햄튼", imageName: "WOL")
+        ]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,7 +97,7 @@ class SelectTeamView: UIView {
             teamsTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             teamsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             teamsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            teamsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            teamsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -150)
         ])
 
         self.addSubview(nextButton)
@@ -122,7 +143,14 @@ extension SelectTeamView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath)
-        cell.textLabel?.text = teams[indexPath.row]
+
+        let team = teams[indexPath.row]
+        cell.textLabel?.text = team.name
+
+        cell.imageView?.image = UIImage(named: team.imageName)
+        //cell.imageView?.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
+        cell.imageView?.contentMode = .scaleAspectFit
+
         return cell
     }
 
@@ -131,4 +159,8 @@ extension SelectTeamView: UITableViewDataSource, UITableViewDelegate {
 
         print("선택한 팀: \(selectedTeam)")
     }
+
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
 }
