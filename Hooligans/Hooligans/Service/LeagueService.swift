@@ -32,4 +32,19 @@ final class LeagueService {
             .decode(type: FixtureResponse.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
+    
+    func fetchNewsPosts() -> AnyPublisher<NewsResponse, Error> {
+        
+        return NetworkService.shared.get(to: .news)
+            .tryMap { data, response in
+                guard let httpResopnse = response as? HTTPURLResponse, httpResopnse.statusCode == 200 else {
+                    print("http error")
+                    throw URLError(.badServerResponse)
+                }
+                return data
+            }
+            .decode(type: NewsResponse.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+    }
+    
 }

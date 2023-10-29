@@ -1,14 +1,17 @@
 
 import UIKit
+import SnapKit
+import ImageIO
 
 class SigninView: UIView {
 
     // MARK: - UI Components
     private let logoImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "logo")
-        return iv
+        let imageView = UIImageView()
+        let gif = UIImage.gifImageWithName("siu")
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = gif
+        return imageView
     }()
 
     private let titleLabel: UILabel = {
@@ -17,6 +20,7 @@ class SigninView: UIView {
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 26, weight: .bold)
         label.text = "Error"
+        label.layer.opacity = 0
         return label
     }()
 
@@ -32,9 +36,9 @@ class SigninView: UIView {
     // MARK: - LifeCycle
     init(title: String, subTitle: String) {
         super.init(frame: .zero)
+        self.setupUI()
         self.titleLabel.text = title
         self.subTitleLabel.text = subTitle
-        self.setupUI()
     }
 
     required init?(coder: NSCoder) {
@@ -43,29 +47,30 @@ class SigninView: UIView {
 
 
     // MARK: - UI Setup
+    
+}
+
+extension SigninView {
     private func setupUI() {
+        
         self.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(30)
+            make.width.height.equalTo(150)
+        }
+        
         self.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(logoImageView.snp.bottom)
+        }
+        
         self.addSubview(subTitleLabel)
+        subTitleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom)
+        }
 
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-
-
-        NSLayoutConstraint.activate([
-            self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
-            self.logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.logoImageView.widthAnchor.constraint(equalToConstant: 90),
-            self.logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
-
-            self.titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 19),
-            self.titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-
-            self.subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            self.subTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.subTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-        ])
     }
 }

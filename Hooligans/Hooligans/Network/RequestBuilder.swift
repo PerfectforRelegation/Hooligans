@@ -11,7 +11,7 @@ final class RequestBuilder {
     private var targetURL: URL?
     private var httpMethod: HTTPMethod = .get
     private var body: Data?
-    private var headers: [String: String]?
+    private var headers: [String: String]? = ["Content-Type": "application/json"]
     
     func url(url: URL) -> Self {
         self.targetURL = url
@@ -20,6 +20,20 @@ final class RequestBuilder {
     
     func method(_ method: HTTPMethod) -> Self {
         self.httpMethod = method
+        return self
+    }
+    
+    func header() -> Self {
+        if let token = UserDefault.userdeault.getToken() {
+            self.headers?.updateValue(token.accessToken, forKey: "Access_Token")
+            self.headers?.updateValue(token.refreshToken, forKey: "Refresh_Token")
+        }
+        return self
+    }
+    
+    func body(_ body: [String: Any]) -> Self {
+        let sendData = try! JSONSerialization.data(withJSONObject: body, options: [])
+        self.body = sendData
         return self
     }
 

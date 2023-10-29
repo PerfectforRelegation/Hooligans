@@ -14,6 +14,7 @@ struct Layouts {
     enum Main: CaseIterable {
         case profile
         case fixture
+        case news
         
         func section() -> NSCollectionLayoutSection {
             switch self {
@@ -42,6 +43,25 @@ struct Layouts {
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.35), heightDimension: .fractionalHeight(0.21))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                group.contentInsets = .init(top: 0, leading: 30, bottom: 30, trailing: 8)
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(20)),
+                          elementKind: UICollectionView.elementKindSectionHeader,
+                          alignment: .topLeading)
+                ]
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.contentInsets = .init(top: 0, leading: 30, bottom: 0, trailing: 30)
+                
+                return section
+                
+            case .news:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.21))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 group.contentInsets = .init(top: 0, leading: 30, bottom: 30, trailing: 8)
                 

@@ -13,7 +13,8 @@ final class ChatService {
     func fetchChatroom() -> AnyPublisher<[ChatRoom], Error> {
         return NetworkService.shared.get(to: .chatList)
             .tryMap { data, response in
-//                print(String(data: data, encoding: .utf8))
+                print(String(data: data, encoding: .utf8))
+                print(UserDefault.userdeault.getToken())
                 guard let httpResopnse = response as? HTTPURLResponse, httpResopnse.statusCode == 200 else {
                     print("http error")
                     throw URLError(.badServerResponse)

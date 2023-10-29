@@ -16,6 +16,10 @@ class TabBarController: UITabBarController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     private func setupUI() {
         self.tabBar.tintColor = .gray
         self.tabBar.backgroundColor = .lightGray
@@ -39,21 +43,21 @@ class TabBarController: UITabBarController {
         secondViewController.tabBarItem.title = "Main"
         secondViewController.tabBarItem.tag = 1
         
-        let thirdViewController = UINavigationController(rootViewController: UserViewController())
+        let thirdViewController = UINavigationController(rootViewController: BoardListViewController())
         
         thirdViewController.tabBarItem.image = UIImage(systemName: "star.fill")
         thirdViewController.tabBarItem.selectedImage = UIImage(systemName: "star")
         thirdViewController.tabBarItem.title = "Main"
         thirdViewController.tabBarItem.tag = 2
         
-        let fourthViewController = UINavigationController(rootViewController: BoardListViewController())
+        let fourthViewController = UINavigationController(rootViewController: UserViewController())
         
         fourthViewController.tabBarItem.image = UIImage(systemName: "star.fill")
         fourthViewController.tabBarItem.selectedImage = UIImage(systemName: "star")
         fourthViewController.tabBarItem.title = "Main"
-        fourthViewController.tabBarItem.tag = 2
+        fourthViewController.tabBarItem.tag = 3
         
-        self.viewControllers = [firstViewController, secondViewController, thirdViewController, fourthViewController]
+        self.setViewControllers([firstViewController, secondViewController, thirdViewController, fourthViewController], animated: true)
     }
 
 }

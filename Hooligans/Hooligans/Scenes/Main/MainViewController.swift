@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        collectionView.backgroundColor = .orange
+        collectionView.backgroundColor = .white
         
         collectionView.showsVerticalScrollIndicator = false
         
@@ -73,7 +73,6 @@ class MainViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        interactor?.fetchUsers(request: MainModels.Users.Request(count: 0))
     }
 
     override func viewDidLoad() {
@@ -103,11 +102,13 @@ class MainViewController: UIViewController {
         collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
+        collectionView.register(NewsCell.self, forCellWithReuseIdentifier: NewsCell.identifier)
     }
     
     private func bindView() {
-        snapshot.appendSections([.profile, .fixture])
+        snapshot.appendSections([.profile, .fixture, .news])
         snapshot.appendItems([Item(data: Profile(), section: .profile)], toSection: .profile)
+        snapshot.appendItems([Item(data: Post(title: "첼시는 강등이 딱이야..", href: "/news?oid=411&aid=0000036567"), section: .news)], toSection: .news)
         self.dataSource.apply(self.snapshot)
     }
 
@@ -145,18 +146,22 @@ extension MainViewController {
             switch item.section {
             case .profile:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier,
-                                                                    for: indexPath) as? ProfileCell else { return UICollectionViewCell() }
+                                                   for: indexPath) as? ProfileCell else { return UICollectionViewCell() }
                 if let data = item.data as? Profile { cell.configureCell(profile: Profile()) }
-                
                 return cell
                 
             case .fixture:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
-                                                              for: indexPath) as? FixtureCell
-                if let data = item.data as? Fixture { cell?.configureCell(fixture: data) }
+                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
+                                                                     for: indexPath) as? FixtureCell else { return UICollectionViewCell() }
+                if let data = item.data as? Fixture { cell.configureCell(fixture: data) }
+                return cell
                 
+            case .news:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCell.identifier, for: indexPath) as? NewsCell else { return UICollectionViewCell() }
+                if let data = item.data as? Post { cell.configureCell(post: data) }
                 return cell
             }
+            
         }
         
         configureHeader(of: dataSource)
@@ -186,6 +191,14 @@ extension MainViewController: MainDisplayLogic {
 }
 
 extension MainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            let data = dataSource.snapshot(for: .news).items[indexPath.item].data as? Post
+            guard let query = data?.href else { return }
+            let webViewController = WebViewController(base: "https://sports.news.naver.com/", query: query)
+            webViewController.modalPresentationStyle = .fullScreen
+            navigationController?.present(webViewController, animated: true)
+        }
+    }
     
 }

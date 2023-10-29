@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 struct User: Codable {
-    let id: Int
+    let id: UUID
+    let tokenDto: Token
     let name: String
     let account: String
     let password: String
@@ -21,19 +22,12 @@ struct User: Codable {
     var betPoint: Int
 }
 
-//class BoardUser{
-//    var image: String!
-//    var name: String!
-//    var message: String!
-//
-//    init(image:String,name:String,message:String) {
-//
-//        self.image = image
-//        self.name = name
-//        self.message = message
-//    }
+struct Token: Codable {
+    let accessToken: String
+    let refreshToken: String
+}
 
-    struct BoardUser {
-        let profile: UIImage
-        let name: String
-    }
+struct BoardUser {
+    let profile: UIImage
+    let name: String
+}

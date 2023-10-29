@@ -1,22 +1,20 @@
 
 import UIKit
 
-protocol LoginDisplayLogic: AnyObject {
-    func displayAnything(viewModel: SigninModels.BoardContents.ViewModel)
+protocol SigninDisplayLogic: AnyObject {
+    func displayAnything(viewModel: SigninModels.Signin.ViewModel)
+    func displayMainView(viewModel: SigninModels.Signin.ViewModel)
 }
 
-class LoginController: UIViewController, UITextFieldDelegate {
-
-    func displayAnything(viewModel: SigninModels.BoardContents.ViewModel) {
-    }
-
+final class SigninController: UIViewController {
     var interactor: (SigninBusinessLogic & SigninDataStore)?
-
-    var users: [User]?
-    var boardContents: [Board]?
+    var router: SigninRoutingLogic?
 
     init() {
         super.init(nibName: nil, bundle: nil)
+        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+            UserDefaults.standard.removeObject(forKey: key.description)
+        }
         setup()
     }
 
@@ -24,12 +22,12 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let viewController = self
         let interactor = SigninInteractor()
         let presenter = SigninPresenter()
-        _ = SigninRouter()
+        let router = SigninRouter()
         viewController.interactor = interactor
-//        viewController.router = router
+        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-//        router.viewController = viewController
+        router.viewController = viewController
     }
 
     required init?(coder: NSCoder) {
@@ -50,7 +48,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
 
 
     // MARK: - UI Components
-    private let headerView = SigninView(title: "", subTitle: "Hooligans에서 스포츠 경기를 즐기세요")
+    private let headerView = SigninView(title: "", subTitle: "")
 
     //private let usernameField = TextField(fieldType: .username)
     private let emailField = TextField(fieldType: .email)
@@ -76,15 +74,16 @@ class LoginController: UIViewController, UITextFieldDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = true
-        //self.textField.becomeFirstResponder()
+
     }
+    
+}
 
-
-
+extension SigninController {
     // MARK: - UI Setup
     private func setupUI() {
         self.view.backgroundColor = .white
+        self.navigationItem.title = "Sign in"
 
         self.view.addSubview(headerView)
         self.view.addSubview(emailField)
@@ -104,9 +103,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 self.headerView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
                 self.headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
                 self.headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                self.headerView.heightAnchor.constraint(equalToConstant: 222),
+                self.headerView.heightAnchor.constraint(equalToConstant: 170),
 
-                self.emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 12),
+                self.emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor),
                 self.emailField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
                 self.emailField.heightAnchor.constraint(equalToConstant: 55),
                 self.emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
@@ -139,22 +138,27 @@ class LoginController: UIViewController, UITextFieldDelegate {
     // MARK: - Selectors
 
     @objc private func clickSignIn() {
-        if let email = emailField.text,
-           let password = passwordField.text {
+        
+        guard let email = emailField.text,
+           let password = passwordField.text else {
 
-            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{3,}"
-            if !NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email) {
-                print("이메일 형식이 맞지 않습니다.")
-                return
-            }
-            if password.count < 8 {
-                print("비밀번호는 최소 8자리 이상이어야 합니다.")
-                return
-            }
-
-            print("Email: \(email)")
-            print("Password: \(password)")
+//            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{3,}"
+//            if !NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email) {
+//                print("이메일 형식이 맞지 않습니다.")
+//                return
+//            }
+//            if password.count < 8 {
+//                print("비밀번호는 최소 8자리 이상이어야 합니다.")
+//                return
+//            }
+//
+//            print("Email: \(email)")
+//            print("Password: \(password)")
+            return
         }
+        
+        interactor?.signIn(request: SigninModels.Signin.Request(account: email, password: password))
+
     }
 
 
@@ -165,4 +169,28 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @objc private func clickForgotPassword() {
         print("DEBUG :", "clickForgotPassword")
     }
+}
+
+extension SigninController: SigninDisplayLogic {
+    func displayAnything(viewModel: SigninModels.Signin.ViewModel) {
+
+    }
+    
+    func displayMainView(viewModel: SigninModels.Signin.ViewModel) {
+        DispatchQueue.main.async {
+            self.router?.routeToMain()
+        }
+    }
+}
+
+extension SigninController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            return Animation()
+        }
+}
+
+extension SigninController: UITextFieldDelegate {
+    
+    
+    
 }

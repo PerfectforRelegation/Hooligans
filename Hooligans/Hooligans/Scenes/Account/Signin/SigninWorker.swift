@@ -6,39 +6,31 @@
 //
 
 import Foundation
+import Combine
 
 protocol SigninWorkerLogic {
-//    func fetchUser(_ response: @escaping (SigninModels.BoardContents.Response) -> Void)
+    func signIn(request: SigninModels.Signin.Request, _ response: @escaping (SigninModels.Signin.Response) -> Void)
 
-    func boardList(_ response: @escaping (SigninModels.BoardContents.Response) -> Void)
 }
 
 class SigninWorker: SigninWorkerLogic {
 
-    let apiManager = LeagueService()
+    let apiManager = AccountService()
+    private var cancellables = Set<AnyCancellable>()
 
-    // api manager를 통해서 서버에게 요청후 돌아온 응답 처리 과정
-//    func fetchUser(_ response: @escaping (SigninModels.Users.Response) -> Void) {
-//        apiManager.fetchUsers { result in
-//            switch result {
-//            case .success(let users):
-//                print(users)
-//                response(SigninModels.Users.Response(users: users, isError: false, message: nil))
-//            case .failure(let error):
-//                response(SigninModels.Users.Response(isError: true, message: error.localizedDescription))
-//            }
-//        }
-//    }
+    func signIn(request: SigninModels.Signin.Request, _ response: @escaping (SigninModels.Signin.Response) -> Void) {
+        apiManager.signIn(account: request.account, password: request.password).sink { result in
+            switch result {
+            case .finished:
+                print("Fetch LeagueTable finished")
+            case .failure(_):
+                response(SigninModels.Signin.Response(isError: true, message: "Error"))
+            }
+        } receiveValue: { data in
+            response(SigninModels.Signin.Response(userResopnse: data, isError: false))
+        }
+        .store(in: &cancellables)
 
-    func boardList(_ response: @escaping (SigninModels.BoardContents.Response) -> Void) {
-//        apiManager.boardList { result in
-//            switch result {
-//            case .success(let boardContents):
-//                   print(boardContents)
-//                response(SigninModels.BoardContents.Response(boardContents: boardContents, isError: false, message: nil))
-//            case .failure(let error):
-//                    response(SigninModels.BoardContents.Response(isError:true, message: error.localizedDescription))
-//                }
-//            }
     }
+
 }
