@@ -16,13 +16,16 @@ class SelectTeamView: UIView {
         label.text = "팀을 골라주세요"
         label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
 
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("다음", for: .normal)
+        button.backgroundColor = .systemIndigo
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
         return button
     }()
 
@@ -79,10 +82,10 @@ class SelectTeamView: UIView {
         self.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: teamsTableView.bottomAnchor, constant: 20),
+            nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            nextButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            nextButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100)
+            nextButton.heightAnchor.constraint(equalToConstant: 50),
+            nextButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40)
         ])
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     }
@@ -96,7 +99,16 @@ class SelectTeamView: UIView {
     }
 
     @objc private func nextButtonTapped() {
-        let phoneNumberView = PhonenumberView(frame: self.frame)
+        guard let selectedIndexPath = teamsTableView.indexPathForSelectedRow else {
+            print("팀을 선택해주세요.")
+            return
+        }
+        selectedTeam = teams[selectedIndexPath.row]
+
+        guard let phoneNumberView = PhonenumberView(frame: self.frame) as? PhonenumberView else { return }
+        phoneNumberView.previousNickname = previousNickname
+        phoneNumberView.selectedTeam = selectedTeam
+
         self.superview?.addSubview(phoneNumberView)
         self.removeFromSuperview()
     }

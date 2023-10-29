@@ -100,39 +100,39 @@ class LoginController: UIViewController, UITextFieldDelegate {
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
 
-            NSLayoutConstraint.activate([
-                self.headerView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
-                self.headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                self.headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                self.headerView.heightAnchor.constraint(equalToConstant: 222),
+        NSLayoutConstraint.activate([
+            self.headerView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
+            self.headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.headerView.heightAnchor.constraint(equalToConstant: 222),
 
-                self.emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 12),
-                self.emailField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-                self.emailField.heightAnchor.constraint(equalToConstant: 55),
-                self.emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-//                self.usernameField.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -50),
+            self.emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 12),
+            self.emailField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            self.emailField.heightAnchor.constraint(equalToConstant: 55),
+            self.emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            //                self.usernameField.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -50),
 
-                self.passwordField.topAnchor.constraint(equalTo:  emailField.bottomAnchor, constant: 22),
-                self.passwordField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-                self.passwordField.heightAnchor.constraint(equalToConstant: 55),
-                self.passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            self.passwordField.topAnchor.constraint(equalTo:  emailField.bottomAnchor, constant: 22),
+            self.passwordField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            self.passwordField.heightAnchor.constraint(equalToConstant: 55),
+            self.passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
 
-                self.signInButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 22),
-                self.signInButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-                self.signInButton.heightAnchor.constraint(equalToConstant: 55),
-                self.signInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            self.signInButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 22),
+            self.signInButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            self.signInButton.heightAnchor.constraint(equalToConstant: 55),
+            self.signInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
 
-                self.signUpButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
-                self.signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-                self.signUpButton.heightAnchor.constraint(equalToConstant: 44),
-                self.signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            self.signUpButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
+            self.signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            self.signUpButton.heightAnchor.constraint(equalToConstant: 44),
+            self.signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
 
-                self.forgotPasswordButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
-                self.forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-                self.forgotPasswordButton.heightAnchor.constraint(equalToConstant: 44),
-                self.forgotPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            self.forgotPasswordButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
+            self.forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            self.forgotPasswordButton.heightAnchor.constraint(equalToConstant: 44),
+            self.forgotPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
 
-            ])
+        ])
 
     }
 
@@ -158,9 +158,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
             let nicknameView = NicknameView(frame: self.view.frame)
             self.view = nicknameView
 
-//            let signupViewController = SignupViewController()
-//            let navController = UINavigationController(rootViewController: signupViewController)
-//            self.present(navController, animated: true, completion: nil)
+            //            let signupViewController = SignupViewController()
+            //            let navController = UINavigationController(rootViewController: signupViewController)
+            //            self.present(navController, animated: true, completion: nil)
         }
     }
 

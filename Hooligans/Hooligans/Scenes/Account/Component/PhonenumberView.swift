@@ -16,14 +16,24 @@ class PhonenumberView: UIView {
         label.text = "핸드폰 번호를 입력해주세요"
         label.textColor = .black
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
 
     let phoneNumberField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "전화번호 입력"
+        textField.placeholder = "ex) 01012345678"
         textField.borderStyle = .roundedRect
         return textField
+    }()
+
+    let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("다음", for: .normal)
+        button.backgroundColor = .systemIndigo
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
+        return button
     }()
 
     override init(frame: CGRect) {
@@ -58,18 +68,33 @@ class PhonenumberView: UIView {
         self.addSubview(phoneNumberField)
         phoneNumberField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            phoneNumberField.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 10),
+            phoneNumberField.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 50),
             phoneNumberField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             phoneNumberField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             phoneNumberField.heightAnchor.constraint(equalToConstant: 40)
         ])
+
+        self.addSubview(nextButton)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            nextButton.heightAnchor.constraint(equalToConstant: 50),
+            nextButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+        ])
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     }
 
     @objc private func backButtonTapped() {
         guard let selectTeamView = SelectTeamView(frame: self.frame) as? SelectTeamView else { return }
         selectTeamView.previousNickname = previousNickname
+        selectTeamView.selectedTeam = selectedTeam
 
         self.superview?.addSubview(selectTeamView)
         self.removeFromSuperview()
+    }
+
+    @objc private func nextButtonTapped() {
+
     }
 }

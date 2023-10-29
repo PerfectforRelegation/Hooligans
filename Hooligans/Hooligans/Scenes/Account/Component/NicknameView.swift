@@ -4,9 +4,10 @@ class NicknameView: UIView {
 
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "닉네임을 입력해주세요"
-        label.textColor = .gray
+        label.text = "닉네임을 정해주세요"
+        label.textColor = .black
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
 
@@ -20,6 +21,9 @@ class NicknameView: UIView {
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("다음", for: .normal)
+        button.backgroundColor = .systemIndigo
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
         return button
     }()
 
@@ -39,7 +43,7 @@ class NicknameView: UIView {
         self.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
+            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
             nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
@@ -47,7 +51,7 @@ class NicknameView: UIView {
         self.addSubview(nicknameField)
         nicknameField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nicknameField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            nicknameField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 50),
             nicknameField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             nicknameField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             nicknameField.heightAnchor.constraint(equalToConstant: 40)
@@ -56,8 +60,10 @@ class NicknameView: UIView {
         self.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: nicknameField.bottomAnchor, constant: 20),
             nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            nextButton.heightAnchor.constraint(equalToConstant: 50),
+            nextButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40)
         ])
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     }
