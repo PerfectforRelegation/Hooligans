@@ -93,6 +93,10 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
         imageScrollView = UIScrollView()
         view.addSubview(imageScrollView)
+        ///////
+        imageScrollView.layer.borderWidth = 1 // 테두리 두께
+        imageScrollView.layer.borderColor = UIColor.lightGray.cgColor
+        ///////
         imageScrollView.snp.makeConstraints { make in
             make.top.equalTo(contentTextField.snp.bottom).offset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-100)
@@ -136,6 +140,9 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
         }
         let contentWidth = (imageWidth + spacing) * imageScrollView.subviews.count
         imageScrollView.contentSize = CGSize(width: contentWidth, height: 100)
+
+        // 이미지를 왼쪽 상단부터 순차적으로 배치되도록 스크롤뷰의 ContentOffset를 변경
+            imageScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
