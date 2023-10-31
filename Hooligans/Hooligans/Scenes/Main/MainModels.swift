@@ -11,6 +11,7 @@ enum MainModels {
     enum Section {
         case profile
         case fixture
+        case news
     }
     
     // MARK: Usecases

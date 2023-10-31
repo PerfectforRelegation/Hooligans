@@ -8,12 +8,11 @@ protocol BoardListDataStore {
 }
 
 protocol BoardListBusinessLogic {
-    //func fetchUsers(request: SigninModels.Users.Request)
+    func fetchBoardList(request: BoardListModels.BoardList.Request)
     func postList(request: BoardListModels.PostContents.Request)
 }
 
 class BoardListInteractor: BoardListDataStore, BoardListBusinessLogic {
-
     var presenter: BoardListPresentationLogic?
     var worker: BoardListWorker?
 
@@ -22,18 +21,18 @@ class BoardListInteractor: BoardListDataStore, BoardListBusinessLogic {
     var postList: [Post]?
 
     // 서버에게 데이터 요청
-//    func fetchUsers(request: SigninModels.Users.Request) {
-//        worker = SigninWorker()
-//        worker?.fetchUser({ response in
-//            self.presenter?.presentationUser(response: SigninModels.Users.Response(users: response.users, isError: false, message: "Fields may not be empty"))
-//        })
-//    }
+    func fetchBoardList(request: BoardListModels.BoardList.Request) {
+        worker = BoardListWorker()
+        worker?.fetchBoardList { response in
+            self.presenter?.presentationBoardList(response: BoardListModels.BoardList.Response(BoardList: response.BoardList, isError: false,message: "Fields may not be empty"))
+        }
+    }
 
     // 서버에게 데이터 요청
     func postList(request: BoardListModels.PostContents.Request) {
-        worker = BoardListWorker()
-        worker?.postList({ response in
-            self.presenter?.presentationUser(response: BoardListModels.PostContents.Response(postContents: response.postContents, isError: false, message: "Fields may not be empty"))
-        })
+//        worker = BoardListWorker()
+//        worker?.postList({ response in
+//            self.presenter?.presentationUser(response: BoardListModels.PostContents.Response(postContents: response.postContents, isError: false, message: "Fields may not be empty"))
+//        })
     }
 }

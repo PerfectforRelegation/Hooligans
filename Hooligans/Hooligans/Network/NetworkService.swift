@@ -26,8 +26,6 @@ final class NetworkService {
     static let shared = NetworkService()
     
     private let baseURL = "http://13.124.61.192:8080"
-//    private let header: Data = Data()
-//    private let body: [String: String] = [:]
     
     func buildEndpoint(baseURL: String, _ endpoint: String) -> URL {
         guard let url = URL(string: baseURL + endpoint) else { return URL(string: "")! }
@@ -45,14 +43,25 @@ extension NetworkService {
         let request = RequestBuilder()
             .url(url: url)
             .method(.get)
-            .create() 
+            .header()
+            .create()
         
         return URLSession(configuration: .default).dataTaskPublisher(for: request)
         
     }
     
-    func post() {
+    func post(to endpoint: Endpoint, param: [String: Any]) -> URLSession.DataTaskPublisher {
         
+        let url = buildEndpoint(baseURL: baseURL, endpoint.rawValue)
+        
+        let request = RequestBuilder()
+            .url(url: url)
+            .method(.post)
+            .body(param)
+            .header()
+            .create()
+        
+        return URLSession(configuration: .default).dataTaskPublisher(for: request)
     }
     
     func put() {

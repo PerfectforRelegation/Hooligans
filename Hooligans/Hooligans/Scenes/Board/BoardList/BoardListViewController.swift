@@ -2,26 +2,15 @@
 import UIKit
 import SnapKit
 
-//protocol BoardListDisplayLogic: AnyObject {
-//    func displayA(viewModel: BoardListModels.PostContents.ViewModel)
-//}
-
 protocol BoardListDisplayLogic: AnyObject {
-    func displayA(viewModel: BoardListModels.PostContents.ViewModel, navigationController: UINavigationController?)
+    func displayBoardList(viewModel: BoardListModels.BoardList.ViewModel)
 }
 
-class BoardListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    var posts: [Post] = [
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        Post(title: "두 번째 글", content: "두 번째 글 내용")
-    ]
+class BoardListViewController: UIViewController {
+    var interactor: (BoardListBusinessLogic & BoardListDataStore)?
+    var router: BoardListRouter?
+    var posts: [Board]?
+    var refresh: UIRefreshControl?
 
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -56,16 +45,41 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
 
         return button
     }()
-
-    var router: BoardListRouter?
-
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        setup()
+        posts = [Board]()
+        refresh = UIRefreshControl()
+        interactor?.fetchBoardList(request: BoardListModels.BoardList.Request())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         setupUI()
         setupNavigationBar()
     }
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    private func setup() {
+        let viewcontroller = self
+        let interactor = BoardListInteractor()
+        let presenter = BoardListPresenter()
+        let router = BoardListRouter()
+        viewcontroller.interactor = interactor
+        viewcontroller.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewcontroller
+        router.viewController = viewcontroller
+    }
 
     func setupUI() {
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
@@ -94,6 +108,7 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
     func setupNavigationBar() {
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.barTintColor = .white
+//        navigationController?.isNavigationBarHidden = true
 
         // 뒤로가기
         let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
@@ -121,40 +136,22 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
         navigationItem.rightBarButtonItems = [menuButton, searchButton]
     }
 
+}
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+extension BoardListViewController {
+    
+}
+
+extension BoardListViewController: BoardListDisplayLogic {
+    func displayBoardList(viewModel: BoardListModels.BoardList.ViewModel) {
+        DispatchQueue.main.async {
+            for post in viewModel.posts {
+                self.posts?.append(post)
+            }
+            self.tableView.reloadData()
+        }
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-
-        // 게시물 데이터 표시
-        let post = posts[indexPath.row]
-        cell.configure(with: post)
-
-        // 좋아요 이미지 설정
-        cell.likesImageView.image = UIImage(named: "likeIcon")
-
-        return cell
-    }
-
-
-    // 게시물 상세 이동
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let selectedPost = posts[indexPath.row]
-        let boardDetailViewController = BoardDetailViewController()
-
-        // BoardDetailViewController에 선택된 게시물 정보 전달
-        boardDetailViewController.selectedPost = selectedPost
-
-        // 화면 전환
-        navigationController?.pushViewController(boardDetailViewController, animated: true)
-    }
-
-
+    
     @objc func backButtonTapped() {
         print("DEBUG :", "clickBack")
         navigationController?.popViewController(animated: true)
@@ -175,5 +172,61 @@ class BoardListViewController: UIViewController, UITableViewDataSource, UITableV
 
         navigationController?.pushViewController(boardWriteViewController, animated: true)
     }
+}
 
+extension BoardListViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+
+        // 게시물 데이터 표시
+        if let post = posts?[indexPath.row] {
+            cell.configure(with: post)
+        }
+
+        // 좋아요 이미지 설정
+//        cell.likesImageView.image = UIImage(named: "likeIcon")
+
+        return cell
+    }
+
+
+    // 게시물 상세 이동
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let selectedPost = posts?[indexPath.row]
+        let boardDetailViewController = BoardDetailViewController()
+
+        // BoardDetailViewController에 선택된 게시물 정보 전달
+        boardDetailViewController.selectedPost = selectedPost
+
+        // 화면 전환
+        navigationController?.pushViewController(boardDetailViewController, animated: true)
+    }
+    
+    func initRefresh() {
+        refresh?.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
+        refresh?.backgroundColor = UIColor.clear
+        self.tableView.refreshControl = refresh
+    }
+    
+    @objc func refreshTable(refresh: UIRefreshControl) {
+        print("refreshTable")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.tableView.reloadData()
+            refresh.endRefreshing()
+        }
+    }
+    
+    //MARK: - UIRefreshControl of ScrollView
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if(velocity.y < -0.1) {
+            self.refreshTable(refresh: self.refresh!)
+        }
+    }
 }

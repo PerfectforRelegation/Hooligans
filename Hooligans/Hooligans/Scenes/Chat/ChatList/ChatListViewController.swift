@@ -78,13 +78,10 @@ class ChatListViewController: UIViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         registerCells()
-//        setupView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     private func setup() {
@@ -193,9 +190,9 @@ extension ChatListViewController: UICollectionViewDelegate {
         if indexPath.section == 1 {
             // 2. Retrieve the item associated with the selected cell from the data source
             let selectedItem = dataSource.itemIdentifier(for: indexPath)
-            let data = selectedItem?.data as? ChatRoom
+            guard let data = selectedItem?.data as? ChatRoom else { return }
             
-            router?.routeToChatView(roomid: "test")
+            router?.routeToChatView(chatRoom: data)
         }
     }
     

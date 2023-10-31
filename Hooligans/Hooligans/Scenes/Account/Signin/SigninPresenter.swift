@@ -8,21 +8,25 @@
 import Foundation
 
 protocol SigninPresentationLogic: AnyObject {
-    func presentationUser(response: SigninModels.BoardContents.Response)
+    func presentationSigninError(response: SigninModels.Signin.Response)
+    func presentationMainView(response: SigninModels.Signin.Response)
 }
 
 final class SigninPresenter {
-    weak var viewController: LoginController?
+    weak var viewController: SigninController?
 }
 
 extension SigninPresenter: SigninPresentationLogic {
-
-    func presentationUser(response: SigninModels.BoardContents.Response) {
-
-        guard let boardContents = response.boardContents else { return }
-
-        let viewModel = SigninModels.BoardContents.ViewModel(boardContents: boardContents)
-
-        viewController?.displayAnything(viewModel: viewModel)
+    func presentationSigninError(response: SigninModels.Signin.Response) {
+        print("Signin Error")
     }
+    
+    func presentationMainView(response: SigninModels.Signin.Response) {
+        guard let user = response.userResopnse else { return }
+        
+        let viewModel = SigninModels.Signin.ViewModel(user: user)
+        
+        self.viewController?.displayMainView(viewModel: viewModel)
+    }
+
 }

@@ -17,9 +17,10 @@ protocol ChatRoomDisplayLogic {
 class ChatRoomViewController: UIViewController {
     var interactor: (ChatRoomBusinessLogic & ChatRoomDataStore)?
     
-    private let stomp: StompClientLib? = Stomp.shard
+//    private let stomp: StompManager?
     private var cancellables = Set<AnyCancellable>()
     
+    private var chatRoom: ChatRoom!
     var messages: [Message] = []
     
     private let headerView: UIButton = {
@@ -52,11 +53,10 @@ class ChatRoomViewController: UIViewController {
         return button
     }()
     
-    init() {
+    init(chatRoom: ChatRoom) {
         super.init(nibName: nil, bundle: nil)
-        registerSocket()
-        stomp?.subscribe(destination: "/sub/chat/room/test")
-        
+        self.chatRoom = chatRoom
+        StompManager.shard.connect(chatRoom: chatRoom, delegate: self)
     }
     
     required init?(coder: NSCoder) {
@@ -70,10 +70,11 @@ class ChatRoomViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-//        self.registerSocket()
-//        self.subscribe()
-//        self.sendMessage(type: "ENTER")
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        StompManager.shard.disconnect()
     }
     
     private func setup() {
@@ -126,7 +127,7 @@ extension ChatRoomViewController {
         }
         
         
-        self.headerView.addTarget(self, action: #selector(subscribeSTOMP), for: .touchUpInside)
+//        self.headerView.addTarget(self, action: #selector(subscribeSTOMP), for: .touchUpInside)
         
         self.view.addSubview(tableView)
         
@@ -138,12 +139,8 @@ extension ChatRoomViewController {
         
     }
     
-    @objc func subscribeSTOMP() {
-        
-    }
-    
     @objc func sendMessageSTOMP() {
-        self.sendMessage(type: "TALK", message: "hi")
+        StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId, message: "hi")
     }
 }
 
@@ -180,33 +177,11 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension ChatRoomViewController: StompClientLibDelegate {
-    func registerSocket() {
-        guard let url = URL(string: "ws://13.124.61.192:8080/ws-stomp") else { return }
-        stomp?.openSocketWithURLRequest(request: NSURLRequest(url: url), delegate: self)
-    }
-//
-//    func subscribe() {
-//        stomp.subscribe(destination: "/sub/chat/room/test")
-//        sendMessage(type: "ENTER", message: "HI")
-//    }
-//
-    func sendMessage(type: String, message: String? = "") {
-        var payloadObject = [String: Any]()
-        payloadObject = [
-            "type": type,
-            "roomId": "test",
-            "sender": "m",
-            "message": message ?? ""
+extension ChatRoomViewController: UITextFieldDelegate {
+    
+}
 
-        ]
-//        print(payloadObject)
-        stomp?.sendJSONForDict(dict: payloadObject as AnyObject, toDestination: "/pub/chat/message")
-    }
-//
-//    func disconnect() {
-//        stomp.disconnect()
-//    }
+extension ChatRoomViewController: StompClientLibDelegate {
     
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         guard let response = stringBody?.data(using: .utf8) else { return }
@@ -235,7 +210,7 @@ extension ChatRoomViewController: StompClientLibDelegate {
     func stompClientDidConnect(client: StompClientLib!) {
         print("Stomp socket is connected")
         
-        stomp?.subscribe(destination: "/sub/chat/room/test")
+        StompManager.shard.subscribe(chatRoom: chatRoom)
     }
     
     func serverDidSendReceipt(client: StompClientLib!, withReceiptId receiptId: String) {
@@ -253,4 +228,7 @@ extension ChatRoomViewController: StompClientLibDelegate {
     func serverDidSendPing() {
         print("Server ping")
     }
+    
+    
 }
+

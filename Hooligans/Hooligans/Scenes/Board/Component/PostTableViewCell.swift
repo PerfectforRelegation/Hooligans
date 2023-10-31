@@ -66,21 +66,21 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with post: Post) {
+    func configure(with post: Board) {
         titleLabel.text = post.title
         contentLabel.text = post.content
-        likesLabel.text = "\(post.likes)"
-        commentsLabel.text = "\(post.comments)"
+        likesLabel.text = "\(post.view)"
+        commentsLabel.text = "\(post.nickname)"
 
-        if !post.images.isEmpty {
-                // 이미지가 있는 경우 첫 번째 이미지 표시
-                if let imageData = Data(base64Encoded: post.images[0]),
-                    let image = UIImage(data: imageData) {
-                    postImageView.image = image
-                }
-            } else {
-                postImageView.image = nil // 이미지 없을 경우 비움
-            }
+//        if !post.images.isEmpty {
+//                // 이미지가 있는 경우 첫 번째 이미지 표시
+//                if let imageData = Data(base64Encoded: post.images[0]),
+//                    let image = UIImage(data: imageData) {
+//                    postImageView.image = image
+//                }
+//            } else {
+//                postImageView.image = nil // 이미지 없을 경우 비움
+//            }
 
 //        likesImageView.isHidden = post.likes == 0
 //        commentsImageView.isHidden = post.comments == 0
