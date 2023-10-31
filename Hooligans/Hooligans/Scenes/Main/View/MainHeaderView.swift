@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HomeHeaderView: UIView {
+class MainHeaderView: UIView {
     
     private let logoImage: UIImageView = {
         let imageView = UIImageView()
@@ -27,7 +27,7 @@ class HomeHeaderView: UIView {
     }
 }
 
-extension HomeHeaderView {
+extension MainHeaderView {
     private func setupView() {
         self.backgroundColor = .white
 //        self.layer.opacity = 0.5
