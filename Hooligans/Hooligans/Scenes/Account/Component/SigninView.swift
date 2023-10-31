@@ -54,10 +54,10 @@ class SigninView: UIView {
 
 
         NSLayoutConstraint.activate([
-            self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
+            self.logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
             self.logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.logoImageView.widthAnchor.constraint(equalToConstant: 90),
-            self.logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
+            self.logoImageView.widthAnchor.constraint(equalToConstant: 200),
+//            self.logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
 
             self.titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 19),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
