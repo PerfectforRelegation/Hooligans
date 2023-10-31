@@ -99,6 +99,7 @@ extension SigninController {
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
 
+<<<<<<< HEAD:Hooligans/Hooligans/Scenes/Account/Signin/SigninController.swift
             NSLayoutConstraint.activate([
                 self.headerView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
                 self.headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -110,28 +111,41 @@ extension SigninController {
                 self.emailField.heightAnchor.constraint(equalToConstant: 55),
                 self.emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
 //                self.usernameField.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -50),
+=======
+        NSLayoutConstraint.activate([
+            self.headerView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
+            self.headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.headerView.heightAnchor.constraint(equalToConstant: 222),
 
-                self.passwordField.topAnchor.constraint(equalTo:  emailField.bottomAnchor, constant: 22),
-                self.passwordField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-                self.passwordField.heightAnchor.constraint(equalToConstant: 55),
-                self.passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            self.emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 12),
+            self.emailField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            self.emailField.heightAnchor.constraint(equalToConstant: 55),
+            self.emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            //                self.usernameField.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -50),
+>>>>>>> origin:Hooligans/Hooligans/Scenes/Account/Signin/LoginController.swift
 
-                self.signInButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 22),
-                self.signInButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-                self.signInButton.heightAnchor.constraint(equalToConstant: 55),
-                self.signInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            self.passwordField.topAnchor.constraint(equalTo:  emailField.bottomAnchor, constant: 22),
+            self.passwordField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            self.passwordField.heightAnchor.constraint(equalToConstant: 55),
+            self.passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
 
-                self.signUpButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
-                self.signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-                self.signUpButton.heightAnchor.constraint(equalToConstant: 44),
-                self.signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            self.signInButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 22),
+            self.signInButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            self.signInButton.heightAnchor.constraint(equalToConstant: 55),
+            self.signInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
 
-                self.forgotPasswordButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
-                self.forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-                self.forgotPasswordButton.heightAnchor.constraint(equalToConstant: 44),
-                self.forgotPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            self.signUpButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
+            self.signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            self.signUpButton.heightAnchor.constraint(equalToConstant: 44),
+            self.signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
 
-            ])
+            self.forgotPasswordButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
+            self.forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            self.forgotPasswordButton.heightAnchor.constraint(equalToConstant: 44),
+            self.forgotPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+
+        ])
 
     }
 
@@ -142,6 +156,7 @@ extension SigninController {
         guard let email = emailField.text,
            let password = passwordField.text else {
 
+<<<<<<< HEAD:Hooligans/Hooligans/Scenes/Account/Signin/SigninController.swift
 //            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{3,}"
 //            if !NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email) {
 //                print("이메일 형식이 맞지 않습니다.")
@@ -155,6 +170,27 @@ extension SigninController {
 //            print("Email: \(email)")
 //            print("Password: \(password)")
             return
+=======
+            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{3,}"
+            if !NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email) {
+                print("이메일 형식이 맞지 않습니다.")
+                return
+            }
+            if password.count < 8 {
+                print("비밀번호는 최소 8자리 이상이어야 합니다.")
+                return
+            }
+
+            print("Email: \(email)")
+            print("Password: \(password)")
+
+            let nicknameView = NicknameView(frame: self.view.frame)
+            self.view = nicknameView
+
+            //            let signupViewController = SignupViewController()
+            //            let navController = UINavigationController(rootViewController: signupViewController)
+            //            self.present(navController, animated: true, completion: nil)
+>>>>>>> origin:Hooligans/Hooligans/Scenes/Account/Signin/LoginController.swift
         }
         
         interactor?.signIn(request: SigninModels.Signin.Request(account: email, password: password))
