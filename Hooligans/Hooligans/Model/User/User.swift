@@ -19,7 +19,7 @@ struct User: Codable {
     let firstTeam: String?
     let secondTeam: String?
     let thirdTeam: String?
-    var betPoint: Int
+    let betPoint: Int
 }
 
 struct Token: Codable {

@@ -70,7 +70,7 @@
 		C14053242AEB96D900E69B41 /* ResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14053232AEB96D900E69B41 /* ResponseMessage.swift */; };
 		C14053262AEBBA4F00E69B41 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14053252AEBBA4F00E69B41 /* AccountService.swift */; };
 		C1419B5B2ADE9BB6007AA5F6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1419B5A2ADE9BB6007AA5F6 /* TabBarController.swift */; };
-		C1419B5F2ADFA073007AA5F6 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1419B5E2ADFA073007AA5F6 /* HomeHeaderView.swift */; };
+		C1419B5F2ADFA073007AA5F6 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1419B5E2ADFA073007AA5F6 /* MainHeaderView.swift */; };
 		C1419B612ADFADC7007AA5F6 /* FixtureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1419B602ADFADC7007AA5F6 /* FixtureCell.swift */; };
 		C144F44A2AD6E5D50033B712 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C144F4492AD6E5D50033B712 /* Message.swift */; };
 		C152DCFC2AE54926002C6153 /* ChatListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DCFB2AE54926002C6153 /* ChatListInteractor.swift */; };
@@ -104,6 +104,7 @@
 		C1DFB2972AEE9E460069525E /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */; };
 		C1DFB2982AEE9E510069525E /* SigninInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692B62AB990110016ADC7 /* SigninInteractor.swift */; };
 		C1DFB2992AEE9E5E0069525E /* BoardListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C20D2AD6F5C1009B05E5 /* BoardListWorker.swift */; };
+		C1DFB29B2AEEC8970069525E /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB29A2AEEC8970069525E /* LaunchScreenViewController.swift */; };
 		C1FA34412AEBF9620079B94C /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA34402AEBF9620079B94C /* Animation.swift */; };
 		C1FA34432AEBFBBD0079B94C /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA34422AEBFBBD0079B94C /* UserDefault.swift */; };
 		C1FA34462AECDDB80079B94C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA34452AECDDB80079B94C /* UIImageExtension.swift */; };
@@ -207,7 +208,7 @@
 		C14053232AEB96D900E69B41 /* ResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseMessage.swift; sourceTree = "<group>"; };
 		C14053252AEBBA4F00E69B41 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		C1419B5A2ADE9BB6007AA5F6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		C1419B5E2ADFA073007AA5F6 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		C1419B5E2ADFA073007AA5F6 /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
 		C1419B602ADFADC7007AA5F6 /* FixtureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureCell.swift; sourceTree = "<group>"; };
 		C144F4492AD6E5D50033B712 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C152DCFB2AE54926002C6153 /* ChatListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListInteractor.swift; sourceTree = "<group>"; };
@@ -234,6 +235,7 @@
 		C1C100F82A092B3500D6F24F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1C100FB2A092B3500D6F24F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1C100FD2A092B3500D6F24F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1DFB29A2AEEC8970069525E /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		C1FA34402AEBF9620079B94C /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		C1FA34422AEBFBBD0079B94C /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		C1FA34452AECDDB80079B94C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 				7C41C2062AD55A8A009B05E5 /* Board */,
 				7C4692B32AB98EB00016ADC7 /* Account */,
 				C14038722AA886BF00933273 /* Main */,
+				C1DFB29A2AEEC8970069525E /* LaunchScreenViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -556,7 +559,7 @@
 		C1419B5C2ADFA051007AA5F6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C1419B5E2ADFA073007AA5F6 /* HomeHeaderView.swift */,
+				C1419B5E2ADFA073007AA5F6 /* MainHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -890,11 +893,12 @@
 				C11CEF6A2AE52A7600A25097 /* ChatCollectionViewHeader.swift in Sources */,
 				C1FA344B2AECE9A90079B94C /* BoardService.swift in Sources */,
 				C140531E2AEA3D3500E69B41 /* ChatRoomModels.swift in Sources */,
+				C1DFB29B2AEEC8970069525E /* LaunchScreenViewController.swift in Sources */,
 				DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */,
 				C15E11742AC8157A00904C79 /* LeagueTableWorker.swift in Sources */,
 				C152DD132AE68B71002C6153 /* UIViewExtension.swift in Sources */,
 				C140387D2AB3042900933273 /* MainRouter.swift in Sources */,
-				C1419B5F2ADFA073007AA5F6 /* HomeHeaderView.swift in Sources */,
+				C1419B5F2ADFA073007AA5F6 /* MainHeaderView.swift in Sources */,
 				7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */,
 				7C41C2102AD6F5C8009B05E5 /* BoardListRouter.swift in Sources */,
 				7C3F60292AE5867B0078A6F1 /* BoardWriteViewController.swift in Sources */,

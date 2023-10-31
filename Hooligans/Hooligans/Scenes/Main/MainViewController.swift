@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
     var router: MainRoutingLogic?
     
     // MARK: - View Initailize
-    private let headerView = HomeHeaderView()
+    private let headerView = MainHeaderView()
     
     private var collectionView: UICollectionView = {
         let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
@@ -107,8 +107,8 @@ class MainViewController: UIViewController {
     
     private func bindView() {
         snapshot.appendSections([.profile, .fixture, .news])
-        snapshot.appendItems([Item(data: Profile(), section: .profile)], toSection: .profile)
-        snapshot.appendItems([Item(data: Post(title: "첼시는 강등이 딱이야..", href: "/news?oid=411&aid=0000036567"), section: .news)], toSection: .news)
+        snapshot.appendItems([Item(data: User(id: UUID(), tokenDto: Token(accessToken: "", refreshToken: ""), name: "", account: "", password: "", birth: "", phoneNumber: "", firstTeam: "CHE", secondTeam: "MUN", thirdTeam: "WOL", betPoint: 1000), section: .profile)], toSection: .profile)
+        snapshot.appendItems([Item(data: Post(title: "첼시는 강등이 딱이야..", href: "/news?oid=411&aid=0000036567"), section: .news), Item(data: Post(title: "손흥민 득점왕 가나..", href: "/news?oid=411&aid=0000036567"), section: .news), Item(data: Post(title: "정명곤 변사체로 발견..", href: "/news?oid=411&aid=0000036567"), section: .news)], toSection: .news)
         self.dataSource.apply(self.snapshot)
     }
 
@@ -147,7 +147,7 @@ extension MainViewController {
             case .profile:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier,
                                                    for: indexPath) as? ProfileCell else { return UICollectionViewCell() }
-                if let data = item.data as? Profile { cell.configureCell(profile: Profile()) }
+                if let data = item.data as? User { cell.configureCell(user: data) }
                 return cell
                 
             case .fixture:

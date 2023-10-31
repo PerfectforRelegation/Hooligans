@@ -12,9 +12,16 @@ class MainHeaderView: UIView {
     
     private let logoImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "coin")
+        imageView.image = UIImage(named: "logo")
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    private let infoButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "person.circle"), for: .normal)
+        button.tintColor = .black
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -29,15 +36,21 @@ class MainHeaderView: UIView {
 
 extension MainHeaderView {
     private func setupView() {
-        self.backgroundColor = .white
-//        self.layer.opacity = 0.5
+        self.backgroundColor = UIColor(white: 1, alpha: 0.3)
         
         self.addSubview(logoImage)
-        
         logoImage.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(20)
+            make.width.height.equalTo(30)
+        }
+        
+        self.addSubview(infoButton)
+        infoButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(20)
-            make.width.height.equalTo(40)
+            make.width.height.equalTo(30)
         }
+        
     }
 }
