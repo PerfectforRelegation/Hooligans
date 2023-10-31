@@ -85,16 +85,25 @@ class PhonenumberView: UIView {
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     }
 
+    private func validatePhoneNumber(_ phoneNumber: String) -> Bool {
+        let phoneNumberRegex = "^010[0-9]{8}$"
+        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex)
+        return phonePredicate.evaluate(with: phoneNumber)
+    }
+
     @objc private func backButtonTapped() {
         guard let selectTeamView = SelectTeamView(frame: self.frame) as? SelectTeamView else { return }
         selectTeamView.previousNickname = previousNickname
         selectTeamView.selectedTeam = selectedTeam
-        
+
         self.superview?.addSubview(selectTeamView)
         self.removeFromSuperview()
     }
 
     @objc private func nextButtonTapped() {
-
+        guard let phoneNumber = phoneNumberField.text, validatePhoneNumber(phoneNumber) else {
+            print("형식에 맞는 핸드폰 번호를 입력해주세요.")
+            return
+        }
     }
 }
