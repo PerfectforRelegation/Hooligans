@@ -28,4 +28,6 @@ class MainInteractor: MainDataStore, MainBusinessLogic {
             self.presenter?.presentationUser(response: MainModels.Users.Response(users: response.users, isError: false, message: "Fields may not be empty"))
         })
     }
+    
+    
 }

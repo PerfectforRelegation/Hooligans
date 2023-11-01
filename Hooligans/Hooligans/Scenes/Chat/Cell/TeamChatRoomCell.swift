@@ -15,6 +15,10 @@ final class TeamChatRoomCell: UICollectionViewCell {
         .contentMode(.scaleAspectFill)
         .clipsToBounds(true)
     
+    private let teamNameLabel = UILabel()
+    
+    private let userCountLabel = UILabel()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -27,13 +31,15 @@ final class TeamChatRoomCell: UICollectionViewCell {
     
     func configureCell(chatRoom: ChatRoom) {
         homeTeamImage.image = UIImage(named: chatRoom.name)
+        teamNameLabel.text = chatRoom.name
+        userCountLabel.text = String(chatRoom.count)
     }
 }
 
 extension TeamChatRoomCell {
     private func setupView() {
         let frameHeight = self.frame.height
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .systemGray6
         self.layer.cornerRadius = frameHeight * 0.2
         
         self.addSubview(homeTeamImage)
@@ -41,6 +47,18 @@ extension TeamChatRoomCell {
             make.centerY.equalTo(self.snp.centerY)
             make.centerX.equalTo(self.snp.leading).offset(frameHeight * 0.25)
             make.width.height.equalTo(frameHeight * 0.8)
+        }
+        
+        self.addSubview(teamNameLabel)
+        teamNameLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(100)
+        }
+        
+        self.addSubview(userCountLabel)
+        userCountLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(20)
         }
     }
 }

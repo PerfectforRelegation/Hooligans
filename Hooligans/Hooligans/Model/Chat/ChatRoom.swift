@@ -12,3 +12,4 @@ struct ChatRoom: Codable {
     let name: String
     let count: Int
 }
+
