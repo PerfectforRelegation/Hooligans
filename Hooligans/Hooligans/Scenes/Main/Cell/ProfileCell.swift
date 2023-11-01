@@ -12,13 +12,16 @@ final class ProfileCell: UICollectionViewCell {
     
     
     // MARK: - View Initialize
-    private let profileImage = UIImageView()
+    private let coinImage = UIImageView()
         .contentMode(.scaleAspectFill)
         .clipsToBounds(true)
     
     
-    private let nameLabel = UILabel()
-        .backgroundColor(.red)
+    private let pointLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        return label
+    }()
     
     // MARK: - Init Method
     override init(frame: CGRect) {
@@ -31,32 +34,31 @@ final class ProfileCell: UICollectionViewCell {
         setupView()
     }
     
-    func configureCell(profile: Profile) {
-        profileImage.image = UIImage(systemName: "star.fill")
+    func configureCell(user: User) {
+        coinImage.image = UIImage(named: "coin")
+        pointLabel.text = String(user.betPoint)
     }
     
 }
 
 extension ProfileCell {
     private func setupView() {
-        self.backgroundColor = .yellow
+        self.backgroundColor = .systemGray6
         self.layer.cornerRadius = self.frame.height * 0.2
-        self.nameLabel.text = "HI"
         
+        self.addSubview(coinImage)
         
-        self.addSubview(profileImage)
-        
-        profileImage.snp.makeConstraints { make in
+        coinImage.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
             make.leading.equalToSuperview().offset(10)
             make.width.height.equalTo(40)
         }
         
-        self.addSubview(nameLabel)
+        self.addSubview(pointLabel)
         
-        nameLabel.snp.makeConstraints { make in
+        pointLabel.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
-            make.leading.equalTo(profileImage.snp.trailing).offset(20)
+            make.leading.equalTo(coinImage.snp.trailing).offset(20)
             make.trailing.equalToSuperview().inset(10)
         }
         

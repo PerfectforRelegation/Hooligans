@@ -3,6 +3,22 @@ import Foundation
 
 enum BoardListModels {
     // MARK: Usecases
+    enum BoardList {
+        struct Request{
+            
+        }
+        
+        struct Response {
+            var BoardList: [Board]?
+            var isError: Bool
+            var message: String?
+        }
+        
+        struct ViewModel {
+            var posts: [Board]
+        }
+    }
+    
     enum PostContents {
         struct Request {
             var count: Int

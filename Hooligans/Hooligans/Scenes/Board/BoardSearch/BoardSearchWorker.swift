@@ -9,7 +9,7 @@ protocol BoardSearchWorkerLogic {
 class BoardSearchWorker: BoardSearchWorkerLogic {
 
 //    let apiManager = APIService()
-//
+
     func postList(_ response: @escaping (BoardSearchModels.PostContents.Response) -> Void) {
 //        apiManager.postList { result in
 //            switch result {

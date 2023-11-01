@@ -41,18 +41,18 @@ class BoardSearchViewController: UIViewController, UISearchBarDelegate, UITableV
         searchBar.resignFirstResponder() // 키보드 숨기기
         if let searchText = searchBar.text?.lowercased() {
 
-            posts = mySearchFunction(searchText)
-            tableView.reloadData()
+//            posts = mySearchFunction(searchText)
+//            tableView.reloadData()
         }
     }
 
-    func mySearchFunction(_ searchText: String) -> [Post] {
-
-        let filteredPosts = posts.filter { post in
-            return post.title.lowercased().contains(searchText) || post.content.lowercased().contains(searchText)
-        }
-        return filteredPosts
-    }
+//    func mySearchFunction(_ searchText: String) -> [Post] {
+//
+//        let filteredPosts = posts.filter { post in
+//            return post.title.lowercased().contains(searchText) || post.content.lowercased().contains(searchText)
+//        }
+//        return filteredPosts
+//    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -62,7 +62,7 @@ class BoardSearchViewController: UIViewController, UISearchBarDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
 
         let post = posts[indexPath.row]
-        cell.configure(with: post)
+//        cell.configure(with: post)
         cell.likesImageView.image = UIImage(named: "likeIcon")
 
         return cell
@@ -71,7 +71,7 @@ class BoardSearchViewController: UIViewController, UISearchBarDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPost = posts[indexPath.row]
         let boardDetailViewController = BoardDetailViewController()
-        boardDetailViewController.selectedPost = selectedPost
+//        boardDetailViewController.selectedPost = selectedPost
         navigationController?.pushViewController(boardDetailViewController, animated: true)
     }
 

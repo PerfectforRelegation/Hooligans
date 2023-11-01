@@ -8,36 +8,32 @@
 import Foundation
 
 protocol SigninDataStore {
-    var users: [User]? { get set }
-    var boardList: [Board]? { get set }
+    var user: User? { get set }
 }
 
 protocol SigninBusinessLogic {
-    //func fetchUsers(request: SigninModels.Users.Request)
-    func boardList(request: SigninModels.BoardContents.Request)
+    func signIn(request: SigninModels.Signin.Request)
 }
 
 class SigninInteractor: SigninDataStore, SigninBusinessLogic {
-
     var presenter: SigninPresentationLogic?
     var worker: SigninWorker?
-
-    var users: [User]?
-    var boardList: [Board]?
-
-    // 서버에게 데이터 요청
-//    func fetchUsers(request: SigninModels.Users.Request) {
-//        worker = SigninWorker()
-//        worker?.fetchUser({ response in
-//            self.presenter?.presentationUser(response: SigninModels.Users.Response(users: response.users, isError: false, message: "Fields may not be empty"))
-//        })
-//    }
-
-    // 서버에게 데이터 요청
-    func boardList(request: SigninModels.BoardContents.Request) {
+    
+    var user: User?
+    
+    func signIn(request: SigninModels.Signin.Request) {
         worker = SigninWorker()
-        worker?.boardList({ response in
-            self.presenter?.presentationUser(response: SigninModels.BoardContents.Response(boardContents: response.boardContents, isError: false, message: "Fields may not be empty"))
-        })
+        worker?.signIn(request: request) { response in
+            if response.isError {
+                self.presenter?.presentationSigninError(response: response)
+            }
+            
+            if let user = response.userResopnse {
+                print(user)
+                UserDefault.userdeault.setUserInfo(user: user)
+                self.presenter?.presentationMainView(response: response)
+            }
+            
+        }
     }
 }

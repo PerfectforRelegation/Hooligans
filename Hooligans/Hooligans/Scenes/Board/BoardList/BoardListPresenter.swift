@@ -2,7 +2,7 @@
 import Foundation
 
 protocol BoardListPresentationLogic: AnyObject {
-    func presentationUser(response: BoardListModels.PostContents.Response)
+    func presentationBoardList(response: BoardListModels.BoardList.Response)
 }
 
 final class BoardListPresenter {
@@ -11,12 +11,12 @@ final class BoardListPresenter {
 
 extension BoardListPresenter: BoardListPresentationLogic {
 
-    func presentationUser(response: BoardListModels.PostContents.Response) {
+    func presentationBoardList(response: BoardListModels.BoardList.Response) {
 
-        guard let postContents = response.postContents else { return }
+        guard let boardList = response.BoardList else { return }
 
-        let viewModel = BoardListModels.PostContents.ViewModel(postContents: postContents)
+        let viewModel = BoardListModels.BoardList.ViewModel(posts: boardList)
 
-        //viewController?.displayA(viewModel: viewModel)
+        viewController?.displayBoardList(viewModel: viewModel)
     }
 }

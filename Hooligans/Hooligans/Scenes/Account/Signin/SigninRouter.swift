@@ -6,7 +6,25 @@
 //
 
 import Foundation
+import UIKit
 
-class SigninRouter {
+protocol SigninRoutingLogic {
+    func routeToMain()
+}
+
+protocol SigninDataPassing {
     
+}
+
+final class SigninRouter: SigninRoutingLogic {
+    weak var viewController: SigninController?
+    
+    func routeToMain() {
+        let mainViewController = TabBarController()
+        let tabbarViewController = UINavigationController(rootViewController: mainViewController)
+        
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.changeRootViewController(tabbarViewController, animated: false)
+        }
+    }
 }

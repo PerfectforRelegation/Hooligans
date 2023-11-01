@@ -297,9 +297,7 @@ public class StompClientLib: NSObject, SRWebSocketDelegate {
             }
             
             if let delegate = delegate {
-                DispatchQueue.main.async(execute: {
-                    delegate.stompClientDidConnect(client: self)
-                })
+                delegate.stompClientDidConnect(client: self)
             }
         } else if command == StompCommands.responseFrameMessage {   // Message comes to this part
             // Response

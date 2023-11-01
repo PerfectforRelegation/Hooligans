@@ -14,7 +14,7 @@ protocol BoardDetailDisplayLogic: AnyObject {
 class BoardDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
 
-    var selectedPost: Post?
+    var selectedPost: Board?
 
     private func displayPostDetails() {
 
@@ -24,11 +24,6 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 //            contentLabel.text = post.content
         }
 
-
-    var posts: [Post] = [
-        Post(title: "첫 번째 글", content: "첫 번째 글 내용"),
-        //Post(title: "두 번째 글", content: "두 번째 글 내용")
-    ]
 
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -139,7 +134,7 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -147,8 +142,8 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
 
         // 게시물 데이터 표시
-        let post = posts[indexPath.row]
-        cell.configure(with: post)
+//        let post = posts[indexPath.row]
+//        cell.configure(with: post)
 
         // 좋아요 이미지 설정
         cell.likesImageView.image = UIImage(named: "likeIcon")
