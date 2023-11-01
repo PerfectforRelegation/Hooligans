@@ -404,9 +404,9 @@
 				7C4692C32ABC51B60016ADC7 /* SigninView.swift */,
 				7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */,
 				7C41C2042AD54416009B05E5 /* Button.swift */,
+				7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */,
 				7C63BE312AEBD47900BE9A2E /* NicknameView.swift */,
 				7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */,
-				7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";

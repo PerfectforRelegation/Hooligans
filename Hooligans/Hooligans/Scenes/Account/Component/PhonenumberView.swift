@@ -1,9 +1,9 @@
 import UIKit
+import SnapKit
 
 class PhonenumberView: UIView {
-
-    var previousNickname: String?
-    var selectedTeam: (name: String, imageName: String)?
+    //var previousNickname: String?
+    //var selectedTeam: (name: String, imageName: String)?
 
     let backButton: UIButton = {
         let button = UIButton(type: .system)
@@ -11,13 +11,36 @@ class PhonenumberView: UIView {
         return button
     }()
 
-    let phoneNumberLabel: UILabel = {
+    let RegisterLabel: UILabel = {
         let label = UILabel()
-        label.text = "핸드폰 번호를 입력해주세요"
+        label.text = "회원가입"
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
+    }()
+
+    let emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "아이디(이메일)"
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+
+    let passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "비밀번호"
+        textField.borderStyle = .roundedRect
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+
+    let confirmPasswordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "비밀번호 확인"
+        textField.borderStyle = .roundedRect
+        textField.isSecureTextEntry = true
+        return textField
     }()
 
     let phoneNumberField: UITextField = {
@@ -50,39 +73,80 @@ class PhonenumberView: UIView {
         self.backgroundColor = .white
 
         self.addSubview(backButton)
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20)
-        ])
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
+            make.leading.equalTo(self).offset(20)
+        }
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
 
-        self.addSubview(phoneNumberLabel)
-        phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            phoneNumberLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 20),
-            phoneNumberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            phoneNumberLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-        ])
+        self.addSubview(RegisterLabel)
+        RegisterLabel.snp.makeConstraints { make in
+            make.top.equalTo(backButton.snp.bottom).offset(20)
+            make.leading.trailing.equalTo(self)
+        }
+
+        self.addSubview(emailTextField)
+        emailTextField.snp.makeConstraints { make in
+            make.top.equalTo(RegisterLabel.snp.bottom).offset(50)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(40)
+        }
+
+        self.addSubview(passwordTextField)
+        passwordTextField.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(40)
+        }
+
+        self.addSubview(confirmPasswordTextField)
+        confirmPasswordTextField.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(20)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(40)
+        }
 
         self.addSubview(phoneNumberField)
-        phoneNumberField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            phoneNumberField.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 50),
-            phoneNumberField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            phoneNumberField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            phoneNumberField.heightAnchor.constraint(equalToConstant: 40)
-        ])
+        phoneNumberField.snp.makeConstraints { make in
+            make.top.equalTo(confirmPasswordTextField.snp.bottom).offset(20)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(40)
+        }
 
         self.addSubview(nextButton)
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            nextButton.heightAnchor.constraint(equalToConstant: 50),
-            nextButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40)
-        ])
+        nextButton.snp.makeConstraints { make in
+            make.centerX.equalTo(self)
+            make.leading.equalTo(self).offset(20)
+            make.height.equalTo(50)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-40)
+        }
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+
+        self.addSubview(nextButton)
+        nextButton.snp.makeConstraints { make in
+            make.centerX.equalTo(self)
+            make.leading.equalTo(self).offset(20)
+            make.height.equalTo(50)
+            make.bottom.equalTo(nextButton.snp.top).offset(-20)
+        }
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+
+    private func validateEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
+
+    private func validatePassword(_ password: String) -> Bool {
+        // 비밀번호 8자 이상, 숫자 및 문자를 포함하는지 확인
+        let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+        return passwordPredicate.evaluate(with: password)
     }
 
     private func validatePhoneNumber(_ phoneNumber: String) -> Bool {
@@ -92,18 +156,38 @@ class PhonenumberView: UIView {
     }
 
     @objc private func backButtonTapped() {
-        guard let selectTeamView = SelectTeamView(frame: self.frame) as? SelectTeamView else { return }
-        selectTeamView.previousNickname = previousNickname
-        selectTeamView.selectedTeam = selectedTeam
-
-        self.superview?.addSubview(selectTeamView)
-        self.removeFromSuperview()
+        let signinController = SigninController()
+        UIApplication.shared.keyWindow?.rootViewController = signinController
     }
 
     @objc private func nextButtonTapped() {
-        guard let phoneNumber = phoneNumberField.text, validatePhoneNumber(phoneNumber) else {
-            print("형식에 맞는 핸드폰 번호를 입력해주세요.")
+        guard let email = emailTextField.text, validateEmail(email) else {
+            print("유효한 이메일 형식이 아닙니다. 올바른 이메일을 입력해주세요.")
             return
         }
+        guard let password = passwordTextField.text, validatePassword(password) else {
+            print("비밀번호는 최소 8자 이상이어야 하며, 숫자와 문자를 포함해야 합니다.")
+            return
+        }
+        guard let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty else {
+            print("비밀번호를 확인해주세요.")
+            return
+        }
+        guard password == confirmPassword else {
+            print("비밀번호가 일치하지 않습니다.")
+            return
+        }
+        guard let phoneNumber = phoneNumberField.text, validatePhoneNumber(phoneNumber) else {
+            print("형식에 맞게 입력해주세요.")
+            return
+        }
+
+        let nicknameView = NicknameView(frame: self.frame)
+        nicknameView.previousEmail = email
+        nicknameView.previousPassword = password
+        nicknameView.previousPhoneNumber = phoneNumber
+
+        self.subviews.forEach { $0.removeFromSuperview() }
+        self.addSubview(nicknameView)
     }
 }

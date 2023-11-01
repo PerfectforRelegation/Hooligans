@@ -9,7 +9,13 @@ protocol SigninDisplayLogic: AnyObject {
 final class SigninController: UIViewController {
     var interactor: (SigninBusinessLogic & SigninDataStore)?
     var router: SigninRoutingLogic?
-    
+
+    var previousEmail: String?
+    var previousPassword: String?
+    var previousPhoneNumber: String?
+    var previousNickname: String?
+    var selectedTeam: (name: String, imageName: String)?
+
     init() {
         super.init(nibName: nil, bundle: nil)
         for key in UserDefaults.standard.dictionaryRepresentation().keys {
@@ -154,13 +160,11 @@ extension SigninController {
 //            
 //            print("Email: \(email)")
 //            print("Password: \(password)")
+
             
-            let nicknameView = NicknameView(frame: self.view.frame)
-            self.view = nicknameView
-            
-            //            let signupViewController = SignupViewController()
-            //            let navController = UINavigationController(rootViewController: signupViewController)
-            //            self.present(navController, animated: true, completion: nil)
+//                        let signupViewController = SignupViewController()
+//                        let navController = UINavigationController(rootViewController: signupViewController)
+//                        self.present(navController, animated: true, completion: nil)
             return
         }
         
@@ -170,8 +174,10 @@ extension SigninController {
     
     
     @objc private func clickNewUser() {
-        print("DEBUG :", "clickSignUp")
+        let phonenumberView = PhonenumberView(frame: self.view.frame)
+        self.view = phonenumberView
     }
+
     
     @objc private func clickForgotPassword() {
         print("DEBUG :", "clickForgotPassword")
