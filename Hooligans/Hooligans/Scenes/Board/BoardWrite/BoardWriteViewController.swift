@@ -93,6 +93,10 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
         imageScrollView = UIScrollView()
         view.addSubview(imageScrollView)
+        ///////
+        imageScrollView.layer.borderWidth = 1 
+        imageScrollView.layer.borderColor = UIColor.lightGray.cgColor
+        ///////
         imageScrollView.snp.makeConstraints { make in
             make.top.equalTo(contentTextField.snp.bottom).offset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-100)
