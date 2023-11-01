@@ -37,7 +37,7 @@ class ChatListViewController: UIViewController {
     }
 
     var interactor: (ChatListBusinessLogic & ChatListDataStore)?
-    var router: ChatListRoutingLogic?
+    var router: ChatListRouter?
 
     // MARK: - View Initialize
     typealias DataSource = UICollectionViewDiffableDataSource<Layouts.Chat, Item>
@@ -66,7 +66,6 @@ class ChatListViewController: UIViewController {
         setup()
         setupView()
         bindView()
-        
     }
 
     required init?(coder: NSCoder) {

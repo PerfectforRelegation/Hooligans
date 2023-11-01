@@ -21,9 +21,8 @@ class TabBarController: UITabBarController {
     }
     
     private func setupUI() {
-        self.tabBar.tintColor = .gray
-        self.tabBar.backgroundColor = .lightGray
-        
+        self.tabBar.tintColor = .systemGray6
+        self.tabBar.backgroundColor = .white
         self.tabBar.layer.cornerRadius = tabBar.frame.height * 0.41
         self.tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
@@ -60,4 +59,10 @@ class TabBarController: UITabBarController {
         self.setViewControllers([firstViewController, secondViewController, thirdViewController, fourthViewController], animated: true)
     }
 
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        viewController.navigationController?.popToRootViewController(animated: true)
+    }
 }

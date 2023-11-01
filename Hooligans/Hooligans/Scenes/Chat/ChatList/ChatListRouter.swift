@@ -21,9 +21,8 @@ final class ChatListRouter: ChatListRoutingLogic {
     var dataStore: ChatListDataStore?
     
     func routeToChatView(chatRoom: ChatRoom) {
-        
         let chatRoomViewController = ChatRoomViewController(chatRoom: chatRoom)
-        
+        chatRoomViewController.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(chatRoomViewController, animated: true)
     }
 }

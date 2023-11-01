@@ -65,6 +65,7 @@ class MainViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         setup()
+        bindView()
         interactor?.fetchMainSource(request: MainModels.Main.Request())
     }
 
@@ -83,7 +84,6 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         setupView()
         registerCells()
-        bindView()
     }
 
     private func setup() {

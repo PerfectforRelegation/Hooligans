@@ -474,6 +474,7 @@
 		C14038712AA8869A00933273 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				C1419B5A2ADE9BB6007AA5F6 /* TabBarController.swift */,
 				C15E11792AC94EC700904C79 /* Chat */,
 				C14038C22AC802CA00933273 /* LeagueTable */,
 				DB2A79302AB98FB700F07D82 /* User */,
@@ -679,7 +680,6 @@
 				C14038702AA8869500933273 /* Model */,
 				C14038712AA8869A00933273 /* Scenes */,
 				C1C100EF2A092B3400D6F24F /* AppDelegate.swift */,
-				C1419B5A2ADE9BB6007AA5F6 /* TabBarController.swift */,
 				C1C100F12A092B3400D6F24F /* SceneDelegate.swift */,
 				C1C100FA2A092B3500D6F24F /* LaunchScreen.storyboard */,
 				C1C100FD2A092B3500D6F24F /* Info.plist */,

@@ -25,7 +25,6 @@ final class RequestBuilder {
     
     func header() -> Self {
         if let token = UserDefault.userdeault.getToken() {
-            print(token)
             self.headers?.updateValue(token.accessToken, forKey: "Access_Token")
             self.headers?.updateValue(token.refreshToken, forKey: "Refresh_Token")
         }
