@@ -82,6 +82,23 @@ class ChatBubbleCell: UITableViewCell {
             make.leading.equalTo(10)
             make.trailing.lessThanOrEqualToSuperview().inset(inset.right)
         }
+///////////////////
+        if userImageView.superview != bubbleView {
+            bubbleView.addSubview(userImageView)
+            userImageView.snp.remakeConstraints { make in
+                make.leading.top.equalTo(bubbleView).inset(5)
+                make.width.height.equalTo(30)
+            }
+        }
+
+        if userNameLabel.superview != bubbleView {
+            bubbleView.addSubview(userNameLabel)
+            userNameLabel.snp.remakeConstraints { make in
+                make.top.equalTo(bubbleView).inset(5)
+                make.leading.equalTo(userImageView.snp.trailing).offset(10)
+            }
+        }
+////////////////////
     }
 }
 
