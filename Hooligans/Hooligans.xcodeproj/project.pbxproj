@@ -110,6 +110,7 @@
 		C1DFB2982AEE9E510069525E /* SigninInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4692B62AB990110016ADC7 /* SigninInteractor.swift */; };
 		C1DFB2992AEE9E5E0069525E /* BoardListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C41C20D2AD6F5C1009B05E5 /* BoardListWorker.swift */; };
 		C1DFB29B2AEEC8970069525E /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB29A2AEEC8970069525E /* LaunchScreenViewController.swift */; };
+		C1DFB29D2AF242B30069525E /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DFB29C2AF242B30069525E /* MainService.swift */; };
 		C1FA34412AEBF9620079B94C /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA34402AEBF9620079B94C /* Animation.swift */; };
 		C1FA34432AEBFBBD0079B94C /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA34422AEBFBBD0079B94C /* UserDefault.swift */; };
 		C1FA34462AECDDB80079B94C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA34452AECDDB80079B94C /* UIImageExtension.swift */; };
@@ -245,6 +246,7 @@
 		C1C100FB2A092B3500D6F24F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1C100FD2A092B3500D6F24F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1DFB29A2AEEC8970069525E /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		C1DFB29C2AF242B30069525E /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		C1FA34402AEBF9620079B94C /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		C1FA34422AEBFBBD0079B94C /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		C1FA34452AECDDB80079B94C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				C152DD042AE54C1F002C6153 /* ChatService.swift */,
 				C14053252AEBBA4F00E69B41 /* AccountService.swift */,
 				C1FA344A2AECE9A90079B94C /* BoardService.swift */,
+				C1DFB29C2AF242B30069525E /* MainService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -963,6 +966,7 @@
 				7C41C20A2AD6F5A8009B05E5 /* BoardListInteractor.swift in Sources */,
 				C14038772AB303FD00933273 /* MainInteractor.swift in Sources */,
 				C140530F2AE90C3000E69B41 /* ChatRoom.swift in Sources */,
+				C1DFB29D2AF242B30069525E /* MainService.swift in Sources */,
 				7C41C2122AD6F5D5009B05E5 /* BoardListModels.swift in Sources */,
 				7C63BE322AEBD47900BE9A2E /* NicknameView.swift in Sources */,
 				7C38AAD02AEA4E0200E0650E /* BoardSearchViewController.swift in Sources */,
