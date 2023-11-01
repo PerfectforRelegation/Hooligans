@@ -9,7 +9,7 @@ import UIKit
 
 class ChatBubbleCell: UITableViewCell {
     static let identifier = "ChatListTableViewCell"
-   
+
     var chatRoomLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +18,7 @@ class ChatBubbleCell: UITableViewCell {
         //label.textColor = .white
         return label
     }()
-    
+
     var userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +45,7 @@ class ChatBubbleCell: UITableViewCell {
 
         let inset = UIEdgeInsets(top: 25, left: 10, bottom: 25, right: 10)
         let bubbleView = UIView()
+
         bubbleView.backgroundColor = .white
         bubbleView.layer.cornerRadius = 10
         contentView.addSubview(bubbleView)
@@ -82,23 +83,6 @@ class ChatBubbleCell: UITableViewCell {
             make.leading.equalTo(10)
             make.trailing.lessThanOrEqualToSuperview().inset(inset.right)
         }
-///////////////////
-        if userImageView.superview != bubbleView {
-            bubbleView.addSubview(userImageView)
-            userImageView.snp.remakeConstraints { make in
-                make.leading.top.equalTo(bubbleView).inset(5)
-                make.width.height.equalTo(30)
-            }
-        }
-
-        if userNameLabel.superview != bubbleView {
-            bubbleView.addSubview(userNameLabel)
-            userNameLabel.snp.remakeConstraints { make in
-                make.top.equalTo(bubbleView).inset(5)
-                make.leading.equalTo(userImageView.snp.trailing).offset(10)
-            }
-        }
-////////////////////
     }
 }
 
