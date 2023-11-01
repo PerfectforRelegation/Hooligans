@@ -10,18 +10,17 @@ import Combine
 
 final class MainService {
     
-    func fetchBoardList() -> AnyPublisher<NewsResponse, Error> {
+    func fetchMain() -> AnyPublisher<MainResponse, Error> {
         
-        return NetworkService.shared.get(to: .news)
+        return NetworkService.shared.get(to: .main)
             .tryMap { data, response in
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                     print("http error")
                     throw URLError(.badServerResponse)
                 }
-                
                 return data
             }
-            .decode(type: NewsResponse.self, decoder: JSONDecoder())
+            .decode(type: MainResponse.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 }

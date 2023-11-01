@@ -182,7 +182,6 @@ extension ChatRoomViewController: UITextFieldDelegate {
 }
 
 extension ChatRoomViewController: StompClientLibDelegate {
-    
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         guard let response = stringBody?.data(using: .utf8) else { return }
         

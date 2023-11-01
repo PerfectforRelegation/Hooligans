@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewsCell: UICollectionViewCell {
+final class NewsPostCell: UICollectionViewCell {
     static let identifier = "newsCell"
     
     private let newsIcon: UIImageView = {
@@ -19,9 +19,9 @@ final class NewsCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.numberOfLines = 0
-        label.lineBreakMode = .byCharWrapping
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
     
@@ -40,7 +40,7 @@ final class NewsCell: UICollectionViewCell {
     
 }
 
-extension NewsCell {
+extension NewsPostCell {
     private func setupView() {
         self.backgroundColor = .systemGray6
         self.layer.cornerRadius = self.frame.height * 0.2
@@ -56,7 +56,8 @@ extension NewsCell {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(newsIcon.snp.bottom).offset(15)
             make.leading.equalToSuperview().offset(8)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().inset(10)
         }
     }
 }
