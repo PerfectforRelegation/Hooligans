@@ -42,7 +42,8 @@ class ChatBubbleCell: UITableViewCell {
     }
 
     private func setupSubviews() {
-        let inset = UIEdgeInsets(top: 12, left: 10, bottom: 12, right: 10)
+
+        let inset = UIEdgeInsets(top: 25, left: 10, bottom: 25, right: 10)
         let bubbleView = UIView()
         bubbleView.backgroundColor = .white
         bubbleView.layer.cornerRadius = 10
@@ -51,7 +52,7 @@ class ChatBubbleCell: UITableViewCell {
         contentView.addSubview(userImageView)
         userImageView.snp.makeConstraints { make in
             make.leading.equalTo(contentView).inset(inset.left)
-            make.centerY.equalTo(bubbleView)
+            make.top.equalTo(contentView).offset(5)
             make.width.height.equalTo(30)
         }
 
@@ -59,20 +60,19 @@ class ChatBubbleCell: UITableViewCell {
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.text = "사용자 이름"
         userNameLabel.font = UIFont.systemFont(ofSize: 12)
-        userNameLabel.textColor = .gray
+        userNameLabel.textColor = .white
 
         bubbleView.addSubview(userNameLabel)
 
         userNameLabel.snp.makeConstraints { make in
             make.top.equalTo(userImageView)
-            make.leading.equalTo(userImageView.snp.trailing).offset(8)
-            make.trailing.lessThanOrEqualTo(contentView).inset(inset.right)
+            make.leading.equalTo(userImageView.snp.trailing).offset(10)
         }
 
         bubbleView.snp.makeConstraints { make in
             make.top.equalTo(contentView).inset(inset.top)
-            make.leading.equalTo(userImageView.snp.trailing).offset(8)
-            make.bottom.equalTo(contentView).inset(inset.bottom)
+            make.bottom.equalTo(contentView).offset(-15)
+            make.leading.equalTo(50)
         }
 
         bubbleView.addSubview(chatRoomLabel)

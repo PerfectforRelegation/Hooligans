@@ -10,4 +10,5 @@ import Foundation
 struct ChatRoom: Codable {
     let roomId: String
     let name: String
+    let count: Int
 }

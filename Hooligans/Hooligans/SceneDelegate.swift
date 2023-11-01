@@ -16,25 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-//        var mainViewController: UIViewController?
-        
-//        if let token = UserDefault.userdeault.getToken() {
-//            mainViewController = TabBarController()
-//        } else {
-//            mainViewController = SigninController()
-//        }
-        
-//        guard let mainViewController = mainViewController else { return }
-        
-        
         let launchScreenViewController = LaunchScreenViewController()
-        let rootViewController = UINavigationController(rootViewController: launchScreenViewController)
         
         window?.rootViewController = launchScreenViewController
         window?.makeKeyAndVisible()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.changeRootViewController(SigninController(), animated: true)
+            if let token = UserDefault.userdeault.getToken() {
+                self.changeRootViewController(TabBarController(), animated: true)
+            } else {
+                self.changeRootViewController(SigninController(), animated: true)
+            }
         }
     }
     
