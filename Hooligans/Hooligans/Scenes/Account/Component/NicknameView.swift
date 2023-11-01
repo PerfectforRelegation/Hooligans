@@ -2,6 +2,12 @@ import UIKit
 
 class NicknameView: UIView {
 
+    let backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("뒤로", for: .normal)
+        return button
+    }()
+
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임을 정해주세요"
@@ -40,6 +46,13 @@ class NicknameView: UIView {
     private func setupUI() {
         self.backgroundColor = .white
 
+        self.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
+            make.leading.equalTo(self).offset(20)
+        }
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+
         self.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -66,6 +79,12 @@ class NicknameView: UIView {
             nextButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40)
         ])
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+
+    @objc private func backButtonTapped() {
+        let signinController = SigninController()
+        let navController = UINavigationController(rootViewController: signinController)
+        //self.present(navController, animated: true, completion: nil)
     }
 
     @objc private func nextButtonTapped() {

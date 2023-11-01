@@ -22,7 +22,7 @@ class SelectTeamView: UIView {
 
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("다음", for: .normal)
+        button.setTitle("회원가입", for: .normal)
         button.backgroundColor = .systemIndigo
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
@@ -120,18 +120,18 @@ class SelectTeamView: UIView {
     }
 
     @objc private func nextButtonTapped() {
-        guard let selectedIndexPath = teamsTableView.indexPathForSelectedRow else {
-            print("팀을 선택해주세요.")
-            return
-        }
-        selectedTeam = teams[selectedIndexPath.row]
-
-        guard let phoneNumberView = PhonenumberView(frame: self.frame) as? PhonenumberView else { return }
-        phoneNumberView.previousNickname = previousNickname
-        phoneNumberView.selectedTeam = selectedTeam
-
-        self.superview?.addSubview(phoneNumberView)
-        self.removeFromSuperview()
+//        guard let selectedIndexPath = teamsTableView.indexPathForSelectedRow else {
+//            print("팀을 선택해주세요.")
+//            return
+//        }
+//        selectedTeam = teams[selectedIndexPath.row]
+//
+//        guard let phoneNumberView = PhonenumberView(frame: self.frame) as? PhonenumberView else { return }
+//        phoneNumberView.previousNickname = previousNickname
+//        phoneNumberView.selectedTeam = selectedTeam
+//
+//        self.superview?.addSubview(phoneNumberView)
+//        self.removeFromSuperview()
     }
 }
 

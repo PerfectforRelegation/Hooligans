@@ -154,13 +154,11 @@ extension SigninController {
 //            
 //            print("Email: \(email)")
 //            print("Password: \(password)")
+
             
-            let nicknameView = NicknameView(frame: self.view.frame)
-            self.view = nicknameView
-            
-            //            let signupViewController = SignupViewController()
-            //            let navController = UINavigationController(rootViewController: signupViewController)
-            //            self.present(navController, animated: true, completion: nil)
+//                        let signupViewController = SignupViewController()
+//                        let navController = UINavigationController(rootViewController: signupViewController)
+//                        self.present(navController, animated: true, completion: nil)
             return
         }
         
@@ -170,8 +168,10 @@ extension SigninController {
     
     
     @objc private func clickNewUser() {
-        print("DEBUG :", "clickSignUp")
+        let phonenumberView = PhonenumberView(frame: self.view.frame)
+        self.view = phonenumberView
     }
+
     
     @objc private func clickForgotPassword() {
         print("DEBUG :", "clickForgotPassword")
