@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 
 class PhonenumberView: UIView {
-
     //var previousNickname: String?
     //var selectedTeam: (name: String, imageName: String)?
 
@@ -88,7 +87,7 @@ class PhonenumberView: UIView {
 
         self.addSubview(emailTextField)
         emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(RegisterLabel.snp.bottom).offset(20)
+            make.top.equalTo(RegisterLabel.snp.bottom).offset(50)
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).offset(-20)
             make.height.equalTo(40)
@@ -182,5 +181,13 @@ class PhonenumberView: UIView {
             print("형식에 맞게 입력해주세요.")
             return
         }
+
+        let nicknameView = NicknameView(frame: self.frame)
+        nicknameView.previousEmail = email
+        nicknameView.previousPassword = password
+        nicknameView.previousPhoneNumber = phoneNumber
+
+        self.subviews.forEach { $0.removeFromSuperview() }
+        self.addSubview(nicknameView)
     }
 }

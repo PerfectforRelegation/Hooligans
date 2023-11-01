@@ -9,7 +9,13 @@ protocol SigninDisplayLogic: AnyObject {
 final class SigninController: UIViewController {
     var interactor: (SigninBusinessLogic & SigninDataStore)?
     var router: SigninRoutingLogic?
-    
+
+    var previousEmail: String?
+    var previousPassword: String?
+    var previousPhoneNumber: String?
+    var previousNickname: String?
+    var selectedTeam: (name: String, imageName: String)?
+
     init() {
         super.init(nibName: nil, bundle: nil)
         for key in UserDefaults.standard.dictionaryRepresentation().keys {
