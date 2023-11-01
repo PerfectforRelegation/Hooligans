@@ -1,6 +1,17 @@
 import UIKit
+import SnapKit
 
 class NicknameView: UIView {
+
+    var previousEmail: String?
+    var previousPassword: String?
+    var previousPhoneNumber: String?
+
+    let backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("뒤로", for: .normal)
+        return button
+    }()
 
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -40,44 +51,59 @@ class NicknameView: UIView {
     private func setupUI() {
         self.backgroundColor = .white
 
-        self.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
-            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-        ])
+        addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(20)
+            make.leading.equalTo(self).offset(20)
+        }
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
 
-        self.addSubview(nicknameField)
-        nicknameField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nicknameField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 50),
-            nicknameField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            nicknameField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            nicknameField.heightAnchor.constraint(equalToConstant: 40)
-        ])
+        addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(100)
+            make.leading.trailing.equalTo(self)
+        }
 
-        self.addSubview(nextButton)
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            nextButton.heightAnchor.constraint(equalToConstant: 50),
-            nextButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40)
-        ])
+        addSubview(nicknameField)
+        nicknameField.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(50)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(40)
+        }
+
+        addSubview(nextButton)
+        nextButton.snp.makeConstraints { make in
+            make.centerX.equalTo(self)
+            make.leading.equalTo(self).offset(20)
+            make.height.equalTo(50)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-40)
+        }
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+
+    @objc private func backButtonTapped() {
+        guard let phonenumberView = PhonenumberView(frame: frame) as? PhonenumberView else { return }
+        phonenumberView.emailTextField.text = previousEmail
+        phonenumberView.passwordTextField.text = previousPassword
+        phonenumberView.phoneNumberField.text = previousPhoneNumber
+
+        superview?.addSubview(phonenumberView)
+        removeFromSuperview()
     }
 
     @objc private func nextButtonTapped() {
         if let nickname = nicknameField.text, !nickname.isEmpty {
-            let selectTeamView = SelectTeamView(frame: self.frame)
+            let selectTeamView = SelectTeamView(frame: frame)
+            selectTeamView.previousEmail = previousEmail
+            selectTeamView.previousPassword = previousPassword
+            selectTeamView.previousPhoneNumber = previousPhoneNumber
             selectTeamView.previousNickname = nickname
 
-            self.subviews.forEach { $0.removeFromSuperview() }
-            self.addSubview(selectTeamView)
+            subviews.forEach { $0.removeFromSuperview() }
+            addSubview(selectTeamView)
         } else {
             print("닉네임을 입력해주세요.")
         }
     }
 }
-
