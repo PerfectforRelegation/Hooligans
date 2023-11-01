@@ -74,7 +74,7 @@ class ChatRoomViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        StompManager.shard.disconnect()
+        StompManager.shard.disconnect(chatRoom: chatRoom)
     }
     
     private func setup() {
@@ -197,6 +197,7 @@ extension ChatRoomViewController: StompClientLibDelegate {
                 }
             } receiveValue: { message in
                 self.messages.append(message)
+                print(message)
                 self.tableView.reloadData()
             }
             .store(in: &cancellables)
@@ -209,7 +210,6 @@ extension ChatRoomViewController: StompClientLibDelegate {
     
     func stompClientDidConnect(client: StompClientLib!) {
         print("Stomp socket is connected")
-        
         StompManager.shard.subscribe(chatRoom: chatRoom)
     }
     

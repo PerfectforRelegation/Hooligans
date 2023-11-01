@@ -26,8 +26,10 @@ final class StompManager {
             
     }
     
-    func disconnect() {
+    func disconnect(chatRoom: ChatRoom) {
+        sendMessage(type: "QUIT", roomId: chatRoom.roomId, message: "")
         socket?.disconnect()
+        
     }
     
     func subscribe(chatRoom: ChatRoom) {
@@ -47,7 +49,7 @@ final class StompManager {
             "message": message
 
         ]
-        print(payloadObject)
+        
         socket?.sendJSONForDict(dict: payloadObject as AnyObject, toDestination: "/pub/chat/message")
     }
 }
@@ -56,7 +58,6 @@ extension StompManager: StompClientLibDelegate {
     
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         guard let response = stringBody?.data(using: .utf8) else { return }
-        print("123")
         
 //        self.interactor?.getChatMessage(message: response)
     }

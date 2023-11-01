@@ -51,6 +51,12 @@ extension MainHeaderView {
             make.bottom.equalToSuperview().inset(20)
             make.width.height.equalTo(30)
         }
-        
+        infoButton.addTarget(self, action: #selector(toLoginView), for: .touchUpInside)
+    }
+    
+    @objc func toLoginView() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.changeRootViewController(SigninController(), animated: false)
+        }
     }
 }
