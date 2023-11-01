@@ -22,37 +22,54 @@ class ChatRoomViewController: UIViewController {
     
     private var chatRoom: ChatRoom!
     var messages: [Message] = []
-    
-    private let headerView: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.frame = CGRect(origin: .zero, size: .zero)
-        button.setTitle("click", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        return button
+
+    private let headerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor =  UIColor(red: 0.2549, green: 0.2706, blue: 0.3176, alpha: 1.0)
+        return view
     }()
-    
+
+    private let teamNameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.frame = CGRect(origin: .zero, size: .zero)
-        table.backgroundColor = .yellow
+        //table.backgroundColor = .white
+        table.backgroundColor =  UIColor(red: 0.2549, green: 0.2706, blue: 0.3176, alpha: 1.0)
         return table
     }()
-   
-    private let chatTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = .blue
-        return textField
+
+    private let chatTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        textView.layer.cornerRadius = 20
+        textView.layer.masksToBounds = true
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.isScrollEnabled = false
+        return textView
     }()
     
     private let sendButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .gray
-        button.layer.cornerRadius = 10
+        let buttonImage = UIImage(systemName: "paperplane.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 35))
+            .withRenderingMode(.alwaysTemplate)
+        button.backgroundColor = .clear
+        button.setImage(buttonImage, for: .normal)
+        button.tintColor = UIColor(red: 0.1529, green: 0.1804, blue: 0.498, alpha: 1.0)
+        button.transform = CGAffineTransform(rotationAngle: .pi / 4)
+
         return button
     }()
-    
+
     init(chatRoom: ChatRoom) {
         super.init(nibName: nil, bundle: nil)
         self.chatRoom = chatRoom
@@ -69,14 +86,23 @@ class ChatRoomViewController: UIViewController {
         registerCell()
         tableView.delegate = self
         tableView.dataSource = self
-        
+        chatTextView.delegate = self
+
+        let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backAction))
+        navigationItem.leftBarButtonItem = backButton
+        backButton.tintColor = .black
+
+        teamNameLabel.text = "Selected Team Name"
+
+        let teamNameItem = UIBarButtonItem(customView: teamNameLabel)
+        navigationItem.rightBarButtonItem = teamNameItem
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         StompManager.shard.disconnect(chatRoom: chatRoom)
     }
-    
+
     private func setup() {
         let viewController = self
         let interactor = ChatRoomInteractor()
@@ -104,28 +130,30 @@ extension ChatRoomViewController {
         self.view.addSubview(sendButton)
         
         sendButton.snp.makeConstraints { make in
-            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.height.width.equalTo(50)
+            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
+            make.height.width.equalTo(40)
         }
-        
+
         sendButton.addTarget(self, action: #selector(sendMessageSTOMP), for: .touchUpInside)
-        
-        self.view.addSubview(chatTextField)
-        
-        chatTextField.snp.makeConstraints { make in
-//            make.trailing.equalTo(sendButton.snp.leading).inset(120)
-            make.leading.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(50)
-            make.width.equalTo(120)
+
+
+        self.view.addSubview(chatTextView)
+        chatTextView.snp.makeConstraints { make in
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
+            make.height.equalTo(40)
+            make.width.equalTo(330)
         }
-        
+
+//        
         self.view.addSubview(headerView)
-        
+
         headerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(80)
+            make.height.equalTo(10)
         }
-        
+
         
 //        self.headerView.addTarget(self, action: #selector(subscribeSTOMP), for: .touchUpInside)
         
@@ -134,13 +162,17 @@ extension ChatRoomViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(chatTextField.snp.top)
+            make.bottom.equalTo(chatTextView.snp.top).offset(-5)
         }
         
     }
     
     @objc func sendMessageSTOMP() {
         StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId, message: "hi")
+    }
+
+    @objc func backAction() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -155,6 +187,10 @@ extension ChatRoomViewController: ChatRoomDisplayLogic {
 }
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 70
+        }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count
@@ -179,6 +215,18 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ChatRoomViewController: UITextFieldDelegate {
     
+}
+
+extension ChatRoomViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+
+        textView.snp.updateConstraints { make in
+        // 텍스트뷰 높이 동적으로 변경
+        make.height.equalTo(estimatedSize.height)
+        }
+    }
 }
 
 extension ChatRoomViewController: StompClientLibDelegate {
@@ -227,7 +275,5 @@ extension ChatRoomViewController: StompClientLibDelegate {
     func serverDidSendPing() {
         print("Server ping")
     }
-    
-    
 }
 
