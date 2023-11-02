@@ -93,15 +93,12 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
         imageScrollView = UIScrollView()
         view.addSubview(imageScrollView)
-        ///////
-        imageScrollView.layer.borderWidth = 1 
-        imageScrollView.layer.borderColor = UIColor.lightGray.cgColor
-        ///////
+
         imageScrollView.snp.makeConstraints { make in
-            make.top.equalTo(contentTextField.snp.bottom).offset(20)
+            make.top.equalTo(contentTextField.snp.top).offset(150)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-100)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(100)
+            make.height.equalTo(150)
         }
 
         // 사진 추가
@@ -124,19 +121,18 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
         imageView.layer.masksToBounds = true
         imageScrollView.addSubview(imageView)
 
-        let imageWidth = 50
+        let imageWidth = 90
         let spacing = 10
         let xPosition = (imageWidth + spacing) * imageScrollView.subviews.count
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
-            //make.leading.equalToSuperview().offset(10)
-            make.leading.equalToSuperview().offset(xPosition)
+            make.leading.equalTo(imageScrollView.snp.leading).offset(xPosition-290)
             make.width.equalTo(imageWidth)
             make.height.equalTo(imageWidth)
         }
 
         contentTextField.snp.updateConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-400)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-450)
         }
         let contentWidth = (imageWidth + spacing) * imageScrollView.subviews.count
         imageScrollView.contentSize = CGSize(width: contentWidth, height: 100)
