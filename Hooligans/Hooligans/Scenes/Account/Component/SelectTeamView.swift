@@ -39,26 +39,26 @@ class SelectTeamView: UIView {
     }()
 
     let teams: [(name: String, imageName: String)] = [
-        (name: "아스날", imageName: "ARS"),
-        //(name: "아스톤 빌라", imageName: "AVL"),
-        (name: "브라이튼", imageName: "BHA"),
-        (name: "본머스", imageName: "BOU"),
-        (name: "브렌트포드", imageName: "BRE"),
-        (name: "번리", imageName: "BUR"),
-        (name: "첼시", imageName: "CHE"),
-        (name: "크리스탈 팰리스", imageName: "CRY"),
-        (name: "에버턴", imageName: "EVE"),
-        (name: "풀럼", imageName: "FUL"),
-        (name: "리버풀", imageName: "LIV"),
+        (name: "노팅엄", imageName: "NFO"),
+        (name: "뉴캐슬", imageName: "NEW"),
         (name: "루턴 타운", imageName: "LUT"),
+        (name: "리버풀", imageName: "LIV"),
         (name: "맨시티", imageName: "MCI"),
         (name: "맨유", imageName: "MUN"),
-        (name: "뉴캐슬", imageName: "NEW"),
-        (name: "노팅엄", imageName: "NFO"),
+        (name: "번리", imageName: "BUR"),
+        (name: "본머스", imageName: "BOU"),
+        (name: "브라이튼", imageName: "BHA"),
+        (name: "브렌트포드", imageName: "BRE"),
         (name: "셰필드", imageName: "SHU"),
-        (name: "토트넘", imageName: "TOT"),
+        (name: "아스날", imageName: "ARS"),
+        //(name: "아스톤 빌라", imageName: "AVL"),
+        (name: "울버햄튼", imageName: "WOL"),
+        (name: "에버턴", imageName: "EVE"),
         (name: "웨스트햄", imageName: "WHU"),
-        (name: "울버햄튼", imageName: "WOL")
+        (name: "첼시", imageName: "CHE"),
+        (name: "크리스탈 팰리스", imageName: "CRY"),
+        (name: "토트넘", imageName: "TOT"),
+        (name: "풀럼", imageName: "FUL")
     ]
 
     override init(frame: CGRect) {
@@ -93,13 +93,13 @@ class SelectTeamView: UIView {
         teamsTableView.delegate = self
         teamsTableView.dataSource = self
         teamsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "TeamCell")
-        
+
         self.addSubview(teamsTableView)
         teamsTableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.top.equalTo(titleLabel.snp.bottom).offset(25)
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).offset(-20)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-150)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-115)
         }
 
         self.addSubview(nextButton)

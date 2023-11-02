@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class PhonenumberView: UIView {
+class PhonenumberView: UIView, UITextFieldDelegate {
     //var previousNickname: String?
     //var selectedTeam: (name: String, imageName: String)?
 
@@ -23,14 +23,12 @@ class PhonenumberView: UIView {
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "아이디(이메일)"
-        textField.borderStyle = .roundedRect
         return textField
     }()
 
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "비밀번호"
-        textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
         return textField
     }()
@@ -38,15 +36,13 @@ class PhonenumberView: UIView {
     let confirmPasswordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "비밀번호 확인"
-        textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
         return textField
     }()
 
     let phoneNumberField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "ex) 01012345678"
-        textField.borderStyle = .roundedRect
+        textField.placeholder = "휴대폰 번호"
         return textField
     }()
 
@@ -63,6 +59,11 @@ class PhonenumberView: UIView {
         super.init(frame: frame)
         setupUI()
         hideKeyboardWhenTappedAround()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
+        phoneNumberField.delegate = self
+        phoneNumberField.keyboardType = .numberPad
     }
 
     required init?(coder: NSCoder) {
@@ -96,7 +97,7 @@ class PhonenumberView: UIView {
 
         self.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+            make.top.equalTo(emailTextField.snp.bottom).offset(50)
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).offset(-20)
             make.height.equalTo(40)
@@ -104,7 +105,7 @@ class PhonenumberView: UIView {
 
         self.addSubview(confirmPasswordTextField)
         confirmPasswordTextField.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(20)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(50)
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).offset(-20)
             make.height.equalTo(40)
@@ -112,7 +113,7 @@ class PhonenumberView: UIView {
 
         self.addSubview(phoneNumberField)
         phoneNumberField.snp.makeConstraints { make in
-            make.top.equalTo(confirmPasswordTextField.snp.bottom).offset(20)
+            make.top.equalTo(confirmPasswordTextField.snp.bottom).offset(50)
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).offset(-20)
             make.height.equalTo(40)
@@ -136,6 +137,46 @@ class PhonenumberView: UIView {
         }
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        addBottomLine(to: emailTextField)
+        addBottomLine(to: passwordTextField)
+        addBottomLine(to: confirmPasswordTextField)
+        addBottomLine(to: phoneNumberField)
+    }
+
+    private func addBottomLine(to textField: UITextField) {
+        let bottomLine = CAShapeLayer()
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0.0, y: textField.bounds.size.height - 1))
+        path.addLine(to: CGPoint(x: textField.bounds.size.width, y: textField.bounds.size.height - 1))
+        bottomLine.path = path.cgPath
+        bottomLine.strokeColor = UIColor.lightGray.cgColor
+        textField.layer.addSublayer(bottomLine)
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        setBottomLineColor(of: textField, to: .systemIndigo)
+        setBottomLineProperties(of: textField, with: 1.2)
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        setBottomLineColor(of: textField, to: .systemGray5)
+    }
+    
+    func setBottomLineProperties(of textField: UITextField, with thickness: CGFloat) {
+        if let bottomLine = textField.layer.sublayers?.first as? CAShapeLayer {
+            bottomLine.lineWidth = thickness
+        }
+    }
+
+    private func setBottomLineColor(of textField: UITextField, to color: UIColor) {
+        if let bottomLine = textField.layer.sublayers?.first as? CAShapeLayer {
+            bottomLine.strokeColor = color.cgColor
+        }
+    }
+
 
     private func validateEmail(_ email: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
