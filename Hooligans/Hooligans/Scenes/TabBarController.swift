@@ -30,30 +30,30 @@ class TabBarController: UITabBarController {
     private func setupTabBarItem() {
         let firstViewController = UINavigationController(rootViewController: MainViewController())
         
-        firstViewController.tabBarItem.image = UIImage(systemName: "star.fill")
-        firstViewController.tabBarItem.selectedImage = UIImage(systemName: "star")
-        firstViewController.tabBarItem.title = "Main"
+        firstViewController.tabBarItem.image = UIImage(systemName: "house.fill")
+        firstViewController.tabBarItem.selectedImage = UIImage(systemName: "house")
+        firstViewController.tabBarItem.title = "홈"
         firstViewController.tabBarItem.tag = 0
         
         let secondViewController = UINavigationController(rootViewController: ChatListViewController())
         
-        secondViewController.tabBarItem.image = UIImage(systemName: "star.fill")
-        secondViewController.tabBarItem.selectedImage = UIImage(systemName: "star")
-        secondViewController.tabBarItem.title = "Main"
+        secondViewController.tabBarItem.image = UIImage(systemName: "text.bubble.fill")
+        secondViewController.tabBarItem.selectedImage = UIImage(systemName: "text.bubble")
+        secondViewController.tabBarItem.title = "채팅"
         secondViewController.tabBarItem.tag = 1
         
         let thirdViewController = UINavigationController(rootViewController: BoardListViewController())
         
-        thirdViewController.tabBarItem.image = UIImage(systemName: "star.fill")
-        thirdViewController.tabBarItem.selectedImage = UIImage(systemName: "star")
-        thirdViewController.tabBarItem.title = "Main"
+        thirdViewController.tabBarItem.image = UIImage(systemName: "list.bullet.clipboard.fill")
+        thirdViewController.tabBarItem.selectedImage = UIImage(systemName: "list.bullet.clipboard")
+        thirdViewController.tabBarItem.title = "게시판"
         thirdViewController.tabBarItem.tag = 2
         
         let fourthViewController = UINavigationController(rootViewController: BetListViewController())
         
-        fourthViewController.tabBarItem.image = UIImage(systemName: "star.fill")
-        fourthViewController.tabBarItem.selectedImage = UIImage(systemName: "star")
-        fourthViewController.tabBarItem.title = "Main"
+        fourthViewController.tabBarItem.image = UIImage(systemName: "gamecontroller.fill")
+        fourthViewController.tabBarItem.selectedImage = UIImage(systemName: "gamecontroller")
+        fourthViewController.tabBarItem.title = "배팅"
         fourthViewController.tabBarItem.tag = 3
         
         self.setViewControllers([firstViewController, secondViewController, thirdViewController, fourthViewController], animated: true)
