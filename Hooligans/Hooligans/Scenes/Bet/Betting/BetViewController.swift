@@ -15,7 +15,7 @@ class BetViewController: UIViewController {
     
     private var teams: [String]?
     private var selectedTeam: Int = 0
-    
+
     private let homeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGray6
@@ -65,7 +65,9 @@ class BetViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .link
         button.setTitle("배팅하기", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .systemIndigo
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
         return button
     }()
     
