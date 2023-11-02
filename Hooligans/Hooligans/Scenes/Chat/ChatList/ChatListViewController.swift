@@ -16,14 +16,14 @@ protocol ChatListDisplayLogic: AnyObject {
 class ChatListViewController: UIViewController {
 
     struct Item: Hashable {
-
         let data: Any
         let section: ChatListModels.Section
-        let identifier = UUID()
-
-        init(data: Any, section: ChatListModels.Section) {
+        let identifier: String
+        
+        init(data: Any, section: ChatListModels.Section, identifier: String) {
             self.data = data
             self.section = section
+            self.identifier = identifier
         }
 
         func hash(into hasher: inout Hasher) {
@@ -37,7 +37,7 @@ class ChatListViewController: UIViewController {
     }
 
     var interactor: (ChatListBusinessLogic & ChatListDataStore)?
-    var router: ChatListRoutingLogic?
+    var router: ChatListRouter?
 
     // MARK: - View Initialize
     typealias DataSource = UICollectionViewDiffableDataSource<Layouts.Chat, Item>
@@ -66,7 +66,6 @@ class ChatListViewController: UIViewController {
         setup()
         setupView()
         bindView()
-        interactor?.fetchChatRoomList(request: ChatListModels.ChatRoomList.Request())
     }
 
     required init?(coder: NSCoder) {
@@ -82,6 +81,7 @@ class ChatListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        interactor?.fetchChatRoomList(request: ChatListModels.ChatRoomList.Request())
     }
 
     private func setup() {
@@ -109,13 +109,11 @@ class ChatListViewController: UIViewController {
 
 extension ChatListViewController {
     private func setupView() {
-
         self.view.addSubview(collectionView)
 
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
     }
 
 
@@ -156,7 +154,6 @@ extension ChatListViewController {
 
     private func bindView() {
         snapshot.appendSections([.tabItem, .pageView])
-        snapshot.appendItems([Item(data: TabItem(title: "Fixtures", isTabbed: true), section: .tabItem), Item(data: TabItem(title: "Team", isTabbed: false), section: .tabItem)], toSection: .tabItem)
         self.dataSource.apply(self.snapshot)
     }
 
@@ -175,11 +172,13 @@ extension ChatListViewController: ChatListDisplayLogic {
 
     func displayChatRoomList(viewModel: ChatListModels.ChatRoomList.ViewModel) {
         DispatchQueue.main.async {
+            var snapShot = self.dataSource.snapshot()
             viewModel.chatRooms.forEach { chatRoom in
-                let chatRoomItem = Item(data: chatRoom, section: .pageView)
-                self.snapshot.appendItems([chatRoomItem], toSection: .pageView)
-                self.dataSource.apply(self.snapshot)
+                let chatRoomItem = Item(data: chatRoom, section: .pageView, identifier: chatRoom.roomId)
+                snapShot.deleteItems([chatRoomItem])
+                snapShot.appendItems([chatRoomItem], toSection: .pageView)
             }
+            self.dataSource.apply(snapShot)
         }
     }
 }

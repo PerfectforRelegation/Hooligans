@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainPresentationLogic: AnyObject {
-    func presentationUser(response: MainModels.Users.Response)
+    func presentationMainSource(response: MainModels.Main.Response)
 }
 
 final class MainPresenter {
@@ -16,12 +16,10 @@ final class MainPresenter {
 }
 
 extension MainPresenter: MainPresentationLogic {
-    
-    func presentationUser(response: MainModels.Users.Response) {
+    func presentationMainSource(response: MainModels.Main.Response) {
+        guard let mainSource = response.main else { return }
         
-        guard let users = response.users else { return }
-        
-        let viewModel = MainModels.Users.ViewModel(users: users)
+        let viewModel = MainModels.Main.ViewModel(mainSource: mainSource)
         
         viewController?.displaySomething(viewModel: viewModel)
     }

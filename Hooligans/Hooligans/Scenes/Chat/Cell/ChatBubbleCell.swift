@@ -15,6 +15,8 @@ class ChatBubbleCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.frame = CGRect(origin: .zero, size: .zero)
         label.text = "room1"
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         //label.textColor = .white
         return label
     }()
@@ -25,6 +27,14 @@ class ChatBubbleCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "coin")
         return imageView
+    }()
+    
+    let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "사용자 이름"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .white
+        return label
     }()
 
     override func awakeFromNib() {
@@ -57,14 +67,8 @@ class ChatBubbleCell: UITableViewCell {
             make.width.height.equalTo(30)
         }
 
-        let userNameLabel = UILabel()
-        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        userNameLabel.text = "사용자 이름"
-        userNameLabel.font = UIFont.systemFont(ofSize: 12)
-        userNameLabel.textColor = .white
 
         bubbleView.addSubview(userNameLabel)
-
         userNameLabel.snp.makeConstraints { make in
             make.top.equalTo(userImageView)
             make.leading.equalTo(userImageView.snp.trailing).offset(10)
@@ -74,14 +78,15 @@ class ChatBubbleCell: UITableViewCell {
             make.top.equalTo(contentView).inset(inset.top)
             make.bottom.equalTo(contentView).offset(-15)
             make.leading.equalTo(50)
+            make.trailing.lessThanOrEqualToSuperview().inset(10)
         }
 
         bubbleView.addSubview(chatRoomLabel)
 
         chatRoomLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(10)
-            make.trailing.lessThanOrEqualToSuperview().inset(inset.right)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().inset(10)
         }
     }
 }
@@ -93,3 +98,4 @@ extension ChatBubbleCell {
         self.layer.cornerRadius = frameHeight * 0.2
     }
 }
+ 

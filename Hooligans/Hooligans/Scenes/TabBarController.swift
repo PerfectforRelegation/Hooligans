@@ -21,9 +21,8 @@ class TabBarController: UITabBarController {
     }
     
     private func setupUI() {
-        self.tabBar.tintColor = .gray
-        self.tabBar.backgroundColor = .lightGray
-        
+        self.tabBar.tintColor = .systemGray6
+        self.tabBar.backgroundColor = .white
         self.tabBar.layer.cornerRadius = tabBar.frame.height * 0.41
         self.tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
@@ -50,7 +49,7 @@ class TabBarController: UITabBarController {
         thirdViewController.tabBarItem.title = "Main"
         thirdViewController.tabBarItem.tag = 2
         
-        let fourthViewController = UINavigationController(rootViewController: UserViewController())
+        let fourthViewController = UINavigationController(rootViewController: BetListViewController())
         
         fourthViewController.tabBarItem.image = UIImage(systemName: "star.fill")
         fourthViewController.tabBarItem.selectedImage = UIImage(systemName: "star")
@@ -60,4 +59,10 @@ class TabBarController: UITabBarController {
         self.setViewControllers([firstViewController, secondViewController, thirdViewController, fourthViewController], animated: true)
     }
 
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        viewController.navigationController?.popToRootViewController(animated: true)
+    }
 }

@@ -23,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             if let token = UserDefault.userdeault.getToken() {
-                self.changeRootViewController(TabBarController(), animated: true)
+                let tabBarController = UINavigationController(rootViewController: TabBarController())
+                self.changeRootViewController(tabBarController, animated: true)
             } else {
                 self.changeRootViewController(SigninController(), animated: true)
             }

@@ -9,6 +9,7 @@ import Foundation
 
 final class RequestBuilder {
     private var targetURL: URL?
+    private var param: String?
     private var httpMethod: HTTPMethod = .get
     private var body: Data?
     private var headers: [String: String]? = ["Content-Type": "application/json"]
@@ -17,7 +18,7 @@ final class RequestBuilder {
         self.targetURL = url
         return self
     }
-    
+
     func method(_ method: HTTPMethod) -> Self {
         self.httpMethod = method
         return self

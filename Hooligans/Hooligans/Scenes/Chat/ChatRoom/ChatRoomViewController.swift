@@ -17,19 +17,19 @@ protocol ChatRoomDisplayLogic {
 class ChatRoomViewController: UIViewController {
     var interactor: (ChatRoomBusinessLogic & ChatRoomDataStore)?
     
-//    private let stomp: StompManager?
+    //    private let stomp: StompManager?
     private var cancellables = Set<AnyCancellable>()
     
     private var chatRoom: ChatRoom!
     var messages: [Message] = []
-
+    
     private let headerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor =  UIColor(red: 0.2549, green: 0.2706, blue: 0.3176, alpha: 1.0)
         return view
     }()
-
+    
     private let teamNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -37,7 +37,7 @@ class ChatRoomViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
-
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ class ChatRoomViewController: UIViewController {
         table.backgroundColor =  UIColor(red: 0.2549, green: 0.2706, blue: 0.3176, alpha: 1.0)
         return table
     }()
-
+    
     private let chatTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = UIColor.black.withAlphaComponent(0.1)
@@ -66,10 +66,10 @@ class ChatRoomViewController: UIViewController {
         button.setImage(buttonImage, for: .normal)
         button.tintColor = UIColor(red: 0.1529, green: 0.1804, blue: 0.498, alpha: 1.0)
         button.transform = CGAffineTransform(rotationAngle: .pi / 4)
-
+        
         return button
     }()
-
+    
     init(chatRoom: ChatRoom) {
         super.init(nibName: nil, bundle: nil)
         self.chatRoom = chatRoom
@@ -84,38 +84,43 @@ class ChatRoomViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         registerCell()
+        hideKeyboardWhenTappedAround()
         tableView.delegate = self
         tableView.dataSource = self
         chatTextView.delegate = self
-
+        teamNameLabel.text = chatRoom.name
         let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backAction))
         navigationItem.leftBarButtonItem = backButton
         backButton.tintColor = .black
-
-        teamNameLabel.text = "Selected Team Name"
-
+        
         let teamNameItem = UIBarButtonItem(customView: teamNameLabel)
         navigationItem.rightBarButtonItem = teamNameItem
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addKeyboardNotifications()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.removeKeyboardNotifications()
         StompManager.shard.disconnect(chatRoom: chatRoom)
     }
-
+    
     private func setup() {
         let viewController = self
         let interactor = ChatRoomInteractor()
         let presenter = ChatRoomPresenter()
-//        let router = ChatRoomRouter()
+        //        let router = ChatRoomRouter()
         viewController.interactor = interactor
-//        viewController.router = router
+        //        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-//        router.viewController = viewController
-//        router.dataStore = interactor
+        //        router.viewController = viewController
+        //        router.dataStore = interactor
     }
-        
+    
     private func registerCell() {
         tableView.register(ChatBubbleCell.self, forCellReuseIdentifier: ChatBubbleCell.identifier)
         tableView.register(MyChatBubbleCell.self, forCellReuseIdentifier: MyChatBubbleCell.identifier)
@@ -134,10 +139,10 @@ extension ChatRoomViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
             make.height.width.equalTo(40)
         }
-
+        
         sendButton.addTarget(self, action: #selector(sendMessageSTOMP), for: .touchUpInside)
-
-
+        
+        
         self.view.addSubview(chatTextView)
         chatTextView.snp.makeConstraints { make in
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
@@ -145,17 +150,17 @@ extension ChatRoomViewController {
             make.height.equalTo(40)
             make.width.equalTo(330)
         }
-
-//        
+        
+        //
         self.view.addSubview(headerView)
-
+        
         headerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(10)
         }
-
         
-//        self.headerView.addTarget(self, action: #selector(subscribeSTOMP), for: .touchUpInside)
+        
+        //        self.headerView.addTarget(self, action: #selector(subscribeSTOMP), for: .touchUpInside)
         
         self.view.addSubview(tableView)
         
@@ -167,10 +172,64 @@ extension ChatRoomViewController {
         
     }
     
-    @objc func sendMessageSTOMP() {
-        StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId, message: "hi")
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
-
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // 노티피케이션을 추가하는 메서드
+    func addKeyboardNotifications(){
+        // 키보드가 나타날 때 앱에게 알리는 메서드 추가
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
+        // 키보드가 사라질 때 앱에게 알리는 메서드 추가
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // 노티피케이션을 제거하는 메서드
+    func removeKeyboardNotifications(){
+        // 키보드가 나타날 때 앱에게 알리는 메서드 제거
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
+        // 키보드가 사라질 때 앱에게 알리는 메서드 제거
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ noti: NSNotification){
+        // 키보드가 나타날 때 코드
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            let bottomInset = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets.bottom ?? 0
+            let adjustedKeyboardHeight = keyboardHeight - bottomInset
+            // bottomBaseView의 높이를 올려준다
+            chatTextView.snp.updateConstraints{ make in
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(keyboardHeight)
+            }
+            
+            
+            view.layoutIfNeeded()
+        }
+        
+    }
+    
+    @objc func keyboardWillHide(_ noti: NSNotification){
+        // 키보드가 사라졌을 때 코드
+        chatTextView.snp.updateConstraints{ make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(5)
+        }
+    }
+    
+    
+    
+    @objc func sendMessageSTOMP() {
+        StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId, message: self.chatTextView.text)
+        self.chatTextView.text = ""
+    }
+    
     @objc func backAction() {
         navigationController?.popViewController(animated: true)
     }
@@ -187,10 +246,10 @@ extension ChatRoomViewController: ChatRoomDisplayLogic {
 }
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 70
-        }
+        return 70
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count
@@ -207,6 +266,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let usercell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleCell.identifier, for: indexPath) as? ChatBubbleCell else { return UITableViewCell() }
         usercell.chatRoomLabel.text = self.messages[indexPath.row].message
+        usercell.userNameLabel.text = self.messages[indexPath.row].sender
         
         return usercell
     }
@@ -221,16 +281,15 @@ extension ChatRoomViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         let size = CGSize(width: textView.frame.width, height: .infinity)
         let estimatedSize = textView.sizeThatFits(size)
-
+        
         textView.snp.updateConstraints { make in
-        // 텍스트뷰 높이 동적으로 변경
-        make.height.equalTo(estimatedSize.height)
+            // 텍스트뷰 높이 동적으로 변경
+            make.height.equalTo(estimatedSize.height)
         }
     }
 }
 
 extension ChatRoomViewController: StompClientLibDelegate {
-    
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         guard let response = stringBody?.data(using: .utf8) else { return }
         
@@ -249,7 +308,7 @@ extension ChatRoomViewController: StompClientLibDelegate {
                 self.tableView.reloadData()
             }
             .store(in: &cancellables)
-//        self.interactor?.getChatMessage(message: response)
+        //        self.interactor?.getChatMessage(message: response)
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -268,9 +327,9 @@ extension ChatRoomViewController: StompClientLibDelegate {
     func serverDidSendError(client: StompClientLib!, withErrorMessage description: String, detailedErrorMessage message: String?) {
         print("Error send: " + description)
         
-//        stomp.disconnect()
-//        registerSocket()
-   
+        //        stomp.disconnect()
+        //        registerSocket()
+        
     }
     
     func serverDidSendPing() {

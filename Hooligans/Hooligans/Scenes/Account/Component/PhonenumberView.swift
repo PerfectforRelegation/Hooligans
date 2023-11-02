@@ -58,6 +58,7 @@ class PhonenumberView: UIView, UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        hideKeyboardWhenTappedAround()
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
@@ -230,5 +231,15 @@ class PhonenumberView: UIView, UITextFieldDelegate {
 
         self.subviews.forEach { $0.removeFromSuperview() }
         self.addSubview(nicknameView)
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        self.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
     }
 }

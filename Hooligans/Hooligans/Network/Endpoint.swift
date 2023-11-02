@@ -12,9 +12,12 @@ enum Endpoint: String {
     case news = "/news/list"
     case userList = "/user/userList"
     case leagueTable = "/team/table"
-    case fixtureList = "/match/table"
+    case fixtureList = "/fixture/list"
     case boardList = "/board/list"
     case postList = "/post/list"
     case chatList = "/chat/room"
     case signIn = "/user/login"
+    case signUp = "/user/join"
+    case betList = "/bet/list"
+    case betting = "/point/bet"
 }

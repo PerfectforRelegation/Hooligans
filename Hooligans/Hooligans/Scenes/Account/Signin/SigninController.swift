@@ -21,6 +21,7 @@ final class SigninController: UIViewController {
         for key in UserDefaults.standard.dictionaryRepresentation().keys {
             UserDefaults.standard.removeObject(forKey: key.description)
         }
+        hideKeyboardWhenTappedAround()
         setup()
     }
     
@@ -170,6 +171,16 @@ extension SigninController {
         
         interactor?.signIn(request: SigninModels.Signin.Request(account: email, password: password))
         
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     

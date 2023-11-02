@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SigninPresentationLogic: AnyObject {
     func presentationSigninError(response: SigninModels.Signin.Response)
     func presentationMainView(response: SigninModels.Signin.Response)
+    func presentationSigninView(response: SigninModels.Signup.Response)
 }
 
 final class SigninPresenter {
@@ -27,6 +29,17 @@ extension SigninPresenter: SigninPresentationLogic {
         let viewModel = SigninModels.Signin.ViewModel(user: user)
         
         self.viewController?.displayMainView(viewModel: viewModel)
+    }
+    
+    func presentationSigninView(response: SigninModels.Signup.Response) {
+        guard let response = response.response else { return }
+        
+        let viewModel = SigninModels.Signup.ViewModel(response: response)
+        DispatchQueue.main.async {
+            if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+                sceneDelegate.changeRootViewController(SigninController(), animated: false)
+            }
+        }
     }
 
 }

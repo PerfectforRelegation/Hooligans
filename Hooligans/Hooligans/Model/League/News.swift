@@ -6,14 +6,3 @@
 //
 
 import Foundation
-
-struct NewsResponse: Codable {
-    let platform: String
-    let url: String
-    let posts: [Post]
-}
-
-struct Post: Codable {
-    let title: String
-    let href: String
-}

@@ -15,19 +15,19 @@ enum MainModels {
     }
     
     // MARK: Usecases
-    enum Users {
+    enum Main {
         struct Request {
-            var count: Int
+            
         }
         
         struct Response {
-            var users: [User]?
+            var main: MainResponse?
             var isError: Bool
             var message: String?
         }
         
         struct ViewModel {
-            var users: [User]
+            var mainSource: MainResponse
         }
     }
     

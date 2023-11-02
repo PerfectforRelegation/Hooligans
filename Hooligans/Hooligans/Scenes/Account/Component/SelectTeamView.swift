@@ -129,20 +129,10 @@ class SelectTeamView: UIView {
             return
         }
         selectedTeam = teams[selectedIndexPath.row]
-
-        let signinController = SigninController()
-        signinController.previousEmail = previousEmail
-        signinController.previousPassword = previousPassword
-        signinController.previousPhoneNumber = previousPhoneNumber
-        signinController.previousNickname = previousNickname
-        signinController.selectedTeam = selectedTeam
-
-        self.removeFromSuperview()
+        let request = SigninModels.Signup.Request(name: "정", nickName: previousNickname ?? "", account: previousEmail ?? "", password: previousPassword ?? "", phoneNumber: previousPhoneNumber ?? "", birth: "981009", firstTeam: selectedTeam?.imageName ?? "")
         
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = signinController
-            window.makeKeyAndVisible()
-        }
+        print(request)
+        SigninController().interactor?.signUp(request: request)
     }
 }
 

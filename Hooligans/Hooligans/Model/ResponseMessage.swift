@@ -7,7 +7,6 @@
 
 import Foundation
 
-struct ResponseMessage {
+struct ResponseMessage: Codable {
     let message: String
-    let isSignin: Bool
 }

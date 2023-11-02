@@ -13,6 +13,8 @@ struct FixtureResponse: Codable {
 }
 
 struct Fixture: Codable {
+    let id: UUID
+    let league: String
     let date: String
     let stadium: String
     let home: String
@@ -20,5 +22,8 @@ struct Fixture: Codable {
     let away: String
     let awayScore: Int
     let time: String
-    let isLive: Bool
+    let homeAllocation: Float
+    let awayAllocation: Float
+    let drawAllocation: Float
+    let status: String
 }

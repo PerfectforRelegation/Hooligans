@@ -16,10 +16,15 @@ final class ProfileCell: UICollectionViewCell {
         .contentMode(.scaleAspectFill)
         .clipsToBounds(true)
     
+    private let nickNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }()
     
     private let pointLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
     
@@ -34,8 +39,9 @@ final class ProfileCell: UICollectionViewCell {
         setupView()
     }
     
-    func configureCell(user: User) {
+    func configureCell(user: MainUser) {
         coinImage.image = UIImage(named: "coin")
+        nickNameLabel.text = user.nickname
         pointLabel.text = String(user.betPoint)
     }
     
@@ -47,17 +53,22 @@ extension ProfileCell {
         self.layer.cornerRadius = self.frame.height * 0.2
         
         self.addSubview(coinImage)
-        
         coinImage.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
             make.leading.equalToSuperview().offset(10)
             make.width.height.equalTo(40)
         }
         
-        self.addSubview(pointLabel)
+        self.addSubview(nickNameLabel)
+        nickNameLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-20)
+            make.leading.equalTo(coinImage.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().inset(10)
+        }
         
+        self.addSubview(pointLabel)
         pointLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(self.snp.centerY)
+            make.centerY.equalTo(self.snp.centerY).offset(20)
             make.leading.equalTo(coinImage.snp.trailing).offset(20)
             make.trailing.equalToSuperview().inset(10)
         }

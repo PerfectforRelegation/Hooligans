@@ -10,6 +10,7 @@ import Combine
 
 protocol SigninWorkerLogic {
     func signIn(request: SigninModels.Signin.Request, _ response: @escaping (SigninModels.Signin.Response) -> Void)
+    func signup(request: SigninModels.Signup.Request, _ response: @escaping (SigninModels.Signup.Response) -> Void)
 
 }
 
@@ -31,6 +32,21 @@ class SigninWorker: SigninWorkerLogic {
         }
         .store(in: &cancellables)
 
+    }
+    
+    func signup(request: SigninModels.Signup.Request, _ response: @escaping (SigninModels.Signup.Response) -> Void) {
+        apiManager.signUp(name: request.name, account: request.account, password: request.password, nickName: request.nickName, phoneNumber: request.phoneNumber, birth: request.birth, firstTeam: request.firstTeam).sink { result in
+            
+            switch result {
+            case .finished:
+                print("Fetch LeagueTable finished")
+            case .failure(_):
+                response(SigninModels.Signup.Response(isError: true, message: "Error"))
+            }
+        } receiveValue: { data in
+            response(SigninModels.Signup.Response(response: data, isError: false))
+        }
+        .store(in: &cancellables)
     }
 
 }

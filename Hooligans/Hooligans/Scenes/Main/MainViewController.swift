@@ -10,7 +10,7 @@ import SnapKit
 import StompClientLib
 
 protocol MainDisplayLogic: AnyObject {
-    func displaySomething(viewModel: MainModels.Users.ViewModel)
+    func displaySomething(viewModel: MainModels.Main.ViewModel)
 }
 
 class MainViewController: UIViewController {
@@ -65,6 +65,8 @@ class MainViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         setup()
+        bindView()
+        interactor?.fetchMainSource(request: MainModels.Main.Request())
     }
 
     required init?(coder: NSCoder) {
@@ -82,7 +84,6 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         setupView()
         registerCells()
-        bindView()
     }
 
     private func setup() {
@@ -102,13 +103,11 @@ class MainViewController: UIViewController {
         collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
-        collectionView.register(NewsCell.self, forCellWithReuseIdentifier: NewsCell.identifier)
+        collectionView.register(NewsPostCell.self, forCellWithReuseIdentifier: NewsPostCell.identifier)
     }
     
     private func bindView() {
         snapshot.appendSections([.profile, .fixture, .news])
-        snapshot.appendItems([Item(data: User(id: UUID(), tokenDto: Token(accessToken: "", refreshToken: ""), name: "", account: "", password: "", birth: "", phoneNumber: "", firstTeam: "CHE", secondTeam: "MUN", thirdTeam: "WOL", betPoint: 1000), section: .profile)], toSection: .profile)
-        snapshot.appendItems([Item(data: Post(title: "첼시는 강등이 딱이야..", href: "/news?oid=411&aid=0000036567"), section: .news), Item(data: Post(title: "손흥민 득점왕 가나..", href: "/news?oid=411&aid=0000036567"), section: .news), Item(data: Post(title: "정명곤 변사체로 발견..", href: "/news?oid=411&aid=0000036567"), section: .news)], toSection: .news)
         self.dataSource.apply(self.snapshot)
     }
 
@@ -147,7 +146,7 @@ extension MainViewController {
             case .profile:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier,
                                                    for: indexPath) as? ProfileCell else { return UICollectionViewCell() }
-                if let data = item.data as? User { cell.configureCell(user: data) }
+                if let data = item.data as? MainUser { cell.configureCell(user: data) }
                 return cell
                 
             case .fixture:
@@ -157,7 +156,7 @@ extension MainViewController {
                 return cell
                 
             case .news:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCell.identifier, for: indexPath) as? NewsCell else { return UICollectionViewCell() }
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsPostCell.identifier, for: indexPath) as? NewsPostCell else { return UICollectionViewCell() }
                 if let data = item.data as? Post { cell.configureCell(post: data) }
                 return cell
             }
@@ -182,10 +181,20 @@ extension MainViewController {
 }
 
 extension MainViewController: MainDisplayLogic {
-    func displaySomething(viewModel: MainModels.Users.ViewModel) {
+    func displaySomething(viewModel: MainModels.Main.ViewModel) {
         DispatchQueue.main.async {
-//            self.users = viewModel.users
-//            self.tableView.reloadData()
+            // MARK: - User Profile
+            let userItem = Item(data: viewModel.mainSource.user, section: .profile)
+            self.snapshot.appendItems([userItem], toSection: .profile)
+            
+            // MARK: - Live Fixtures
+            
+            // MARK: - News Posts
+            viewModel.mainSource.news.posts.forEach { post in
+                let newsPostItem = Item(data: post, section: .news)
+                self.snapshot.appendItems([newsPostItem], toSection: .news)
+            }
+            self.dataSource.apply(self.snapshot)
         }
     }
 }
@@ -196,7 +205,7 @@ extension MainViewController: UICollectionViewDelegate {
             let data = dataSource.snapshot(for: .news).items[indexPath.item].data as? Post
             guard let query = data?.href else { return }
             let webViewController = WebViewController(base: "https://sports.news.naver.com/", query: query)
-            webViewController.modalPresentationStyle = .fullScreen
+            webViewController.modalPresentationStyle = .overCurrentContext
             navigationController?.present(webViewController, animated: true)
         }
     }

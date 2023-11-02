@@ -9,26 +9,28 @@ import Foundation
 import Combine
 
 protocol MainWorkerLogic {
-    func fetchUser(_ response: @escaping (MainModels.Users.Response) -> Void)
+    func fetchMainSource(_ response: @escaping (MainModels.Main.Response) -> Void)
 }
 
 class MainWorker: MainWorkerLogic {
     
-    let apiManager = LeagueService()
+    let apiManager = MainService()
     
     var cancellables = Set<AnyCancellable>()
     
-    func fetchUser(_ response: @escaping (MainModels.Users.Response) -> Void) {
-//        apiManager.fetchUsers { result in
-//            switch result {
-//            case .success(let users):
-//                print(users)
-//                response(MainModels.Users.Response(users: users, isError: false, message: nil))
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//                response(MainModels.Users.Response(isError: true, message: error.localizedDescription))
-//            }
-//        }
+    func fetchMainSource(_ response: @escaping (MainModels.Main.Response) -> Void) {
+        apiManager.fetchMain().sink { result in
+            switch result {
+            case .finished:
+                print("fetch main finishied")
+            case .failure(let error):
+                response(MainModels.Main.Response(isError: true, message: error.localizedDescription))
+            }
+        } receiveValue: { data in
+            response(MainModels.Main.Response(main: data, isError: false, message: ""))
+        }
+        .store(in: &cancellables)
+
     }
     
 }
