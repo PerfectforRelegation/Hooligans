@@ -61,7 +61,7 @@ final class SigninController: UIViewController {
     private let emailField = TextField(fieldType: .email)
     private let passwordField = TextField(fieldType: .password)
     
-    private let signInButton = Button(title: "로그인", hasBackground: true, fontSize: .big)
+    private let signInButton = Button(title: "로그인", hasBackground: true, fontSize: .med)
     private let signUpButton = Button(title: "회원가입", fontSize: .med)
     private let forgotPasswordButton = Button(title: "비밀번호 찾기", fontSize: .small)
     
@@ -125,7 +125,7 @@ extension SigninController {
             
             self.signInButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 22),
             self.signInButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-            self.signInButton.heightAnchor.constraint(equalToConstant: 55),
+            self.signInButton.heightAnchor.constraint(equalToConstant: 50),
             self.signInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
             
             self.signUpButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),

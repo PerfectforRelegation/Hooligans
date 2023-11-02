@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import SnapKit
 
 final class WebViewController: UIViewController {
     
@@ -15,11 +16,13 @@ final class WebViewController: UIViewController {
     
     private let exitButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:  "x.circle"), for: .normal)
-        button.backgroundColor = .gray
+        button.setImage(UIImage(systemName: "x.circle"), for: .normal)
+        button.tintColor = .black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         return button
     }()
-    
+
     init(base: String, query: String) {
         super.init(nibName: nil, bundle: nil)
         self.url = base + query
@@ -57,23 +60,22 @@ final class WebViewController: UIViewController {
 
 extension WebViewController {
     func setupView() {
-        self.view.backgroundColor = .white
-        
+        view.backgroundColor = .white
+
         view.addSubview(exitButton)
-        exitButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         exitButton.snp.makeConstraints { make in
-            make.top.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.width.height.equalTo(50)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(5)
+            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-5)
+            make.width.height.equalTo(70)
         }
+    }
         
 //        view.addSubview(webView ?? UIView())
 //        webView?.snp.makeConstraints { make in
 //            make.top.equalTo(exitButton.snp.bottom)
 //            make.leading.trailing.bottom.equalToSuperview()
 //        }
-        
-    }
-    
+
     @objc func dismissView() {
         dismiss(animated: true)
     }
