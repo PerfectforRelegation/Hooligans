@@ -62,6 +62,7 @@ class PhonenumberView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        hideKeyboardWhenTappedAround()
     }
 
     required init?(coder: NSCoder) {
@@ -189,5 +190,15 @@ class PhonenumberView: UIView {
 
         self.subviews.forEach { $0.removeFromSuperview() }
         self.addSubview(nicknameView)
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        self.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
     }
 }

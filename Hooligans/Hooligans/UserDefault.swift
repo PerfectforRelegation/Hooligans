@@ -15,6 +15,7 @@ final class UserDefault {
         UserDefaults.standard.set(user.name, forKey: "name")
         UserDefaults.standard.set(user.tokenDto.accessToken, forKey: "accessToken")
         UserDefaults.standard.set(user.tokenDto.refreshToken, forKey: "refreshToken")
+        UserDefaults.standard.set(user.betPoint, forKey: "betPoint")
     }
     
     func getToken() -> Token? {

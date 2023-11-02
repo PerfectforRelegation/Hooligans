@@ -178,6 +178,10 @@ extension ChatRoomViewController {
         view.addGestureRecognizer(tap)
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     // 노티피케이션을 추가하는 메서드
     func addKeyboardNotifications(){
         // 키보드가 나타날 때 앱에게 알리는 메서드 추가
@@ -219,9 +223,7 @@ extension ChatRoomViewController {
         }
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+    
     
     @objc func sendMessageSTOMP() {
         StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId, message: self.chatTextView.text)

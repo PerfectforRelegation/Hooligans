@@ -13,6 +13,7 @@ protocol SigninDataStore {
 
 protocol SigninBusinessLogic {
     func signIn(request: SigninModels.Signin.Request)
+    func signUp(request: SigninModels.Signup.Request)
 }
 
 class SigninInteractor: SigninDataStore, SigninBusinessLogic {
@@ -33,6 +34,14 @@ class SigninInteractor: SigninDataStore, SigninBusinessLogic {
                 UserDefault.userdeault.setUserInfo(user: user)
                 self.presenter?.presentationMainView(response: response)
             }
+            
+        }
+    }
+    
+    func signUp(request: SigninModels.Signup.Request) {
+        worker = SigninWorker()
+        worker?.signup(request: request) { response in
+            self.presenter?.presentationSigninView(response: response)
             
         }
     }
