@@ -20,10 +20,10 @@ class BoardListViewController: UIViewController {
 
     let writeButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.white
+        button.backgroundColor = UIColor.systemGray6
         button.layer.cornerRadius = 20
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.lightGray.cgColor
+//        button.layer.borderWidth = 0.5
+//        button.layer.borderColor = UIColor.lightGray.cgColor
 
         let image = UIImageView(image: UIImage(named: "writeIcon"))
         image.contentMode = .scaleAspectFit
@@ -99,7 +99,7 @@ class BoardListViewController: UIViewController {
         writeButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         writeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         writeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        writeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        writeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40).isActive = true
         writeButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         writeButton.addTarget(self, action: #selector(writeButtonTapped), for: .touchUpInside)
 
@@ -110,10 +110,15 @@ class BoardListViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
 //        navigationController?.isNavigationBarHidden = true
 
-        // 뒤로가기
-        let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
-        navigationItem.leftBarButtonItem = backButton
-        backButton.tintColor = .black
+//        // 뒤로가기
+//        let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
+//        navigationItem.leftBarButtonItem = backButton
+//        backButton.tintColor = .black
+
+        // 메뉴
+        let menuButton = UIBarButtonItem(image: UIImage(named: "menuIcon"), style: .plain, target: self, action: #selector(menuButtonTapped))
+        navigationItem.leftBarButtonItem = menuButton
+        menuButton.tintColor = .black
 
         // 자유게시판
         let titleView = UIView()
@@ -125,15 +130,11 @@ class BoardListViewController: UIViewController {
         }
         navigationItem.titleView = titleView
 
-        // 메뉴
-        let menuButton = UIBarButtonItem(image: UIImage(named: "menuIcon"), style: .plain, target: self, action: #selector(menuButtonTapped))
-        menuButton.tintColor = .black
-
         // 찾기
         let searchButton = UIBarButtonItem(image: UIImage(named: "searchIcon"), style: .plain, target: self, action: #selector(searchButtonTapped))
         searchButton.tintColor = .black
 
-        navigationItem.rightBarButtonItems = [menuButton, searchButton]
+        navigationItem.rightBarButtonItems = [searchButton]
     }
 
 }
