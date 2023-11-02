@@ -8,7 +8,7 @@
 import Foundation
 
 protocol BetPresentationLogic: AnyObject {
-    func BetResultPresentation()
+    func BetResultPresentation(response: BetModels.Betting.Response)
 }
 
 final class BetPresenter {
@@ -16,8 +16,9 @@ final class BetPresenter {
 }
 
 extension BetPresenter: BetPresentationLogic {
-    func BetResultPresentation() {
-        print()
+    func BetResultPresentation(response: BetModels.Betting.Response) {
+        guard let point = response.point else { return }
+        let viewModel = BetModels.Betting.ViewModel(point: point)
+        viewController?.displayComplete()
     }
-    
 }

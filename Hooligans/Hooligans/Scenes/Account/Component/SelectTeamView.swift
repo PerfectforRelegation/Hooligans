@@ -129,7 +129,7 @@ class SelectTeamView: UIView {
             return
         }
         selectedTeam = teams[selectedIndexPath.row]
-        let request = SigninModels.Signup.Request(name: "정", nickName: previousNickname ?? "", account: previousEmail ?? "", password: previousPassword ?? "", phoneNumber: previousPhoneNumber ?? "", birth: "981009", firstTeam: selectedTeam?.imageName ?? "")
+        let request = SigninModels.Signup.Request(name: previousNickname ?? "", nickName: previousNickname ?? "", account: previousEmail ?? "", password: previousPassword ?? "", phoneNumber: previousPhoneNumber ?? "", birth: "981009", firstTeam: selectedTeam?.imageName ?? "")
         
         print(request)
         SigninController().interactor?.signUp(request: request)

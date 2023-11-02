@@ -22,13 +22,28 @@ final class BetService {
             .eraseToAnyPublisher()
     }
     
+    func fetchMyBetList() -> AnyPublisher<[UserBet], Error> {
+        return NetworkService.shared.get(to: .myBetList)
+            .tryMap { data, response in
+                print(String(data: data, encoding: .utf8))
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    print("http error")
+                    throw URLError(.badServerResponse)
+                }
+                return data
+            }
+            .decode(type: [UserBet].self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+    }
+    
     func betting(id: String, betpoint: Int, pick: String) -> AnyPublisher<Point, Error> {
         let params = [
             "betPoint": betpoint,
             "pick": pick
         ] as [String: Any]
-        return NetworkService.shared.post(to:Endpoint(rawValue: "http://13.124.61.192:8080/point/bet/\(id)")!, param: params)
+        return NetworkService.shared.post(to: "/point/bet/\(id)", param: params)
         .tryMap { data, response in
+            print(String(data: data, encoding: .utf8))
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                 print("http error")
                 throw URLError(.badServerResponse)

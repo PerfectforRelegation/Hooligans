@@ -8,13 +8,20 @@
 import UIKit
 
 protocol BetDisplayLogic: AnyObject {
-    
+    func displayComplete()
 }
 
 class BetViewController: UIViewController {
+    var interactor: (BetBusinessLogic&BetDataStore)?
     
+    private var id: String?
     private var teams: [String]?
     private var selectedTeam: Int = 0
+    
+    private let completeLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
     private let homeButton: UIButton = {
         let button = UIButton()
@@ -58,6 +65,11 @@ class BetViewController: UIViewController {
     
     private let textField: UITextField = {
         let textField = UITextField()
+        textField.keyboardType = .numberPad
+        textField.layer.cornerRadius = 20
+        textField.backgroundColor = .systemGray6
+        textField.textColor = .black
+        textField.placeholder = "최소 1000이상"
         return textField
     }()
     
@@ -71,6 +83,7 @@ class BetViewController: UIViewController {
     
     init(bet: Bet) {
         super.init(nibName: nil, bundle: nil)
+        self.id = bet.id.uuidString
         homeButton.setImage(UIImage(named: bet.home), for: .normal)
         homeAllocationLabel.text = String(bet.homeAllocation)
         awayButton.setImage(UIImage(named: bet.away), for: .normal)
@@ -78,6 +91,20 @@ class BetViewController: UIViewController {
         drawButton.setTitle("무승부", for: .normal)
         drawAllocationLabel.text = String(bet.drawAllocation)
         self.teams = [bet.home, "DRAW", bet.away]
+        setup()
+    }
+    
+    private func setup() {
+        let viewController = self
+        let interactor = BetInteractor()
+        let presenter = BetPresenter()
+//        let router = MainRouter()
+        viewController.interactor = interactor
+//        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+//        router.viewController = viewController
+//        router.dataStore = interactor
     }
     
     required init?(coder: NSCoder) {
@@ -96,10 +123,12 @@ extension BetViewController {
     private func setupView() {
         view.backgroundColor = .white
         
+
+        
         view.addSubview(homeButton)
         homeButton.addTarget(self, action: #selector(betHomeTeam), for: .touchUpInside)
         homeButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview().offset(-80)
             make.centerX.equalToSuperview().offset(-70)
             make.width.height.equalTo(50)
         }
@@ -107,23 +136,39 @@ extension BetViewController {
         view.addSubview(drawButton)
         drawButton.addTarget(self, action: #selector(betDrawTeam), for: .touchUpInside)
         drawButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview().offset(-80)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(50)
         }
         view.addSubview(awayButton)
         awayButton.addTarget(self, action: #selector(betAwayTeam), for: .touchUpInside)
         awayButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview().offset(-80)
             make.centerX.equalToSuperview().offset(70)
             make.width.height.equalTo(50)
         }
+        view.addSubview(textField)
+        textField.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.width.equalTo(120)
+            make.height.equalTo(80)
+        }
+        
+        
         view.addSubview(betButton)
+        betButton.addTarget(self, action: #selector(bettingButton), for: .touchUpInside)
         betButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(100)
             make.centerX.equalToSuperview()
             make.width.equalTo(80)
             make.height.equalTo(50)
+        }
+        view.addSubview(completeLabel)
+        completeLabel.snp.makeConstraints { make in
+            make.top.equalTo(betButton.snp.bottom).inset(20)
+            make.width.equalTo(80)
+            make.height.equalTo(30)
         }
     }
     
@@ -149,10 +194,17 @@ extension BetViewController {
     }
     
     @objc func bettingButton() {
-        
+        print(id, teams, selectedTeam, textField.text)
+        if let id = id, let pick = teams?[selectedTeam], let text = textField.text {
+            interactor?.betting(request: BetModels.Betting.Request(id: id, betPoint: Int(text)!, pick: pick))
+        }
     }
 }
 
 extension BetViewController: BetDisplayLogic {
-    
+    func displayComplete() {
+        DispatchQueue.main.async {
+            self.completeLabel.text = "배팅 성공!"
+        }
+    }
 }

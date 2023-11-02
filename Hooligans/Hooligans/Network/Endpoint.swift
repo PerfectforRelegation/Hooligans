@@ -20,4 +20,5 @@ enum Endpoint: String {
     case signUp = "/user/join"
     case betList = "/bet/list"
     case betting = "/point/bet"
+    case myBetList = "/user/bet"
 }

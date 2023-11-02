@@ -22,4 +22,18 @@ enum BetListModels {
             var betList: [Bet]
         }
     }
+    
+    enum MyBetList{
+        struct Request {
+            
+        }
+        struct Response {
+            var myBetList: [UserBet]?
+            var isError: Bool
+            var message: String?
+        }
+        struct ViewModel {
+            var betList: [UserBet]
+        }
+    }
 }

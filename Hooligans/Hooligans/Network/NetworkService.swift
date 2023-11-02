@@ -64,6 +64,20 @@ extension NetworkService {
         return URLSession(configuration: .default).dataTaskPublisher(for: request)
     }
     
+    func post(to endpoint: String, param: [String: Any]) -> URLSession.DataTaskPublisher {
+        
+        let url = buildEndpoint(baseURL: baseURL, endpoint)
+        
+        let request = RequestBuilder()
+            .url(url: url)
+            .method(.post)
+            .body(param)
+            .header()
+            .create()
+        
+        return URLSession(configuration: .default).dataTaskPublisher(for: request)
+    }
+    
     func put() {
         
     }
