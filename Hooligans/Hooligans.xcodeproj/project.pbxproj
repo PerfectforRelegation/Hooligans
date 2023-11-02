@@ -420,10 +420,10 @@
 			isa = PBXGroup;
 			children = (
 				7C3F60102ADBCCC70078A6F1 /* Component */,
+				7C3F60172ADE6DA10078A6F1 /* BoardList */,
 				7C38AACE2AEA4DCF00E0650E /* BoardSearch */,
 				7C3F60272AE586160078A6F1 /* BoardWrite */,
 				7C3F60182ADE6DA90078A6F1 /* BoardDetail */,
-				7C3F60172ADE6DA10078A6F1 /* BoardList */,
 			);
 			path = Board;
 			sourceTree = "<group>";
