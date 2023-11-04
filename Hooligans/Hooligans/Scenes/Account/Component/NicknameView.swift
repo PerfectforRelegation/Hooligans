@@ -128,6 +128,15 @@ class NicknameView: UIView, UITextFieldDelegate {
         removeFromSuperview()
     }
 
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+
+        if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
+            rootViewController.present(alert, animated: true, completion: nil)
+        }
+    }
+
     @objc private func nextButtonTapped() {
         if let nickname = nicknameField.text, !nickname.isEmpty {
             let selectTeamView = SelectTeamView(frame: frame)
@@ -139,7 +148,7 @@ class NicknameView: UIView, UITextFieldDelegate {
             subviews.forEach { $0.removeFromSuperview() }
             addSubview(selectTeamView)
         } else {
-            print("닉네임을 입력해주세요.")
+            showAlert(title: "닉네임 입력", message: "닉네임을 입력해주세요.")
         }
     }
 }

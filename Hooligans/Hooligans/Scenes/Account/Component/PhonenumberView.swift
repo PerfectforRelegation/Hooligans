@@ -202,27 +202,36 @@ class PhonenumberView: UIView, UITextFieldDelegate {
         UIApplication.shared.keyWindow?.rootViewController = signinController
     }
 
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
+            rootViewController.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     @objc private func nextButtonTapped() {
         guard let email = emailTextField.text, validateEmail(email) else {
-            print("유효한 이메일 형식이 아닙니다. 올바른 이메일을 입력해주세요.")
+            showAlert(title: "유효하지 않은 이메일", message: "올바른 이메일을 입력해주세요.")
             return
         }
         guard let password = passwordTextField.text, validatePassword(password) else {
-            print("비밀번호는 최소 8자 이상이어야 하며, 숫자와 문자를 포함해야 합니다.")
+            showAlert(title: "유효하지 않은 비밀번호", message: "비밀번호는 최소 8자 이상이어야 하며, 숫자와 문자를 포함해야 합니다.")
             return
         }
         guard let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty else {
-            print("비밀번호를 확인해주세요.")
+            showAlert(title: "비밀번호 확인 필요", message: "비밀번호를 확인해주세요.")
             return
         }
         guard password == confirmPassword else {
-            print("비밀번호가 일치하지 않습니다.")
+            showAlert(title: "비밀번호 불일치", message: "비밀번호가 일치하지 않습니다.")
             return
         }
         guard let phoneNumber = phoneNumberField.text, validatePhoneNumber(phoneNumber) else {
-            print("형식에 맞게 입력해주세요.")
+            showAlert(title: "유효하지 않은 휴대폰 번호", message: "형식에 맞게 입력해주세요.")
             return
         }
+
 
         let nicknameView = NicknameView(frame: self.frame)
         nicknameView.previousEmail = email
@@ -232,13 +241,13 @@ class PhonenumberView: UIView, UITextFieldDelegate {
         self.subviews.forEach { $0.removeFromSuperview() }
         self.addSubview(nicknameView)
     }
-    
+
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         self.addGestureRecognizer(tap)
     }
-    
+
     @objc func dismissKeyboard() {
         self.endEditing(true)
     }
