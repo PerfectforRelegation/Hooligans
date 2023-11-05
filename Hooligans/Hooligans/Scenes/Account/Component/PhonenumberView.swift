@@ -55,10 +55,18 @@ class PhonenumberView: UIView, UITextFieldDelegate {
         return button
     }()
 
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemIndigo
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         hideKeyboardWhenTappedAround()
+        setupActivityIndicator()
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
@@ -197,48 +205,73 @@ class PhonenumberView: UIView, UITextFieldDelegate {
         return phonePredicate.evaluate(with: phoneNumber)
     }
 
+    private func setupActivityIndicator() {
+        addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(self)
+        }
+    }
+
     @objc private func backButtonTapped() {
         let signinController = SigninController()
         UIApplication.shared.keyWindow?.rootViewController = signinController
     }
 
-    @objc private func nextButtonTapped() {
-        guard let email = emailTextField.text, validateEmail(email) else {
-            print("유효한 이메일 형식이 아닙니다. 올바른 이메일을 입력해주세요.")
-            return
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
+            rootViewController.present(alert, animated: true, completion: nil)
         }
-        guard let password = passwordTextField.text, validatePassword(password) else {
-            print("비밀번호는 최소 8자 이상이어야 하며, 숫자와 문자를 포함해야 합니다.")
-            return
-        }
-        guard let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty else {
-            print("비밀번호를 확인해주세요.")
-            return
-        }
-        guard password == confirmPassword else {
-            print("비밀번호가 일치하지 않습니다.")
-            return
-        }
-        guard let phoneNumber = phoneNumberField.text, validatePhoneNumber(phoneNumber) else {
-            print("형식에 맞게 입력해주세요.")
-            return
-        }
-
-        let nicknameView = NicknameView(frame: self.frame)
-        nicknameView.previousEmail = email
-        nicknameView.previousPassword = password
-        nicknameView.previousPhoneNumber = phoneNumber
-
-        self.subviews.forEach { $0.removeFromSuperview() }
-        self.addSubview(nicknameView)
     }
-    
+
+    @objc private func nextButtonTapped() {
+        //로딩 표시 시작
+        activityIndicator.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            // 로딩 표시 중지
+            self?.activityIndicator.stopAnimating()
+
+            guard let email = self?.emailTextField.text, self?.validateEmail(email) == true else {
+                self?.showAlert(title: "유효하지 않은 이메일", message: "올바른 이메일을 입력해주세요.")
+                return
+            }
+            guard let password = self?.passwordTextField.text, self?.validatePassword(password) == true else {
+                self?.showAlert(title: "유효하지 않은 비밀번호", message: "비밀번호는 최소 8자 이상이어야 하며, 숫자와 문자를 포함해야 합니다.")
+                return
+            }
+            guard let confirmPassword = self?.confirmPasswordTextField.text, self?.validatePassword(confirmPassword) == true else {
+                self?.showAlert(title: "비밀번호 확인 필요", message: "비밀번호를 확인해주세요.")
+                return
+            }
+            guard let password = self?.passwordTextField.text, let confirmPassword = self?.confirmPasswordTextField.text, password == confirmPassword else {
+                self?.showAlert(title: "비밀번호 불일치", message: "비밀번호가 일치하지 않습니다.")
+                return
+            }
+            guard let phoneNumber = self?.phoneNumberField.text, self?.validatePhoneNumber(phoneNumber) == true else {
+                self?.showAlert(title: "유효하지 않은 휴대폰 번호", message: "형식에 맞게 입력해주세요.")
+                return
+            }
+
+            let nicknameView = NicknameView(frame: self?.frame ?? CGRect.zero)
+            //let nicknameView = NicknameView(frame: self.frame)
+            nicknameView.previousEmail = email
+            nicknameView.previousPassword = password
+            nicknameView.previousPhoneNumber = phoneNumber
+
+//            self.subviews.forEach { $0.removeFromSuperview() }
+//            self.addSubview(nicknameView)
+            self?.subviews.forEach { $0.removeFromSuperview() }
+                        self?.addSubview(nicknameView)
+        }
+    }
+
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         self.addGestureRecognizer(tap)
     }
-    
+
     @objc func dismissKeyboard() {
         self.endEditing(true)
     }
