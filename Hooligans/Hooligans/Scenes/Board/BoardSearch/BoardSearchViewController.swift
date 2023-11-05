@@ -69,10 +69,10 @@ class BoardSearchViewController: UIViewController, UISearchBarDelegate, UITableV
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedPost = posts[indexPath.row]
-        let boardDetailViewController = BoardDetailViewController()
-//        boardDetailViewController.selectedPost = selectedPost
-        navigationController?.pushViewController(boardDetailViewController, animated: true)
+//        let selectedPost = posts[indexPath.row]
+//        let boardDetailViewController = BoardDetailViewController(board: selectedPost)
+////        boardDetailViewController.selectedPost = selectedPost
+//        navigationController?.pushViewController(boardDetailViewController, animated: true)
     }
 
     func BackButton() {

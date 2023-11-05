@@ -11,7 +11,7 @@ enum Endpoint: String {
     case main = "/main"
     case news = "/news/list"
     case userList = "/user/userList"
-    case leagueTable = "/team/table"
+    case leagueTable = "/team/listTable"
     case fixtureList = "/fixture/list"
     case boardList = "/board/list"
     case postList = "/post/list"

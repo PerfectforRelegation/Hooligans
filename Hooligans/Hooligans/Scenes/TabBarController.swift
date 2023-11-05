@@ -56,7 +56,14 @@ class TabBarController: UITabBarController {
         fourthViewController.tabBarItem.title = "배팅"
         fourthViewController.tabBarItem.tag = 3
         
-        self.setViewControllers([firstViewController, secondViewController, thirdViewController, fourthViewController], animated: true)
+        let fifthViewController = UINavigationController(rootViewController: LeagueTableViewController())
+        
+        fifthViewController.tabBarItem.image = UIImage(systemName: "star.fill")
+        fifthViewController.tabBarItem.selectedImage = UIImage(systemName: "sportscourt")
+        fifthViewController.tabBarItem.title = "테이블"
+        fifthViewController.tabBarItem.tag = 4
+        
+        self.setViewControllers([firstViewController, secondViewController, thirdViewController, fourthViewController, fifthViewController], animated: true)
     }
 
 }

@@ -63,7 +63,7 @@ final class SigninController: UIViewController {
     
     private let signInButton = Button(title: "로그인", hasBackground: true, fontSize: .med)
     private let signUpButton = Button(title: "회원가입", fontSize: .med)
-    private let forgotPasswordButton = Button(title: "비밀번호 찾기", fontSize: .small)
+//    private let forgotPasswordButton = Button(title: "비밀번호 찾기", fontSize: .small)
     
     
     // MARK: - LifeCycle
@@ -76,7 +76,7 @@ final class SigninController: UIViewController {
         
         self.signInButton.addTarget(self, action: #selector(clickSignIn), for: .touchUpInside)
         self.signUpButton.addTarget(self, action: #selector(clickNewUser), for: .touchUpInside)
-        self.forgotPasswordButton.addTarget(self, action: #selector(clickForgotPassword), for: .touchUpInside)
+//        self.forgotPasswordButton.addTarget(self, action: #selector(clickForgotPassword), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,14 +97,14 @@ extension SigninController {
         self.view.addSubview(passwordField)
         self.view.addSubview(signInButton)
         self.view.addSubview(signUpButton)
-        self.view.addSubview(forgotPasswordButton)
+//        self.view.addSubview(forgotPasswordButton)
         
         headerView.translatesAutoresizingMaskIntoConstraints = false
         emailField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+//        forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             self.headerView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
@@ -133,10 +133,10 @@ extension SigninController {
             self.signUpButton.heightAnchor.constraint(equalToConstant: 44),
             self.signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
             
-            self.forgotPasswordButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
-            self.forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            self.forgotPasswordButton.heightAnchor.constraint(equalToConstant: 44),
-            self.forgotPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+//            self.forgotPasswordButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 11),
+//            self.forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+//            self.forgotPasswordButton.heightAnchor.constraint(equalToConstant: 44),
+//            self.forgotPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
             
         ])
         

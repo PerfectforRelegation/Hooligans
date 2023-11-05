@@ -9,6 +9,7 @@ protocol BoardListDisplayLogic: AnyObject {
 class BoardListViewController: UIViewController {
     var interactor: (BoardListBusinessLogic & BoardListDataStore)?
     var router: BoardListRouter?
+    
     var posts: [Board]?
     var refresh: UIRefreshControl?
 
@@ -200,8 +201,8 @@ extension BoardListViewController: UITableViewDataSource, UITableViewDelegate {
     // 게시물 상세 이동
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let selectedPost = posts?[indexPath.row]
-        let boardDetailViewController = BoardDetailViewController()
+        guard let selectedPost = posts?[indexPath.row] else { return }
+        let boardDetailViewController = BoardDetailViewController(board: selectedPost)
 
         // BoardDetailViewController에 선택된 게시물 정보 전달
         boardDetailViewController.selectedPost = selectedPost

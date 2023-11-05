@@ -18,8 +18,8 @@ final class BoardListRouter: BoardListRoutingLogic {
 
     func routeToBoardDetail() {
         if let viewController = viewController as? UIViewController {
-            let boardDetailViewController = BoardDetailViewController()
-            viewController.navigationController?.pushViewController(boardDetailViewController, animated: true)
+//            let boardDetailViewController = BoardDetailViewController(board: Board)
+//            viewController.navigationController?.pushViewController(boardDetailViewController, animated: true)
         }
     }
 
