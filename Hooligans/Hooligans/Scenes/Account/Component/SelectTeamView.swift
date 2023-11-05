@@ -123,9 +123,18 @@ class SelectTeamView: UIView {
         self.removeFromSuperview()
     }
 
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        
+        if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
+            rootViewController.present(alert, animated: true, completion: nil)
+        }
+    }
+
     @objc private func nextButtonTapped() {
         guard let selectedIndexPath = teamsTableView.indexPathForSelectedRow else {
-            print("팀을 선택해주세요.")
+            showAlert(title: "팀 선택 필요", message: "팀을 선택해주세요.")
             return
         }
         selectedTeam = teams[selectedIndexPath.row]

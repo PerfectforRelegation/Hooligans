@@ -41,6 +41,7 @@
 		7C63BE322AEBD47900BE9A2E /* NicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE312AEBD47900BE9A2E /* NicknameView.swift */; };
 		7C63BE362AEBDDAF00BE9A2E /* PhonenumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */; };
 		7C63BE3A2AEBE0C400BE9A2E /* SelectTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */; };
+		7C63BE3F2AF7AEEA00BE9A2E /* BoardMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE3E2AF7AEEA00BE9A2E /* BoardMenuViewController.swift */; };
 		7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11B72AC2C78100E1BBBE /* Board.swift */; };
 		7CBC11BE2AD3D39600E1BBBE /* SigninController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BD2AD3D39600E1BBBE /* SigninController.swift */; };
 		7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */; };
@@ -198,6 +199,7 @@
 		7C63BE312AEBD47900BE9A2E /* NicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameView.swift; sourceTree = "<group>"; };
 		7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonenumberView.swift; sourceTree = "<group>"; };
 		7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamView.swift; sourceTree = "<group>"; };
+		7C63BE3E2AF7AEEA00BE9A2E /* BoardMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardMenuViewController.swift; sourceTree = "<group>"; };
 		7CBC11B72AC2C78100E1BBBE /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		7CBC11BD2AD3D39600E1BBBE /* SigninController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninController.swift; sourceTree = "<group>"; };
 		7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 		7C41C2062AD55A8A009B05E5 /* Board */ = {
 			isa = PBXGroup;
 			children = (
+				7C63BE3B2AF7AEA600BE9A2E /* BoardMenu */,
 				7C3F60102ADBCCC70078A6F1 /* Component */,
 				7C3F60172ADE6DA10078A6F1 /* BoardList */,
 				7C38AACE2AEA4DCF00E0650E /* BoardSearch */,
@@ -449,6 +452,14 @@
 				7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		7C63BE3B2AF7AEA600BE9A2E /* BoardMenu */ = {
+			isa = PBXGroup;
+			children = (
+				7C63BE3E2AF7AEEA00BE9A2E /* BoardMenuViewController.swift */,
+			);
+			path = BoardMenu;
 			sourceTree = "<group>";
 		};
 		7CBC11B62AC2C77700E1BBBE /* Board */ = {
@@ -1098,6 +1109,7 @@
 				C152DD032AE54998002C6153 /* ChatListRouter.swift in Sources */,
 				C1FA34432AEBFBBD0079B94C /* UserDefault.swift in Sources */,
 				C15E11722AC8150C00904C79 /* LeagueTablePresenter.swift in Sources */,
+				7C63BE3F2AF7AEEA00BE9A2E /* BoardMenuViewController.swift in Sources */,
 				7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */,
 				7C63BE302AEBC85800BE9A2E /* SignupViewController.swift in Sources */,
 				C1DFB2CB2AF3803C0069525E /* MyBetListWorker.swift in Sources */,
