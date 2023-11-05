@@ -166,11 +166,15 @@ extension BoardListViewController: BoardListDisplayLogic {
 
     @objc func menuButtonTapped() {
         let menuVC = BoardMenuViewController()
+
         menuVC.modalPresentationStyle = .overCurrentContext
         menuVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        present(menuVC, animated: true) {
+        present(menuVC, animated: false) {
             let menuHeight: CGFloat = 300
-            menuVC.view.frame = CGRect(x: 0, y: self.view.frame.height - menuHeight, width: self.view.frame.width, height: menuHeight)
+            menuVC.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: menuHeight)
+            UIView.animate(withDuration: 0.3) {
+                menuVC.view.frame = CGRect(x: 0, y: self.view.frame.height - menuHeight, width: self.view.frame.width, height: menuHeight)
+            }
         }
     }
 

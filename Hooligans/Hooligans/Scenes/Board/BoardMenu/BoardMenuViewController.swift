@@ -11,7 +11,7 @@ class BoardMenuViewController: UIViewController {
         view.addSubview(writeButton)
 
         let deleteBookmarkButton = UIButton()
-        deleteBookmarkButton.setTitle("즐겨찾기에서 삭제", for: .normal)
+        deleteBookmarkButton.setTitle("스크랩 목록", for: .normal)
         deleteBookmarkButton.addTarget(self, action: #selector(deleteBookmarkButtonTapped), for: .touchUpInside)
         view.addSubview(deleteBookmarkButton)
 
