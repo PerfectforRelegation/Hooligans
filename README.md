@@ -59,24 +59,25 @@
 
 
 ## 사용한 협업툴 
-- `Notion` , `Figma`
+- `Notion`, `Figma`
 
 <br>
 
 ## 사용한 라이브러리
 
 - `SwiftLint`
+- `StompClientLib`
 
 <br>
 
 
 ## 사용한 자동화 
-- `Fastlane` , `Slack`
+- 
 <br>
 
 
 ## Design pattern
-- MVVM 패턴 
+- VIP(Clean Swift)
 
 <br>
 
