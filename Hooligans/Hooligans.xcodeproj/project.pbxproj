@@ -42,6 +42,7 @@
 		7C63BE362AEBDDAF00BE9A2E /* PhonenumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */; };
 		7C63BE3A2AEBE0C400BE9A2E /* SelectTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */; };
 		7C63BE3F2AF7AEEA00BE9A2E /* BoardMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE3E2AF7AEEA00BE9A2E /* BoardMenuViewController.swift */; };
+		7C63BE412AF8A8EC00BE9A2E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE402AF8A8EC00BE9A2E /* ActivityIndicator.swift */; };
 		7CBC11B82AC2C78100E1BBBE /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11B72AC2C78100E1BBBE /* Board.swift */; };
 		7CBC11BE2AD3D39600E1BBBE /* SigninController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BD2AD3D39600E1BBBE /* SigninController.swift */; };
 		7CBC11C02AD3D9AD00E1BBBE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */; };
@@ -194,6 +195,7 @@
 		7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonenumberView.swift; sourceTree = "<group>"; };
 		7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamView.swift; sourceTree = "<group>"; };
 		7C63BE3E2AF7AEEA00BE9A2E /* BoardMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardMenuViewController.swift; sourceTree = "<group>"; };
+		7C63BE402AF8A8EC00BE9A2E /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		7CBC11B72AC2C78100E1BBBE /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		7CBC11BD2AD3D39600E1BBBE /* SigninController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninController.swift; sourceTree = "<group>"; };
 		7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 				7C4692B32AB98EB00016ADC7 /* Account */,
 				C14038722AA886BF00933273 /* Main */,
 				C1DFB29A2AEEC8970069525E /* LaunchScreenViewController.swift */,
+				7C63BE402AF8A8EC00BE9A2E /* ActivityIndicator.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 				7C3F60202ADE710A0078A6F1 /* BoardDetailWorker.swift in Sources */,
 				C1FA344D2AED76060079B94C /* NewsPostCell.swift in Sources */,
 				C152DD072AE5540B002C6153 /* Fixture.swift in Sources */,
+				7C63BE412AF8A8EC00BE9A2E /* ActivityIndicator.swift in Sources */,
 				C1DFB2BE2AF368E00069525E /* BetWorker.swift in Sources */,
 				C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */,
 				C15E117B2AC94EE800904C79 /* ChatRoomViewController.swift in Sources */,
