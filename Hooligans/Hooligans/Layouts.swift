@@ -9,16 +9,55 @@ import Foundation
 import UIKit
 
 struct Layouts {
-    
     // MARK: - Main CollectionView Layout
     enum Main: CaseIterable {
+        case chat
         case profile
+        case result
         case fixture
         case news
         
         func section() -> NSCollectionLayoutSection {
             switch self {
+            case .chat:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(80))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+                group.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(10)),
+                          elementKind: UICollectionView.elementKindSectionHeader,
+                          alignment: .topLeading)
+                ]
+                section.orthogonalScrollingBehavior = .none
+                section.contentInsets = .init(top: 120, leading: 10, bottom: 0, trailing: 10)
+                
+                return section
+                
             case .profile:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.15))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+                group.contentInsets = .init(top: 20, leading: 10, bottom: 0, trailing: 10)
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(10)),
+                          elementKind: UICollectionView.elementKindSectionHeader,
+                          alignment: .topLeading)
+                ]
+                section.orthogonalScrollingBehavior = .none
+                section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+                
+                return section
+                
+            case .result:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
@@ -36,7 +75,6 @@ struct Layouts {
                 section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
                 
                 return section
-            
                 
             case .fixture:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
@@ -79,7 +117,9 @@ struct Layouts {
             
         }
     }
-    
+}
+
+extension Layouts {
     // MARK: - Chat CollectionView Layout
     enum Chat: CaseIterable {
         case tabItem
@@ -128,9 +168,75 @@ struct Layouts {
             
         }
     }
-    
 }
 
-extension UICollectionViewCompositionalLayout {
-    
+extension Layouts {
+    // MARK: - Chat CollectionView Layout
+    enum Signin: CaseIterable {
+        case header
+        case email
+        case social
+        
+        func section() -> NSCollectionLayoutSection {
+            switch self {
+            case .header:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.3))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(10)),
+                          elementKind: UICollectionView.elementKindSectionHeader,
+                          alignment: .topLeading)
+                ]
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+                
+                return section
+                
+            case .email:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(10)),
+                          elementKind: UICollectionView.elementKindSectionHeader,
+                          alignment: .topLeading)
+                ]
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+                
+                return section
+                
+            case .social:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(60))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+                group.contentInsets = .init(top: 10, leading: 10, bottom: 0, trailing: 10)
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(10)),
+                          elementKind: UICollectionView.elementKindSectionHeader,
+                          alignment: .topLeading)
+                ]
+                section.orthogonalScrollingBehavior = .none
+                section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+                
+                return section
+            }
+            
+        }
+    }
 }

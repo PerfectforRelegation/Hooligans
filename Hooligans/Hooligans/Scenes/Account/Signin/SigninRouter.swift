@@ -10,6 +10,7 @@ import UIKit
 
 protocol SigninRoutingLogic {
     func routeToMain()
+    func routeToSignup()
 }
 
 protocol SigninDataPassing {
@@ -26,5 +27,11 @@ final class SigninRouter: SigninRoutingLogic {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             sceneDelegate.changeRootViewController(tabbarViewController, animated: false)
         }
+    }
+    
+    func routeToSignup() {
+        let signupViewController = SignupViewController()
+        
+        viewController?.navigationController?.pushViewController(signupViewController, animated: true)
     }
 }

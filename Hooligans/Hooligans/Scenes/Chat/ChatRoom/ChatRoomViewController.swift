@@ -226,7 +226,7 @@ extension ChatRoomViewController {
     
     
     @objc func sendMessageSTOMP() {
-        StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId, message: self.chatTextView.text)
+        StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId.uuidString, message: self.chatTextView.text)
         self.chatTextView.text = ""
     }
     

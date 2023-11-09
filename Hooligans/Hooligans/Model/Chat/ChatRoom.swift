@@ -8,7 +8,7 @@
 import Foundation
 
 struct ChatRoom: Codable {
-    let roomId: String
+    let roomId: UUID
     let name: String
     let count: Int
 }

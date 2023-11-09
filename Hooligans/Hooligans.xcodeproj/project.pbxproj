@@ -97,6 +97,26 @@
 		C15E11762AC815D400904C79 /* LeagueTableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E11752AC815D400904C79 /* LeagueTableRouter.swift */; };
 		C15E11782AC8188C00904C79 /* LeagueTableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E11772AC8188C00904C79 /* LeagueTableModels.swift */; };
 		C15E117B2AC94EE800904C79 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E117A2AC94EE800904C79 /* ChatRoomViewController.swift */; };
+		C164BD172AF86C1F00F59D38 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164BD162AF86C1F00F59D38 /* ActivityIndicator.swift */; };
+		C164BD272AF87ACD00F59D38 /* NotoSansKR-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD1A2AF87ACD00F59D38 /* NotoSansKR-VariableFont_wght.ttf */; };
+		C164BD282AF87ACD00F59D38 /* NotoSansKR-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD1C2AF87ACD00F59D38 /* NotoSansKR-Light.ttf */; };
+		C164BD292AF87ACD00F59D38 /* NotoSansKR-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD1D2AF87ACD00F59D38 /* NotoSansKR-Medium.ttf */; };
+		C164BD2A2AF87ACD00F59D38 /* NotoSansKR-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD1E2AF87ACD00F59D38 /* NotoSansKR-ExtraBold.ttf */; };
+		C164BD2B2AF87ACD00F59D38 /* NotoSansKR-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD1F2AF87ACD00F59D38 /* NotoSansKR-Regular.ttf */; };
+		C164BD2C2AF87ACD00F59D38 /* NotoSansKR-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD202AF87ACD00F59D38 /* NotoSansKR-SemiBold.ttf */; };
+		C164BD2D2AF87ACD00F59D38 /* NotoSansKR-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD212AF87ACD00F59D38 /* NotoSansKR-Black.ttf */; };
+		C164BD2E2AF87ACD00F59D38 /* NotoSansKR-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD222AF87ACD00F59D38 /* NotoSansKR-Thin.ttf */; };
+		C164BD2F2AF87ACD00F59D38 /* NotoSansKR-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD232AF87ACD00F59D38 /* NotoSansKR-ExtraLight.ttf */; };
+		C164BD302AF87ACD00F59D38 /* NotoSansKR-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C164BD242AF87ACD00F59D38 /* NotoSansKR-Bold.ttf */; };
+		C164BD312AF87ACD00F59D38 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = C164BD252AF87ACD00F59D38 /* OFL.txt */; };
+		C164BD322AF87ACD00F59D38 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C164BD262AF87ACD00F59D38 /* README.txt */; };
+		C164BD342AF87C8800F59D38 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164BD332AF87C8800F59D38 /* Font.swift */; };
+		C164BD382AF8B6D200F59D38 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164BD372AF8B6D200F59D38 /* Item.swift */; };
+		C164BD3A2AF8C2A000F59D38 /* EmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164BD392AF8C2A000F59D38 /* EmailCell.swift */; };
+		C164BD3C2AF8C34C00F59D38 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164BD3B2AF8C34C00F59D38 /* UIButtonExtension.swift */; };
+		C164BD3E2AF8C57800F59D38 /* SocialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164BD3D2AF8C57800F59D38 /* SocialCell.swift */; };
+		C164BD402AF8C82900F59D38 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164BD3F2AF8C82900F59D38 /* Social.swift */; };
+		C164BD422AF8E8F900F59D38 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164BD412AF8E8F900F59D38 /* UIColorExtension.swift */; };
 		C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100EF2A092B3400D6F24F /* AppDelegate.swift */; };
 		C1C100F22A092B3400D6F24F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C100F12A092B3400D6F24F /* SceneDelegate.swift */; };
 		C1C100F92A092B3500D6F24F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C100F82A092B3500D6F24F /* Assets.xcassets */; };
@@ -141,6 +161,9 @@
 		C1FA344D2AED76060079B94C /* NewsPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA344C2AED76060079B94C /* NewsPostCell.swift */; };
 		C1FA344F2AED778B0079B94C /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA344E2AED778B0079B94C /* News.swift */; };
 		C1FA34512AEE2C7F0079B94C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA34502AEE2C7F0079B94C /* WebViewController.swift */; };
+		C1FD4DAF2AFD08CF00B1D59F /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DAE2AFD08CF00B1D59F /* NumberFormatter.swift */; };
+		C1FD4DB32AFD0CE900B1D59F /* ChatButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DB22AFD0CE900B1D59F /* ChatButtonCell.swift */; };
+		C1FD4DB52AFD180500B1D59F /* BetResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DB42AFD180500B1D59F /* BetResultCell.swift */; };
 		DB2A79322AB98FE400F07D82 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79312AB98FE400F07D82 /* UserViewController.swift */; };
 		DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */; };
 		DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */; };
@@ -262,6 +285,26 @@
 		C15E11752AC815D400904C79 /* LeagueTableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueTableRouter.swift; sourceTree = "<group>"; };
 		C15E11772AC8188C00904C79 /* LeagueTableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueTableModels.swift; sourceTree = "<group>"; };
 		C15E117A2AC94EE800904C79 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		C164BD162AF86C1F00F59D38 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		C164BD1A2AF87ACD00F59D38 /* NotoSansKR-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		C164BD1C2AF87ACD00F59D38 /* NotoSansKR-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.ttf"; sourceTree = "<group>"; };
+		C164BD1D2AF87ACD00F59D38 /* NotoSansKR-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.ttf"; sourceTree = "<group>"; };
+		C164BD1E2AF87ACD00F59D38 /* NotoSansKR-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C164BD1F2AF87ACD00F59D38 /* NotoSansKR-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.ttf"; sourceTree = "<group>"; };
+		C164BD202AF87ACD00F59D38 /* NotoSansKR-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-SemiBold.ttf"; sourceTree = "<group>"; };
+		C164BD212AF87ACD00F59D38 /* NotoSansKR-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.ttf"; sourceTree = "<group>"; };
+		C164BD222AF87ACD00F59D38 /* NotoSansKR-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.ttf"; sourceTree = "<group>"; };
+		C164BD232AF87ACD00F59D38 /* NotoSansKR-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C164BD242AF87ACD00F59D38 /* NotoSansKR-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.ttf"; sourceTree = "<group>"; };
+		C164BD252AF87ACD00F59D38 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		C164BD262AF87ACD00F59D38 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		C164BD332AF87C8800F59D38 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		C164BD372AF8B6D200F59D38 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		C164BD392AF8C2A000F59D38 /* EmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCell.swift; sourceTree = "<group>"; };
+		C164BD3B2AF8C34C00F59D38 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		C164BD3D2AF8C57800F59D38 /* SocialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCell.swift; sourceTree = "<group>"; };
+		C164BD3F2AF8C82900F59D38 /* Social.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
+		C164BD412AF8E8F900F59D38 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		C1C100EC2A092B3400D6F24F /* Hooligans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hooligans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C100EF2A092B3400D6F24F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C100F12A092B3400D6F24F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -299,6 +342,9 @@
 		C1FA344C2AED76060079B94C /* NewsPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPostCell.swift; sourceTree = "<group>"; };
 		C1FA344E2AED778B0079B94C /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		C1FA34502AEE2C7F0079B94C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		C1FD4DAE2AFD08CF00B1D59F /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		C1FD4DB22AFD0CE900B1D59F /* ChatButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButtonCell.swift; sourceTree = "<group>"; };
+		C1FD4DB42AFD180500B1D59F /* BetResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetResultCell.swift; sourceTree = "<group>"; };
 		DB2A79312AB98FE400F07D82 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
 		DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
@@ -434,24 +480,25 @@
 		7C4692B32AB98EB00016ADC7 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				7C4692C22ABC517D0016ADC7 /* Cell */,
 				7C3F60262ADE9A170078A6F1 /* Signup */,
 				7C3F60252ADE9A100078A6F1 /* Signin */,
-				7C4692C22ABC517D0016ADC7 /* Component */,
 			);
 			path = Account;
 			sourceTree = "<group>";
 		};
-		7C4692C22ABC517D0016ADC7 /* Component */ = {
+		7C4692C22ABC517D0016ADC7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				7C4692C32ABC51B60016ADC7 /* SigninView.swift */,
-				7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */,
-				7C41C2042AD54416009B05E5 /* Button.swift */,
 				7C63BE352AEBDDAF00BE9A2E /* PhonenumberView.swift */,
 				7C63BE312AEBD47900BE9A2E /* NicknameView.swift */,
 				7C63BE392AEBE0C400BE9A2E /* SelectTeamView.swift */,
+				C164BD392AF8C2A000F59D38 /* EmailCell.swift */,
+				C164BD3D2AF8C57800F59D38 /* SocialCell.swift */,
+				C164BD3F2AF8C82900F59D38 /* Social.swift */,
 			);
-			path = Component;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		7C63BE3B2AF7AEA600BE9A2E /* BoardMenu */ = {
@@ -644,6 +691,8 @@
 				C152DD142AE7B143002C6153 /* ProfileCell.swift */,
 				C1FA344C2AED76060079B94C /* NewsPostCell.swift */,
 				C1DFB2C42AF37C0B0069525E /* UserBetCell.swift */,
+				C1FD4DB22AFD0CE900B1D59F /* ChatButtonCell.swift */,
+				C1FD4DB42AFD180500B1D59F /* BetResultCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -703,6 +752,64 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		C164BD182AF87A9700F59D38 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				C164BD332AF87C8800F59D38 /* Font.swift */,
+				C164BD192AF87ACD00F59D38 /* Noto_Sans_KR */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		C164BD192AF87ACD00F59D38 /* Noto_Sans_KR */ = {
+			isa = PBXGroup;
+			children = (
+				C164BD1A2AF87ACD00F59D38 /* NotoSansKR-VariableFont_wght.ttf */,
+				C164BD1B2AF87ACD00F59D38 /* static */,
+				C164BD252AF87ACD00F59D38 /* OFL.txt */,
+				C164BD262AF87ACD00F59D38 /* README.txt */,
+			);
+			path = Noto_Sans_KR;
+			sourceTree = "<group>";
+		};
+		C164BD1B2AF87ACD00F59D38 /* static */ = {
+			isa = PBXGroup;
+			children = (
+				C164BD1C2AF87ACD00F59D38 /* NotoSansKR-Light.ttf */,
+				C164BD1D2AF87ACD00F59D38 /* NotoSansKR-Medium.ttf */,
+				C164BD1E2AF87ACD00F59D38 /* NotoSansKR-ExtraBold.ttf */,
+				C164BD1F2AF87ACD00F59D38 /* NotoSansKR-Regular.ttf */,
+				C164BD202AF87ACD00F59D38 /* NotoSansKR-SemiBold.ttf */,
+				C164BD212AF87ACD00F59D38 /* NotoSansKR-Black.ttf */,
+				C164BD222AF87ACD00F59D38 /* NotoSansKR-Thin.ttf */,
+				C164BD232AF87ACD00F59D38 /* NotoSansKR-ExtraLight.ttf */,
+				C164BD242AF87ACD00F59D38 /* NotoSansKR-Bold.ttf */,
+			);
+			path = static;
+			sourceTree = "<group>";
+		};
+		C164BD352AF8B5E700F59D38 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C164BD162AF86C1F00F59D38 /* ActivityIndicator.swift */,
+				7C41C2042AD54416009B05E5 /* Button.swift */,
+				7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */,
+				C164BD372AF8B6D200F59D38 /* Item.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C164BD362AF8B60600F59D38 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C152DD122AE68B71002C6153 /* UIViewExtension.swift */,
+				C1FA34452AECDDB80079B94C /* UIImageExtension.swift */,
+				C164BD3B2AF8C34C00F59D38 /* UIButtonExtension.swift */,
+				C164BD412AF8E8F900F59D38 /* UIColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C1C100E32A092B3400D6F24F = {
 			isa = PBXGroup;
 			children = (
@@ -728,8 +835,10 @@
 		C1C100EE2A092B3400D6F24F /* Hooligans */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD4DAD2AFD089B00B1D59F /* Utility */,
+				C164BD362AF8B60600F59D38 /* Extensions */,
+				C164BD352AF8B5E700F59D38 /* Components */,
 				C1FA34472AECDE700079B94C /* Resources */,
-				C1FA34442AECDD920079B94C /* Util */,
 				C14038852AB3077500933273 /* Network */,
 				C140386F2AA8868800933273 /* Service */,
 				C14038702AA8869500933273 /* Model */,
@@ -739,7 +848,6 @@
 				C1C100FA2A092B3500D6F24F /* LaunchScreen.storyboard */,
 				C1C100FD2A092B3500D6F24F /* Info.plist */,
 				C152DD102AE688F9002C6153 /* Layouts.swift */,
-				C152DD122AE68B71002C6153 /* UIViewExtension.swift */,
 				C1FA34402AEBF9620079B94C /* Animation.swift */,
 				C1FA34422AEBFBBD0079B94C /* UserDefault.swift */,
 			);
@@ -802,21 +910,22 @@
 			path = Bet;
 			sourceTree = "<group>";
 		};
-		C1FA34442AECDD920079B94C /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				C1FA34452AECDDB80079B94C /* UIImageExtension.swift */,
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
 		C1FA34472AECDE700079B94C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C164BD182AF87A9700F59D38 /* Font */,
 				C1FA34482AECDE840079B94C /* siu.gif */,
 				C1C100F82A092B3500D6F24F /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C1FD4DAD2AFD089B00B1D59F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD4DAE2AFD08CF00B1D59F /* NumberFormatter.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		DB2A79302AB98FB700F07D82 /* User */ = {
@@ -931,8 +1040,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C164BD312AF87ACD00F59D38 /* OFL.txt in Resources */,
 				C1C100FC2A092B3500D6F24F /* LaunchScreen.storyboard in Resources */,
+				C164BD2C2AF87ACD00F59D38 /* NotoSansKR-SemiBold.ttf in Resources */,
+				C164BD282AF87ACD00F59D38 /* NotoSansKR-Light.ttf in Resources */,
+				C164BD322AF87ACD00F59D38 /* README.txt in Resources */,
 				C1C100F92A092B3500D6F24F /* Assets.xcassets in Resources */,
+				C164BD2F2AF87ACD00F59D38 /* NotoSansKR-ExtraLight.ttf in Resources */,
+				C164BD2B2AF87ACD00F59D38 /* NotoSansKR-Regular.ttf in Resources */,
+				C164BD292AF87ACD00F59D38 /* NotoSansKR-Medium.ttf in Resources */,
+				C164BD2A2AF87ACD00F59D38 /* NotoSansKR-ExtraBold.ttf in Resources */,
+				C164BD272AF87ACD00F59D38 /* NotoSansKR-VariableFont_wght.ttf in Resources */,
+				C164BD302AF87ACD00F59D38 /* NotoSansKR-Bold.ttf in Resources */,
+				C164BD2E2AF87ACD00F59D38 /* NotoSansKR-Thin.ttf in Resources */,
+				C164BD2D2AF87ACD00F59D38 /* NotoSansKR-Black.ttf in Resources */,
 				C1FA34492AECDE840079B94C /* siu.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1002,6 +1123,7 @@
 				C1DFB2932AEE9DF70069525E /* SigninController.swift in Sources */,
 				C1DFB2922AEE9DF10069525E /* MainWorker.swift in Sources */,
 				C1DFB2912AEE9DE90069525E /* SigninModels.swift in Sources */,
+				C164BD3A2AF8C2A000F59D38 /* EmailCell.swift in Sources */,
 				C1DFB2902AEE9D310069525E /* UserWorker.swift in Sources */,
 				C1DFB28F2AEE9D140069525E /* LeagueTableViewCell.swift in Sources */,
 				C1DFB2C12AF36B790069525E /* Bet.swift in Sources */,
@@ -1012,6 +1134,7 @@
 				7C4692B92AB990460016ADC7 /* SigninPresenter.swift in Sources */,
 				C1DFB29F2AF2717A0069525E /* Main.swift in Sources */,
 				7C3F601E2ADE70BB0078A6F1 /* BoardDetailPresenter.swift in Sources */,
+				C164BD422AF8E8F900F59D38 /* UIColorExtension.swift in Sources */,
 				C14053242AEB96D900E69B41 /* ResponseMessage.swift in Sources */,
 				C152DD112AE688F9002C6153 /* Layouts.swift in Sources */,
 				C14053182AE938F500E69B41 /* ChatRoomInteractor.swift in Sources */,
@@ -1044,14 +1167,17 @@
 				C1DFB2B22AF2DE6A0069525E /* BetListCell.swift in Sources */,
 				C1DFB2C72AF37EE20069525E /* MyBetListViewController.swift in Sources */,
 				DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */,
+				C1FD4DB52AFD180500B1D59F /* BetResultCell.swift in Sources */,
 				7C3F60312AE5938E0078A6F1 /* BoardWriteRouter.swift in Sources */,
 				7C38AADA2AEA56C000E0650E /* BoardSearchModels.swift in Sources */,
+				C164BD382AF8B6D200F59D38 /* Item.swift in Sources */,
 				C14053132AE933CE00E69B41 /* StompManager.swift in Sources */,
 				C14038792AB3040D00933273 /* MainPresenter.swift in Sources */,
 				7C4692BD2AB990B20016ADC7 /* SigninRouter.swift in Sources */,
 				7C3F60202ADE710A0078A6F1 /* BoardDetailWorker.swift in Sources */,
 				C1FA344D2AED76060079B94C /* NewsPostCell.swift in Sources */,
 				C152DD072AE5540B002C6153 /* Fixture.swift in Sources */,
+				C1FD4DAF2AFD08CF00B1D59F /* NumberFormatter.swift in Sources */,
 				C1DFB2BE2AF368E00069525E /* BetWorker.swift in Sources */,
 				C1C100F02A092B3400D6F24F /* AppDelegate.swift in Sources */,
 				C15E117B2AC94EE800904C79 /* ChatRoomViewController.swift in Sources */,
@@ -1073,14 +1199,19 @@
 				7C63BE362AEBDDAF00BE9A2E /* PhonenumberView.swift in Sources */,
 				7CBC11BE2AD3D39600E1BBBE /* SigninController.swift in Sources */,
 				C123D4A22AE10B6B007A4485 /* TabItemCell.swift in Sources */,
+				C1FD4DB32AFD0CE900B1D59F /* ChatButtonCell.swift in Sources */,
+				C164BD3C2AF8C34C00F59D38 /* UIButtonExtension.swift in Sources */,
 				C14053262AEBBA4F00E69B41 /* AccountService.swift in Sources */,
 				7C3F602B2AE593640078A6F1 /* BoardWriteInteractor.swift in Sources */,
 				7C38AAD82AEA56B300E0650E /* BoardSearchRouter.swift in Sources */,
 				7C3F60222ADE71540078A6F1 /* BoardDetailRouter.swift in Sources */,
 				C123D4982AE0171F007A4485 /* RequestBuilder.swift in Sources */,
+				C164BD172AF86C1F00F59D38 /* ActivityIndicator.swift in Sources */,
 				C152DD052AE54C1F002C6153 /* ChatService.swift in Sources */,
 				C1FA34412AEBF9620079B94C /* Animation.swift in Sources */,
 				C152DD152AE7B143002C6153 /* ProfileCell.swift in Sources */,
+				C164BD342AF87C8800F59D38 /* Font.swift in Sources */,
+				C164BD402AF8C82900F59D38 /* Social.swift in Sources */,
 				C152DD182AE7B856002C6153 /* Profile.swift in Sources */,
 				C140531C2AE9393200E69B41 /* ChatRoomWorker.swift in Sources */,
 				C152DD092AE57F30002C6153 /* ChatListModels.swift in Sources */,
@@ -1123,6 +1254,7 @@
 				7C3F601A2ADE6F340078A6F1 /* BoardDetailViewController.swift in Sources */,
 				7C3F601C2ADE703D0078A6F1 /* BoardDetailInteractor.swift in Sources */,
 				C14038A02ABB300500933273 /* League.swift in Sources */,
+				C164BD3E2AF8C57800F59D38 /* SocialCell.swift in Sources */,
 				C14038752AB303E800933273 /* MainViewController.swift in Sources */,
 				C123D49A2AE0F2C3007A4485 /* ChatListViewController.swift in Sources */,
 				C123D49E2AE0F37B007A4485 /* TeamChatViewController.swift in Sources */,

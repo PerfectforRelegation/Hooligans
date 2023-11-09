@@ -14,35 +14,14 @@ protocol MainDisplayLogic: AnyObject {
 }
 
 class MainViewController: UIViewController {
+    var interactor: (MainBusinessLogic & MainDataStore)?
+    var router: MainRoutingLogic?
     
-    struct Item: Hashable, Equatable {
-        let data: Any
-        let section: MainModels.Section
-        let identifier = UUID()
-        
-        init(data: Any, section: MainModels.Section) {
-            self.data = data
-            self.section = section
-        }
-
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(self.identifier)
-        }
-        
-        static func == (lhs: Item, rhs: Item) -> Bool {
-            lhs.identifier == rhs.identifier
-        }
-    }
-    
-    typealias DataSource = UICollectionViewDiffableDataSource<Layouts.Main, Item>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Layouts.Main, Item>
+    typealias DataSource = UICollectionViewDiffableDataSource<MainModels.Section, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<MainModels.Section, Item>
     
     private lazy var dataSource: DataSource = configureDataSource()
     private lazy var snapshot: Snapshot = Snapshot()
-    
-    // MARK: - Properties
-    var interactor: (MainBusinessLogic & MainDataStore)?
-    var router: MainRoutingLogic?
     
     // MARK: - View Initailize
     private let headerView = MainHeaderView()
@@ -101,13 +80,15 @@ class MainViewController: UIViewController {
 
     private func registerCells() {
         collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
+        collectionView.register(ChatButtonCell.self, forCellWithReuseIdentifier: ChatButtonCell.identifier)
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
         collectionView.register(NewsPostCell.self, forCellWithReuseIdentifier: NewsPostCell.identifier)
     }
     
     private func bindView() {
-        snapshot.appendSections([.profile, .fixture, .news])
+        snapshot.appendSections([.chat, .profile, .result, .fixture, .news])
+        snapshot.appendItems([Item(data: "")], toSection: .chat)
         self.dataSource.apply(self.snapshot)
     }
 
@@ -142,12 +123,20 @@ extension MainViewController {
     
     private func configureDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: self.collectionView) { collectionView, indexPath, item in
-            switch item.section {
+            guard let section = MainModels.Section(rawValue: indexPath.section) else { return UICollectionViewCell() }
+            switch section {
+            case .chat:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatButtonCell.identifier, for: indexPath) as? ChatButtonCell else { return UICollectionViewCell() }
+                return cell
+                
             case .profile:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier,
                                                    for: indexPath) as? ProfileCell else { return UICollectionViewCell() }
                 if let data = item.data as? MainUser { cell.configureCell(user: data) }
                 return cell
+                
+            case .result:
+                return UICollectionViewCell()
                 
             case .fixture:
                  guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
@@ -184,14 +173,14 @@ extension MainViewController: MainDisplayLogic {
     func displaySomething(viewModel: MainModels.Main.ViewModel) {
         DispatchQueue.main.async {
             // MARK: - User Profile
-            let userItem = Item(data: viewModel.mainSource.user, section: .profile)
+            let userItem = Item(data: viewModel.mainSource.user)
             self.snapshot.appendItems([userItem], toSection: .profile)
             
             // MARK: - Live Fixtures
             
             // MARK: - News Posts
             viewModel.mainSource.news.posts.forEach { post in
-                let newsPostItem = Item(data: post, section: .news)
+                let newsPostItem = Item(data: post)
                 self.snapshot.appendItems([newsPostItem], toSection: .news)
             }
             self.dataSource.apply(self.snapshot)
