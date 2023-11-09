@@ -15,6 +15,11 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
     var scrollView: UIScrollView!
     var imageScrollView: UIScrollView!
 
+    let activityIndicator: ActivityIndicator = {
+        let indicator = ActivityIndicator(style: .large)
+        return indicator
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -25,18 +30,19 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
     }
 
     func setupNavigationBar() {
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = .white
+//        navigationController?.navigationBar.barStyle = .default
+//        navigationController?.navigationBar.barTintColor = .white
 
         // 뒤로가기
         let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
-        backButton.tintColor = .black
+        backButton.tintColor = .white
 
         // 글 쓰기
         let titleView = UIView()
         let titleLabel = UILabel()
         titleLabel.text = "글 쓰기"
+        titleLabel.textColor = .white
         titleView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -45,6 +51,7 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
         // 등록
         uploadButton.title = "등록"
+        uploadButton.tintColor = .white
         uploadButton.style = .plain
         uploadButton.target = self
         uploadButton.action = #selector(uploadButtonTapped)
@@ -103,14 +110,15 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
         // 사진 추가
         let addPhotoButton = UIButton()
-        let addPhotoImage = UIImage(named: "cameraIcon")
+        let addPhotoImage = UIImage(systemName: "camera.fill")
+        addPhotoButton.tintColor = .systemIndigo
         addPhotoButton.setImage(addPhotoImage, for: .normal)
         addPhotoButton.addTarget(self, action: #selector(addPhotoButtonTapped), for: .touchUpInside)
         view.addSubview(addPhotoButton)
         addPhotoButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.leading.equalToSuperview().offset(30)
-            make.size.equalTo(CGSize(width: 25, height: 25))
+            make.size.equalTo(CGSize(width: 35, height: 35))
         }
     }
 
@@ -139,12 +147,20 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let selectedImage = info[.originalImage] as? UIImage {
-                addImageToScrollView(selectedImage)
-            }
-            dismiss(animated: true, completion: nil)
+        if let selectedImage = info[.originalImage] as? UIImage {
+            addImageToScrollView(selectedImage)
         }
+        dismiss(animated: true) {
+            self.activityIndicator.stop()
+        }
+    }
 
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true) {
+            // 사진보관함에서 취소 시에도 ActivityIndicator 정지
+            self.activityIndicator.stop()
+        }
+    }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -186,10 +202,11 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
     }
 
     @objc func addPhotoButtonTapped() {
-        print("DEBUG :", "clickPhoto")
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true) {
+            self.activityIndicator.start(on: self.view)
+        }
     }
 }

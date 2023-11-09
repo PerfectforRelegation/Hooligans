@@ -20,21 +20,21 @@ class BoardSearchViewController: UIViewController, UISearchBarDelegate, UITableV
     func setupUI() {
         searchBar.delegate = self
         searchBar.placeholder = "검색어를 입력하세요."
+        searchBar.barTintColor = .white
+        searchBar.backgroundColor = .white
         navigationItem.titleView = searchBar
-//        let cancel = UIBarButtonItem(systemItem: .cancel, primaryAction: UIAction(handler: { _ in
-//                }))
-//        navigationItem.rightBarButtonItem = cancel
 
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
 
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top)
+            make.bottom.equalTo(view.snp.bottom)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+        }
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -78,7 +78,7 @@ class BoardSearchViewController: UIViewController, UISearchBarDelegate, UITableV
     func BackButton() {
         let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
-        backButton.tintColor = .black
+        backButton.tintColor = .systemIndigo
     }
 
     @objc func backButtonTapped() {

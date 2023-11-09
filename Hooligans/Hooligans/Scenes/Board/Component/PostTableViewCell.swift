@@ -3,6 +3,21 @@ import UIKit
 class PostTableViewCell: UITableViewCell {
     static let identifier = "PostCellIdentifier"
 
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+
+    let usernameLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
+    let uploadTimeLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -19,29 +34,33 @@ class PostTableViewCell: UITableViewCell {
 
     let likesImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "likeIcon")
+        imageView.image = UIImage(systemName: "heart")?.withTintColor(.red, renderingMode: .alwaysOriginal)
         imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-
-    let commentsImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "commentIcon")
-        imageView.contentMode = .scaleAspectFit
+        imageView.alpha = 0.5
         return imageView
     }()
 
     let likesLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor(red: 0.9098, green: 0.3176, blue: 0.4431, alpha: 1.0)
+        label.textColor = .red
+        label.alpha = 0.5
         return label
+    }()
+
+    let commentsImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "ellipsis.bubble")?.withTintColor(.blue, renderingMode: .alwaysOriginal)
+        imageView.contentMode = .scaleAspectFit
+        imageView.alpha = 0.5
+        return imageView
     }()
 
     let commentsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor(red: 0.1569, green: 0.4039, blue: 0.8275, alpha: 1.0) /* #2867d3 */
+        label.textColor = .blue
+        label.alpha = 0.5
         return label
     }()
 
@@ -67,6 +86,9 @@ class PostTableViewCell: UITableViewCell {
     }
 
     func configure(with post: Board) {
+//        profileImageView.image = post.profileImage
+//        usernameLabel.text = post.username
+//        uploadTimeLabel.text = post.uploadTime
         titleLabel.text = post.title
         contentLabel.text = post.content
         likesLabel.text = "\(post.view)"
@@ -87,10 +109,18 @@ class PostTableViewCell: UITableViewCell {
     }
 
     private func setupUI() {
-        contentView.addSubview(titleLabel)
-
-        titleLabel.snp.makeConstraints { make in
+        let userInfoStackView = UIStackView(arrangedSubviews: [profileImageView, usernameLabel, uploadTimeLabel])
+        userInfoStackView.axis = .horizontal
+        userInfoStackView.spacing = 8
+        contentView.addSubview(userInfoStackView)
+        userInfoStackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(16)
+        }
+
+        contentView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(60)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
 
         contentView.addSubview(contentLabel)
