@@ -14,7 +14,7 @@ class BoardListViewController: UIViewController {
 
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 100
+        tableView.rowHeight = 150
         return tableView
     }()
 
@@ -99,6 +99,7 @@ class BoardListViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
         }
+        writeButton.addTarget(self, action: #selector(writeButtonTapped), for: .touchUpInside)
     }
 
     func setupNavigationBar() {

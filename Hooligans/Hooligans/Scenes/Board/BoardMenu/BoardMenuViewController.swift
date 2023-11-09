@@ -5,13 +5,13 @@ class BoardMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let writeButton = UIButton()
-        writeButton.setTitle("글 쓰기", for: .normal)
-        writeButton.addTarget(self, action: #selector(writeButtonTapped), for: .touchUpInside)
-        writeButton.layer.cornerRadius = 20
-        writeButton.backgroundColor = UIColor.systemIndigo
-        writeButton.alpha = 0.8
-        view.addSubview(writeButton)
+//        let writeButton = UIButton()
+//        writeButton.setTitle("글 쓰기", for: .normal)
+//        writeButton.addTarget(self, action: #selector(writeButtonTapped), for: .touchUpInside)
+//        writeButton.layer.cornerRadius = 20
+//        writeButton.backgroundColor = UIColor.systemIndigo
+//        writeButton.alpha = 0.8
+//        view.addSubview(writeButton)
 
         let deleteBookmarkButton = UIButton()
         deleteBookmarkButton.setTitle("스크랩 목록", for: .normal)
@@ -29,16 +29,17 @@ class BoardMenuViewController: UIViewController {
         cancelButton.alpha = 0.8
         view.addSubview(cancelButton)
 
-        writeButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(30)
-            make.width.equalTo(310)
-            make.height.equalTo(40)
-        }
+//        writeButton.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.top.equalToSuperview().offset(30)
+//            make.width.equalTo(310)
+//            make.height.equalTo(40)
+//        }
 
         deleteBookmarkButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(writeButton.snp.bottom).offset(20)
+            //make.top.equalTo(writeButton.snp.bottom).offset(20)
+            make.top.equalToSuperview().offset(80)
             make.width.equalTo(310)
             make.height.equalTo(40)
         }
