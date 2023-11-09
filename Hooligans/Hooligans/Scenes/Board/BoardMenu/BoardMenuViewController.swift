@@ -32,21 +32,21 @@ class BoardMenuViewController: UIViewController {
         writeButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(30)
-            make.width.equalTo(330)
+            make.width.equalTo(310)
             make.height.equalTo(40)
         }
 
         deleteBookmarkButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(writeButton.snp.bottom).offset(20)
-            make.width.equalTo(330)
+            make.width.equalTo(310)
             make.height.equalTo(40)
         }
 
         cancelButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(deleteBookmarkButton.snp.bottom).offset(20)
-            make.width.equalTo(330)
+            make.width.equalTo(310)
             make.height.equalTo(40)
         }
     }

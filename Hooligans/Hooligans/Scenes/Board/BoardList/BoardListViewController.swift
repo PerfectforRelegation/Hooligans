@@ -88,22 +88,17 @@ class BoardListViewController: UIViewController {
         tableView.dataSource = self
 
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         view.addSubview(writeButton)
-
-        writeButton.translatesAutoresizingMaskIntoConstraints = false
-        writeButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        writeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        writeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        writeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40).isActive = true
-        writeButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        writeButton.addTarget(self, action: #selector(writeButtonTapped), for: .touchUpInside)
-
+        writeButton.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(40)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
+        }
     }
 
     func setupNavigationBar() {
