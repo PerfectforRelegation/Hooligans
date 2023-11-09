@@ -14,16 +14,15 @@ class BoardListViewController: UIViewController {
 
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 100
+        tableView.rowHeight = 150
         return tableView
     }()
 
     let writeButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.systemGray6
+        button.backgroundColor = UIColor.systemIndigo
         button.layer.cornerRadius = 20
-//        button.layer.borderWidth = 0.5
-//        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.9)
 
         let image = UIImageView(image: UIImage(named: "writeIcon"))
         image.contentMode = .scaleAspectFit
@@ -37,6 +36,7 @@ class BoardListViewController: UIViewController {
         let label = UILabel()
         label.text = "글 쓰기"
         label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor.white
         button.addSubview(label)
         label.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -63,6 +63,7 @@ class BoardListViewController: UIViewController {
         setup()
         setupUI()
         setupNavigationBar()
+        //NavigationBarController.setupCustomAppearance()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,43 +88,35 @@ class BoardListViewController: UIViewController {
         tableView.dataSource = self
 
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         view.addSubview(writeButton)
-
-        writeButton.translatesAutoresizingMaskIntoConstraints = false
-        writeButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        writeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        writeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        writeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40).isActive = true
-        writeButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        writeButton.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(40)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
+        }
         writeButton.addTarget(self, action: #selector(writeButtonTapped), for: .touchUpInside)
-
     }
 
     func setupNavigationBar() {
         navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = .white
-//        navigationController?.isNavigationBarHidden = true
-
-//        // 뒤로가기
-//        let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
-//        navigationItem.leftBarButtonItem = backButton
-//        backButton.tintColor = .black
+        navigationController?.navigationBar.barTintColor = .systemIndigo
+        navigationController?.navigationBar.backgroundColor = .systemIndigo
 
         // 메뉴
         let menuButton = UIBarButtonItem(image: UIImage(named: "menuIcon"), style: .plain, target: self, action: #selector(menuButtonTapped))
         navigationItem.leftBarButtonItem = menuButton
-        menuButton.tintColor = .black
+        menuButton.tintColor = .white
 
         // 자유게시판
         let titleView = UIView()
         let titleLabel = UILabel()
         titleLabel.text = "자유게시판"
+        titleLabel.textColor = .white
         titleView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -132,7 +125,7 @@ class BoardListViewController: UIViewController {
 
         // 찾기
         let searchButton = UIBarButtonItem(image: UIImage(named: "searchIcon"), style: .plain, target: self, action: #selector(searchButtonTapped))
-        searchButton.tintColor = .black
+        searchButton.tintColor = .white
 
         navigationItem.rightBarButtonItems = [searchButton]
     }
@@ -166,11 +159,15 @@ extension BoardListViewController: BoardListDisplayLogic {
 
     @objc func menuButtonTapped() {
         let menuVC = BoardMenuViewController()
+
         menuVC.modalPresentationStyle = .overCurrentContext
-        menuVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        present(menuVC, animated: true) {
+        menuVC.view.backgroundColor = UIColor.black.withAlphaComponent(0)
+        present(menuVC, animated: false) {
             let menuHeight: CGFloat = 300
-            menuVC.view.frame = CGRect(x: 0, y: self.view.frame.height - menuHeight, width: self.view.frame.width, height: menuHeight)
+            menuVC.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: menuHeight)
+            UIView.animate(withDuration: 0.2) {
+                menuVC.view.frame = CGRect(x: 0, y: self.view.frame.height - menuHeight, width: self.view.frame.width, height: menuHeight)
+            }
         }
     }
 

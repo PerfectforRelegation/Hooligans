@@ -20,9 +20,9 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
         guard selectedPost != nil else { return }
 
-//            titleLabel.text = post.title
-//            contentLabel.text = post.content
-        }
+        //            titleLabel.text = post.title
+        //            contentLabel.text = post.content
+    }
 
 
     let tableView: UITableView = {
@@ -35,14 +35,17 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
     let commentTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "댓글을 입력하세요."
-        textField.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9686, alpha: 1.0) /* #f7f7f7 */
-        textField.borderStyle = .roundedRect
+        textField.backgroundColor = .white
+        textField.layer.borderColor = UIColor.systemIndigo.cgColor
+        textField.layer.borderWidth = 0.7
+        textField.layer.cornerRadius = 10
         return textField
     }()
 
     let sendButton: UIButton = {
         let button = UIButton()
-        let sendImage = UIImage(named: "sendIcon")
+        let sendImage = UIImage(systemName: "paperplane.fill")
+        button.tintColor = .systemIndigo
         button.setBackgroundImage(sendImage, for: .normal)
         return button
     }()
@@ -65,56 +68,55 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
 
-
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+        }
 
         inputView.backgroundColor = .white
-
         inputView.translatesAutoresizingMaskIntoConstraints = false
-        inputView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
-        inputView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        inputView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        inputView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-
-
-//        commentTextField.rightView = sendButton
-//        commentTextField.rightViewMode = .always
+        inputView.snp.makeConstraints { make in
+            make.top.equalTo(tableView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
 
         commentTextField.translatesAutoresizingMaskIntoConstraints = false
-        commentTextField.topAnchor.constraint(equalTo: inputView.topAnchor, constant: 20).isActive = true
-        commentTextField.leadingAnchor.constraint(equalTo: inputView.leadingAnchor, constant: 10).isActive = true
-        commentTextField.widthAnchor.constraint(equalToConstant: 375).isActive = true
-        commentTextField.bottomAnchor.constraint(equalTo: inputView.bottomAnchor, constant: -50).isActive = true
-        commentTextField.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        commentTextField.borderStyle = .none
+        commentTextField.layer.cornerRadius = 20
+        commentTextField.layer.masksToBounds = true
+        commentTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: commentTextField.frame.height))
+        commentTextField.leftViewMode = .always
+
+        commentTextField.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalTo(10)
+            make.width.equalTo(375)
+            make.bottom.equalToSuperview().offset(-100)
+            make.height.equalTo(45)
+        }
 
         sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.trailingAnchor.constraint(equalTo: inputView.trailingAnchor, constant: -20).isActive = true
-        sendButton.centerYAnchor.constraint(equalTo: commentTextField.centerYAnchor).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        sendButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        sendButton.snp.makeConstraints { make in
+            make.trailing.equalTo(inputView).offset(-20)
+            make.centerY.equalTo(commentTextField)
+            make.size.equalTo(20)
+        }
 
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
-
-        tableView.reloadData()
     }
 
-
     func setupNavigationBar() {
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = .white
-
         // 뒤로가기
         let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
-        backButton.tintColor = .black
+        backButton.tintColor = .white
 
         // 자유게시판
         let titleView = UIView()
         let titleLabel = UILabel()
         titleLabel.text = "자유게시판"
+        titleLabel.textColor = .white
         titleView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -123,11 +125,7 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
         // 메뉴
         let menuButton = UIBarButtonItem(image: UIImage(named: "menuIcon"), style: .plain, target: self, action: #selector(menuButtonTapped))
-        menuButton.tintColor = .black
-
-//        // 찾기
-//        let searchButton = UIBarButtonItem(image: UIImage(named: "searchIcon"), style: .plain, target: self, action: #selector(searchButtonTapped))
-//            searchButton.tintColor = .black
+        menuButton.tintColor = .white
 
         navigationItem.rightBarButtonItems = [menuButton]
     }
@@ -163,7 +161,17 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     @objc func menuButtonTapped() {
-        print("DEBUG :", "clickMenu")
+        let menuVC = BoardMenuViewController()
+
+        menuVC.modalPresentationStyle = .overCurrentContext
+        menuVC.view.backgroundColor = UIColor.black.withAlphaComponent(0)
+        present(menuVC, animated: false) {
+            let menuHeight: CGFloat = 300
+            menuVC.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: menuHeight)
+            UIView.animate(withDuration: 0.2) {
+                menuVC.view.frame = CGRect(x: 0, y: self.view.frame.height - menuHeight, width: self.view.frame.width, height: menuHeight)
+            }
+        }
     }
 
     @objc func sendButtonTapped() {

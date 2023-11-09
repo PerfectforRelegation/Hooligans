@@ -37,17 +37,14 @@ class NicknameView: UIView, UITextFieldDelegate {
         return button
     }()
 
-    let activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemIndigo
-        indicator.hidesWhenStopped = true
+    let activityIndicator: ActivityIndicator = {
+        let indicator = ActivityIndicator(style: .large)
         return indicator
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        setupActivityIndicator()
         nicknameField.delegate = self
     }
 
@@ -126,13 +123,6 @@ class NicknameView: UIView, UITextFieldDelegate {
         }
     }
 
-    private func setupActivityIndicator() {
-        addSubview(activityIndicator)
-        activityIndicator.snp.makeConstraints { make in
-            make.center.equalTo(self)
-        }
-    }
-
     @objc private func backButtonTapped() {
         guard let phonenumberView = PhonenumberView(frame: frame) as? PhonenumberView else { return }
         phonenumberView.emailTextField.text = previousEmail
@@ -156,25 +146,25 @@ class NicknameView: UIView, UITextFieldDelegate {
         // 로딩 표시 시작
         nextButton.setTitle("", for: .normal)
         nextButton.isEnabled = false // 버튼 중복 입력 방지
-        activityIndicator.startAnimating()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        
+        activityIndicator.start(on: self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {            
             // 로딩 표시 중지
-            self?.activityIndicator.stopAnimating()
-            self?.nextButton.isEnabled = true // 버튼 상태 복원
-            self?.nextButton.setTitle("다음", for: .normal) // 텍스트 복원
+            self.activityIndicator.stopAnimating()
+            self.nextButton.isEnabled = true // 버튼 상태 복원
+            self.nextButton.setTitle("다음", for: .normal) // 텍스트 복원
 
-            if let nickname = self?.nicknameField.text, !nickname.isEmpty {
-                let selectTeamView = SelectTeamView(frame: self?.frame ?? CGRect.zero)
-                selectTeamView.previousEmail = self?.previousEmail
-                selectTeamView.previousPassword = self?.previousPassword
-                selectTeamView.previousPhoneNumber = self?.previousPhoneNumber
+            if let nickname = self.nicknameField.text, !nickname.isEmpty {
+                let selectTeamView = SelectTeamView(frame: self.frame ?? CGRect.zero)
+                selectTeamView.previousEmail = self.previousEmail
+                selectTeamView.previousPassword = self.previousPassword
+                selectTeamView.previousPhoneNumber = self.previousPhoneNumber
                 selectTeamView.previousNickname = nickname
 
-                self?.subviews.forEach { $0.removeFromSuperview() }
-                self?.addSubview(selectTeamView)
+                self.subviews.forEach { $0.removeFromSuperview() }
+                self.addSubview(selectTeamView)
             } else {
-                self?.showAlert(title: "닉네임 입력", message: "닉네임을 입력해주세요.")
+                self.showAlert(title: "닉네임 입력", message: "닉네임을 입력해주세요.")
             }
         }
     }
