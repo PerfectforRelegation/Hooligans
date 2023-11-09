@@ -25,18 +25,19 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
     }
 
     func setupNavigationBar() {
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = .white
+//        navigationController?.navigationBar.barStyle = .default
+//        navigationController?.navigationBar.barTintColor = .white
 
         // 뒤로가기
         let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
-        backButton.tintColor = .black
+        backButton.tintColor = .white
 
         // 글 쓰기
         let titleView = UIView()
         let titleLabel = UILabel()
         titleLabel.text = "글 쓰기"
+        titleLabel.textColor = .white
         titleView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -45,6 +46,7 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
         // 등록
         uploadButton.title = "등록"
+        uploadButton.tintColor = .white
         uploadButton.style = .plain
         uploadButton.target = self
         uploadButton.action = #selector(uploadButtonTapped)
@@ -103,14 +105,15 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
         // 사진 추가
         let addPhotoButton = UIButton()
-        let addPhotoImage = UIImage(named: "cameraIcon")
+        let addPhotoImage = UIImage(systemName: "camera.fill")
+        addPhotoButton.tintColor = .systemIndigo
         addPhotoButton.setImage(addPhotoImage, for: .normal)
         addPhotoButton.addTarget(self, action: #selector(addPhotoButtonTapped), for: .touchUpInside)
         view.addSubview(addPhotoButton)
         addPhotoButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.leading.equalToSuperview().offset(30)
-            make.size.equalTo(CGSize(width: 25, height: 25))
+            make.size.equalTo(CGSize(width: 35, height: 35))
         }
     }
 

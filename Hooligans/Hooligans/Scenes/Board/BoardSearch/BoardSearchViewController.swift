@@ -20,6 +20,8 @@ class BoardSearchViewController: UIViewController, UISearchBarDelegate, UITableV
     func setupUI() {
         searchBar.delegate = self
         searchBar.placeholder = "검색어를 입력하세요."
+        searchBar.barTintColor = .white
+        searchBar.backgroundColor = .white
         navigationItem.titleView = searchBar
 //        let cancel = UIBarButtonItem(systemItem: .cancel, primaryAction: UIAction(handler: { _ in
 //                }))
