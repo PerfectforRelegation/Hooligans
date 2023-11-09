@@ -15,6 +15,11 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
     var scrollView: UIScrollView!
     var imageScrollView: UIScrollView!
 
+    let activityIndicator: ActivityIndicator = {
+        let indicator = ActivityIndicator(style: .large)
+        return indicator
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -142,12 +147,20 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let selectedImage = info[.originalImage] as? UIImage {
-                addImageToScrollView(selectedImage)
-            }
-            dismiss(animated: true, completion: nil)
+        if let selectedImage = info[.originalImage] as? UIImage {
+            addImageToScrollView(selectedImage)
         }
+        dismiss(animated: true) {
+            self.activityIndicator.stop()
+        }
+    }
 
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true) {
+            // 사진보관함에서 취소 시에도 ActivityIndicator 정지
+            self.activityIndicator.stop()
+        }
+    }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -189,10 +202,11 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
     }
 
     @objc func addPhotoButtonTapped() {
-        print("DEBUG :", "clickPhoto")
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true) {
+            self.activityIndicator.start(on: self.view)
+        }
     }
 }
