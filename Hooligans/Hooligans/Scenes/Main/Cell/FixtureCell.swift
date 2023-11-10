@@ -21,14 +21,14 @@ final class FixtureCell: UICollectionViewCell {
     
     private let timeLable: UILabel = {
         let label = UILabel()
-        label.font = Font.semibold(size: 12)
+        label.font = Font.semibold(size: 20)
         label.textColor = .white
         return label
     }()
     
     private let stadiumLabel: UILabel = {
         let label = UILabel()
-        label.font = Font.semibold(size: 12)
+        label.font = Font.semibold(size: 10)
         label.textColor = .white
         return label
     }()
@@ -63,13 +63,13 @@ extension FixtureCell {
         addSubview(timeLable)
         timeLable.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(8)
+            make.centerY.equalToSuperview()
         }
         
         addSubview(stadiumLabel)
         stadiumLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(8)
+            make.top.equalToSuperview().offset(8)
         }
         
         self.addSubview(homeTeamImage)

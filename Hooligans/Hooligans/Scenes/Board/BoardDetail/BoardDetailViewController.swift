@@ -11,17 +11,12 @@ protocol BoardDetailDisplayLogic: AnyObject {
 }
 
 
-class BoardDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-
-    var selectedPost: Board?
-
-//    private func displayPostDetails() {
-//        guard selectedPost != nil else { return }
-////        titleLabel.text = post.title
-////        contentLabel.text = post.content
-//    }
-
+class BoardDetailViewController: UIViewController {
+    private var board: Board?
+    
+    private let navigationBar = NavigationBar(background: .purple, leftItem: UIImage(systemName: "chevron.left"), title: "자유게시판")
+    
+    private let contentView = BoardDetailContentView()
 
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -30,19 +25,6 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
         return tableView
     }()
     
-    private let contextLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-    
-    init(board: Board) {
-        super.init(nibName: nil, bundle: nil)
-        contextLabel.text = board.content
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     let commentTextField: UITextField = {
         let textField = UITextField()
@@ -61,14 +43,66 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
         button.setBackgroundImage(sendImage, for: .normal)
         return button
     }()
+    
+    init(board: Board) {
+        super.init(nibName: nil, bundle: nil)
+        self.board = board
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupView()
         setupNavigationBar()
     }
+    
+    func setupNavigationBar() {
+        // 뒤로가기
+        let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
+        backButton.tintColor = .white
 
-    func setupUI() {
+        // 자유게시판
+        let titleView = UIView()
+        let titleLabel = UILabel()
+        titleLabel.text = "자유게시판"
+        titleLabel.textColor = .white
+        titleView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        navigationItem.titleView = titleView
+
+        // 메뉴
+        let menuButton = UIBarButtonItem(image: UIImage(named: "menuIcon"), style: .plain, target: self, action: #selector(menuButtonTapped))
+        menuButton.tintColor = .white
+
+        navigationItem.rightBarButtonItems = [menuButton]
+    }
+    
+}
+
+extension BoardDetailViewController {
+    private func setupView() {
+        view.backgroundColor = .white
+        
+        view.addSubview(navigationBar)
+        navigationBar.leftItem.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        
+        view.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+        
         let inputView = UIView()
         inputView.addSubview(commentTextField)
         inputView.addSubview(sendButton)
@@ -82,7 +116,7 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(contentView.snp.bottom).offset(15)
             make.leading.trailing.equalToSuperview()
         }
 
@@ -117,53 +151,7 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
     }
-
-    func setupNavigationBar() {
-        // 뒤로가기
-        let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backButtonTapped))
-        navigationItem.leftBarButtonItem = backButton
-        backButton.tintColor = .white
-
-        // 자유게시판
-        let titleView = UIView()
-        let titleLabel = UILabel()
-        titleLabel.text = "자유게시판"
-        titleLabel.textColor = .white
-        titleView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        navigationItem.titleView = titleView
-
-        // 메뉴
-        let menuButton = UIBarButtonItem(image: UIImage(named: "menuIcon"), style: .plain, target: self, action: #selector(menuButtonTapped))
-        menuButton.tintColor = .white
-
-        navigationItem.rightBarButtonItems = [menuButton]
-    }
     
-
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-
-        // 게시물 데이터 표시
-//        let post = posts[indexPath.row]
-//        cell.configure(with: post)
-
-        // 좋아요 이미지 설정
-        cell.likesImageView.image = UIImage(named: "likeIcon")
-
-        return cell
-    }
-
-
-
     @objc func backButtonTapped() {
         print("DEBUG :", "clickBack")
         navigationController?.popViewController(animated: true)
@@ -189,5 +177,25 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
     @objc func sendButtonTapped() {
         print("DEBUG :", "clickSend")
+    }
+}
+
+extension BoardDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+
+        // 게시물 데이터 표시
+//        let post = posts[indexPath.row]
+//        cell.configure(with: post)
+
+        // 좋아요 이미지 설정
+        cell.likesImageView.image = UIImage(named: "likeIcon")
+
+        return cell
     }
 }

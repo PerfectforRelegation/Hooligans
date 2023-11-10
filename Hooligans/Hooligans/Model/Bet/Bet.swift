@@ -17,6 +17,17 @@ struct Bet: Codable {
     let win: String?
 }
 
+struct BetResult: Codable {
+    let betId: UUID
+    let date: String
+    let home: String
+    let away: String
+//    let allocation: Double
+    let point: Int
+    let win: String
+    let getReward: Bool
+}
+
 struct Point: Codable {
     let id: UUID
     let betPoint: Int

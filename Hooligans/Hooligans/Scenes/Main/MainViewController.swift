@@ -27,17 +27,14 @@ class MainViewController: UIViewController {
     private let headerView = MainHeaderView()
     
     private var collectionView: UICollectionView = {
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
         let layout = UICollectionViewCompositionalLayout { section, _ in
             return Layouts.Main.allCases[section].section()
         }
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect(origin: .zero, size: .zero), collectionViewLayout: layout)
         
         collectionView.backgroundColor = .white
-        
         collectionView.showsVerticalScrollIndicator = false
         
-
         return collectionView
     }()
 
@@ -54,15 +51,15 @@ class MainViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
         collectionView.dataSource = dataSource
         collectionView.delegate = self
-        setupView()
         registerCells()
+        setupView()
     }
 
     private func setup() {
@@ -90,7 +87,6 @@ class MainViewController: UIViewController {
     private func bindView() {
         snapshot.appendSections([.chat, .profile, .result, .fixture, .news])
         snapshot.appendItems([Item(data: "")], toSection: .chat)
-        snapshot.appendItems([Item(data: "")], toSection: .result)
         self.dataSource.apply(self.snapshot)
     }
 
@@ -98,12 +94,12 @@ class MainViewController: UIViewController {
 
 extension MainViewController {
     private func setupView() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .main
         
         self.view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalToSuperview().priority(.high)
         }
         
         self.view.addSubview(headerView)
@@ -129,6 +125,7 @@ extension MainViewController {
             switch section {
             case .chat:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatButtonCell.identifier, for: indexPath) as? ChatButtonCell else { return UICollectionViewCell() }
+                cell.confitureCell()
                 return cell
                 
             case .profile:
@@ -139,6 +136,9 @@ extension MainViewController {
                 
             case .result:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BetResultCell.identifier, for: indexPath) as? BetResultCell else { return UICollectionViewCell() }
+                if let data = item.data as? BetResult {
+                    cell.configureCell(betResult: data)
+                }
                 return cell
                 
             case .fixture:
@@ -198,6 +198,12 @@ extension MainViewController: MainDisplayLogic {
                 self.snapshot.appendItems([fixtureItem], toSection: .fixture)
             }
             
+            // MARK: - Bet Result
+            if let betResult = viewModel.mainSource.bet.last {
+                let betResult = Item(data: betResult)
+                self.snapshot.appendItems([betResult], toSection: .result)
+            }
+            
             // MARK: - News Posts
             viewModel.mainSource.news.posts.forEach { post in
                 let newsPostItem = Item(data: post)
@@ -210,7 +216,7 @@ extension MainViewController: MainDisplayLogic {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == 4 {
             let data = dataSource.snapshot(for: .news).items[indexPath.item].data as? Post
             guard let query = data?.href else { return }
             let webViewController = WebViewController(base: "https://sports.news.naver.com/", query: query)

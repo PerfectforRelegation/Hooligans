@@ -32,6 +32,12 @@ class BetResultCell: UICollectionViewCell {
         return view
     }()
     
+    private let pointLabel: UILabel = {
+        let label = UILabel()
+        label.font = Font.medium(size: 18)
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -40,6 +46,10 @@ class BetResultCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
+    }
+    
+    func configureCell(betResult: BetResult) {
+        self.pointLabel.text = String(betResult.point)
     }
 }
 
@@ -54,13 +64,15 @@ extension BetResultCell {
         
         addSubview(chevronImage)
         chevronImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(15)
+            make.top.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().inset(15)
+            make.width.height.equalTo(15)
         }
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(15)
+            make.centerY.equalTo(chevronImage.snp.centerY)
+            make.leading.equalToSuperview().offset(15)
             make.trailing.equalTo(chevronImage.snp.leading).inset(10)
         }
         
@@ -70,6 +82,12 @@ extension BetResultCell {
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().inset(15)
             make.height.equalTo(1)
+        }
+        
+        addSubview(pointLabel)
+        pointLabel.snp.makeConstraints { make in
+            make.top.equalTo(divideLine.snp.bottom).offset(15)
+            make.leading.equalToSuperview().offset(15)
         }
     }
 }

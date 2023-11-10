@@ -165,6 +165,9 @@
 		C1FD4DB52AFD180500B1D59F /* BetResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DB42AFD180500B1D59F /* BetResultCell.swift */; };
 		C1FD4DB62AFD1D5700B1D59F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63BE402AF8A8EC00BE9A2E /* ActivityIndicator.swift */; };
 		C1FD4DB92AFE156A00B1D59F /* TransViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DB82AFE156A00B1D59F /* TransViewController.swift */; };
+		C1FD4DBB2AFE54C100B1D59F /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DBA2AFE54C100B1D59F /* ChatRoomHeader.swift */; };
+		C1FD4DBD2AFE72A000B1D59F /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DBC2AFE72A000B1D59F /* NavigationBar.swift */; };
+		C1FD4DC02AFE791500B1D59F /* BoardDetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DBF2AFE791500B1D59F /* BoardDetailContentView.swift */; };
 		DB2A79322AB98FE400F07D82 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79312AB98FE400F07D82 /* UserViewController.swift */; };
 		DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */; };
 		DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */; };
@@ -348,6 +351,9 @@
 		C1FD4DB22AFD0CE900B1D59F /* ChatButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButtonCell.swift; sourceTree = "<group>"; };
 		C1FD4DB42AFD180500B1D59F /* BetResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetResultCell.swift; sourceTree = "<group>"; };
 		C1FD4DB82AFE156A00B1D59F /* TransViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransViewController.swift; sourceTree = "<group>"; };
+		C1FD4DBA2AFE54C100B1D59F /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
+		C1FD4DBC2AFE72A000B1D59F /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		C1FD4DBF2AFE791500B1D59F /* BoardDetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailContentView.swift; sourceTree = "<group>"; };
 		DB2A79312AB98FE400F07D82 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
 		DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
@@ -399,12 +405,12 @@
 			path = BoardSearch;
 			sourceTree = "<group>";
 		};
-		7C3F60102ADBCCC70078A6F1 /* Component */ = {
+		7C3F60102ADBCCC70078A6F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */,
+				C1FD4DBF2AFE791500B1D59F /* BoardDetailContentView.swift */,
 			);
-			path = Component;
+			path = View;
 			sourceTree = "<group>";
 		};
 		7C3F60172ADE6DA10078A6F1 /* BoardList */ = {
@@ -470,7 +476,8 @@
 		7C41C2062AD55A8A009B05E5 /* Board */ = {
 			isa = PBXGroup;
 			children = (
-				7C3F60102ADBCCC70078A6F1 /* Component */,
+				C1FD4DBE2AFE78E900B1D59F /* Cell */,
+				7C3F60102ADBCCC70078A6F1 /* View */,
 				7C63BE3B2AF7AEA600BE9A2E /* BoardMenu */,
 				7C3F60172ADE6DA10078A6F1 /* BoardList */,
 				7C38AACE2AEA4DCF00E0650E /* BoardSearch */,
@@ -542,6 +549,7 @@
 		C123D4A02AE10B06007A4485 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD4DBA2AFE54C100B1D59F /* ChatRoomHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -801,6 +809,7 @@
 				7C41C2042AD54416009B05E5 /* Button.swift */,
 				7CBC11BF2AD3D9AD00E1BBBE /* TextField.swift */,
 				C164BD372AF8B6D200F59D38 /* Item.swift */,
+				C1FD4DBC2AFE72A000B1D59F /* NavigationBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -931,6 +940,14 @@
 				C1FD4DAE2AFD08CF00B1D59F /* NumberFormatter.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		C1FD4DBE2AFE78E900B1D59F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		DB2A79302AB98FB700F07D82 /* User */ = {
@@ -1134,6 +1151,7 @@
 				C1DFB28F2AEE9D140069525E /* LeagueTableViewCell.swift in Sources */,
 				C1DFB2C12AF36B790069525E /* Bet.swift in Sources */,
 				C1DFB2B72AF2F3370069525E /* BetListRouter.swift in Sources */,
+				C1FD4DC02AFE791500B1D59F /* BoardDetailContentView.swift in Sources */,
 				C1DFB2C52AF37C0B0069525E /* UserBetCell.swift in Sources */,
 				7C41C20C2AD6F5B5009B05E5 /* BoardListPresenter.swift in Sources */,
 				DB2A79402ABEB8C900F07D82 /* UserInfoView.swift in Sources */,
@@ -1223,8 +1241,10 @@
 				C1DFB2C92AF37FC10069525E /* MyBetListInteractor.swift in Sources */,
 				C14053112AE9125200E69B41 /* TeamChatRoomCell.swift in Sources */,
 				C1DFB2BC2AF368840069525E /* BetPresenter.swift in Sources */,
+				C1FD4DBD2AFE72A000B1D59F /* NavigationBar.swift in Sources */,
 				C140531A2AE9390200E69B41 /* ChatRoomPesenter.swift in Sources */,
 				C1419B612ADFADC7007AA5F6 /* FixtureCell.swift in Sources */,
+				C1FD4DBB2AFE54C100B1D59F /* ChatRoomHeader.swift in Sources */,
 				DB2A793A2ABAC92900F07D82 /* UserRouter.swift in Sources */,
 				C152DCFC2AE54926002C6153 /* ChatListInteractor.swift in Sources */,
 				C152DD012AE54967002C6153 /* ChatListWorker.swift in Sources */,

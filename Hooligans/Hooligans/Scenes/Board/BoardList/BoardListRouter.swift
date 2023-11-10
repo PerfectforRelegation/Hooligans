@@ -3,31 +3,26 @@ import Foundation
 import UIKit
 
 protocol BoardListRoutingLogic {
-    func routeToBoardDetail()
+    func routeToBoardDetail(board: Board)
     func routeToBoardWrite()
     func routeToBoardSearch()
 }
 
 protocol BoardDataPassing {
-    var dataStore: BoardListDataStore? {get}
+    var dataStore: BoardListDataStore? { get }
 }
 
 final class BoardListRouter: BoardListRoutingLogic {
-    weak var viewController: BoardListDisplayLogic?
+    weak var viewController: BoardListViewController?
     var dataStore: BoardListDataStore?
 
-    func routeToBoardDetail() {
-        if let viewController = viewController as? UIViewController {
-//            let boardDetailViewController = BoardDetailViewController(board: Board)
-//            viewController.navigationController?.pushViewController(boardDetailViewController, animated: true)
-        }
+    func routeToBoardWrite() {
+        
     }
 
-    func routeToBoardWrite() {
-        if let viewController = viewController as? UIViewController {
-            let boardWriteViewController = BoardWriteViewController()
-            viewController.navigationController?.pushViewController(boardWriteViewController, animated: true)
-        }
+    func routeToBoardDetail(board: Board) {
+        let detailviewController = BoardDetailViewController(board: board)
+        viewController?.navigationController?.pushViewController(detailviewController, animated: true)
     }
 
     func routeToBoardSearch() {

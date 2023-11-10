@@ -20,14 +20,14 @@ class PostTableViewCell: UITableViewCell {
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = Font.semibold(size: 18)
         label.numberOfLines = 0
         return label
     }()
 
     let contentLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = Font.regular(size: 14)
         label.numberOfLines = 0
         return label
     }()
@@ -87,12 +87,12 @@ class PostTableViewCell: UITableViewCell {
 
     func configure(with post: Board) {
 //        profileImageView.image = post.profileImage
-//        usernameLabel.text = post.username
+        usernameLabel.text = post.nickname
 //        uploadTimeLabel.text = post.uploadTime
         titleLabel.text = post.title
         contentLabel.text = post.content
-        likesLabel.text = "\(post.view)"
-        commentsLabel.text = "\(post.nickname)"
+        likesLabel.text = "\(post.heartCount)"
+        commentsLabel.text = "\(post.commentCount)"
 
 //        if !post.images.isEmpty {
 //                // 이미지가 있는 경우 첫 번째 이미지 표시
@@ -147,12 +147,14 @@ class PostTableViewCell: UITableViewCell {
             make.top.equalTo(contentLabel.snp.bottom).offset(15)
             make.leading.equalTo(likesLabel.snp.trailing).offset(16)
             make.width.height.equalTo(15)
+            make.bottom.equalToSuperview().inset(10)
         }
 
         contentView.addSubview(commentsLabel)
         commentsLabel.snp.makeConstraints { make in
             make.centerY.equalTo(commentsImageView)
             make.leading.equalTo(commentsImageView.snp.trailing).offset(4)
+            make.bottom.equalToSuperview().inset(10)
         }
     }
 }
