@@ -27,14 +27,14 @@ final class StompManager {
     }
     
     func disconnect(chatRoom: ChatRoom) {
-        sendMessage(type: "QUIT", roomId: chatRoom.roomId, message: "")
+        sendMessage(type: "QUIT", roomId: chatRoom.roomId.uuidString, message: "")
         socket?.disconnect()
         
     }
     
     func subscribe(chatRoom: ChatRoom) {
         socket?.subscribe(destination: "/sub/chat/room/\(chatRoom.roomId)")
-        sendMessage(type: "ENTER", roomId: chatRoom.roomId, message: "HI")
+        sendMessage(type: "ENTER", roomId: chatRoom.roomId.uuidString, message: "HI")
         return
     }
     

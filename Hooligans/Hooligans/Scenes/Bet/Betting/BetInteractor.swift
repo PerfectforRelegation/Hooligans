@@ -12,20 +12,18 @@ protocol BetDataStore {
 }
 
 protocol BetBusinessLogic {
-    func betting()
+    func betting(request: BetModels.Betting.Request)
 }
 
 class BetInteractor: BetDataStore, BetBusinessLogic {
-    func betting() {
-        print()
-    }
-    
     var presenter: BetPresentationLogic?
     var worker: BetWorker?
     
-//    worker = BetWorker()
-//    worker?.betting()
-//    func betting() {
-//        
-//    }
+    func betting(request: BetModels.Betting.Request) {
+        worker = BetWorker()
+        worker?.betting(request: request, { response in
+            self.presenter?.BetResultPresentation(response: response)
+        })
+    }
+    
 }

@@ -23,3 +23,14 @@ struct Point: Codable {
     let pick: String
     let result: Bool
 }
+
+struct UserBet: Codable {
+    let id: UUID
+    let home: String
+    let away: String
+    let homeAllocation: Double
+    let awayAllocation: Double
+    let drawAllocation: Double
+    let win: String?
+    let point: Point
+}

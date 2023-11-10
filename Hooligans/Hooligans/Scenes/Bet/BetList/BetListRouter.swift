@@ -9,6 +9,7 @@ import Foundation
 
 protocol BetListRoutingLogic {
     func routeToBetView(bet: Bet)
+    func routeToMyBetList()
 }
 
 protocol BetListDataPassing {
@@ -23,5 +24,10 @@ final class BetListRouter: BetListRoutingLogic {
         let betViewController = BetViewController(bet: bet)
         
         viewController?.navigationController?.pushViewController(betViewController, animated: true)
+    }
+    
+    func routeToMyBetList() {
+        let myBetListViewController = MyBetListViewController()
+        viewController?.navigationController?.pushViewController(myBetListViewController, animated: true)
     }
 }

@@ -26,7 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let tabBarController = UINavigationController(rootViewController: TabBarController())
                 self.changeRootViewController(tabBarController, animated: true)
             } else {
-                self.changeRootViewController(SigninController(), animated: true)
+                let signinViewController = SigninController()
+                signinViewController.navigationItem.title = "Sign in"
+                let rootViewController = UINavigationController(rootViewController: signinViewController)
+                
+                self.changeRootViewController(rootViewController, animated: true)
             }
         }
     }

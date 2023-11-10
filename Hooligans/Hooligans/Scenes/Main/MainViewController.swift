@@ -14,35 +14,14 @@ protocol MainDisplayLogic: AnyObject {
 }
 
 class MainViewController: UIViewController {
+    var interactor: (MainBusinessLogic & MainDataStore)?
+    var router: MainRoutingLogic?
     
-    struct Item: Hashable, Equatable {
-        let data: Any
-        let section: MainModels.Section
-        let identifier = UUID()
-        
-        init(data: Any, section: MainModels.Section) {
-            self.data = data
-            self.section = section
-        }
-
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(self.identifier)
-        }
-        
-        static func == (lhs: Item, rhs: Item) -> Bool {
-            lhs.identifier == rhs.identifier
-        }
-    }
-    
-    typealias DataSource = UICollectionViewDiffableDataSource<Layouts.Main, Item>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Layouts.Main, Item>
+    typealias DataSource = UICollectionViewDiffableDataSource<MainModels.Section, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<MainModels.Section, Item>
     
     private lazy var dataSource: DataSource = configureDataSource()
     private lazy var snapshot: Snapshot = Snapshot()
-    
-    // MARK: - Properties
-    var interactor: (MainBusinessLogic & MainDataStore)?
-    var router: MainRoutingLogic?
     
     // MARK: - View Initailize
     private let headerView = MainHeaderView()
@@ -100,14 +79,18 @@ class MainViewController: UIViewController {
     }
 
     private func registerCells() {
-        collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
+        collectionView.register(CollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewHeader.identifier)
+        collectionView.register(ChatButtonCell.self, forCellWithReuseIdentifier: ChatButtonCell.identifier)
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.identifier)
+        collectionView.register(BetResultCell.self, forCellWithReuseIdentifier: BetResultCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
         collectionView.register(NewsPostCell.self, forCellWithReuseIdentifier: NewsPostCell.identifier)
     }
     
     private func bindView() {
-        snapshot.appendSections([.profile, .fixture, .news])
+        snapshot.appendSections([.chat, .profile, .result, .fixture, .news])
+        snapshot.appendItems([Item(data: "")], toSection: .chat)
+        snapshot.appendItems([Item(data: "")], toSection: .result)
         self.dataSource.apply(self.snapshot)
     }
 
@@ -142,17 +125,27 @@ extension MainViewController {
     
     private func configureDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: self.collectionView) { collectionView, indexPath, item in
-            switch item.section {
+            guard let section = MainModels.Section(rawValue: indexPath.section) else { return UICollectionViewCell() }
+            switch section {
+            case .chat:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatButtonCell.identifier, for: indexPath) as? ChatButtonCell else { return UICollectionViewCell() }
+                return cell
+                
             case .profile:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier,
                                                    for: indexPath) as? ProfileCell else { return UICollectionViewCell() }
                 if let data = item.data as? MainUser { cell.configureCell(user: data) }
                 return cell
                 
+            case .result:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BetResultCell.identifier, for: indexPath) as? BetResultCell else { return UICollectionViewCell() }
+                return cell
+                
             case .fixture:
                  guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
                                                                      for: indexPath) as? FixtureCell else { return UICollectionViewCell() }
                 if let data = item.data as? Fixture { cell.configureCell(fixture: data) }
+                cell.clipsToBounds = true
                 return cell
                 
             case .news:
@@ -171,8 +164,20 @@ extension MainViewController {
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                       withReuseIdentifier: ChatCollectionViewHeader.identifier,
-                                                                       for: indexPath) as? ChatCollectionViewHeader
+                                                                       withReuseIdentifier: CollectionViewHeader.identifier,
+                                                                       for: indexPath) as? CollectionViewHeader
+            switch section {
+            case .chat:
+                view?.configureCell(title: "")
+            case .profile:
+                view?.configureCell(title: "")
+            case .result:
+                view?.configureCell(title: "")
+            case .fixture:
+                view?.configureCell(title: "이주의 경기")
+            case .news:
+                view?.configureCell(title: "내 정보")
+            }
             
             return view
         }
@@ -184,14 +189,18 @@ extension MainViewController: MainDisplayLogic {
     func displaySomething(viewModel: MainModels.Main.ViewModel) {
         DispatchQueue.main.async {
             // MARK: - User Profile
-            let userItem = Item(data: viewModel.mainSource.user, section: .profile)
+            let userItem = Item(data: viewModel.mainSource.user)
             self.snapshot.appendItems([userItem], toSection: .profile)
             
             // MARK: - Live Fixtures
+            viewModel.mainSource.fixtures.forEach { fixture in
+                let fixtureItem = Item(data: fixture)
+                self.snapshot.appendItems([fixtureItem], toSection: .fixture)
+            }
             
             // MARK: - News Posts
             viewModel.mainSource.news.posts.forEach { post in
-                let newsPostItem = Item(data: post, section: .news)
+                let newsPostItem = Item(data: post)
                 self.snapshot.appendItems([newsPostItem], toSection: .news)
             }
             self.dataSource.apply(self.snapshot)
