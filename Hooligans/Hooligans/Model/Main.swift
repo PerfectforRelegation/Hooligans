@@ -10,6 +10,7 @@ import Foundation
 struct MainResponse: Codable {
     let user: MainUser
     let fixtures: [Fixture]
+    let bet: [BetResult]
     let news: News
 }
 

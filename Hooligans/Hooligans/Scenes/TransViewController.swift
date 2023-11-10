@@ -21,9 +21,9 @@ class TransViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dismiss(animated: true) {
-            guard let viewController = self.viewController else { return }
-            self.present(viewController, animated: true, completion: nil)
+        if let viewController = viewController {
+            viewController.navigationController?.isNavigationBarHidden = true
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     

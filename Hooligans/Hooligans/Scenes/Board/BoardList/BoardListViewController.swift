@@ -8,7 +8,7 @@ protocol BoardListDisplayLogic: AnyObject {
 
 class BoardListViewController: UIViewController {
     var interactor: (BoardListBusinessLogic & BoardListDataStore)?
-    var router: BoardListRouter?
+    var router: BoardListRoutingLogic?
     
     var posts: [Board]?
     var refresh: UIRefreshControl?
@@ -18,6 +18,8 @@ class BoardListViewController: UIViewController {
         tableView.rowHeight = 150
         return tableView
     }()
+    
+    private let navigationBar = NavigationBar(background: .purple, title: "자유게시판")
 
     let writeButton: UIButton = {
         let button = UIButton()
@@ -62,13 +64,12 @@ class BoardListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        setupUI()
-        setupNavigationBar()
-        //NavigationBarController.setupCustomAppearance()
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func setup() {
@@ -83,14 +84,23 @@ class BoardListViewController: UIViewController {
         router.viewController = viewcontroller
     }
 
-    func setupUI() {
+}
+
+extension BoardListViewController {
+    private func setupView() {
+        view.addSubview(navigationBar)
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(100)
+        }
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
 
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
 
         view.addSubview(writeButton)
@@ -102,39 +112,6 @@ class BoardListViewController: UIViewController {
         }
         writeButton.addTarget(self, action: #selector(writeButtonTapped), for: .touchUpInside)
     }
-
-    func setupNavigationBar() {
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = .systemIndigo
-        navigationController?.navigationBar.backgroundColor = .systemIndigo
-
-        // 메뉴
-        let menuButton = UIBarButtonItem(image: UIImage(named: "menuIcon"), style: .plain, target: self, action: #selector(menuButtonTapped))
-        navigationItem.leftBarButtonItem = menuButton
-        menuButton.tintColor = .white
-
-        // 자유게시판
-        let titleView = UIView()
-        let titleLabel = UILabel()
-        titleLabel.text = "자유게시판"
-        titleLabel.textColor = .white
-        titleView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        navigationItem.titleView = titleView
-
-        // 찾기
-        let searchButton = UIBarButtonItem(image: UIImage(named: "searchIcon"), style: .plain, target: self, action: #selector(searchButtonTapped))
-        searchButton.tintColor = .white
-
-        navigationItem.rightBarButtonItems = [searchButton]
-    }
-
-}
-
-extension BoardListViewController {
-    
 }
 
 extension BoardListViewController: BoardListDisplayLogic {
@@ -186,7 +163,6 @@ extension BoardListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
 
         // 게시물 데이터 표시
@@ -200,18 +176,10 @@ extension BoardListViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
-
     // 게시물 상세 이동
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         guard let selectedPost = posts?[indexPath.row] else { return }
-        let boardDetailViewController = BoardDetailViewController(board: selectedPost)
-
-        // BoardDetailViewController에 선택된 게시물 정보 전달
-        boardDetailViewController.selectedPost = selectedPost
-
-        // 화면 전환
-        navigationController?.pushViewController(boardDetailViewController, animated: true)
+        router?.routeToBoardDetail(board: selectedPost)
     }
     
     func initRefresh() {

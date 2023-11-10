@@ -13,9 +13,7 @@ protocol MainWorkerLogic {
 }
 
 class MainWorker: MainWorkerLogic {
-    
     let apiManager = MainService()
-    
     var cancellables = Set<AnyCancellable>()
     
     func fetchMainSource(_ response: @escaping (MainModels.Main.Response) -> Void) {
@@ -24,6 +22,7 @@ class MainWorker: MainWorkerLogic {
             case .finished:
                 print("fetch main finishied")
             case .failure(let error):
+                print("Main Error: \(error.localizedDescription)")
                 response(MainModels.Main.Response(isError: true, message: error.localizedDescription))
             }
         } receiveValue: { data in

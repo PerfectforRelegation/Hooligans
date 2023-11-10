@@ -23,12 +23,7 @@ class ChatRoomViewController: UIViewController {
     private var chatRoom: ChatRoom!
     var messages: [Message] = []
     
-    private let headerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor =  UIColor(red: 0.2549, green: 0.2706, blue: 0.3176, alpha: 1.0)
-        return view
-    }()
+    private let headerView: ChatRoomHeader = ChatRoomHeader()
     
     private let teamNameLabel: UILabel = {
         let label = UILabel()
@@ -40,10 +35,7 @@ class ChatRoomViewController: UIViewController {
     
     private let tableView: UITableView = {
         let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.frame = CGRect(origin: .zero, size: .zero)
-        //table.backgroundColor = .white
-        table.backgroundColor =  UIColor(red: 0.2549, green: 0.2706, blue: 0.3176, alpha: 1.0)
+        table.backgroundColor = .white
         return table
     }()
     
@@ -73,6 +65,7 @@ class ChatRoomViewController: UIViewController {
     init(chatRoom: ChatRoom) {
         super.init(nibName: nil, bundle: nil)
         self.chatRoom = chatRoom
+        headerView.configureView(chatRoom: chatRoom)
         StompManager.shard.connect(chatRoom: chatRoom, delegate: self)
     }
     
@@ -88,7 +81,6 @@ class ChatRoomViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         chatTextView.delegate = self
-        teamNameLabel.text = chatRoom.name
         let backButton = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: self, action: #selector(backAction))
         navigationItem.leftBarButtonItem = backButton
         backButton.tintColor = .black
@@ -105,7 +97,9 @@ class ChatRoomViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.removeKeyboardNotifications()
-        StompManager.shard.disconnect(chatRoom: chatRoom)
+        if let chatRoom = chatRoom {
+            StompManager.shard.disconnect(chatRoom: chatRoom)
+        }
     }
     
     private func setup() {
@@ -129,11 +123,16 @@ class ChatRoomViewController: UIViewController {
 
 extension ChatRoomViewController {
     private func setupView() {
-        
         self.view.backgroundColor = .white
         
-        self.view.addSubview(sendButton)
+        self.view.addSubview(headerView)
+        headerView.backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
+        headerView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(100)
+        }
         
+        self.view.addSubview(sendButton)
         sendButton.snp.makeConstraints { make in
             make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
@@ -145,25 +144,13 @@ extension ChatRoomViewController {
         
         self.view.addSubview(chatTextView)
         chatTextView.snp.makeConstraints { make in
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalToSuperview().offset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
             make.height.equalTo(40)
             make.width.equalTo(330)
         }
         
-        //
-        self.view.addSubview(headerView)
-        
-        headerView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(10)
-        }
-        
-        
-        //        self.headerView.addTarget(self, action: #selector(subscribeSTOMP), for: .touchUpInside)
-        
         self.view.addSubview(tableView)
-        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
@@ -224,10 +211,11 @@ extension ChatRoomViewController {
     }
     
     
-    
     @objc func sendMessageSTOMP() {
-        StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId.uuidString, message: self.chatTextView.text)
-        self.chatTextView.text = ""
+        if let chatRoom = chatRoom {
+            StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId.uuidString, message: self.chatTextView.text)
+            self.chatTextView.text = ""
+        }
     }
     
     @objc func backAction() {
@@ -246,7 +234,6 @@ extension ChatRoomViewController: ChatRoomDisplayLogic {
 }
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
@@ -256,24 +243,12 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleCell.identifier, for: indexPath) as? ChatBubbleCell else { return UITableViewCell() }
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.configureCell(message: messages[indexPath.row])
         
-        if messages[indexPath.row].sender == "m" {
-            guard let mycell = tableView.dequeueReusableCell(withIdentifier: MyChatBubbleCell.identifier, for: indexPath) as? MyChatBubbleCell else { return UITableViewCell() }
-            mycell.chatRoomLabel.text = self.messages[indexPath.row].message
-            
-            return mycell
-        }
-        
-        guard let usercell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleCell.identifier, for: indexPath) as? ChatBubbleCell else { return UITableViewCell() }
-        usercell.chatRoomLabel.text = self.messages[indexPath.row].message
-        usercell.userNameLabel.text = self.messages[indexPath.row].sender
-        
-        return usercell
+        return cell
     }
-    
-}
-
-extension ChatRoomViewController: UITextFieldDelegate {
     
 }
 

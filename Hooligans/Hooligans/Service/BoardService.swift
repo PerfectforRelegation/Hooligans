@@ -24,4 +24,19 @@ final class BoardService {
             .decode(type: [Board].self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
+    
+    func fetchBoardDetail(id: Int) -> AnyPublisher<Board, Error> {
+        
+        return NetworkService.shared.get(to: .boardDetail(id: id))
+            .tryMap { data, response in
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    print("http error")
+                    throw URLError(.badServerResponse)
+                }
+                
+                return data
+            }
+            .decode(type: Board.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+    }
 }

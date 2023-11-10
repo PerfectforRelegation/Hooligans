@@ -47,7 +47,8 @@ class ChatButtonCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func confitureCell(favoriteTeam: String) {
+    func confitureCell() {
+        guard let favoriteTeam = UserDefaults.standard.string(forKey: "favoriteTeam") else { return }
         self.buttonImage.image = UIImage(named: favoriteTeam)
         self.backgroundColor = UIColor(named: "c"+favoriteTeam)
     }

@@ -17,5 +17,4 @@ struct Message: Codable {
     let roomId: String
     let sender: String
     let message: String
-    let userCount: Int
 }

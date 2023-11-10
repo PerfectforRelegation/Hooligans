@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            if let token = UserDefault.userdeault.getToken() {
+            if let _ = UserDefault.userdeault.getToken() {
                 let tabBarController = UINavigationController(rootViewController: TabBarController())
                 self.changeRootViewController(tabBarController, animated: true)
             } else {
