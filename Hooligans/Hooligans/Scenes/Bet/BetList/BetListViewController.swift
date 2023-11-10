@@ -14,25 +14,25 @@ protocol BetListDisplayLogic: AnyObject {
 class BetListViewController: UIViewController {
     var interactor: (BetListBusinessLogic & BetListDataStore)?
     var router: BetListRouter?
-    
+
     private var betList: [Bet] = []
-    
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
-    
+
     // MARK: - INIT
     init() {
         super.init(nibName: nil, bundle: nil)
         setup()
         interactor?.fetchBetList(request: BetListModels.BetList.Request())
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +40,10 @@ class BetListViewController: UIViewController {
         registerCell()
         tableView.delegate = self
         tableView.dataSource = self
+
+        //setupNavigationBarLabels()
     }
-    
+
     private func setup() {
         let viewController = self
         let interactor = BetListInteractor()
@@ -54,11 +56,27 @@ class BetListViewController: UIViewController {
         router.viewController = viewController
         router.dataStore = interactor
     }
-    
+
     private func registerCell() {
         tableView.register(BetListCell.self, forCellReuseIdentifier: BetListCell.identifier)
     }
-    
+
+//    private func setupNavigationBarLabels() {
+//        navigationController?.navigationBar.barTintColor = .systemIndigo
+//        navigationController?.navigationBar.backgroundColor = .systemIndigo
+//
+//        let homeTeamLabel = UILabel()
+//        homeTeamLabel.text = "홈팀"
+//        homeTeamLabel.textColor = .white
+//        homeTeamLabel.font = UIFont.boldSystemFont(ofSize: 18)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: homeTeamLabel)
+//
+//        let awayTeamLabel = UILabel()
+//        awayTeamLabel.text = "원정팀"
+//        awayTeamLabel.textColor = .white
+//        awayTeamLabel.font = UIFont.boldSystemFont(ofSize: 18)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: awayTeamLabel)
+//    }
 }
 
 extension BetListViewController {

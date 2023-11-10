@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class BetListCell: UITableViewCell {
     static let identifier = "betListCell"
@@ -55,12 +56,15 @@ extension BetListCell {
     private func setupView() {
         self.backgroundColor = .systemGray6
         self.layer.cornerRadius = 20
+        
         self.addSubview(homeTemaLabel)
+        homeTemaLabel.font = UIFont.boldSystemFont(ofSize: 16)
         homeTemaLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(15)
             make.width.equalTo(50)
         }
         self.addSubview(awayTemaLabel)
+        awayTemaLabel.font = UIFont.boldSystemFont(ofSize: 16)
         awayTemaLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().inset(15)
