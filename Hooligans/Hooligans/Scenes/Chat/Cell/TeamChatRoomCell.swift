@@ -15,7 +15,12 @@ final class TeamChatRoomCell: UICollectionViewCell {
         .contentMode(.scaleAspectFill)
         .clipsToBounds(true)
     
-    private let teamNameLabel = UILabel()
+    private let teamNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = Font.bold(size: 32)
+        label.textColor = .white
+        return label
+    }()
     
     private let userCountLabel = UILabel()
     
@@ -32,7 +37,7 @@ final class TeamChatRoomCell: UICollectionViewCell {
     func configureCell(chatRoom: ChatRoom) {
         homeTeamImage.image = UIImage(named: chatRoom.name)
         teamNameLabel.text = chatRoom.name
-        userCountLabel.text = String(chatRoom.count)
+        self.backgroundColor = UIColor(named: "c"+chatRoom.name)
     }
 }
 

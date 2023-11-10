@@ -29,12 +29,11 @@ struct Layouts {
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.boundarySupplementaryItems = [
-                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(10)),
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(10)),
                           elementKind: UICollectionView.elementKindSectionHeader,
                           alignment: .topLeading)
                 ]
-                section.orthogonalScrollingBehavior = .none
-                section.contentInsets = .init(top: 115, leading: 10, bottom: 0, trailing: 10)
+                section.contentInsets = .init(top: 100, leading: 10, bottom: 0, trailing: 10)
                 
                 return section
                 
@@ -147,12 +146,13 @@ extension Layouts {
                 return section
                 
             case .pageView:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.1))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-                group.contentInsets = .init(top: 10, leading: 10, bottom: 0, trailing: 10)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.15))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+                group.contentInsets = .init(top: 10, leading: 5, bottom: 0, trailing: 5)
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.boundarySupplementaryItems = [

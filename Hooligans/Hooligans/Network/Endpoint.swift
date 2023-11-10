@@ -7,18 +7,38 @@
 
 import Foundation
 
-enum Endpoint: String {
-    case main = "/main"
-    case news = "/news/list"
-    case userList = "/user/userList"
-    case leagueTable = "/team/listTable"
-    case fixtureList = "/fixture/list"
-    case boardList = "/board/list"
-    case postList = "/post/list"
-    case chatList = "/chat/room"
-    case signIn = "/user/login"
-    case signUp = "/user/join"
-    case betList = "/bet/list"
-    case betting = "/point/bet"
-    case myBetList = "/user/bet"
+enum Endpoint {
+    case main
+    case news
+    case userList
+    case leagueTable
+    case fixtureList
+    case boardList
+    case boardDetail(id: Int)
+    case postList
+    case chatList
+    case signIn
+    case signUp
+    case betList
+    case betting
+    case myBetList
+    
+    var endpoint: String {
+        switch self {
+        case .main: return "/main"
+        case .news: return "/news/list"
+        case .userList: return "/user/userList"
+        case .leagueTable: return "/team/listTable"
+        case .fixtureList: return "/fixture/list"
+        case .boardList: return "/board/list"
+        case .boardDetail(let id): return "/board/detail/\(id)"
+        case .postList: return "/post/list"
+        case .chatList: return "/chat/room"
+        case .signIn: return "/user/login"
+        case .signUp: return "/user/join"
+        case .betList: return "/bet/list"
+        case .betting: return "/point/bet"
+        case .myBetList: return "/user/bet"
+        }
+    }
 }

@@ -38,7 +38,7 @@ extension NetworkService {
     
     func get(to endpoint: Endpoint) -> URLSession.DataTaskPublisher {
         
-        let url = buildEndpoint(baseURL: baseURL, endpoint.rawValue)
+        let url = buildEndpoint(baseURL: baseURL, endpoint.endpoint)
         
         let request = RequestBuilder()
             .url(url: url)
@@ -52,7 +52,7 @@ extension NetworkService {
     
     func post(to endpoint: Endpoint, param: [String: Any]) -> URLSession.DataTaskPublisher {
         
-        let url = buildEndpoint(baseURL: baseURL, endpoint.rawValue)
+        let url = buildEndpoint(baseURL: baseURL, endpoint.endpoint)
         
         let request = RequestBuilder()
             .url(url: url)

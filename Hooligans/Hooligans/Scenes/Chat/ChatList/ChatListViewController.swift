@@ -25,7 +25,6 @@ class ChatListViewController: UIViewController {
     private lazy var snapshot: Snapshot = Snapshot()
 
     private var collectionView: UICollectionView = {
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
         let layout = UICollectionViewCompositionalLayout { section, _ in
             return Layouts.Chat.allCases[section].section()
         }
@@ -59,6 +58,7 @@ class ChatListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         interactor?.fetchChatRoomList(request: ChatListModels.ChatRoomList.Request())
     }
 
