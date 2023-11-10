@@ -40,6 +40,9 @@ final class SigninController: UIViewController {
         setup()
         registerCell()
         bindView()
+        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+            UserDefaults.standard.removeObject(forKey: key.description)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -83,7 +86,7 @@ final class SigninController: UIViewController {
     }
     
     private func registerCell() {
-        collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
+        collectionView.register(CollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewHeader.identifier)
         collectionView.register(SigninHeader.self, forCellWithReuseIdentifier: SigninHeader.identifier)
         collectionView.register(EmailCell.self, forCellWithReuseIdentifier: EmailCell.identifier)
         collectionView.register(SocialCell.self, forCellWithReuseIdentifier: SocialCell.identifier)
@@ -135,8 +138,8 @@ final class SigninController: UIViewController {
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                       withReuseIdentifier: ChatCollectionViewHeader.identifier,
-                                                                       for: indexPath) as? ChatCollectionViewHeader
+                                                                       withReuseIdentifier: CollectionViewHeader.identifier,
+                                                                       for: indexPath) as? CollectionViewHeader
 
             return view
         }
@@ -146,12 +149,12 @@ final class SigninController: UIViewController {
         snapshot.appendSections([.header, .email, .social])
         snapshot.appendItems([Item(data: "")], toSection: .header)
         snapshot.appendItems([Item(data: "")], toSection: .email)
-        snapshot.appendItems([
-            Item(data: Social(platform: "이메일", color: .white, image: "")),
-            Item(data: Social(platform: "애플", color: .white, image: "")),
-            Item(data: Social(platform: "네이버", color: .naver, image: "naver")),
-            Item(data: Social(platform: "카카오", color: .kakao, image: "kakao"))
-        ], toSection: .social)
+//        snapshot.appendItems([
+//            Item(data: Social(platform: "이메일", color: .white, image: "naver")),
+//            Item(data: Social(platform: "애플", color: .white, image: "naver")),
+//            Item(data: Social(platform: "네이버", color: .naver, image: "naver")),
+//            Item(data: Social(platform: "카카오", color: .kakao, image: "kakao"))
+//        ], toSection: .social)
         self.dataSource.apply(self.snapshot)
     }
     
@@ -199,7 +202,7 @@ extension SigninController {
     
     @objc private func clickNewUser() {
         let phonenumberView = PhonenumberView(frame: self.view.frame)
-        self.view = phonenumberView
+        UIView.transition(with: phonenumberView, duration: 0.3, options: [.transitionCrossDissolve], animations: nil, completion: nil)
     }
 
     @objc private func clickEmailLogin() {

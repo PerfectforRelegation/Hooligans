@@ -79,9 +79,10 @@ class MainViewController: UIViewController {
     }
 
     private func registerCells() {
-        collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
+        collectionView.register(CollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewHeader.identifier)
         collectionView.register(ChatButtonCell.self, forCellWithReuseIdentifier: ChatButtonCell.identifier)
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.identifier)
+        collectionView.register(BetResultCell.self, forCellWithReuseIdentifier: BetResultCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
         collectionView.register(NewsPostCell.self, forCellWithReuseIdentifier: NewsPostCell.identifier)
     }
@@ -89,6 +90,7 @@ class MainViewController: UIViewController {
     private func bindView() {
         snapshot.appendSections([.chat, .profile, .result, .fixture, .news])
         snapshot.appendItems([Item(data: "")], toSection: .chat)
+        snapshot.appendItems([Item(data: "")], toSection: .result)
         self.dataSource.apply(self.snapshot)
     }
 
@@ -136,12 +138,14 @@ extension MainViewController {
                 return cell
                 
             case .result:
-                return UICollectionViewCell()
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BetResultCell.identifier, for: indexPath) as? BetResultCell else { return UICollectionViewCell() }
+                return cell
                 
             case .fixture:
                  guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixtureCell.identifier,
                                                                      for: indexPath) as? FixtureCell else { return UICollectionViewCell() }
                 if let data = item.data as? Fixture { cell.configureCell(fixture: data) }
+                cell.clipsToBounds = true
                 return cell
                 
             case .news:
@@ -160,8 +164,20 @@ extension MainViewController {
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                       withReuseIdentifier: ChatCollectionViewHeader.identifier,
-                                                                       for: indexPath) as? ChatCollectionViewHeader
+                                                                       withReuseIdentifier: CollectionViewHeader.identifier,
+                                                                       for: indexPath) as? CollectionViewHeader
+            switch section {
+            case .chat:
+                view?.configureCell(title: "")
+            case .profile:
+                view?.configureCell(title: "")
+            case .result:
+                view?.configureCell(title: "")
+            case .fixture:
+                view?.configureCell(title: "이주의 경기")
+            case .news:
+                view?.configureCell(title: "내 정보")
+            }
             
             return view
         }
@@ -177,6 +193,10 @@ extension MainViewController: MainDisplayLogic {
             self.snapshot.appendItems([userItem], toSection: .profile)
             
             // MARK: - Live Fixtures
+            viewModel.mainSource.fixtures.forEach { fixture in
+                let fixtureItem = Item(data: fixture)
+                self.snapshot.appendItems([fixtureItem], toSection: .fixture)
+            }
             
             // MARK: - News Posts
             viewModel.mainSource.news.posts.forEach { post in

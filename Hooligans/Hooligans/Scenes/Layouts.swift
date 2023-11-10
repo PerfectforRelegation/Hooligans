@@ -23,7 +23,7 @@ struct Layouts {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(80))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(60))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
                 group.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
                 
@@ -34,7 +34,7 @@ struct Layouts {
                           alignment: .topLeading)
                 ]
                 section.orthogonalScrollingBehavior = .none
-                section.contentInsets = .init(top: 120, leading: 10, bottom: 0, trailing: 10)
+                section.contentInsets = .init(top: 115, leading: 10, bottom: 0, trailing: 10)
                 
                 return section
                 
@@ -61,9 +61,9 @@ struct Layouts {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.3))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.15))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-                group.contentInsets = .init(top: 120, leading: 10, bottom: 0, trailing: 10)
+                group.contentInsets = .init(top: 8, leading: 10, bottom: 0, trailing: 10)
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.boundarySupplementaryItems = [
@@ -80,18 +80,18 @@ struct Layouts {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.35), heightDimension: .fractionalHeight(0.21))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.55), heightDimension: .fractionalHeight(0.1))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                group.contentInsets = .init(top: 0, leading: 30, bottom: 30, trailing: 8)
+                group.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.boundarySupplementaryItems = [
-                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(20)),
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(50)),
                           elementKind: UICollectionView.elementKindSectionHeader,
                           alignment: .topLeading)
                 ]
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.contentInsets = .init(top: 0, leading: 30, bottom: 0, trailing: 30)
+                section.contentInsets = .init(top: 5, leading: 10, bottom: 5, trailing: 8)
                 
                 return section
                 

@@ -76,7 +76,7 @@ class ChatListViewController: UIViewController {
     }
 
     private func registerCells() {
-        collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
+        collectionView.register(CollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewHeader.identifier)
         collectionView.register(TabItemCell.self, forCellWithReuseIdentifier: TabItemCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
         collectionView.register(TeamChatRoomCell.self, forCellWithReuseIdentifier: TeamChatRoomCell.identifier)
@@ -124,8 +124,8 @@ extension ChatListViewController {
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                       withReuseIdentifier: ChatCollectionViewHeader.identifier,
-                                                                       for: indexPath) as? ChatCollectionViewHeader
+                                                                       withReuseIdentifier: CollectionViewHeader.identifier,
+                                                                       for: indexPath) as? CollectionViewHeader
 
             return view
         }

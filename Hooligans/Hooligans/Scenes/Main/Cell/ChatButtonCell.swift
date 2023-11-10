@@ -12,7 +12,6 @@ class ChatButtonCell: UICollectionViewCell {
     
     private let buttonImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "team")
         image.tintColor = .white
         image.contentMode = .scaleAspectFit
         return image
@@ -46,6 +45,11 @@ class ChatButtonCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func confitureCell(favoriteTeam: String) {
+        self.buttonImage.image = UIImage(named: favoriteTeam)
+        self.backgroundColor = UIColor(named: "c"+favoriteTeam)
     }
 }
 
