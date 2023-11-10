@@ -8,7 +8,7 @@
 import Foundation
 
 enum ChatListModels {
-    enum Section {
+    enum Section: Int {
         case tabItem
         case pageView
     }

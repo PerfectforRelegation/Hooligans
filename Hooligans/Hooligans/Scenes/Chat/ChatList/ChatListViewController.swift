@@ -14,34 +14,12 @@ protocol ChatListDisplayLogic: AnyObject {
 }
 
 class ChatListViewController: UIViewController {
-
-    struct Item: Hashable {
-        let data: Any
-        let section: ChatListModels.Section
-        let identifier: String
-        
-        init(data: Any, section: ChatListModels.Section, identifier: String) {
-            self.data = data
-            self.section = section
-            self.identifier = identifier
-        }
-
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(self.identifier)
-        }
-
-        static func == (lhs: Item, rhs: Item) -> Bool {
-            lhs.identifier == rhs.identifier
-        }
-
-    }
-
     var interactor: (ChatListBusinessLogic & ChatListDataStore)?
     var router: ChatListRouter?
 
     // MARK: - View Initialize
-    typealias DataSource = UICollectionViewDiffableDataSource<Layouts.Chat, Item>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Layouts.Chat, Item>
+    typealias DataSource = UICollectionViewDiffableDataSource<ChatListModels.Section, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<ChatListModels.Section, Item>
 
     private lazy var dataSource: DataSource = configureDataSource()
     private lazy var snapshot: Snapshot = Snapshot()
@@ -98,7 +76,7 @@ class ChatListViewController: UIViewController {
     }
 
     private func registerCells() {
-        collectionView.register(ChatCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ChatCollectionViewHeader.identifier)
+        collectionView.register(CollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewHeader.identifier)
         collectionView.register(TabItemCell.self, forCellWithReuseIdentifier: TabItemCell.identifier)
         collectionView.register(FixtureCell.self, forCellWithReuseIdentifier: FixtureCell.identifier)
         collectionView.register(TeamChatRoomCell.self, forCellWithReuseIdentifier: TeamChatRoomCell.identifier)
@@ -119,7 +97,8 @@ extension ChatListViewController {
 
     private func configureDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: self.collectionView) { collectionView, indexPath, item in
-            switch item.section {
+            guard let section = ChatListModels.Section(rawValue: indexPath.section) else { return UICollectionViewCell() }
+            switch section {
             case .tabItem:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabItemCell.identifier,
                                                                     for: indexPath) as? TabItemCell else { return UICollectionViewCell() }
@@ -145,8 +124,8 @@ extension ChatListViewController {
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                       withReuseIdentifier: ChatCollectionViewHeader.identifier,
-                                                                       for: indexPath) as? ChatCollectionViewHeader
+                                                                       withReuseIdentifier: CollectionViewHeader.identifier,
+                                                                       for: indexPath) as? CollectionViewHeader
 
             return view
         }
@@ -174,7 +153,7 @@ extension ChatListViewController: ChatListDisplayLogic {
         DispatchQueue.main.async {
             var snapShot = self.dataSource.snapshot()
             viewModel.chatRooms.forEach { chatRoom in
-                let chatRoomItem = Item(data: chatRoom, section: .pageView, identifier: chatRoom.roomId)
+                let chatRoomItem = Item(data: chatRoom, identifier: chatRoom.roomId)
                 snapShot.deleteItems([chatRoomItem])
                 snapShot.appendItems([chatRoomItem], toSection: .pageView)
             }

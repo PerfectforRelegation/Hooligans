@@ -16,13 +16,11 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
     var selectedPost: Board?
 
-    private func displayPostDetails() {
-
-        guard selectedPost != nil else { return }
-
-        //            titleLabel.text = post.title
-        //            contentLabel.text = post.content
-    }
+//    private func displayPostDetails() {
+//        guard selectedPost != nil else { return }
+////        titleLabel.text = post.title
+////        contentLabel.text = post.content
+//    }
 
 
     let tableView: UITableView = {
@@ -31,7 +29,21 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+    
+    private let contextLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    init(board: Board) {
+        super.init(nibName: nil, bundle: nil)
+        contextLabel.text = board.content
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     let commentTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "댓글을 입력하세요."
@@ -129,6 +141,7 @@ class BoardDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
         navigationItem.rightBarButtonItems = [menuButton]
     }
+    
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -21,8 +21,9 @@ class TabBarController: UITabBarController {
     }
     
     private func setupUI() {
-        self.tabBar.tintColor = .systemGray6
+        self.tabBar.tintColor = .main
         self.tabBar.backgroundColor = .white
+        self.tabBar.layer.borderWidth = 0.1
         self.tabBar.layer.cornerRadius = tabBar.frame.height * 0.41
         self.tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
@@ -56,7 +57,14 @@ class TabBarController: UITabBarController {
         fourthViewController.tabBarItem.title = "배팅"
         fourthViewController.tabBarItem.tag = 3
         
-        self.setViewControllers([firstViewController, secondViewController, thirdViewController, fourthViewController], animated: true)
+        let fifthViewController = UINavigationController(rootViewController: LeagueTableViewController())
+        
+        fifthViewController.tabBarItem.image = UIImage(systemName: "sportscourt")
+        fifthViewController.tabBarItem.selectedImage = UIImage(systemName: "sportscourt")
+        fifthViewController.tabBarItem.title = "테이블"
+        fifthViewController.tabBarItem.tag = 4
+        
+        self.setViewControllers([firstViewController, secondViewController, thirdViewController, fourthViewController, fifthViewController], animated: true)
     }
 
 }

@@ -30,18 +30,11 @@
 
 ### Ver. 1
 
-- v1.1.0: 위젯을 한번 탭하면 새로고침, 두번 탭하면 앱이 열리는 기능 추가. 위젯이 직접 통신
+- 
 
 
 
 ## Contributors 
-> GITGET(깃젯)이 더욱 나을 수 있도록 기여를 해주신/해주고 계신 분들입니다. 직접적으로 PR을 보내주신 분, Swift Rookie인 저에게 많은 가르침을 주신 분, 무시할 수 없는 개선 아이디어를 보내주신 분들이 계십니다. 정말 감사드립니다 :)
-
-- [mudrhs1997](https://github.com/blackturtle2) | [**blog**](http://blackturtle2.net)
-- [isjang98](https://github.com/isjang98) | [**blog**](https://medium.com/@zida.papa)
-- [joeseonmi](https://github.com/joeseonmi)
-- [unnnyong](https://github.com/unnnyong)
-- [woollim](https://github.com/woollim)
 
 |Developer|Developer|Developer|Developer|
 |:-:|:-:|:-:|:-:|
@@ -59,24 +52,25 @@
 
 
 ## 사용한 협업툴 
-- `Notion` , `Figma`
+- `Notion`, `Figma`
 
 <br>
 
 ## 사용한 라이브러리
 
 - `SwiftLint`
+- `StompClientLib`
 
 <br>
 
 
 ## 사용한 자동화 
-- `Fastlane` , `Slack`
+- 
 <br>
 
 
 ## Design pattern
-- MVVM 패턴 
+- VIP(Clean Swift)
 
 <br>
 

@@ -1,16 +1,18 @@
-//import UIKit
-//
-//class SignupViewController: UIViewController {
+import UIKit
+
+
+class SignupViewController: UIViewController {
 //
 //    var nicknameView: NicknameView!
 //    var selectTeamView: SelectTeamView?
 //    //var phonenumberView: PhonenumberView!
 //
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+
 //        nicknameView.nextButton.addTarget(self, action: #selector(clickNext), for: .touchUpInside)
-//    }
+    }
 //
 //    override func loadView() {
 //        super.loadView()
@@ -27,4 +29,4 @@
 //            print("닉네임을 입력해주세요")
 //        }
 //    }
-//}
+}

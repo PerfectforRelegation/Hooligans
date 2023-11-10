@@ -8,8 +8,10 @@
 import Foundation
 
 enum MainModels {
-    enum Section {
+    enum Section: Int {
+        case chat
         case profile
+        case result
         case fixture
         case news
     }

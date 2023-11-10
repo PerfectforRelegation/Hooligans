@@ -8,6 +8,12 @@
 import Foundation
 
 enum SigninModels {
+    enum Section: Int {
+        case header
+        case email
+        case social
+    }
+    
     // MARK: Usecases
     enum Signin {
         struct Request {

@@ -12,20 +12,30 @@ final class ProfileCell: UICollectionViewCell {
     
     
     // MARK: - View Initialize
+    private let myPointLabel: UILabel =  {
+        let label = UILabel()
+        label.text = "나의 포인트"
+        label.font = Font.medium(size: 16)
+        label.textColor = .lightGray
+        return label
+    }()
+    
     private let coinImage = UIImageView()
         .contentMode(.scaleAspectFill)
         .clipsToBounds(true)
     
-    private let nickNameLabel: UILabel = {
+    private let pointLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.font = Font.semibold(size: 26)
         return label
     }()
     
-    private let pointLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        return label
+    private let historyButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("내역", for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
+        button.titleLabel?.font = Font.regular(size: 16)
+        return button
     }()
     
     // MARK: - Init Method
@@ -41,38 +51,47 @@ final class ProfileCell: UICollectionViewCell {
     
     func configureCell(user: MainUser) {
         coinImage.image = UIImage(named: "coin")
-        nickNameLabel.text = user.nickname
-        pointLabel.text = String(user.betPoint)
+        pointLabel.text = numberFormatter(number: user.betPoint)+"P"
     }
     
 }
 
 extension ProfileCell {
     private func setupView() {
-        self.backgroundColor = .systemGray6
-        self.layer.cornerRadius = self.frame.height * 0.2
+        self.backgroundColor = .white
+        self.layer.cornerRadius = self.frame.height * 0.1
+        self.layer.shadowOpacity = 0.1
+        self.layer.shadowRadius = 5
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowPath = nil
         
-        self.addSubview(coinImage)
+        addSubview(myPointLabel)
+        myPointLabel.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().inset(15)
+        }
+        
+        addSubview(coinImage)
         coinImage.snp.makeConstraints { make in
-            make.centerY.equalTo(self.snp.centerY)
+            make.top.equalTo(myPointLabel.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(10)
-            make.width.height.equalTo(40)
+            make.width.height.equalTo(20)
         }
         
-        self.addSubview(nickNameLabel)
-        nickNameLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-20)
-            make.leading.equalTo(coinImage.snp.trailing).offset(20)
-            make.trailing.equalToSuperview().inset(10)
-        }
-        
-        self.addSubview(pointLabel)
+        addSubview(pointLabel)
         pointLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(self.snp.centerY).offset(20)
-            make.leading.equalTo(coinImage.snp.trailing).offset(20)
-            make.trailing.equalToSuperview().inset(10)
+            make.top.equalTo(myPointLabel.snp.bottom).offset(15)
+            make.leading.equalTo(coinImage.snp.trailing).offset(5)
+            make.width.equalTo(100)
         }
         
+        addSubview(historyButton)
+        historyButton.snp.makeConstraints { make in
+            make.centerY.equalTo(pointLabel.snp.centerY)
+            make.trailing.equalToSuperview().inset(15)
+            make.width.equalTo(55)
+            make.height.equalTo(30)
+        }
         
     }
 

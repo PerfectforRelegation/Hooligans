@@ -17,6 +17,14 @@ class BetListViewController: UIViewController {
 
     private var betList: [Bet] = []
 
+    private let myBetListButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .link
+        button.setTitle("내 배팅 리스트", for: .normal)
+        button.layer.cornerRadius = 20
+        return button
+    }()
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         return tableView
@@ -42,6 +50,9 @@ class BetListViewController: UIViewController {
         tableView.dataSource = self
 
         //setupNavigationBarLabels()
+
+        let button = UIBarButtonItem(title: "내 배팅 리스트", style: .plain, target: self, action: #selector(myBetList))
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = button
     }
 
     private func setup() {
@@ -85,6 +96,10 @@ extension BetListViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    @objc func myBetList() {
+        router?.routeToMyBetList()
     }
 }
 
