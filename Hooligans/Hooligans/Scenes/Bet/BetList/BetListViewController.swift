@@ -25,6 +25,24 @@ class BetListViewController: UIViewController {
         return button
     }()
 
+    private let homeTeamText: UILabel = {
+        let label = UILabel()
+        label.text = "홈팀"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .white
+        //label.textAlignment = .left
+        return label
+    }()
+
+    private let awayTeamText: UILabel = {
+        let label = UILabel()
+        label.text = "원정팀"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .white
+        label.textAlignment = .right
+        return label
+    }()
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         return tableView
@@ -44,15 +62,22 @@ class BetListViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupHeaderLabel()
         setupView()
         registerCell()
         tableView.delegate = self
         tableView.dataSource = self
 
-        //setupNavigationBarLabels()
-
-        let button = UIBarButtonItem(title: "내 배팅 리스트", style: .plain, target: self, action: #selector(myBetList))
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = button
+//        let button = UIBarButtonItem(title: "내 배팅 리스트", style: .plain, target: self, action: #selector(myBetList))
+//        button.tintColor = .white
+//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = button
+        // 이미지 이름을 "your_image_name"으로 변경
+        if let buttonImage = UIImage(systemName: "note.text") { //rectangle.and.pencil.and.ellipsis
+            let button = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(myBetList))
+            button.tintColor = .white
+            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = button
+        }
     }
 
     private func setup() {
@@ -68,36 +93,43 @@ class BetListViewController: UIViewController {
         router.dataStore = interactor
     }
 
+    private func setupHeaderLabel() {
+        view.backgroundColor = .systemIndigo
+
+        view.addSubview(homeTeamText)
+        homeTeamText.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.leading.equalToSuperview().inset(40)
+        }
+
+        view.addSubview(awayTeamText)
+        awayTeamText.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.trailing.equalToSuperview().inset(35)
+        }
+
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+
     private func registerCell() {
         tableView.register(BetListCell.self, forCellReuseIdentifier: BetListCell.identifier)
     }
-
-//    private func setupNavigationBarLabels() {
-//        navigationController?.navigationBar.barTintColor = .systemIndigo
-//        navigationController?.navigationBar.backgroundColor = .systemIndigo
-//
-//        let homeTeamLabel = UILabel()
-//        homeTeamLabel.text = "홈팀"
-//        homeTeamLabel.textColor = .white
-//        homeTeamLabel.font = UIFont.boldSystemFont(ofSize: 18)
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: homeTeamLabel)
-//
-//        let awayTeamLabel = UILabel()
-//        awayTeamLabel.text = "원정팀"
-//        awayTeamLabel.textColor = .white
-//        awayTeamLabel.font = UIFont.boldSystemFont(ofSize: 18)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: awayTeamLabel)
-//    }
 }
 
 extension BetListViewController {
     private func setupView() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            //            make.edges.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
+
     @objc func myBetList() {
         router?.routeToMyBetList()
     }

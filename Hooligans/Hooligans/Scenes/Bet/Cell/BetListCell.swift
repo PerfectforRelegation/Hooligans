@@ -20,7 +20,14 @@ class BetListCell: UITableViewCell {
         let label = UILabel()
         return label
     }()
-    
+
+    private var vsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "VS"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+
     private var homeAllocationLabel: UILabel = {
         let label = UILabel()
         return label
@@ -56,31 +63,39 @@ extension BetListCell {
     private func setupView() {
         self.backgroundColor = .systemGray6
         self.layer.cornerRadius = 20
-        
+
         self.addSubview(homeTemaLabel)
         homeTemaLabel.font = UIFont.boldSystemFont(ofSize: 16)
         homeTemaLabel.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(15)
+            make.top.equalToSuperview().offset(15)
+            make.leading.equalToSuperview().inset(40)
             make.width.equalTo(50)
         }
         self.addSubview(awayTemaLabel)
         awayTemaLabel.font = UIFont.boldSystemFont(ofSize: 16)
         awayTemaLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(15)
-            make.trailing.equalToSuperview().inset(15)
+            make.trailing.equalToSuperview().inset(30)
             make.width.equalTo(50)
         }
+
+        self.addSubview(vsLabel)
+        vsLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(15)
+            make.centerX.equalToSuperview()
+        }
+
         self.addSubview(homeAllocationLabel)
         homeAllocationLabel.snp.makeConstraints { make in
             make.top.equalTo(awayTemaLabel.snp.bottom).offset(15)
-            make.leading.equalToSuperview().offset(15)
+            make.leading.equalToSuperview().offset(40)
             make.bottom.equalToSuperview().inset(10)
             make.width.equalTo(50)
         }
         self.addSubview(awayAllocationLabel)
         awayAllocationLabel.snp.makeConstraints { make in
             make.top.equalTo(awayTemaLabel.snp.bottom).offset(15)
-            make.trailing.equalToSuperview().inset(15)
+            make.trailing.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(10)
             make.width.equalTo(50)
         }
