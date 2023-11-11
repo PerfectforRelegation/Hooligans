@@ -72,8 +72,14 @@ class BetListViewController: UIViewController {
 //        let button = UIBarButtonItem(title: "내 배팅 리스트", style: .plain, target: self, action: #selector(myBetList))
 //        button.tintColor = .white
 //        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = button
-        // 이미지 이름을 "your_image_name"으로 변경
-        if let buttonImage = UIImage(systemName: "note.text") { //rectangle.and.pencil.and.ellipsis
+
+        if let titleImage = UIImage(systemName: "gamecontroller.fill") {
+            let titleImageView = UIImageView(image: titleImage)
+            titleImageView.tintColor = .white
+            navigationItem.titleView = titleImageView
+        }
+
+        if let buttonImage = UIImage(systemName: "list.bullet.rectangle") { //rectangle.and.pencil.and.ellipsis
             let button = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(myBetList))
             button.tintColor = .white
             self.navigationController?.navigationBar.topItem?.rightBarButtonItem = button
