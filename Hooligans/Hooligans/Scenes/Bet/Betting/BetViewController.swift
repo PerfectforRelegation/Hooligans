@@ -23,6 +23,15 @@ class BetViewController: UIViewController {
         return label
     }()
 
+    let instructionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "원하는 곳에 배팅해주세요"
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
+
     private let homeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGray6
@@ -124,46 +133,49 @@ class BetViewController: UIViewController {
 extension BetViewController {
     private func setupView() {
         view.backgroundColor = .white
-        
 
-        
+        view.addSubview(instructionLabel)
+        instructionLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
+            make.centerX.equalToSuperview()
+        }
+
         view.addSubview(homeButton)
         homeButton.addTarget(self, action: #selector(betHomeTeam), for: .touchUpInside)
         homeButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-80)
-            make.centerX.equalToSuperview().offset(-70)
-            make.width.height.equalTo(50)
+            make.centerY.equalToSuperview().offset(-100)
+            make.centerX.equalToSuperview().offset(-120)
+            make.width.height.equalTo(100)
         }
         view.addSubview(homeAllocationLabel)
         view.addSubview(drawButton)
         drawButton.addTarget(self, action: #selector(betDrawTeam), for: .touchUpInside)
         drawButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-80)
+            make.centerY.equalToSuperview().offset(-100)
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(50)
+            make.width.height.equalTo(100)
         }
         view.addSubview(awayButton)
         awayButton.addTarget(self, action: #selector(betAwayTeam), for: .touchUpInside)
         awayButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-80)
-            make.centerX.equalToSuperview().offset(70)
-            make.width.height.equalTo(50)
+            make.centerY.equalToSuperview().offset(-100)
+            make.centerX.equalToSuperview().offset(120)
+            make.width.height.equalTo(100)
         }
         view.addSubview(textField)
         textField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(30)
             make.width.equalTo(120)
             make.height.equalTo(80)
         }
         
-        
         view.addSubview(betButton)
         betButton.addTarget(self, action: #selector(bettingButton), for: .touchUpInside)
         betButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(100)
+            make.centerY.equalToSuperview().offset(120)
             make.centerX.equalToSuperview()
-            make.width.equalTo(80)
+            make.width.equalTo(330)
             make.height.equalTo(50)
         }
         view.addSubview(completeLabel)
@@ -173,26 +185,41 @@ extension BetViewController {
             make.height.equalTo(30)
         }
     }
-    
+
     @objc func betHomeTeam() {
         selectedTeam = 0
-        homeButton.backgroundColor = .link
-        drawButton.backgroundColor = .systemGray6
-        awayButton.backgroundColor = .systemGray6
+        homeButton.layer.borderColor = UIColor.systemIndigo.cgColor
+        homeButton.layer.borderWidth = 2.0
+
+        drawButton.layer.borderColor = UIColor.systemGray6.cgColor
+        drawButton.layer.borderWidth = 0.0
+
+        awayButton.layer.borderColor = UIColor.systemGray6.cgColor
+        awayButton.layer.borderWidth = 0.0
     }
-    
+
     @objc func betDrawTeam() {
         selectedTeam = 1
-        homeButton.backgroundColor = .systemGray6
-        drawButton.backgroundColor = .link
-        awayButton.backgroundColor = .systemGray6
+        homeButton.layer.borderColor = UIColor.systemGray6.cgColor
+        homeButton.layer.borderWidth = 0.0
+
+        drawButton.layer.borderColor = UIColor.systemIndigo.cgColor
+        drawButton.layer.borderWidth = 2.0
+
+        awayButton.layer.borderColor = UIColor.systemGray6.cgColor
+        awayButton.layer.borderWidth = 0.0
     }
-    
+
     @objc func betAwayTeam() {
         selectedTeam = 2
-        homeButton.backgroundColor = .systemGray6
-        drawButton.backgroundColor = .systemGray6
-        awayButton.backgroundColor = .link
+        homeButton.layer.borderColor = UIColor.systemGray6.cgColor
+        homeButton.layer.borderWidth = 0.0
+
+        drawButton.layer.borderColor = UIColor.systemGray6.cgColor
+        drawButton.layer.borderWidth = 0.0
+
+        awayButton.layer.borderColor = UIColor.systemIndigo.cgColor
+        awayButton.layer.borderWidth = 2.0
     }
     
     @objc func bettingButton() {
