@@ -13,11 +13,11 @@ protocol BetDisplayLogic: AnyObject {
 
 class BetViewController: UIViewController {
     var interactor: (BetBusinessLogic&BetDataStore)?
-    
+
     private var id: String?
     private var teams: [String]?
     private var selectedTeam: Int = 0
-    
+
     private let completeLabel: UILabel = {
         let label = UILabel()
         return label
@@ -38,13 +38,13 @@ class BetViewController: UIViewController {
         button.cornerRadius(10)
         return button
     }()
-    
+
     private let homeAllocationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         return label
     }()
-    
+
     private let drawButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGray6
@@ -52,36 +52,47 @@ class BetViewController: UIViewController {
         button.cornerRadius(10)
         return button
     }()
-    
+
     private let drawAllocationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         return label
     }()
-    
+
     private let awayButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGray6
         button.cornerRadius(10)
         return button
     }()
-    
+
     private let awayAllocationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         return label
     }()
-    
+
     private let textField: UITextField = {
         let textField = UITextField()
         textField.keyboardType = .numberPad
-        textField.layer.cornerRadius = 20
-        textField.backgroundColor = .systemGray6
         textField.textColor = .black
-        textField.placeholder = "최소 1000이상"
+        textField.attributedPlaceholder = NSAttributedString(string: "최소 1000이상", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+
+        let underline = UIView()
+        underline.backgroundColor = .systemGray
+        textField.addSubview(underline)
+        underline.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(1.2)
+        }
+        textField.borderStyle = .none
+        textField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
+        textField.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
+
         return textField
     }()
-    
+
     private let betButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .link
@@ -91,7 +102,7 @@ class BetViewController: UIViewController {
         button.layer.cornerRadius = 10
         return button
     }()
-    
+
     init(bet: Bet) {
         super.init(nibName: nil, bundle: nil)
         self.id = bet.id.uuidString
@@ -104,7 +115,7 @@ class BetViewController: UIViewController {
         self.teams = [bet.home, "DRAW", bet.away]
         setup()
     }
-    
+
     private func setup() {
         let viewController = self
         let interactor = BetInteractor()
@@ -117,11 +128,11 @@ class BetViewController: UIViewController {
 //        router.viewController = viewController
 //        router.dataStore = interactor
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -166,10 +177,10 @@ extension BetViewController {
         textField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(30)
-            make.width.equalTo(120)
+            make.width.equalTo(330)
             make.height.equalTo(80)
         }
-        
+
         view.addSubview(betButton)
         betButton.addTarget(self, action: #selector(bettingButton), for: .touchUpInside)
         betButton.snp.makeConstraints { make in
@@ -221,7 +232,19 @@ extension BetViewController {
         awayButton.layer.borderColor = UIColor.systemIndigo.cgColor
         awayButton.layer.borderWidth = 2.0
     }
-    
+
+    @objc private func textFieldDidBeginEditing() {
+        if let underline = textField.subviews.first(where: { $0 is UIView }) {
+            underline.backgroundColor = .systemIndigo
+        }
+    }
+
+    @objc private func textFieldDidEndEditing() {
+        if let underline = textField.subviews.first(where: { $0 is UIView }) {
+            underline.backgroundColor = .systemGray
+        }
+    }
+
     @objc func bettingButton() {
         print(id, teams, selectedTeam, textField.text)
         if let id = id, let pick = teams?[selectedTeam], let text = textField.text {
