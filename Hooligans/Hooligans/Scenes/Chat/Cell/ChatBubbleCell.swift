@@ -17,10 +17,10 @@ class ChatBubbleCell: UITableViewCell {
         imageView.image = UIImage(systemName: "person.circle.fill")
         imageView.tintColor = .black
 
-//        imageView.layer.cornerRadius = 10
-//        imageView.layer.borderWidth = 1.0
-//        imageView.layer.borderColor = UIColor.black.cgColor
-//        imageView.clipsToBounds = true
+        //        imageView.layer.cornerRadius = 10
+        //        imageView.layer.borderWidth = 1.0
+        //        imageView.layer.borderColor = UIColor.black.cgColor
+        //        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -43,10 +43,12 @@ class ChatBubbleCell: UITableViewCell {
     let messageLabel: UILabel = {
         let label = UILabel()
         //label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.font = Font.medium(size: 15)
+        label.font = Font.medium(size: 14)
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -92,6 +94,10 @@ class ChatBubbleCell: UITableViewCell {
         messageLabel.snp.makeConstraints { make in
             make.top.equalTo(userNameLabel.snp.bottom).offset(4)
             make.leading.trailing.bottom.equalToSuperview().inset(8)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.bottom.equalTo(bubbleView.snp.bottom).offset(10)
         }
     }
 }
