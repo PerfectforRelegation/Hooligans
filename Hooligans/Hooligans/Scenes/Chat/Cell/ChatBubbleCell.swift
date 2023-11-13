@@ -14,20 +14,36 @@ class ChatBubbleCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "coin")
+        imageView.image = UIImage(systemName: "person.circle.fill")
+        imageView.tintColor = .black
+
+//        imageView.layer.cornerRadius = 10
+//        imageView.layer.borderWidth = 1.0
+//        imageView.layer.borderColor = UIColor.black.cgColor
+//        imageView.clipsToBounds = true
         return imageView
     }()
-    
+
+    let bubbleView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemGray5
+        view.layer.cornerRadius = 12
+        return view
+    }()
+
     let userNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .white
+        //label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 11)
+        label.textColor = .black
         return label
     }()
-    
+
     let messageLabel: UILabel = {
         let label = UILabel()
-        label.font = Font.medium(size: 16)
+        //label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = Font.medium(size: 15)
         label.numberOfLines = 0
         return label
     }()
@@ -40,44 +56,43 @@ class ChatBubbleCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         setupView()
-        // Configure the view for the selected state
     }
-    
+
     func configureCell(message: Message) {
         self.userNameLabel.text = message.sender
         self.messageLabel.text = message.message
     }
-    
+
     func configureCell(message: String) {
         self.messageLabel.text = message
     }
 
-}
-
-extension ChatBubbleCell {
     private func setupView() {
-        let frameHeight = self.frame.height
-        self.backgroundColor = UIColor(red: 0.2549, green: 0.2706, blue: 0.3176, alpha: 1.0)
-        self.layer.cornerRadius = frameHeight * 0.2
-        
         contentView.addSubview(userImageView)
         userImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
-            make.top.equalToSuperview().offset(5)
-            make.width.height.equalTo(40)
+            make.top.equalToSuperview().offset(10)
+            make.width.height.equalTo(30)
         }
 
-        addSubview(userNameLabel)
-        userNameLabel.snp.makeConstraints { make in
+        contentView.addSubview(bubbleView)
+        bubbleView.snp.makeConstraints { make in
             make.top.equalTo(userImageView)
             make.leading.equalTo(userImageView.snp.trailing).offset(10)
-        }
-        
-        addSubview(messageLabel)
-        messageLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(userImageView.snp.trailing).offset(10)
             make.trailing.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().inset(10)
+        }
+
+        bubbleView.addSubview(userNameLabel)
+        userNameLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(8)
+        }
+
+        bubbleView.addSubview(messageLabel)
+        messageLabel.snp.makeConstraints { make in
+            make.top.equalTo(userNameLabel.snp.bottom).offset(4)
+            make.leading.trailing.bottom.equalToSuperview().inset(8)
         }
     }
 }
+
