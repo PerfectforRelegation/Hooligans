@@ -68,7 +68,7 @@ extension WebViewController {
         navigationBar.leftItem.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(60)
+            make.height.equalTo(85)
         }
     }
         
