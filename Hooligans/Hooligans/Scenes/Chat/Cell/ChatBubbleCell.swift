@@ -95,7 +95,7 @@ class ChatBubbleCell: UITableViewCell {
             make.top.equalTo(userNameLabel.snp.bottom).offset(4)
             make.leading.trailing.bottom.equalToSuperview().inset(8)
         }
-        
+
         contentView.snp.makeConstraints { make in
             make.bottom.equalTo(bubbleView.snp.bottom).offset(10)
         }
