@@ -42,7 +42,7 @@ class ChatBubbleCell: UITableViewCell {
 
     let messageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .black
         //label.font = UIFont.boldSystemFont(ofSize: 16)
         label.font = Font.medium(size: 14)
         label.numberOfLines = 0
@@ -67,10 +67,10 @@ class ChatBubbleCell: UITableViewCell {
     }
     
     private func setupView() {
-        self.backgroundColor = .black
+        self.backgroundColor = .white
         let frameHeight = self.frame.height
-        self.layer.cornerRadius = frameHeight * 0.2
-        
+        //self.layer.cornerRadius = frameHeight * 0.2
+
         contentView.addSubview(userImageView)
         userImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
