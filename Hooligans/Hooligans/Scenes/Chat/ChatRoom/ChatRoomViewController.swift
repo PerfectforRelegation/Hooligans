@@ -41,7 +41,7 @@ class ChatRoomViewController: UIViewController {
     
     private let chatTextView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        textView.backgroundColor = .systemGray5
         textView.layer.cornerRadius = 20
         textView.layer.masksToBounds = true
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -49,7 +49,16 @@ class ChatRoomViewController: UIViewController {
         textView.isScrollEnabled = false
         return textView
     }()
-    
+
+    private let plusButton: UIButton = {
+        let button = UIButton()
+        let plusImage = UIImage(systemName: "plus")
+        button.setImage(plusImage, for: .normal)
+        button.tintColor = .systemGray
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
     private let sendButton: UIButton = {
         let button = UIButton()
         let buttonImage = UIImage(systemName: "paperplane.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 35))
@@ -124,41 +133,49 @@ class ChatRoomViewController: UIViewController {
 extension ChatRoomViewController {
     private func setupView() {
         self.view.backgroundColor = .white
-        
+
         self.view.addSubview(headerView)
         headerView.backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
         headerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(100)
         }
-        
+
         self.view.addSubview(sendButton)
         sendButton.snp.makeConstraints { make in
             make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
             make.height.width.equalTo(40)
         }
-        
+
         sendButton.addTarget(self, action: #selector(sendMessageSTOMP), for: .touchUpInside)
-        
-        
+
+
         self.view.addSubview(chatTextView)
         chatTextView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalTo(sendButton.snp.leading).offset(-5)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
             make.height.equalTo(40)
-            make.width.equalTo(330)
+            //make.width.equalTo(250)
         }
-        
+
+        self.view.addSubview(plusButton)
+        plusButton.snp.makeConstraints { make in
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(5)
+            make.trailing.equalTo(chatTextView.snp.leading)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
+            make.height.width.equalTo(40)
+        }
+
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(chatTextView.snp.top).offset(-5)
         }
-        
     }
-    
+
+
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -210,7 +227,13 @@ extension ChatRoomViewController {
         }
     }
     
-    
+    @objc func plusButtonTapped() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+
     @objc func sendMessageSTOMP() {
         if let chatRoom = chatRoom {
             StompManager.shard.sendMessage(type: "TALK", roomId: chatRoom.roomId.uuidString, message: self.chatTextView.text)
@@ -230,18 +253,28 @@ extension ChatRoomViewController: ChatRoomDisplayLogic {
             self.tableView.reloadData()
         }
     }
-    
+
 }
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
+    // 높이 동적 변화
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count
     }
-    
+
+    // 경계선 숨김
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleCell.identifier, for: indexPath) as? ChatBubbleCell else { return UITableViewCell() }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -261,6 +294,18 @@ extension ChatRoomViewController: UITextViewDelegate {
             // 텍스트뷰 높이 동적으로 변경
             make.height.equalTo(estimatedSize.height)
         }
+    }
+}
+
+extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+        }
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
