@@ -39,6 +39,11 @@ class MyBetListViewController: UIViewController {
         tableView.delegate = self
         interactor?.fetchMyBetList(request: BetListModels.MyBetList.Request())
         // Do any additional setup after loading the view.
+        if let backButtonImage = UIImage(systemName: "chevron.backward") {
+            let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backAction))
+            backButton.tintColor = .black
+            navigationItem.leftBarButtonItem = backButton
+        }
     }
     
     private func setup() {
@@ -58,6 +63,9 @@ class MyBetListViewController: UIViewController {
         tableView.register(MyBetCell.self, forCellReuseIdentifier: MyBetCell.identifier)
     }
 
+    @objc func backAction() {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 extension MyBetListViewController {
