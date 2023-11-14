@@ -1,40 +1,27 @@
 
 import Foundation
+import Combine
 
 protocol BoardDetailWorkerLogic {
-//    func fetchUser(_ response: @escaping (SigninModels.BoardContents.Response) -> Void)
-
-    func postList(_ response: @escaping (BoardDetailModels.PostContents.Response) -> Void)
+    func fetchBoardDetail(id: Int, _ response: @escaping (BoardDetailModels.Content.Response) -> Void)
 }
 
 class BoardDetailWorker: BoardDetailWorkerLogic {
 
-    let apiManager = LeagueService()
+    let apiManager = BoardService()
+    var cancellables = Set<AnyCancellable>()
 
-    // api manager를 통해서 서버에게 요청후 돌아온 응답 처리 과정
-//    func fetchUser(_ response: @escaping (SigninModels.Users.Response) -> Void) {
-//        apiManager.fetchUsers { result in
-//            switch result {
-//            case .success(let users):
-//                print(users)
-//                response(SigninModels.Users.Response(users: users, isError: false, message: nil))
-//            case .failure(let error):
-//                response(SigninModels.Users.Response(isError: true, message: error.localizedDescription))
-//            }
-//        }
-//    }
-
-
-    func postList(_ response: @escaping (BoardDetailModels.PostContents.Response) -> Void) {
-//        apiManager.postList { result in
-//            switch result {
-//            case .success(let postContents):
-//                   print(postContents)
-//                response(BoardDetailModels.PostContents.Response(postContents: postContents, isError: false, message: nil))
-//            case .failure(let error):
-//                    response(BoardDetailModels.PostContents.Response(isError:true, message: error.localizedDescription))
-//                }
-//            }
-
+    func fetchBoardDetail(id: Int, _ response: @escaping (BoardDetailModels.Content.Response) -> Void) {
+        apiManager.fetchBoardDetail(id: id).sink { result in
+            switch result {
+            case .finished:
+                print("fetch board list finished")
+            case .failure(let error):
+                response(BoardDetailModels.Content.Response(isError: true, message: error.localizedDescription))
+            }
+        } receiveValue: { data in
+            response(BoardDetailModels.Content.Response(boardDetail: data, isError: false))
+        }
+        .store(in: &cancellables)
     }
 }

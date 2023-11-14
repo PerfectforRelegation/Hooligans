@@ -2,21 +2,21 @@
 import Foundation
 
 protocol BoardDetailPresentationLogic: AnyObject {
-    func presentationUser(response: BoardDetailModels.PostContents.Response)
+    func presentationBoardDetail(response: BoardDetailModels.Content.Response)
 }
 
 final class BoardDetailPresenter {
-    weak var viewController: BoardDetailDisplayLogic?
+    weak var viewController: BoardDetailViewController?
 }
 
 extension BoardDetailPresenter: BoardDetailPresentationLogic {
 
-    func presentationUser(response: BoardDetailModels.PostContents.Response) {
+    func presentationBoardDetail(response: BoardDetailModels.Content.Response) {
 
-        guard let postContents = response.postContents else { return }
+        guard let boardDetail = response.boardDetail else { return }
 
-        let viewModel = BoardDetailModels.PostContents.ViewModel(postContents: postContents)
+        let viewModel = BoardDetailModels.Content.ViewModel(boardDetail: boardDetail)
 
-        //viewController?.displayA(viewModel: viewModel)
+        viewController?.displayBoardContent(viewModel: viewModel)
     }
 }

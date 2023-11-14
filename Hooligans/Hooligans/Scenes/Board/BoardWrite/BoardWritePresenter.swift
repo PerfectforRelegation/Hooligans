@@ -2,10 +2,15 @@
 import Foundation
 
 protocol BoardWritePresentationLogic: AnyObject {
-    func presentationUser(response: BoardWriteModels.PostContents.Response)
+    func presentationUploadPost(response: BoardWriteModels.UploadPost.Response)
 }
 
-final class BoardWritePresenter {
-    weak var viewController: BoardWriteDisplayLogic?
+final class BoardWritePresenter: BoardWritePresentationLogic {
+    weak var viewController: BoardWriteViewController?
+    
+    func presentationUploadPost(response: BoardWriteModels.UploadPost.Response) {
+        print("good")
+    }
+    
 }
 

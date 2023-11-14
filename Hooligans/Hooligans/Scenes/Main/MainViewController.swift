@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         setup()
         bindView()
-        interactor?.fetchMainSource(request: MainModels.Main.Request())
+        
     }
 
     required init?(coder: NSCoder) {
@@ -60,6 +60,7 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         registerCells()
         setupView()
+        interactor?.fetchMainSource(request: MainModels.Main.Request())
     }
 
     private func setup() {
@@ -176,7 +177,7 @@ extension MainViewController {
             case .fixture:
                 view?.configureCell(title: "이주의 경기")
             case .news:
-                view?.configureCell(title: "내 정보")
+                view?.configureCell(title: "뉴스")
             }
             
             return view
@@ -190,11 +191,13 @@ extension MainViewController: MainDisplayLogic {
         DispatchQueue.main.async {
             // MARK: - User Profile
             let userItem = Item(data: viewModel.mainSource.user)
+            self.snapshot.deleteItems([userItem])
             self.snapshot.appendItems([userItem], toSection: .profile)
             
             // MARK: - Live Fixtures
             viewModel.mainSource.fixtures.forEach { fixture in
                 let fixtureItem = Item(data: fixture)
+                self.snapshot.deleteItems([fixtureItem])
                 self.snapshot.appendItems([fixtureItem], toSection: .fixture)
             }
             
@@ -207,6 +210,7 @@ extension MainViewController: MainDisplayLogic {
             // MARK: - News Posts
             viewModel.mainSource.news.posts.forEach { post in
                 let newsPostItem = Item(data: post)
+                self.snapshot.deleteItems([newsPostItem])
                 self.snapshot.appendItems([newsPostItem], toSection: .news)
             }
             self.dataSource.apply(self.snapshot)

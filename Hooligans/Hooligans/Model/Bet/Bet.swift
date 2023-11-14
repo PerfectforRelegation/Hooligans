@@ -22,9 +22,9 @@ struct BetResult: Codable {
     let date: String
     let home: String
     let away: String
-//    let allocation: Double
+    let allocation: Double?
     let point: Int
-    let win: String
+    let win: String?
     let getReward: Bool
 }
 

@@ -86,6 +86,10 @@ extension MyBetListViewController: UITableViewDelegate, UITableViewDataSource {
         return myBetList.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        interactor?.getReward(request: BetListModels.Reward.Request(id: myBetList[indexPath.row].id.uuidString))
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyBetCell.identifier, for: indexPath) as? MyBetCell else { return UITableViewCell() }
         cell.configureCell(userBet: myBetList[indexPath.row])

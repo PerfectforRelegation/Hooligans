@@ -25,9 +25,7 @@ struct News: Codable {
 struct MainUser: Codable {
     let nickname: String
     let betPoint: Int
-    let firstTeam: String?
-    let secondTeam: String?
-    let hirdTeam: String?
+    let favoriteTeam: String
 }
 
 struct Post: Codable {

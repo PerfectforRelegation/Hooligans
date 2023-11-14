@@ -15,6 +15,7 @@ enum Endpoint {
     case fixtureList
     case boardList
     case boardDetail(id: Int)
+    case writeBoard
     case postList
     case chatList
     case signIn
@@ -22,6 +23,7 @@ enum Endpoint {
     case betList
     case betting
     case myBetList
+    case getReward
     
     var endpoint: String {
         switch self {
@@ -32,6 +34,7 @@ enum Endpoint {
         case .fixtureList: return "/fixture/list"
         case .boardList: return "/board/list"
         case .boardDetail(let id): return "/board/detail/\(id)"
+        case .writeBoard: return "/board/write"
         case .postList: return "/post/list"
         case .chatList: return "/chat/room"
         case .signIn: return "/user/login"
@@ -39,6 +42,7 @@ enum Endpoint {
         case .betList: return "/bet/list"
         case .betting: return "/point/bet"
         case .myBetList: return "/user/bet"
+        case .getReward: return "/bet/reward"
         }
     }
 }

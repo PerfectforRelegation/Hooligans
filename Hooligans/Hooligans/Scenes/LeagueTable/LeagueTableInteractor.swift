@@ -25,7 +25,7 @@ class LeagueTableInteractor: LeagueTableDataStore, LeagueTableBusinessLogic {
     func fetchLeagueTable(request: LeagueTableModels.Table.Request) {
         worker = LeagueTableWorker()
         worker?.fetchLeagueTable({ response in
-            self.presenter?.presentationLeagueTable(response: LeagueTableModels.Table.Response(tableResponse: response.tableResponse, isError: false, message: "Field may not be empty"))
+            self.presenter?.presentationLeagueTable(response: response)
         })
     }
     

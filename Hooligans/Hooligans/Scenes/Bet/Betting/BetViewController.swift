@@ -87,8 +87,8 @@ class BetViewController: UIViewController {
             make.height.equalTo(1.2)
         }
         textField.borderStyle = .none
-        textField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
-        textField.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
+//        textField.addTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
+//        textField.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
 
         return textField
     }()
@@ -191,7 +191,8 @@ extension BetViewController {
         }
         view.addSubview(completeLabel)
         completeLabel.snp.makeConstraints { make in
-            make.top.equalTo(betButton.snp.bottom).inset(20)
+            make.top.equalTo(betButton.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
             make.width.equalTo(80)
             make.height.equalTo(30)
         }
@@ -233,17 +234,17 @@ extension BetViewController {
         awayButton.layer.borderWidth = 2.0
     }
 
-    @objc private func textFieldDidBeginEditing() {
-        if let underline = textField.subviews.first(where: { $0 is UIView }) {
-            underline.backgroundColor = .systemIndigo
-        }
-    }
-
-    @objc private func textFieldDidEndEditing() {
-        if let underline = textField.subviews.first(where: { $0 is UIView }) {
-            underline.backgroundColor = .systemGray
-        }
-    }
+//    @objc private func textFieldDidBeginEditing() {
+//        if let underline = textField.subviews.first(where: { $0 is UIView }) {
+//            underline.backgroundColor = .systemIndigo
+//        }
+//    }
+//
+//    @objc private func textFieldDidEndEditing() {
+//        if let underline = textField.subviews.first(where: { $0 is UIView }) {
+//            underline.backgroundColor = .systemGray
+//        }
+//    }
 
     @objc func bettingButton() {
         print(id, teams, selectedTeam, textField.text)

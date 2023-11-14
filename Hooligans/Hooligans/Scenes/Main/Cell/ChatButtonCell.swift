@@ -56,7 +56,7 @@ class ChatButtonCell: UICollectionViewCell {
 
 extension ChatButtonCell {
     private func setupView() {
-        self.backgroundColor = .main
+        self.backgroundColor = .clear
         self.layer.cornerRadius = self.frame.height * 0.1
         
         addSubview(buttonImage)

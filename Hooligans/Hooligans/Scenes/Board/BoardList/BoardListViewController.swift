@@ -19,7 +19,7 @@ class BoardListViewController: UIViewController {
         return tableView
     }()
     
-    private let navigationBar = NavigationBar(background: .purple, title: "자유게시판")
+    private let navigationBar = NavigationBar(background: .systemIndigo, title: "자유게시판")
 
     let writeButton: UIButton = {
         let button = UIButton()
@@ -54,7 +54,6 @@ class BoardListViewController: UIViewController {
         setup()
         posts = [Board]()
         refresh = UIRefreshControl()
-        interactor?.fetchBoardList(request: BoardListModels.BoardList.Request())
     }
     
     required init?(coder: NSCoder) {
@@ -65,6 +64,7 @@ class BoardListViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupView()
+        interactor?.fetchBoardList(request: BoardListModels.BoardList.Request())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,9 +117,7 @@ extension BoardListViewController {
 extension BoardListViewController: BoardListDisplayLogic {
     func displayBoardList(viewModel: BoardListModels.BoardList.ViewModel) {
         DispatchQueue.main.async {
-            for post in viewModel.posts {
-                self.posts?.append(post)
-            }
+            self.posts = viewModel.posts
             self.tableView.reloadData()
         }
     }
@@ -180,6 +178,7 @@ extension BoardListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedPost = posts?[indexPath.row] else { return }
         router?.routeToBoardDetail(board: selectedPost)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func initRefresh() {
@@ -191,6 +190,7 @@ extension BoardListViewController: UITableViewDataSource, UITableViewDelegate {
     @objc func refreshTable(refresh: UIRefreshControl) {
         print("refreshTable")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.interactor?.fetchBoardList(request: BoardListModels.BoardList.Request())
             self.tableView.reloadData()
             refresh.endRefreshing()
         }
