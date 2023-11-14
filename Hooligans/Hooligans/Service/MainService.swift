@@ -11,9 +11,9 @@ import Combine
 final class MainService {
     
     func fetchMain() -> AnyPublisher<MainResponse, Error> {
-        
         return NetworkService.shared.get(to: .main)
             .tryMap { data, response in
+                print(String(data: data, encoding: .utf8))
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                     print("http error")
                     throw URLError(.badServerResponse)

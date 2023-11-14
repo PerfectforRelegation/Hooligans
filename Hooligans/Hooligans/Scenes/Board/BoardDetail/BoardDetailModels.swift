@@ -3,19 +3,19 @@ import Foundation
 
 enum BoardDetailModels {
     // MARK: Usecases
-    enum PostContents {
+    enum Content {
         struct Request {
-            var count: Int
+
         }
 
         struct Response {
-            var postContents: [Post]?
+            var boardDetail: Board?
             var isError: Bool
             var message: String?
         }
 
         struct ViewModel {
-            var postContents: [Post]
+            var boardDetail: Board
         }
     }
 }

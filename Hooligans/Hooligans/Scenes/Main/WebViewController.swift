@@ -14,14 +14,16 @@ final class WebViewController: UIViewController {
     private var webView: WKWebView?
     private var url: String?
     
-    private let exitButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "x.circle"), for: .normal)
-        button.tintColor = .black
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        return button
-    }()
+    private let navigationBar = NavigationBar(background: .systemIndigo, leftItem: UIImage(systemName: "chevron.left"), title: "")
+    
+//    private let exitButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(systemName: "x.circle"), for: .normal)
+//        button.tintColor = .black
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+//        return button
+//    }()
 
     init(base: String, query: String) {
         super.init(nibName: nil, bundle: nil)
@@ -62,11 +64,11 @@ extension WebViewController {
     func setupView() {
         view.backgroundColor = .white
 
-        view.addSubview(exitButton)
-        exitButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(5)
-            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-5)
-            make.width.height.equalTo(70)
+        view.addSubview(navigationBar)
+        navigationBar.leftItem.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(120)
         }
     }
         

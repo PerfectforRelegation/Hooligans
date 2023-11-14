@@ -13,6 +13,7 @@ protocol MyBetListDataStore {
 
 protocol MyBetListBusinessLogic {
     func fetchMyBetList(request: BetListModels.MyBetList.Request)
+    func getReward(request: BetListModels.Reward.Request)
 }
 
 class MyBetListInteractor: MyBetListDataStore, MyBetListBusinessLogic {
@@ -23,6 +24,13 @@ class MyBetListInteractor: MyBetListDataStore, MyBetListBusinessLogic {
         worker = MyBetListWorker()
         worker?.fetchMyBetList(request: request) { response in
             self.presenter?.presentationMyBetList(response: response)
+        }
+    }
+    
+    func getReward(request: BetListModels.Reward.Request) {
+        worker = MyBetListWorker()
+        worker?.getReward(request: request) { response in
+            self.presenter?.presentationReward(response: response)
         }
     }
     

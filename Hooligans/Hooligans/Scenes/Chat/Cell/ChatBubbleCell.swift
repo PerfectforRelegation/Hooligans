@@ -28,6 +28,7 @@ class ChatBubbleCell: UITableViewCell {
     let messageLabel: UILabel = {
         let label = UILabel()
         label.font = Font.medium(size: 16)
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
@@ -47,17 +48,13 @@ class ChatBubbleCell: UITableViewCell {
         self.userNameLabel.text = message.sender
         self.messageLabel.text = message.message
     }
-    
-    func configureCell(message: String) {
-        self.messageLabel.text = message
-    }
 
 }
 
 extension ChatBubbleCell {
     private func setupView() {
+        self.backgroundColor = .black
         let frameHeight = self.frame.height
-        self.backgroundColor = UIColor(red: 0.2549, green: 0.2706, blue: 0.3176, alpha: 1.0)
         self.layer.cornerRadius = frameHeight * 0.2
         
         contentView.addSubview(userImageView)

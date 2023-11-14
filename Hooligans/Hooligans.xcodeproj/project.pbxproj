@@ -168,6 +168,7 @@
 		C1FD4DBB2AFE54C100B1D59F /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DBA2AFE54C100B1D59F /* ChatRoomHeader.swift */; };
 		C1FD4DBD2AFE72A000B1D59F /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DBC2AFE72A000B1D59F /* NavigationBar.swift */; };
 		C1FD4DC02AFE791500B1D59F /* BoardDetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DBF2AFE791500B1D59F /* BoardDetailContentView.swift */; };
+		C1FD4DC22AFE8A9400B1D59F /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD4DC12AFE8A9400B1D59F /* CommentCell.swift */; };
 		DB2A79322AB98FE400F07D82 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79312AB98FE400F07D82 /* UserViewController.swift */; };
 		DB2A79342ABAC8D800F07D82 /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */; };
 		DB2A79362ABAC8FE00F07D82 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */; };
@@ -354,6 +355,7 @@
 		C1FD4DBA2AFE54C100B1D59F /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
 		C1FD4DBC2AFE72A000B1D59F /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		C1FD4DBF2AFE791500B1D59F /* BoardDetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailContentView.swift; sourceTree = "<group>"; };
+		C1FD4DC12AFE8A9400B1D59F /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		DB2A79312AB98FE400F07D82 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		DB2A79332ABAC8D700F07D82 /* UserInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
 		DB2A79352ABAC8FE00F07D82 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
@@ -946,6 +948,7 @@
 			isa = PBXGroup;
 			children = (
 				7C3F60112ADBCCFC0078A6F1 /* PostTableViewCell.swift */,
+				C1FD4DC12AFE8A9400B1D59F /* CommentCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1139,6 +1142,7 @@
 			files = (
 				C1FD4DB62AFD1D5700B1D59F /* ActivityIndicator.swift in Sources */,
 				C1DFB2992AEE9E5E0069525E /* BoardListWorker.swift in Sources */,
+				C1FD4DC22AFE8A9400B1D59F /* CommentCell.swift in Sources */,
 				C1DFB2982AEE9E510069525E /* SigninInteractor.swift in Sources */,
 				C1DFB2B52AF2EF070069525E /* BetViewController.swift in Sources */,
 				C1DFB2972AEE9E460069525E /* TextField.swift in Sources */,

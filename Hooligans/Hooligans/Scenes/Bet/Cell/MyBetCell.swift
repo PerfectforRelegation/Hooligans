@@ -29,6 +29,7 @@ class MyBetCell: UITableViewCell {
         let button = UIButton()
         button.setTitle("받기", for: .normal)
         button.backgroundColor = .gray
+        button.isEnabled = false
         button.layer.cornerRadius = 10
         return button
     }()
@@ -48,7 +49,11 @@ class MyBetCell: UITableViewCell {
     func configureCell(userBet: UserBet) {
         pickLabel.text = userBet.point.pick
         betPointLabel.text = "BetPoint: \(String(userBet.point.betPoint))"
-        recieveLabel.text = "Recieve Point: \(String(Int(Double(userBet.point.betPoint)*userBet.homeAllocation)))"
+        recieveLabel.text = "Recieve Point: \(String(Int(Double(userBet.point.betPoint)*userBet.awayAllocation)))"
+        if !userBet.point.result {
+            getButton.isEnabled = true
+            getButton.backgroundColor = .systemIndigo
+        }
     }
 
 }
@@ -66,7 +71,7 @@ extension MyBetCell {
         }
         addSubview(recieveLabel)
         recieveLabel.snp.makeConstraints { make in
-            make.top.equalTo(betPointLabel.snp.bottom).offset(20)
+            make.top.equalTo(betPointLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(20)
             
         }

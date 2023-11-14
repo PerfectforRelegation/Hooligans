@@ -24,6 +24,7 @@ class LeagueTableViewController: UIViewController {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.frame = CGRect(origin: .zero, size: .zero)
+        table.backgroundColor = .epl
         return table
     }()
     
@@ -69,18 +70,15 @@ class LeagueTableViewController: UIViewController {
 
 extension LeagueTableViewController {
     private func setupView() {
-        
         self.view.addSubview(headerView)
-        
         headerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(150)
         }
         
         self.view.addSubview(leagueTableView)
-
         leagueTableView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom)
+            make.top.equalTo(headerView.snp.bottom).offset(5)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -121,14 +119,15 @@ extension LeagueTableViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: LeagueTableViewCell.identifier, for: indexPath) as? LeagueTableViewCell else { return UITableViewCell() }
-        cell.configure(rank: indexPath.row+1, team: leagueTable?.leaguetable[indexPath.row] ?? Team(teamId: "", teamName: "", teamLogo: "", played: "", won: "", lost: "", drawn: "", points: "", goalsAgainst: "", goalsFor: "", goalDifference: ""))
-        
+        if let team = leagueTable?.leaguetable[indexPath.row] {
+            cell.configure(rank: indexPath.row+1, team: team)
+        }
         return cell
     }
     

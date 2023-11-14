@@ -15,7 +15,6 @@ protocol LeagueTableWorkerLogic {
 class LeagueTableWorker: LeagueTableWorkerLogic {
     
     let apiManager = LeagueService()
-    
     var cancellables = Set<AnyCancellable>()
     
     func fetchLeagueTable(_ response: @escaping (LeagueTableModels.Table.Response) -> Void) {

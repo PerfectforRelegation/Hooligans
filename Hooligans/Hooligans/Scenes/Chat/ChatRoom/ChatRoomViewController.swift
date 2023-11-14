@@ -66,6 +66,8 @@ class ChatRoomViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.chatRoom = chatRoom
         headerView.configureView(chatRoom: chatRoom)
+        tableView.backgroundColor = UIColor(named: "c"+chatRoom.name)
+        tableView.backgroundColor?.withAlphaComponent(0.6)
         StompManager.shard.connect(chatRoom: chatRoom, delegate: self)
     }
     
@@ -196,7 +198,9 @@ extension ChatRoomViewController {
             chatTextView.snp.updateConstraints{ make in
                 make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(keyboardHeight)
             }
-            
+            sendButton.snp.updateConstraints { make in
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(keyboardHeight)
+            }
             
             view.layoutIfNeeded()
         }
@@ -206,6 +210,9 @@ extension ChatRoomViewController {
     @objc func keyboardWillHide(_ noti: NSNotification){
         // 키보드가 사라졌을 때 코드
         chatTextView.snp.updateConstraints{ make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(5)
+        }
+        sendButton.snp.updateConstraints { make in
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(5)
         }
     }
@@ -245,6 +252,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleCell.identifier, for: indexPath) as? ChatBubbleCell else { return UITableViewCell() }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.backgroundColor = view.backgroundColor
         cell.configureCell(message: messages[indexPath.row])
         
         return cell
@@ -261,6 +269,7 @@ extension ChatRoomViewController: UITextViewDelegate {
             // 텍스트뷰 높이 동적으로 변경
             make.height.equalTo(estimatedSize.height)
         }
+        
     }
 }
 

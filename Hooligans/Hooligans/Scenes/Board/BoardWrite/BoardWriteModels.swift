@@ -3,19 +3,20 @@ import Foundation
 
 enum BoardWriteModels {
     // MARK: Usecases
-    enum PostContents {
+    enum UploadPost {
         struct Request {
-            var count: Int
+            var title: String
+            var content: String
         }
 
         struct Response {
-            var postContents: [Post]?
+            var uploadPost: Board?
             var isError: Bool
             var message: String?
         }
 
         struct ViewModel {
-            var postContents: [Post]
+            var uploadPost: Board
         }
     }
 }

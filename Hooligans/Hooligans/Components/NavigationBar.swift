@@ -19,6 +19,7 @@ final class NavigationBar: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = Font.medium(size: 18)
+        label.textColor = .white
         return label
     }()
     

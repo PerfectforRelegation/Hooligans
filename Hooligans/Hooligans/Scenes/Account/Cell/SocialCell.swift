@@ -13,7 +13,7 @@ final class SocialCell: UICollectionViewCell {
     let socialButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = Font.medium(size: 16)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         button.imageView?.contentMode = .scaleAspectFit
         button.imageView?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

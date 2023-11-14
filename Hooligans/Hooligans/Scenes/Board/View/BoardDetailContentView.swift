@@ -32,6 +32,10 @@ final class BoardDetailContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureCell(board: Board) {
+        titleLabel.text = board.title
+        contextLabel.text = board.content
+    }
 }
 
 extension BoardDetailContentView {

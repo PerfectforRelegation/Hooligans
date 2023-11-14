@@ -9,7 +9,7 @@ import Foundation
 
 enum BetListModels {
     
-    enum BetList{
+    enum BetList {
         struct Request {
             
         }
@@ -23,7 +23,7 @@ enum BetListModels {
         }
     }
     
-    enum MyBetList{
+    enum MyBetList {
         struct Request {
             
         }
@@ -34,6 +34,22 @@ enum BetListModels {
         }
         struct ViewModel {
             var betList: [UserBet]
+        }
+    }
+    
+    enum Reward {
+        struct Request {
+            var id: String
+        }
+        
+        struct Response {
+            var myPoint: Message?
+            var isError: Bool
+            var message: String?
+        }
+        
+        struct ViewModel {
+            var point: Message
         }
     }
 }

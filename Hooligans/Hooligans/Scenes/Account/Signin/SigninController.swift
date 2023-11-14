@@ -116,9 +116,9 @@ final class SigninController: UIViewController {
                 
                 switch authType {
                 case .apple:
-                    cell.socialButton.addTarget(self, action: #selector(self.clickAppleLogin), for: .touchUpInside)
+                    cell.socialButton.addTarget(self, action: #selector(self.clickNewUser), for: .touchUpInside)
                 case .naver:
-                    cell.socialButton.addTarget(self, action: #selector(self.clickNaverLogin), for: .touchUpInside)
+                    cell.socialButton.addTarget(self, action: #selector(self.clickNewUser), for: .touchUpInside)
                 case .kakao:
                     cell.socialButton.addTarget(self, action: #selector(self.clickKakaoLogin), for: .touchUpInside)
                 default:
@@ -149,12 +149,9 @@ final class SigninController: UIViewController {
         snapshot.appendSections([.header, .email, .social])
         snapshot.appendItems([Item(data: "")], toSection: .header)
         snapshot.appendItems([Item(data: "")], toSection: .email)
-//        snapshot.appendItems([
-//            Item(data: Social(platform: "이메일", color: .white, image: "naver")),
-//            Item(data: Social(platform: "애플", color: .white, image: "naver")),
-//            Item(data: Social(platform: "네이버", color: .naver, image: "naver")),
-//            Item(data: Social(platform: "카카오", color: .kakao, image: "kakao"))
-//        ], toSection: .social)
+        snapshot.appendItems([
+            Item(data: Social(platform: "네이버", color: .naver, image: "naver"))
+        ], toSection: .social)
         self.dataSource.apply(self.snapshot)
     }
     

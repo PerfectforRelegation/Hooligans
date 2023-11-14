@@ -6,9 +6,12 @@ protocol BoardWriteDisplayLogic: AnyObject {
     func displayA(viewModel: BoardListModels.PostContents.ViewModel, navigationController: UINavigationController?)
 }
 
-class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class BoardWriteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var interactor: (BoardWriteBusinessLogic & BoardWriteDataStore)?
 
-    let uploadButton = UIBarButtonItem()
+    private let navigationBar = NavigationBar(background: .systemIndigo, leftItem: UIImage(systemName: "chevron.left"), title: "게시글 작성")
+    
+    let uploadButton = UIButton()
     let titleTextField = UITextField()
     let contentTextField = UITextView()
     let addPhotoButton = UIButton()
@@ -24,9 +27,14 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
         super.viewDidLoad()
         setupNavigationBar()
         setupUI()
-
+        setup()
         titleTextField.delegate = self
         contentTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     func setupNavigationBar() {
@@ -50,29 +58,36 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
         navigationItem.titleView = titleView
 
         // 등록
-        uploadButton.title = "등록"
-        uploadButton.tintColor = .white
-        uploadButton.style = .plain
-        uploadButton.target = self
-        uploadButton.action = #selector(uploadButtonTapped)
-
-        navigationItem.rightBarButtonItems = [uploadButton]
+    }
+    
+    func setup() {
+        let viewController = self
+        let interactor = BoardWriteInteractor()
+        let presenter = BoardWritePresenter()
+//        let router = BoardWriteRouter()
+        viewController.interactor = interactor
+//        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+//        router.viewController = viewController
     }
 
-
     func setupUI() {
-        scrollView = UIScrollView()
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        view.backgroundColor = .white
+        
+        view.addSubview(navigationBar)
+        navigationBar.leftItem.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(100)
         }
 
         titleTextField.placeholder = "제목"
-        titleTextField.font = UIFont.boldSystemFont(ofSize: 16)
+        titleTextField.font = Font.semibold(size: 16)
         titleTextField.borderStyle = .none
         view.addSubview(titleTextField)
         titleTextField.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(navigationBar.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(40)
             make.width.equalToSuperview().multipliedBy(0.9)
@@ -119,6 +134,20 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.leading.equalToSuperview().offset(30)
             make.size.equalTo(CGSize(width: 35, height: 35))
+        }
+        
+        let addPostButton = UIButton()
+        addPostButton.tintColor = .systemIndigo
+        addPostButton.setTitle("작성", for: .normal)
+        addPostButton.titleLabel?.font = Font.medium(size: 12)
+        addPostButton.backgroundColor = .systemIndigo
+        addPostButton.cornerRadius(10)
+        addPostButton.addTarget(self, action: #selector(uploadButtonTapped), for: .touchUpInside)
+        view.addSubview(addPostButton)
+        addPostButton.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            make.trailing.equalToSuperview().inset(30)
+            make.size.equalTo(CGSize(width: 45, height: 35))
         }
     }
 
@@ -184,14 +213,6 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
         return true
     }
 
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
-
-
-
-
     @objc func backButtonTapped() {
         print("DEBUG :", "clickBack")
         navigationController?.popViewController(animated: true)
@@ -199,6 +220,9 @@ class BoardWriteViewController: UITableViewController, UITextFieldDelegate, UITe
 
     @objc func uploadButtonTapped() {
         print("DEBUG :", "clickUpload")
+        if let title = self.titleTextField.text, let content = self.contentTextField.text {
+            self.interactor?.addPost(request: BoardWriteModels.UploadPost.Request(title: title, content: content))
+        }
     }
 
     @objc func addPhotoButtonTapped() {

@@ -33,7 +33,7 @@ struct Layouts {
                           elementKind: UICollectionView.elementKindSectionHeader,
                           alignment: .topLeading)
                 ]
-                section.contentInsets = .init(top: 100, leading: 10, bottom: 0, trailing: 10)
+                section.contentInsets = .init(top: 110, leading: 10, bottom: 0, trailing: 10)
                 
                 return section
                 
@@ -98,18 +98,18 @@ struct Layouts {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(0.21))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(0.15))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 group.contentInsets = .init(top: 0, leading: 10, bottom: 10, trailing: 8)
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.boundarySupplementaryItems = [
-                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(20)),
+                    .init(layoutSize: .init(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(50)),
                           elementKind: UICollectionView.elementKindSectionHeader,
                           alignment: .topLeading)
                 ]
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+                section.contentInsets = .init(top: 5, leading: 10, bottom: 0, trailing: 10)
                 
                 return section
             }
@@ -232,7 +232,7 @@ extension Layouts {
                           alignment: .topLeading)
                 ]
                 section.orthogonalScrollingBehavior = .none
-                section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+                section.contentInsets = .init(top: 30, leading: 0, bottom: 0, trailing: 0)
                 
                 return section
             }
