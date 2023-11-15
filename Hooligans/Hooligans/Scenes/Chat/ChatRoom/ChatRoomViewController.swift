@@ -285,7 +285,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleCell.identifier, for: indexPath) as? ChatBubbleCell else { return UITableViewCell() }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.backgroundColor = view.backgroundColor
+        cell.backgroundColor = UIColor(named: "c"+chatRoom.name)!
         cell.configureCell(message: messages[indexPath.row])
         
         return cell

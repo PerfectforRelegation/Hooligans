@@ -33,7 +33,7 @@ class ChatButtonCell: UICollectionViewCell {
         return image
     }()
     
-    private let chatButton: UIButton = {
+    let chatButton: UIButton = {
         let button = UIButton()
         return button
     }()

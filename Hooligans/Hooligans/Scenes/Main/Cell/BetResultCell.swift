@@ -14,7 +14,7 @@ class BetResultCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "회수할 포인트"
         label.font = Font.medium(size: 16)
-        label.textColor = .systemIndigo
+        label.textColor = .lightGray
         return label
     }()
     

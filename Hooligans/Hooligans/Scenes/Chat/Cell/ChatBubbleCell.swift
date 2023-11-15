@@ -64,10 +64,10 @@ class ChatBubbleCell: UITableViewCell {
     func configureCell(message: Message) {
         self.userNameLabel.text = message.sender
         self.messageLabel.text = message.message
+//        self.backgroundColor = backgroundColor
     }
     
     private func setupView() {
-        self.backgroundColor = .white
         let frameHeight = self.frame.height
         //self.layer.cornerRadius = frameHeight * 0.2
 
