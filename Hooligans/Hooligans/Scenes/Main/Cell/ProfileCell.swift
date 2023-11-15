@@ -30,7 +30,7 @@ final class ProfileCell: UICollectionViewCell {
         return label
     }()
     
-    private let historyButton: UIButton = {
+    let historyButton: UIButton = {
         let button = UIButton()
         button.setTitle("내역", for: .normal)
         button.setTitleColor(.lightGray, for: .normal)

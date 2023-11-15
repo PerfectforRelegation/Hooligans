@@ -46,6 +46,11 @@ class MyBetListViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     private func setup() {
         let viewController = self
         let interactor = MyBetListInteractor()

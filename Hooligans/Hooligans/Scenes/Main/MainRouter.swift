@@ -8,7 +8,8 @@
 import Foundation
 
 protocol MainRoutingLogic {
-    func routeToUserInfo()
+    func routeToChatRoom()
+    func routeToHistory()
 }
 
 protocol MainDataPassing {
@@ -19,14 +20,14 @@ final class MainRouter: MainRoutingLogic {
     weak var viewController: MainViewController?
     var dataStore: MainDataStore?
     
-    func routeToUserInfo() {
-//        let userViewController = UserViewController()
-//        
-//        viewController.navigationController?.pushViewController(userViewController, animated: true)
-
-//        let userViewController = ChatRoomViewController()
-//        
-//        viewController?.navigationController?.pushViewController(userViewController, animated: true)
+    func routeToChatRoom() {
+        let chatListViewController = ChatListViewController()
+        viewController?.navigationController?.pushViewController(chatListViewController, animated: true)
+    }
+    
+    func routeToHistory() {
+        let betHistoryViewController = MyBetListViewController()
+        viewController?.navigationController?.pushViewController(betHistoryViewController, animated: true)
     }
     
 }
