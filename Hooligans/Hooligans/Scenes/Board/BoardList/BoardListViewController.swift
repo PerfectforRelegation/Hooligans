@@ -27,7 +27,8 @@ class BoardListViewController: UIViewController {
         button.layer.cornerRadius = 20
         button.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.9)
 
-        let image = UIImageView(image: UIImage(named: "writeIcon"))
+        let image = UIImageView(image: UIImage(systemName: "pencil"))
+        image.tintColor = .white
         image.contentMode = .scaleAspectFit
         button.addSubview(image)
         image.snp.makeConstraints { make in

@@ -137,6 +137,12 @@ class BetViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         // Do any additional setup after loading the view.
+
+        if let backButtonImage = UIImage(systemName: "chevron.backward") {
+            let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backAction))
+            backButton.tintColor = .black
+            navigationItem.leftBarButtonItem = backButton
+        }
     }
 
 }
@@ -196,6 +202,10 @@ extension BetViewController {
             make.width.equalTo(80)
             make.height.equalTo(30)
         }
+    }
+
+    @objc func backAction() {
+        navigationController?.popViewController(animated: true)
     }
 
     @objc func betHomeTeam() {

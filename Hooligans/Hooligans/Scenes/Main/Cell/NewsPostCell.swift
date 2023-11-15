@@ -13,6 +13,7 @@ final class NewsPostCell: UICollectionViewCell {
     private let newsIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "newspaper")
+        imageView.tintColor = .systemIndigo
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
