@@ -1,38 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:App/Hooligans.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Common/Common.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Data/Data.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Domain/Domain.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Presentation/Presentation.xcodeproj">
+   </FileRef>
    <Group
-      location = "group:Projects"
-      name = "Projects">
-      <Group
-         location = "group:App"
-         name = "App">
-         <FileRef
-            location = "group:Hooligans/Hooligans.xcodeproj">
-         </FileRef>
-      </Group>
-   </Group>
-   <Group
-      location = "group:Tuist"
-      name = "Tuist">
-      <Group
-         location = "group:Dependencies"
-         name = "Dependencies">
-         <Group
-            location = "group:SwiftPackageManager"
-            name = "SwiftPackageManager">
-            <Group
-               location = "group:.build"
-               name = ".build">
-               <Group
-                  location = "group:checkouts"
-                  name = "checkouts">
-                  <FileRef
-                     location = "group:SnapKit/SnapKit.xcodeproj">
-                  </FileRef>
-               </Group>
-            </Group>
-         </Group>
-      </Group>
+      location = "container:"
+      name = "Dependencies">
+      <FileRef
+         location = "group:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>
