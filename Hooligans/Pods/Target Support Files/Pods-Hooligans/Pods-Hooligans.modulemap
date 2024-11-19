@@ -1,6 +1,0 @@
-framework module Pods_Hooligans {
-  umbrella header "Pods-Hooligans-umbrella.h"
-
-  export *
-  module * { export * }
-}
