@@ -49,16 +49,16 @@ public class ViewController: UIViewController {
   }
 
   func bind() {
-    let input = ViewModel.Input(refresh: viewDidAppearTrigger)
+    let input = ViewModel.Input(tapButton: button.rx.tap.asObservable())
 
     let output = viewModel.transform(from: input)
 
-    output.movieList
-      .observe(on: MainScheduler.instance)
-      .bind(to: tableView.rx.items(cellIdentifier: TableViewCell.identifier, cellType: TableViewCell.self)) { (row, movie, cell) in
-        cell.setup(movie: movie)
-      }
-      .disposed(by: disposeBag)
+//    output.movieList
+//      .observe(on: MainScheduler.instance)
+//      .bind(to: tableView.rx.items(cellIdentifier: TableViewCell.identifier, cellType: TableViewCell.self)) { (row, movie, cell) in
+//        cell.setup(movie: movie)
+//      }
+//      .disposed(by: disposeBag)
   }
 
 }

@@ -1,5 +1,5 @@
 import Foundation
-import Domain
+//import Domain
 
 // MARK: - ResponseDTO
 struct ResponseDTO: Codable {
@@ -87,9 +87,9 @@ struct MovieDTO: Codable {
         case dateUploadedUnix = "date_uploaded_unix"
     }
 
-  func toEntity() -> Movie {
-    return Movie(title: title, coverImage: largeCoverImage)
-  }
+//  func toEntity() -> Movie {
+//    return Movie(title: title, coverImage: largeCoverImage)
+//  }
 }
 
 // MARK: - TorrentDTO

@@ -6,10 +6,10 @@ let appName = "Hooligans"
 let workspace = Workspace(
     name: appName,
     projects: [
-        "App/",
-        "Presentation",
-        "Domain/",
+        "App",
+        "Domain",
         "Data",
         "Common",
+        "Presentation",
     ]
 )
