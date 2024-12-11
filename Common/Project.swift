@@ -8,12 +8,14 @@ let project = Project(
       name: "Common",
       destinations: .iOS,
       product: .framework,
-      bundleId: "com.cleanarchitecture.Common",
+      bundleId: "com.caveman.Common",
+      deploymentTargets: .iOS("14.0"),
       sources: ["Sources/**"],
       dependencies: [
         // Third party
         .external(name: "RxSwift", condition: .none),
         .external(name: "RxCocoa", condition: .none),
+        .external(name: "SnapKit", condition: .none),
 
         // Module
 //        .project(target: "Domain", path: .relativeToRoot("Domain/"), status: .required, condition: .none),

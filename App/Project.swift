@@ -1,10 +1,7 @@
 import ProjectDescription
 
-// MARK: Constants
-let projectName = "Hooligans"
-let organizationName = "hooligans"
-//let bundleID = "com.hooligans.Domain"
-let targetVersion = "13.0"
+let appName = "Hooligans"
+let organizationName = "caveman"
 
 let infoPlist: [String: Plist.Value] = [
   "UILaunchStoryboardName": "LaunchScreen", // Launch screen configuration
@@ -22,15 +19,15 @@ let infoPlist: [String: Plist.Value] = [
   ]
 ]
 
-// MARK: Struct
 let project = Project(
-  name: projectName,
+  name: appName,
   targets: [
     .target(
-      name: projectName,
+      name: appName,
       destinations: .iOS,
       product: .app,
-      bundleId: "com.\(organizationName).\(projectName)",
+      bundleId: "com.\(organizationName).\(appName)",
+      deploymentTargets: .iOS("14.0"),
       infoPlist: .extendingDefault(with: infoPlist),
       sources: ["Sources/**"],
       resources: ["Resources/**"],
@@ -50,26 +47,26 @@ let project = Project(
     ),
 
     .target(
-      name: "HooligansUnitTests",
+      name: "\(appName)UnitTests",
       destinations: .iOS,
       product: .unitTests,
-      bundleId: "com.\(organizationName).HooligansTests",
+      bundleId: "com.\(organizationName).\(appName)UnitTests",
       infoPlist: .default,
       sources: ["Tests/**"],
       dependencies: [
-        .target(name: "Hooligans", status: .optional, condition: .none),
+        .target(name: appName, status: .optional, condition: .none),
       ]
     ),
 
     .target(
-      name: "HooligansUITests",
+      name: "\(appName)UITests",
       destinations: .iOS,
       product: .uiTests,
-      bundleId: "com.\(organizationName).HooligansUITests",
+      bundleId: "com.\(organizationName).\(appName)UITests",
       infoPlist: .default,
       sources: ["UITests/**"],
       dependencies: [
-        .target(name: "Hooligans", status: .optional, condition: .none),
+        .target(name: appName, status: .optional, condition: .none),
       ]
     ),
 

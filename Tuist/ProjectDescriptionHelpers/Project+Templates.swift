@@ -9,10 +9,9 @@ extension Project {
 
   // MARK: - Main App
   public static func framework(name: String,
-                         dependencies: [TargetDependency]) -> Project {
+                               dependencies: [TargetDependency]) -> Project {
     let target = makeFrameworkTarget(name: name, dependencies: dependencies)
-    return Project(name: name,
-            targets: [target])
+    return Project(name: name, targets: [target])
   }
 
   // MARK: - Main target
@@ -23,7 +22,7 @@ extension Project {
 
   // MARK: - Framework
   public static func makeFrameworkTarget(name: String,
-                               dependencies: [TargetDependency]) -> Target {
+                                         dependencies: [TargetDependency]) -> Target {
     Target.target(
       name: name,
       destinations: .iOS,

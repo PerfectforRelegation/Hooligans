@@ -1,10 +1,3 @@
-//
-//  TableViewCell.swift
-//  Presentation
-//
-//  Created by 정명곤 on 10/29/24.
-//  Copyright © 2024 CleanArchitecture. All rights reserved.
-//
 
 import UIKit
 import RxSwift
@@ -37,34 +30,10 @@ final class TableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func setup(movie: Movie) {
-    self.titleLabel.text = movie.title
-    if let imageURL = movie.coverImage {
-      loadImage(from: imageURL)
-        .observe(on: MainScheduler.instance)
-        .bind(to: thumbnail.rx.image)
-        .disposed(by: disposeBag)
-    }
+  func setup() {
+
   }
 
-  private func loadImage(from url: String) -> Observable<UIImage?> {
-    guard let url = URL(string: url) else { return Observable.just(nil) }
-    return Observable.create { observer in
-      let task = URLSession.shared.dataTask(with: url) { data, response, error in
-        if let error {
-          observer.onError(error)
-        } else if let data = data,
-                  let image = UIImage(data: data) {
-          observer.onNext(image)
-          observer.onCompleted()
-        }
-      }
-      task.resume()
-      return Disposables.create {
-        task.cancel()
-      }
-    }
-  }
 }
 
 extension TableViewCell {
