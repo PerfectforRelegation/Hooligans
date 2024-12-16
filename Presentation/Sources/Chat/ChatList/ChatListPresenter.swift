@@ -13,7 +13,7 @@ protocol ChatListPresentationLogic: AnyObject {
 }
 
 final class ChatListPresenter {
-    weak var viewController: ChatListViewController?
+//    weak var viewController: ChatListViewController?
 }
 
 extension ChatListPresenter: ChatListPresentationLogic {

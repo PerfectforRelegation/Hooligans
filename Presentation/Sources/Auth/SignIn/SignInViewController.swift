@@ -13,7 +13,7 @@ enum Auth: Int {
 
 public final class SignInViewController: UIViewController {
   // MARK: - Properties
-  private let viewModel: ViewModel
+  private let viewModel: MainViewModel
 
   //  CollectionView CompositionalLayout
   //      typealias DataSource = UICollectionViewDiffableDataSource<SigninModels.Section, Item>
@@ -35,7 +35,7 @@ public final class SignInViewController: UIViewController {
   }()
 
   // MARK: - Initialize
-  public init(viewModel: ViewModel) {
+  public init(viewModel: MainViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }

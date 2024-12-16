@@ -49,8 +49,8 @@ final class TabBarCoordinator: Coordinator {
 
     navigationController.pushViewController(tabbarController, animated: true)
 
-    parent?.childeren.append(homeCoordinator)
-    parent?.childeren.append(tradingCoordinator)
+    childeren.append(homeCoordinator)
+    childeren.append(tradingCoordinator)
 
     homeCoordinator.start()
     tradingCoordinator.start()
