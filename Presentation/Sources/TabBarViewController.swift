@@ -23,7 +23,7 @@ public final class TabBarViewController: UITabBarController {
 
 
 
-    let secondViewController = UINavigationController(rootViewController: ChatListViewController())
+//    let secondViewController = UINavigationController(rootViewController: ChatListViewController())
 
     
 
@@ -35,7 +35,7 @@ public final class TabBarViewController: UITabBarController {
     thirdViewController.tabBarItem.tag = 2
 
 
-    self.setViewControllers([firstViewController, secondViewController, thirdViewController], animated: true)
+//    self.setViewControllers([firstViewController, secondViewController, thirdViewController], animated: true)
 
 //    if let selectedImage = firstViewController.tabBarItem.selectedImage {
 //      firstViewController.tabBarItem.selectedImage = selectedImage.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)

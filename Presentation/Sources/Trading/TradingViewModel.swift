@@ -12,7 +12,7 @@ import RxCocoa
 import Domain
 
 
-public final class ViewModel {
+public final class TradingViewModel {
   private let useCase: UseCase
   private let disposeBag = DisposeBag()
 
@@ -20,11 +20,12 @@ public final class ViewModel {
     let tapButton: Observable<Void>
   }
 
-  struct Output {
-//    let navigateToAuthCoordinator: Observable<Void>
+  public struct Output {
+    public let navigateToAuthCoordinator = PublishRelay<Void>()
   }
 
-  public let navigateToAuthCoordinator: PublishRelay<Void> = PublishRelay()
+//  public let navigateToAuthCoordinator: PublishRelay<Void> = PublishRelay()
+  public let output = Output()
 
   public init(useCase: UseCase) {
     self.useCase = useCase
@@ -33,7 +34,7 @@ public final class ViewModel {
   func transform(from input: Input) -> Output {
 
     input.tapButton
-      .bind(to: navigateToAuthCoordinator)
+      .bind(to: output.navigateToAuthCoordinator)
       .disposed(by: disposeBag)
 
 //    let movieList = input.refresh

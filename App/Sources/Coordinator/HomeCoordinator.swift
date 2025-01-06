@@ -1,8 +1,8 @@
 import UIKit
+import RxSwift
 import Presentation
 import Domain
 import Data
-import RxSwift
 
 
 final class HomeCoordinator: Coordinator {
@@ -21,10 +21,10 @@ final class HomeCoordinator: Coordinator {
   func start() {
     let repository = RepositoryImpl()               // Data layer
     let useCase = UseCase(repository: repository)   // Domain layer
-    let viewModel = ViewModel(useCase: useCase)     // Presentation layer
-    let viewController = ViewController(viewModel: viewModel)
+    let viewModel = MainViewModel(useCase: useCase)     // Presentation layer
+    let viewController = MainViewController(viewModel: viewModel)
 
-    viewModel.navigateToAuthCoordinator
+    viewModel.output.navigateToAuthCoordinator
       .subscribe(onNext: { [weak self] in
         let appCoordinator = self?.parent as! AppCoordinator
         appCoordinator.goToAuthCoordinator()

@@ -6,14 +6,16 @@ import RxSwift
 
 final class AppCoordinator: Coordinator {
   // MARK: - Property
+  var window: UIWindow?
+
   var parent: Coordinator?
   var childeren: [Coordinator] = []
   var navigationController = UINavigationController()
 
   private let disposeBag = DisposeBag()
 
-  init() {
-    
+  init(window: UIWindow?) {
+    self.window = window
   }
 
   // MARK: - Start
@@ -25,13 +27,15 @@ final class AppCoordinator: Coordinator {
   }
 
   func goToTabBarCoordinator() {
-    let tabBarCoordinator = TabBarCoordinator(navigationController: self.navigationController)
+    let navigationController = UINavigationController()
+    let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController)
     tabBarCoordinator.parent = self
     go(to: tabBarCoordinator)
   }
 
   func goToAuthCoordinator() {
-    let authCoordinator = AuthCoordinator(navigationController: self.navigationController)
+    let navigationController = UINavigationController()
+    let authCoordinator = AuthCoordinator(navigationController: navigationController)
     authCoordinator.parent = self
     go(to: authCoordinator)
   }
@@ -40,8 +44,13 @@ final class AppCoordinator: Coordinator {
 
 extension AppCoordinator {
   private func go(to coordinator: Coordinator) {
+    guard let window = window else { return }
+
     childeren.removeAll()
     childeren.append(coordinator)
+
+    window.rootViewController = coordinator.navigationController
+    window.makeKeyAndVisible()
 
     coordinator.start()
   }
