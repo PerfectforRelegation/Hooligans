@@ -1,9 +1,9 @@
 import ProjectDescription
 
-/// Project helpers are functions that simplify the way you define your project.
-/// Share code to create targets, settings, dependencies,
-/// Create your own conventions, e.g: a func that makes sure all shared targets are "static frameworks"
-/// See https://docs.tuist.io/guides/helpers/
+public enum Module: String {
+  case Coin
+  case Chat
+}
 
 extension Project {
 
@@ -108,3 +108,13 @@ extension Project {
   //  }
   //}
 }
+
+//extension TargetDependency {
+//  static private func feature(target: String, moduleName: String) -> TargetDependency {
+//    return .project(target: target, path: "\(moduleName)", status: .required, condition: .none)
+//  }
+//
+//  static public func feature(interface moduleName: Module) -> TargetDependency {
+//    return .feature(target: "\(moduleName.rawValue)Interface", moduleName: moduleName.rawValue)
+//  }
+//}
