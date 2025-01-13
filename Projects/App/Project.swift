@@ -1,5 +1,6 @@
 import ProjectDescription
 
+
 let appName = "Hooligans"
 let organizationName = "caveman"
 
@@ -36,9 +37,10 @@ let project = Project(
         //        .external(name: "RxSwift", condition: .none),
 
         // Module
-        .project(target: "Presentation", path: .relativeToRoot("Projects/Presentation/"), status: .required, condition: .none),
-        .project(target: "Data", path: .relativeToRoot("Projects/Data/"), status: .required, condition: .none),
-        .project(target: "Domain", path: .relativeToRoot("Projects/Domain/"), status: .required, condition: .none),
+//        .project(target: "Presentation", path: .relativeToRoot("Projects/Presentation/"), status: .required, condition: .none),
+        .project(target: "Coin", path: .relativeToRoot("Projects/Feature/Coin/"), status: .required, condition: .none),
+//        .project(target: "Data", path: .relativeToRoot("Projects/Data/"), status: .required, condition: .none),
+//        .project(target: "Domain", path: .relativeToRoot("Projects/Domain/"), status: .required, condition: .none),
       ],
       settings: .settings(configurations: [
         .debug(name: "Debug"),
