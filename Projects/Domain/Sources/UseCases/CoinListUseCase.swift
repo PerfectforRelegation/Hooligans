@@ -1,18 +1,17 @@
-
 import UIKit
 import RxSwift
 
 
-public final class UseCase {
-  private let repository: Repository
+public final class CoinListUseCase {
+  private let repository: ClubListRepository
 
-  public init(repository: Repository) {
+  public init(repository: ClubListRepository) {
     self.repository = repository
   }
-//
-//  public func getAlarmList() -> Observable<[Alarm]> {
-//    return repository.fetchAlarmList()
-//  }
+
+  public func getClubList() -> Observable<[Club]> {
+    return repository.fetchClubList()
+  }
 //
 //  public func addAlarm(title: String,
 //                       body: String,

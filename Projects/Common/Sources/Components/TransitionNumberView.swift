@@ -6,14 +6,13 @@ import SnapKit
 public class TransitionNumberView: UIView {
   private let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-  let numberTableView: UITableView = {
-    let tableView = UITableView()
-    tableView.translatesAutoresizingMaskIntoConstraints = false
-    tableView.isScrollEnabled = false
-    tableView.separatorStyle = .none
-    tableView.backgroundColor = .clear
-    return tableView
+  let numberScrollView: UIScrollView = {
+    let scrollView = UIScrollView()
+    scrollView.translatesAutoresizingMaskIntoConstraints = false
+    return scrollView
   }()
+
+  let numberView = NumberView()
 
   public override init(frame: CGRect) {
     super.init(frame: frame)
@@ -29,47 +28,59 @@ public class TransitionNumberView: UIView {
   }
 
   private func configuration() {
-    numberTableView.delegate = self
-    numberTableView.dataSource = self
 
-    numberTableView.register(NumberCell.self, forCellReuseIdentifier: NumberCell.identifier)
   }
 
-  func changeNumber() {
-    
+//  func changeNumber() {
+//    let indexPath = IndexPath(row: numbers.randomElement()!, section: 0)
+//    let rect = numberScrollView.rectForRow(at: indexPath)
+//
+//    UIView.animate(withDuration: 0.09) {
+//      self.numberScrollView.setContentOffset(CGPoint(x: 0, y: rect.origin.y + 20), animated: true)
+//    } completion: { _ in
+//      UIView.animate(withDuration: 0.09) {
+//        self.numberScrollView.setContentOffset(CGPoint(x: 0, y: rect.origin.y), animated: true)
+//      }
+//    }
+//  }
+
+  // 숫자 이동 함수
+  public func moveToHigherNumber(_ targetIndex: Int) {
+      guard targetIndex >= 0 && targetIndex < numbers.count else { return }
+
+    let targetY = CGFloat(targetIndex) * frame.height  // 숫자 높이(80) + 간격(10)
+
+      // 바운스 애니메이션
+//      UIView.animate(withDuration: 0.09, animations: {
+//          self.scrollView.setContentOffset(CGPoint(x: 0, y: targetY + 20), animated: false) // 목표 위치보다 약간 위로 이동
+//      }) { _ in
+//        UIView.animate(withDuration: 0.09, animations: {
+//            self.scrollView.setContentOffset(CGPoint(x: 0, y: targetY), animated: false) // 목표 위치로 복귀
+//          })
+//      }
+  }
+
+  public func moveToLowerNumber(_ targetNumber: Int) {
+
   }
 
 }
 
 extension TransitionNumberView {
   func setComponents() {
-    addSubview(numberTableView)
+    addSubview(numberScrollView)
+    numberScrollView.addSubview(numberView)
+
   }
 
   func setLayout() {
-    numberTableView.snp.makeConstraints { make in
+    numberScrollView.snp.makeConstraints { make in
       make.top.leading.trailing.bottom.equalToSuperview()
     }
-  }
-}
 
-
-extension TransitionNumberView: UITableViewDelegate, UITableViewDataSource {
-  public func tableView(_ tableView: UITableView,
-                        numberOfRowsInSection section: Int) -> Int {
-    return numbers.count
-  }
-
-  public func tableView(_ tableView: UITableView,
-                        cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard 
-      let cell = tableView.dequeueReusableCell(withIdentifier: NumberCell.identifier, for: indexPath) as? NumberCell else { return UITableViewCell() }
-    cell.configuration(number: String(numbers[indexPath.row]))
-    return cell
-  }
-
-  public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return frame.height
+    numberView.snp.makeConstraints { make in
+      make.top.leading.trailing.bottom.equalToSuperview()
+    }
   }
 }
 
@@ -116,3 +127,4 @@ struct TransitionNumberPreView: PreviewProvider {
       TransitionNumberView().toPreview()
     }
 }
+

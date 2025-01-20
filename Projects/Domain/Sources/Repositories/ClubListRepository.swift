@@ -8,12 +8,12 @@
 import UIKit
 import RxSwift
 
-public protocol Repository {
+public protocol ClubListRepository {
 
   init()
 
-//  func fetchAlarmList() -> Observable<[Alarm]>
-//
+  func fetchClubList() -> Observable<[Club]>
+
 //  func addAlarm(title: String,
 //                body: String,
 //                at date: DateComponents) -> Observable<[Alarm]>
@@ -27,6 +27,6 @@ public protocol Repository {
 
 }
 
-extension Repository {
+extension ClubListRepository {
 //  init() { }
 }
