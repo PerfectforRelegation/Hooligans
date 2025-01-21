@@ -1,12 +1,12 @@
 import Foundation
+import Domain
 import RxSwift
 import RxCocoa
-import Domain
 
 
-public final class ClubListViewModel {
+final class TokenDetailViewModel {
   // MARK: - Properties
-  private let useCase: CoinListUseCase
+  private let tokenUseCase: TokenUseCase
   private let disposeBag = DisposeBag()
 
   struct Input {
@@ -14,28 +14,26 @@ public final class ClubListViewModel {
   }
 
   struct Output {
-    public let clubList = PublishRelay<[Club]>()
+    public let candleData = PublishRelay<[Candle]>()
   }
 
   let output = Output()
-  var coinList: [Coin] = []
+  
 
-  // MARK: - Lifecycle
-  public init(useCase: CoinListUseCase) {
-    self.useCase = useCase
+  // MARK: - LifeCycle
+  public init(useCase: TokenUseCase) {
+    self.tokenUseCase = useCase
   }
 
   func transform(from input: Input) -> Output {
-
     input.viewDidAppear
-      .flatMap { [weak self] _ -> Observable<[Club]> in
+      .flatMap { [weak self] _ -> Observable<[Candle]> in
         guard let self = self else { return Observable.just([]) }
-        return useCase.getClubList()
+        return tokenUseCase.getCandleData()
       }
-      .bind(to: output.clubList)
+      .bind(to: output.candleData)
       .disposed(by: disposeBag)
 
     return output
   }
-
 }

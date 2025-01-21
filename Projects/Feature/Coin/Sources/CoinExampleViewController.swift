@@ -38,11 +38,11 @@ extension CoinExampleViewController {
   }
 
   @objc func tapButton() {
-    let coinListRepository = MockClubListRepository()
-    let coinListUseCase = CoinListUseCase(repository: coinListRepository)
-    let coinListViewModel = ClubListViewModel(useCase: coinListUseCase)
-    let coinListViewController = ClubListViewController(viewModel: coinListViewModel)
+    let tokenRepository = MockTokenRepository()
+    let tokenUseCase = TokenUseCase(repository: tokenRepository)
+    let tokenListViewModel = TokenListViewModel(useCase: tokenUseCase)
+    let tokenListViewController = TokenListViewController(viewModel: tokenListViewModel)
 
-    self.navigationController?.pushViewController(coinListViewController, animated: true)
+    self.navigationController?.pushViewController(tokenListViewController, animated: true)
   }
 }

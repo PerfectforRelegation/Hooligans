@@ -1,23 +1,23 @@
-
 import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
 
-public class ClubListViewController: UIViewController {
-  private var viewModel: ClubListViewModel
+
+public class TokenListViewController: UIViewController {
+  private var viewModel: TokenListViewModel
   private var disposeBag = DisposeBag()
 
   let viewDidAppearTrigger = PublishSubject<Void>()
 
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
-    tableView.register(ClubListTableViewCell.self, forCellReuseIdentifier: ClubListTableViewCell.identifier)
+    tableView.register(TokenListTableViewCell.self, forCellReuseIdentifier: TokenListTableViewCell.identifier)
 
     return tableView
   }()
 
-  public init(viewModel: ClubListViewModel) {
+  public init(viewModel: TokenListViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
@@ -39,28 +39,28 @@ public class ClubListViewController: UIViewController {
   }
 
   func bind() {
-    let input = ClubListViewModel.Input(viewDidAppear: viewDidAppearTrigger)
+    let input = TokenListViewModel.Input(viewDidAppear: viewDidAppearTrigger)
 
     let output = viewModel.transform(from: input)
 
     output.clubList
       .observe(on: MainScheduler.instance)
-      .bind(to: tableView.rx.items(cellIdentifier: ClubListTableViewCell.identifier, cellType: ClubListTableViewCell.self)) { (row, club, cell) in
-        cell.configure(club: club)
+      .bind(to: tableView.rx.items(cellIdentifier: TokenListTableViewCell.identifier, cellType: TokenListTableViewCell.self)) { (row, token, cell) in
+        cell.configure(club: token)
       }
       .disposed(by: disposeBag)
   }
 
 }
 
-extension ClubListViewController {
+extension TokenListViewController {
   func setView() {
     view.addSubview(tableView)
   }
 
   func setLayout() {
     tableView.snp.makeConstraints { make in
-      make.top.leading.trailing.bottom.equalToSuperview()
+      make.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
     }
   }
 }

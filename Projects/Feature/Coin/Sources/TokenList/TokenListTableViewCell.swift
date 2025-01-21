@@ -2,10 +2,11 @@ import UIKit
 import Domain
 import Common
 
-class ClubListTableViewCell: UITableViewCell {
+class TokenListTableViewCell: UITableViewCell {
+  static let identifier = "tokenListTableViewCell"
   // MARK: - Property
-  static let identifier = "coinListTableViewCell"
 
+  
 
   // MARK: - View component
   private let rankingLabel: UILabel = {
@@ -51,15 +52,15 @@ class ClubListTableViewCell: UITableViewCell {
     // Configure the view for the selected state
   }
 
-  func configure(club: Club) {
-    rankingLabel.text = club.clubId
-    clubNameLabel.text = club.clubName
-    priceWithPercentageLabel.setup(current: Int(club.currentPrice)!)
+  func configure(club token: Token) {
+    rankingLabel.text = token.clubId
+    clubNameLabel.text = token.clubName
+    priceWithPercentageLabel.setup(current: Int(token.currentPrice)!)
   }
 
 }
 
-extension ClubListTableViewCell {
+extension TokenListTableViewCell {
   private func setComponents() {
     addSubview(rankingLabel)
     addSubview(clubNameLabel)
@@ -75,15 +76,16 @@ extension ClubListTableViewCell {
     }
 
     clubNameLabel.snp.makeConstraints { make in
-      make.centerY.equalToSuperview()
+      make.top.equalToSuperview().offset(10)
       make.leading.equalTo(rankingLabel.snp.trailing).offset(20)
 //      make.trailing.equalToSuperview().inset(20)
       make.height.equalTo(30)
     }
 
     priceWithPercentageLabel.snp.makeConstraints { make in
-      make.centerY.equalToSuperview()
-      make.leading.equalTo(clubNameLabel.snp.trailing).offset(20)
+      make.top.equalTo(clubNameLabel.snp.bottom).offset(6)
+      make.leading.equalTo(clubNameLabel.snp.leading)
+      make.bottom.equalToSuperview().inset(10)
     }
   }
 

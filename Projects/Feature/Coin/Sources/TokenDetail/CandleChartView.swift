@@ -1,13 +1,6 @@
 import UIKit
 
 
-struct Candle {
-  let open: CGFloat
-  let high: CGFloat
-  let low: CGFloat
-  let close: CGFloat
-}
-
 class CandleChartView: UIView {
     var candles: [Candle] = [
       Candle(open: 100, high: 110, low: 95, close: 105),

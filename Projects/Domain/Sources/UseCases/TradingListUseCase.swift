@@ -2,9 +2,9 @@ import Foundation
 import RxSwift
 
 final class TradingListUseCase {
-  private let repository: ClubListRepository
+  private let repository: TokenRepository
 
-  init(repository: ClubListRepository) {
+  init(repository: TokenRepository) {
     self.repository = repository
   }
 
