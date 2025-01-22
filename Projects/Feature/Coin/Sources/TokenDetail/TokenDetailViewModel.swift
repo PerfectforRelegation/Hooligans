@@ -4,7 +4,7 @@ import RxSwift
 import RxCocoa
 
 
-final class TokenDetailViewModel {
+final public class TokenDetailViewModel {
   // MARK: - Properties
   private let tokenUseCase: TokenUseCase
   private let disposeBag = DisposeBag()

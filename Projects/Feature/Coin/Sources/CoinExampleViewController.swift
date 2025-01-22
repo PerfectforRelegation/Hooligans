@@ -12,6 +12,11 @@ public class CoinExampleViewController: UIViewController {
     return button
   }()
 
+//  private lazy var tableView: UITableView {
+//    let tableView = UITableView()
+//    return tableView
+//  }()
+
   public override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .red
@@ -40,9 +45,10 @@ extension CoinExampleViewController {
   @objc func tapButton() {
     let tokenRepository = MockTokenRepository()
     let tokenUseCase = TokenUseCase(repository: tokenRepository)
-    let tokenListViewModel = TokenListViewModel(useCase: tokenUseCase)
-    let tokenListViewController = TokenListViewController(viewModel: tokenListViewModel)
-
-    self.navigationController?.pushViewController(tokenListViewController, animated: true)
+//    let tokenListViewModel = TokenListViewModel(useCase: tokenUseCase)
+//    let tokenListViewController = TokenListViewController(viewModel: tokenListViewModel)
+    let tokenDetailViewModel = TokenDetailViewModel(useCase: tokenUseCase)
+    let tokenDetailViewController = TokenDetailViewController(tokenDetailViewModel: tokenDetailViewModel)
+    self.navigationController?.pushViewController(tokenDetailViewController, animated: true)
   }
 }

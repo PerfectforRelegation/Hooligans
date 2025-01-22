@@ -42,7 +42,7 @@ public struct Candle: Codable {
   public let highPrice: Double
   public let lowPrice: Double
   public let tradePrice: Double
-  public let timestamp: Int64
+  public let timestamp: Int
   public let candleAccTradePrice: Double
   public let candleAccTradeVolume: Double
   public let prevClosingPrice: Double
@@ -81,7 +81,7 @@ public struct Candle: Codable {
   }
 
   enum CodingKeys: String, CodingKey {
-    case market
+    case clubName
     case candleDateTimeUTC = "candle_date_time_utc"
     case candleDateTimeKST = "candle_date_time_kst"
     case openingPrice = "opening_price"
