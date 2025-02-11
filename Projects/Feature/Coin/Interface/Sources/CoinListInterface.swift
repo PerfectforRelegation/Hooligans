@@ -1,3 +1,5 @@
 
 
+public protocol CoinInterface {
 
+}

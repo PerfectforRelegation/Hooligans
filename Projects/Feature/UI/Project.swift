@@ -5,7 +5,7 @@ let projectName = "UIs"
 
 let infoPlist: [String: Plist.Value] = [
   "UILaunchStoryboardName": "LaunchScreen",
-  "CFBundleVersion": "1,0",
+  "CFBundleVersion": "1.0",
   "UIApplicationSceneManifest": [
     "UIApplicationSupportsMultipleScenes": false,
     "UISceneConfigurations": [

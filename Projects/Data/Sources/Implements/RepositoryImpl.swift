@@ -1,11 +1,10 @@
-
 import UIKit
 import Domain
 import Common
 import RxSwift
 import RxCocoa
 
-public final class RepositoryImpl: Repository {
+public final class RepositoryImpl: TokenRepository {
 
   public init() { }
 

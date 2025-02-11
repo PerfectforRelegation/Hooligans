@@ -14,7 +14,7 @@ public final class TokenDetailViewController: UIViewController {
   let headerLabel: UILabel = {
     let label = UILabel()
     label.text = "테슬라"
-    label.font = .boldSystemFont(ofSize: 2≥2)
+    label.font = .boldSystemFont(ofSize: 22)
     return label
   }()
 

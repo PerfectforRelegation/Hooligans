@@ -5,7 +5,7 @@ let projectName = "Coin"
 
 let infoPlist: [String: Plist.Value] = [
   "UILaunchStoryboardName": "LaunchScreen",
-  "CFBundleVersion": "1,0",
+  "CFBundleVersion": "1.0",
   "UIApplicationSceneManifest": [
     "UIApplicationSupportsMultipleScenes": false,
     "UISceneConfigurations": [
@@ -34,6 +34,7 @@ let project = Project(
       dependencies: [
         .target(name: projectName, status: .required, condition: .none),
         .target(name: "\(projectName)Testing", status: .required, condition: .none),
+
       ],
       settings: .settings(configurations: [
         .debug(name: "Debug"),
