@@ -28,7 +28,7 @@ public class TokenListViewController: UIViewController {
 
   public override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .systemBlue
+    self.view.backgroundColor = .systemBackground
 
     setView()
     setLayout()
