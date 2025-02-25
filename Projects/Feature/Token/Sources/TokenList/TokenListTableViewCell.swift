@@ -4,6 +4,7 @@ import Common
 
 class TokenListTableViewCell: UITableViewCell {
   static let identifier = "tokenListTableViewCell"
+
   // MARK: - Property
 
   
@@ -19,12 +20,15 @@ class TokenListTableViewCell: UITableViewCell {
   private let clubImage: UIImageView = {
     let image = UIImageView()
     image.translatesAutoresizingMaskIntoConstraints = false
+    image.backgroundColor = .systemYellow
+    image.layer.cornerRadius = 30 / 2
+    image.clipsToBounds = true
     return image
   }()
 
   private let clubNameLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .black
+    label.textColor = .white
     return label
   }()
 
@@ -37,6 +41,7 @@ class TokenListTableViewCell: UITableViewCell {
   // MARK: - Life cycle
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    backgroundColor = CommonAsset.background.color
 
     setComponents()
     setLayout()
@@ -46,14 +51,9 @@ class TokenListTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-
-    // Configure the view for the selected state
-  }
-
-  func configure(club token: Token) {
-    rankingLabel.text = token.clubId
+  func configure(rank row: Int, club token: Token) {
+    rankingLabel.text = String(row)
+    clubImage.image = UIImage(systemName: "house.fill")
     clubNameLabel.text = token.clubName
     priceWithPercentageLabel.setup(current: Int(token.currentPrice)!)
   }
@@ -63,8 +63,8 @@ class TokenListTableViewCell: UITableViewCell {
 extension TokenListTableViewCell {
   private func setComponents() {
     addSubview(rankingLabel)
-    addSubview(clubNameLabel)
     addSubview(clubImage)
+    addSubview(clubNameLabel)
     addSubview(priceWithPercentageLabel)
   }
 
@@ -75,9 +75,15 @@ extension TokenListTableViewCell {
       make.width.height.equalTo(30)
     }
 
+    clubImage.snp.makeConstraints { make in
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(rankingLabel.snp.trailing).offset(10)
+      make.width.height.equalTo(30)
+    }
+
     clubNameLabel.snp.makeConstraints { make in
       make.top.equalToSuperview().offset(10)
-      make.leading.equalTo(rankingLabel.snp.trailing).offset(20)
+      make.leading.equalTo(clubImage.snp.trailing).offset(20)
 //      make.trailing.equalToSuperview().inset(20)
       make.height.equalTo(30)
     }

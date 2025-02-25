@@ -8,7 +8,7 @@ final class TokenListViewHeader: UIView {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.font = .boldSystemFont(ofSize: 24)
     label.textColor = .white
-    label.text = "거래량 Top 100"
+    label.text = "거래량 Top20"
     return label
   }()
 
@@ -35,7 +35,6 @@ extension TokenListViewHeader {
       titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
       titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
       titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-      titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
     ])
   }
 }

@@ -11,14 +11,17 @@ public final class TokenListViewModel {
 
   struct Input {
     let viewDidAppear: Observable<Void>
+    let selectTap: Observable<TokenListTableViewCell>
   }
 
   struct Output {
+    public let tapList = PublishRelay<[String]>()
     public let clubList = PublishRelay<[Token]>()
   }
 
   let output = Output()
   var coinList: [Coin] = []
+  var selectedTabIndex = 0
 
   // MARK: - Lifecycle
   public init(useCase: TokenUseCase) {
@@ -26,6 +29,13 @@ public final class TokenListViewModel {
   }
 
   func transform(from input: Input) -> Output {
+
+    input.viewDidAppear
+      .map {
+        ["전체", "국내", "해외"]
+      }
+      .bind(to: output.tapList)
+      .disposed(by: disposeBag)
 
     input.viewDidAppear
       .flatMap { [weak self] _ -> Observable<[Token]> in
