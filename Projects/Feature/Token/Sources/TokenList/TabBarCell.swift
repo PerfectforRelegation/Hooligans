@@ -1,7 +1,7 @@
 import UIKit
 
 
-final class TabMenuCell: UICollectionViewCell {
+final class TabBarCell: UICollectionViewCell {
   static let identifier = "tabMenuCell"
 
   override var isSelected: Bool {
@@ -44,7 +44,7 @@ final class TabMenuCell: UICollectionViewCell {
 }
 
 
-extension TabMenuCell {
+extension TabBarCell {
   private func setComponents() {
     addSubview(titleLabel)
   }

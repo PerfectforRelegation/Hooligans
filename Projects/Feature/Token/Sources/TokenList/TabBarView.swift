@@ -3,10 +3,11 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class TabMenuView: UIView {
+final class TabBarView: UIView {
   private let disposeBag = DisposeBag()
-  
+
   private var tabs: [String]?
+  var tabSelected: ControlEvent<IndexPath> { tabMenuCollectionView.rx.itemSelected }
 
   private lazy var tabMenuCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -30,31 +31,28 @@ final class TabMenuView: UIView {
     self.init(frame: .zero)
     self.tabs = tabs
 
-    setComponents()
-    setLayout()
-
+    setup()
     bind()
+
+
   }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
+
   }
 
   required init?(coder: NSCoder) {
     fatalError()
   }
 
-  func tabMenu() -> Observable<IndexPath> {
-    return tabMenuCollectionView.rx.itemSelected.asObservable()
+  private func setup() {
+    setupSubviews()
+    setupLayout()
   }
 
   private func bind() {
-    tabMenuCollectionView.rx.itemSelected
-      .observe(on: MainScheduler.instance)
-      .subscribe { [weak self] indexPath in
-        self?.moveIndicator(to: indexPath)
-      }
-      .disposed(by: disposeBag)
+    bindView()
   }
 
   private func moveIndicator(to indexPath: IndexPath) {
@@ -70,17 +68,28 @@ final class TabMenuView: UIView {
 
 }
 
-extension TabMenuView {
-  private func setComponents() {
+extension TabBarView {
+  private func bindView() {
+    tabMenuCollectionView.rx.itemSelected
+      .observe(on: MainScheduler.instance)
+      .subscribe { [weak self] indexPath in
+        self?.moveIndicator(to: indexPath)
+      }
+      .disposed(by: disposeBag)
+  }
+}
+
+extension TabBarView {
+  private func setupSubviews() {
     addSubview(tabMenuCollectionView)
     addSubview(indicatorView)
   }
 
-  private func setLayout() {
+  private func setupLayout() {
     indicatorView.snp.makeConstraints { make in
       make.leading.bottom.equalToSuperview()
       make.width.equalTo(0)
-      make.height.equalTo(6)
+      make.height.equalTo(5)
     }
 
     tabMenuCollectionView.snp.makeConstraints { make in
@@ -91,14 +100,15 @@ extension TabMenuView {
   }
 }
 
-extension TabMenuView: UICollectionViewDataSource {
+extension TabBarView: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let tabs = tabs else { return 0 }
     return tabs.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabMenuCell.identifier, for: indexPath) as? TabMenuCell,
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabMenuCell.identifier,
+                                                        for: indexPath) as? TabMenuCell,
           let tabs = tabs else { return UICollectionViewCell() }
     cell.configure(title: tabs[indexPath.row])
     return cell
