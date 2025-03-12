@@ -1,5 +1,6 @@
+import DependencyPlugin
 import ProjectDescription
-
+import ProjectDescriptionHelpers
 
 let appName = "Hooligans"
 let organizationName = "caveman"
@@ -32,13 +33,15 @@ let project = Project(
       infoPlist: .extendingDefault(with: infoPlist),
       sources: ["Sources/**"],
       resources: ["Resources/**"],
-      dependencies: [
+      dependencies: 
+        Module.Feature.allCases.map { .feature(target: $0) }
+      + [
         // Third party
         //        .external(name: "RxSwift", condition: .none),
 
         // Module
 //        .project(target: "Presentation", path: .relativeToRoot("Projects/Presentation/"), status: .required, condition: .none),
-        .project(target: "Coin", path: .relativeToRoot("Projects/Feature/Coin/"), status: .required, condition: .none),
+//        .project(target: "Auth", path: .relativeToRoot("Projects/Feature/Auth/"), status: .required, condition: .none),
 //        .project(target: "Data", path: .relativeToRoot("Projects/Data/"), status: .required, condition: .none),
 //        .project(target: "Domain", path: .relativeToRoot("Projects/Domain/"), status: .required, condition: .none),
       ],
