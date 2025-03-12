@@ -1,9 +1,5 @@
 import ProjectDescription
 
-public enum Module: String {
-  case Coin
-  case Chat
-}
 
 extension Project {
 
@@ -23,7 +19,7 @@ extension Project {
   // MARK: - Framework
   public static func makeFrameworkTarget(name: String,
                                          dependencies: [TargetDependency]) -> Target {
-    Target.target(
+    .target(
       name: name,
       destinations: .iOS,
       product: .framework,

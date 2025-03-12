@@ -6,14 +6,12 @@ import ProjectDescriptionHelpers
 let organizationName = "caveman"
 
 let project = Project(
-  name: Module.Data.database.rawValue,
+  name: Module.Core.networking.rawValue,
   targets: [
     .interface(
-      module: .data(.database),
+      module: .core(.networking),
       dependencies: [
 
       ]),
   ]
 )
-
-
